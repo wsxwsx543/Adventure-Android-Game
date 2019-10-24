@@ -18,7 +18,7 @@
         </activity>
         <activity android:name=".MainActivity">
         </activity>
-        <activity android:name=".battle.BattleActivity" />
+        <activity android:name=".BattleActivity" />
     </application>
 
 </manifest>

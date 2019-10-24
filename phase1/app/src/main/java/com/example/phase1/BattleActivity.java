@@ -1,4 +1,4 @@
-package com.example.phase1.battle;
+package com.example.phase1;
 
 import android.app.Activity;
 // import android.support.v7.app.AppCompatActivity;
