@@ -14,6 +14,6 @@ public class Monster {
     }
 
     Property getProperty(){
-        return this.property;
+        return property;
     }
 }
