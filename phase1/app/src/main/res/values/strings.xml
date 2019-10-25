@@ -6,4 +6,7 @@
     <string name="PleaseLogin">Please login first</string>
     <string name="login">login</string>
     <string name="register">register</string>
+    <string name="PleaseRegister">Please register here</string>
+    <string name="input_password1">Please enter password</string>
+    <string name="input_password2">Please enter password again</string>
 </resources>
