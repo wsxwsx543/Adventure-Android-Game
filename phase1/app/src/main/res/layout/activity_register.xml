@@ -3,7 +3,7 @@
     android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".g1Activity"
+    tools:context=".MainActivity"
     android:background="@drawable/background_login">
 
     <LinearLayout
@@ -16,7 +16,7 @@
         android:background="@drawable/background_login_div" >
 
         <TextView
-            android:id="@+id/usernameTextView"
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -25,12 +25,12 @@
             android:textSize="25sp"/>
 
         <TextView
-            android:id="@+id/passwordTextView"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="@string/PleaseLogin" />
+            android:text="@string/PleaseRegister" />
 
         <EditText
             android:id="@+id/username"
@@ -46,7 +46,7 @@
         </EditText>
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/password1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="60dp"
@@ -54,25 +54,28 @@
             android:layout_marginTop="15dp"
             android:singleLine="true"
             android:background="#fff"
-            android:hint="@string/input_password"
+            android:hint="@string/input_password1"
             android:ems="10" />
 
-        <Button
-            android:id="@+id/login"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
-            android:text="@string/login"
-            android:background="@drawable/background_button_div"/>
+        <EditText
+            android:id="@+id/password2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="15dp"
+            android:singleLine="true"
+            android:background="#fff"
+            android:hint="@string/input_password2"
+            android:ems="10" />
 
         <Button
             android:id="@+id/register"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
             android:text="@string/register"
             android:background="@drawable/background_button_div"
             />
