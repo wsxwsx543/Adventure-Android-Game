@@ -1,6 +1,6 @@
 package com.example.phase1;
 
-public class BattleGame {
+/*  public class BattleGame {
     int round;
     int monsterHp;
     int playerHp;
@@ -8,3 +8,4 @@ public class BattleGame {
 
 
 }
+*/

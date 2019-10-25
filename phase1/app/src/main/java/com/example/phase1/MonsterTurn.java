@@ -1,6 +1,6 @@
 package com.example.phase1;
 
-public class MonsterTurn {
+/*  public class MonsterTurn {
     Monster boss;
     Property new_property;
     // int hp;
@@ -18,3 +18,4 @@ public class MonsterTurn {
         return this.new_property;
     }
 }
+*/
