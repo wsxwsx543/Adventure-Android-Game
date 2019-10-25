@@ -3,9 +3,18 @@ package com.example.phase1;
 public class Player {
     String name;
     private WeaponManager weaponManager;
-    private Property initialProperty;
-    Property property;
+
+    public Property getProperty() {
+        return property;
+    }
+
+    private Property property;
     int livesRemain;
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
     private int row;
     private int col;
     int attackCreate;
@@ -13,7 +22,7 @@ public class Player {
     public Player(String name, Property initialProperty, int livesRemain){
         weaponManager = new WeaponManager();
         this.name = name;
-        this.initialProperty = initialProperty;
+        this.property = initialProperty;
         this.livesRemain = livesRemain;
         this.attackCreate = 0;
     }
@@ -34,7 +43,7 @@ public class Player {
     void addWeapon(Weapon weapon){
         weaponManager.addWeapon(weapon);
         Property weaponsProperty = weaponManager.calculateProperty();
-        this.property = initialProperty.addProperty(weaponsProperty);
+        this.property = this.property.addProperty(weaponsProperty);
     }
 
     void loseLives(int num){

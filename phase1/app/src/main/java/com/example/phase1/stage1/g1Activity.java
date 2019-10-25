@@ -1,4 +1,4 @@
-package com.example.phase1;
+package com.example.phase1.stage1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.phase1.R;
 
 public class g1Activity extends AppCompatActivity implements View.OnTouchListener{
     private ImageView box;

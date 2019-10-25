@@ -1,29 +1,6 @@
-package com.example.phase1;
+package com.example.phase1.stage3;
 
-interface Move {
-    String getMove();
-}
-
-class MonsterMove implements Move {
-    private String moveName;
-    private Property property;
-/* movename
-a: doubt
-b: alert
-c: attack
-d: power attack
-e: flying attack
-f: magic attack
- */
-    public MonsterMove(String moveName, Property property){
-        this.moveName = moveName;
-        this.property = property;
-    }
-        @Override
-    public String getMove() {
-        return this.moveName;
-    }
-}
+import com.example.phase1.*;
 
 
 class PlayerMove implements Move {
@@ -39,7 +16,7 @@ d:
     public PlayerMove(String moveName, Player player) {
         this.moveName = moveName;
         this.player = player;
-        this.playerProperty = this.player.property;
+        this.playerProperty = this.player.getProperty();
     }
     @Override
     public String getMove() {
