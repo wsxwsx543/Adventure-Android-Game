@@ -1,16 +1,16 @@
 package com.example.phase1;
 
 public class Monster {
-    int hp;
-    Property property;
+    private int livesRemain;
+    private Property property;
 
-    public Monster(int hp, Property monsterProperty){
-        this.hp = hp;
+    public Monster(int livesRemain, Property monsterProperty){
+        this.livesRemain = livesRemain;
         this.property = monsterProperty;
     }
 
-    int getHp() {
-        return this.hp;
+    int getLivesRemain() {
+        return this.livesRemain;
     }
 
     Property getProperty(){
