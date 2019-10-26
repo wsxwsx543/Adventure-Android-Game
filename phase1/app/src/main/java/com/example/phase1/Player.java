@@ -11,7 +11,7 @@ public class Player implements Serializable {
     private Property property;
     private int livesRemain;
 
-    Property getProperty() {
+    public Property getProperty() {
         return property;
     }
     void setProperty(Property property) {
