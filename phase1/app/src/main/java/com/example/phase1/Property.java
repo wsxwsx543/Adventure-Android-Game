@@ -48,7 +48,7 @@ public class Property implements Serializable {
     }
 
     // Setter for this class, add new properties to itself.
-    void addPropertyToSelf(int attack, int defence, int flexibility, int luckiness) {
+    public void addPropertyToSelf(int attack, int defence, int flexibility, int luckiness) {
         this.attack += attack;
         this.defence += defence;
         this.flexibility += flexibility;
