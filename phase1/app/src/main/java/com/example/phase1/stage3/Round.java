@@ -1,38 +1,20 @@
 package com.example.phase1.stage3;
 
-/*public class Round {
-    MonsterTurn monster;
-    PlayerTurn player;
-    int monster_hp;
-    int player_hp;
-    Property monster_property;
-    Property player_property;
-    MonsterMove move_monster;
-    PlayerMove move_player;
-*/
+import com.example.phase1.Player;
 
- /*   public Round(MonsterMove move_monster, PlayerMove move_player){
-        this.monster_hp = monster.hp;
-        this.player_hp = player.hp;
-        this.move_monster = move_monster;
-        this.move_player = move_player;
+public class Round {
+    private Player player;
+    private Monster monster;
+    int round_number = 0;
 
-    }
-*/
-/*    Property getMonster_property(MonsterTurn monster, Monster boss, MonsterMove move){
-        monster.addProperty(move);
-        return monster.getProperty();
+    public Round(Player player, Monster monster){
+        this.player = player;
+        this.monster = monster;
+        this.round_number += 1;
     }
 
-*/
-/*    Property getPlayer_property(PlayerTurn player, Player people, PlayerMove move){
-        player.addProperty(move);
-        return player.getProperty();
+    int getRound_number(){
+      return this.round_number;
     }
-
-    void battle(Monster boss, Player player){
-    }
-
 
 }
-*/
