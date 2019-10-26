@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.phase1.R;
@@ -21,7 +22,7 @@ public class g1Activity extends AppCompatActivity implements View.OnTouchListene
     private ImageView box;
     private ImageView mos;
 
-    private FrameLayout frame;
+    private RelativeLayout frame;
     private Drawable imageBoxRight, imageBoxLeft, imageBoxFront, imageBoxBack;
     private Drawable mosImage;
     private float boxX, boxY;

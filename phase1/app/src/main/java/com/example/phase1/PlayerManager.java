@@ -1,10 +1,11 @@
 package com.example.phase1;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerManager{
-    List<Player> players;
+public class PlayerManager implements Serializable {
+    private List<Player> players;
 
     public PlayerManager(){
         players = new ArrayList<>();
@@ -14,25 +15,27 @@ public class PlayerManager{
         players.add(player);
     }
 
+    //Remove the player with specific name in players
     public void removePlayer(String name){
-        for(int i = 0; i < players.size(); i++){
-            if(players.get(i).name.equals(name)) {
-                players.remove(i);
+        for(Player player: players){
+            if(player.getName().equals(name)) {
+                players.remove(player);
                 return;
             }
         }
     }
 
+    // Return the player creates highest attack.
     public Player findHighestAttackCreate(){
         int highest = 0;
-        Player player = new Player("NoPlayer", new Property(0, 0, 0,
+        Player ret_player = new Player("NoPlayer", new Property(0, 0, 0,
                 0), 0);
-        for(int i = 0; i < players.size(); i++){
-            if(players.get(i).attackCreate > highest){
-                highest = players.get(i).attackCreate;
-                player = players.get(i);
+        for(Player player: players){
+            if(player.getAttackCreate() > highest){
+                highest = player.getAttackCreate();
+                ret_player = player;
             }
         }
-        return player;
+        return ret_player;
     }
 }

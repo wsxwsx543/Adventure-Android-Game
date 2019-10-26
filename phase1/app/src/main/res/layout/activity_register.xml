@@ -3,7 +3,7 @@
     android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".LoginActivity"
     android:background="@drawable/background_login">
 
     <LinearLayout
@@ -77,6 +77,15 @@
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"
             android:text="@string/register"
+            android:background="@drawable/background_button_div"
+            />
+        <Button
+            android:id="@+id/back"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="25dp"
+            android:text="back"
             android:background="@drawable/background_button_div"
             />
     </LinearLayout>
