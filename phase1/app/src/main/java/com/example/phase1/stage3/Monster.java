@@ -1,4 +1,6 @@
-package com.example.phase1;
+package com.example.phase1.stage3;
+
+import com.example.phase1.Property;
 
 public class Monster {
     private int livesRemain;

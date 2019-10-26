@@ -1,7 +1,6 @@
 package com.example.phase1.stage3;
 
-import com.example.phase1.stage3.Move;
-import com.example.phase1.Property;
+import com.example.phase1.*;
 
 class MonsterMove implements Move {
     private String moveName;
