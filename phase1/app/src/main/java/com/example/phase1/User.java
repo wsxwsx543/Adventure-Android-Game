@@ -1,6 +1,8 @@
 package com.example.phase1;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
 
     // username of the User

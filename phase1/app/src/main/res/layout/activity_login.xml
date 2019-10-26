@@ -56,7 +56,6 @@
             android:background="#fff"
             android:hint="@string/input_password"
             android:ems="10" />
-
         <Button
             android:id="@+id/login"
             android:layout_width="150dp"

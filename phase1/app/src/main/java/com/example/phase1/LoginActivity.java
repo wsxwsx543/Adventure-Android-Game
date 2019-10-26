@@ -1,5 +1,6 @@
 package com.example.phase1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 break;
             case R.id.register:
-                System.out.println("Register pressed");
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
         }
     }
