@@ -7,7 +7,9 @@ import android.os.Bundle;
 
 import com.example.phase1.R;
 
-public class BattleActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class BattleActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
