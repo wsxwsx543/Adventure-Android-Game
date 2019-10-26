@@ -1,35 +1,46 @@
 package com.example.phase1;
 
-public class Weapon {
+import java.io.Serializable;
+
+public class Weapon implements Serializable {
     private String name;
     private Property property;
 
-    public Weapon(String name, int attack, int defence, int flexibility, int luckiness){
+    Weapon(String name, int attack, int defence, int flexibility, int luckiness) {
         this.property = new Property(attack, defence, flexibility, luckiness);
         this.name = name;
     }
 
-    String getName(){
+    Weapon(String name, Property property) {
+        this.property = property;
+        this.name = name;
+    }
+
+    void setProperty(Property property) {
+        this.property = property;
+    }
+
+    String getName() {
         return name;
     }
 
-    Property getProperty(){
+    Property getProperty() {
         return property;
     }
 
-    int getAttack(){
-        return property.attack;
+    int getAttack() {
+        return property.getAttack();
     }
 
-    int getDefence(){
-        return property.defence;
+    int getDefence() {
+        return property.getDefence();
     }
 
-    int getLuckiness(){
-        return property.luckiness;
+    int getLuckiness() {
+        return property.getLuckiness();
     }
 
-    int getFlexibility(){
-        return property.flexibility;
+    int getFlexibility() {
+        return property.getFlexibility();
     }
 }

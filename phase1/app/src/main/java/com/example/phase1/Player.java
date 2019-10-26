@@ -3,23 +3,27 @@ package com.example.phase1;
 import java.io.Serializable;
 
 public class Player implements Serializable {
-    String name;
-    private WeaponManager weaponManager;
+    private String name;
+    private WeaponManager weaponManager; // Store all weapons.
+
+    String getName(){return name;}
+
+    private Property property;
+    private int livesRemain;
 
     public Property getProperty() {
         return property;
     }
-
-    private Property property;
-    int livesRemain;
-
-    public void setProperty(Property property) {
+    void setProperty(Property property) {
         this.property = property;
     }
 
-    private int row;
-    private int col;
-    int attackCreate;
+    // x, y is the location of this player.
+    private int x;
+    private int y;
+
+    // Total attack the player create.
+    private int attackCreate;
 
     public Player(String name, Property initialProperty, int livesRemain){
         weaponManager = new WeaponManager();
@@ -29,19 +33,25 @@ public class Player implements Serializable {
         this.attackCreate = 0;
     }
 
-    void setLocation(int row, int col){
-        this.row = row;
-        this.col = col;
+    void setLocation(int x, int y){
+        this.x = x;
+        this.y = y;
     }
 
-    void moveInRow(int move){
-        this.row += move;
+    int getX(){return this.x;}
+    int getY(){return this.y;}
+
+    // Move in x direction.
+    void moveInX(int move){
+        this.x += move;
     }
 
-    void moveInCol(int move){
-        this.col += move;
+    // Move in y direction.
+    void moveInY(int move){
+        this.y += move;
     }
 
+    // Add a new weapon to this player.
     void addWeapon(Weapon weapon){
         weaponManager.addWeapon(weapon);
         Property weaponsProperty = weaponManager.calculateProperty();
@@ -51,13 +61,10 @@ public class Player implements Serializable {
     void loseLives(int num){
         this.livesRemain --;
     }
+    int getLivesRemain(){return this.livesRemain;}
 
     void createAttack(int attack){
         this.attackCreate += attack;
     }
-
-    public String toString(){
-        return "Player: " + this.name + "\n" +
-                property.toString();
-    }
+    int getAttackCreate(){return this.attackCreate;}
 }

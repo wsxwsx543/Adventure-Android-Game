@@ -1,19 +1,22 @@
 package com.example.phase1;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeaponManager {
+class WeaponManager implements Serializable {
     private List<Weapon> weapons;
 
-    public WeaponManager(){
+    WeaponManager(){
         weapons = new ArrayList<>();
     }
 
+    // Add a new weapon to this WeaponManager.
     void addWeapon(Weapon weapon){
         weapons.add(weapon);
     }
 
+    // Remove the weapon with specific name
     void removeWeapon(String name){
         for (Weapon weapon: weapons){
             if(weapon.getName().equals(name))
@@ -21,6 +24,7 @@ public class WeaponManager {
         }
     }
 
+    // Return the weapon with specific name
     Weapon takeWeapon(String name){
         for(Weapon weapon: weapons){
             if(weapon.getName().equals(name))
@@ -29,11 +33,11 @@ public class WeaponManager {
         return new Weapon("None", 0, 0, 0, 0);
     }
 
+    // Return a new Property object which is summation of all weapons.
     Property calculateProperty(){
         Property property = new Property(0, 0, 0, 0);
         for(Weapon weapon: weapons){
-            property.addPropertyToSelf(weapon.getAttack(), weapon.getDefence(), weapon.getFlexibility(),
-                    weapon.getLuckiness());
+            property.addPropertyToSelf(weapon.getProperty());
         }
         return property;
     }
