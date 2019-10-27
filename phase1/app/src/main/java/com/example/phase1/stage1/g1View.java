@@ -25,6 +25,8 @@ public class g1View extends SurfaceView implements Runnable{
     private Paint flexibilityPaint = new Paint();
     private Paint luckinessPaint = new Paint();
 
+    private int life;
+
     public g1View(Context context, int screenX, int screenY){
         super(context);
 
@@ -62,6 +64,8 @@ public class g1View extends SurfaceView implements Runnable{
         luckinessPaint.setTextSize(70);
         luckinessPaint.setTypeface(Typeface.DEFAULT_BOLD);
         luckinessPaint.setAntiAlias(true);
+
+        life = 10;
 
     }
 
@@ -137,6 +141,10 @@ public class g1View extends SurfaceView implements Runnable{
 
         if (hero.x >= screenX - hero.width)
             hero.x = screenX - hero.width;
+
+        if (hero.x == monster.x && hero.y == monster.y){
+            life --;
+        }
     }
 
     private void draw(){
@@ -149,7 +157,7 @@ public class g1View extends SurfaceView implements Runnable{
             canvas.drawBitmap(monster.getMonsterView(), monster.x, monster.y, paint);
             canvas.drawBitmap(treasure.getTreasurerview(), treasure.x, treasure.y, paint);
 
-            canvas.drawText("Life: " + 10, 20, 60, lifePaint);
+            canvas.drawText("Life: " + life, 20, 60, lifePaint);
             canvas.drawText("Attack: " + 0, 20, 180, attackPaint);
             canvas.drawText("Defence: " + 0, 500, 180, defencePaint);
             canvas.drawText("Flexibility: " + 0, 20, 320, flexibilityPaint);
