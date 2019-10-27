@@ -19,4 +19,8 @@
     <string name="Luckiness">Luckiness:</string>
     <string name="Attack">Attack:</string>
     <string name="Life">Life:</string>
+    <string name="monster_life">Monster Life:</string>
+    <string name="check_monster_move">Check Monster Move</string>
+    <string name="check">Check</string>
+    <string name="this_is_a_cute_monster">This is a cute monster.</string>
 </resources>

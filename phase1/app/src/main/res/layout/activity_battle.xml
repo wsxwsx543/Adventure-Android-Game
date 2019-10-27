@@ -5,20 +5,7 @@
 <!--    android:layout_height="match_parent"-->
 <!--    android:background="@drawable/background_login">-->
 
-<!--    <ImageView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/background"-->
-<!--        android:src="@drawable/forest_background"-->
-<!--        android:scaleType="centerCrop" />-->
 
-<!--    <ImageView-->
-<!--        android:id="@+id/imageView1"-->
-<!--        android:layout_width="200dp"-->
-<!--        android:layout_height="200dp"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_centerVertical="true"-->
-<!--        android:src="@drawable/bat_brains_6" />-->
 
 <!--</RelativeLayout>-->
 
@@ -53,6 +40,17 @@
                 android:layout_column="0"
                 android:layout_margin="10dp"
                 android:text="@string/Life"
+                android:textSize="40px"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/monster_life"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_margin="10dp"
+                android:text="@string/monster_life"
                 android:textSize="40px"
                 android:textStyle="bold" />
 
@@ -133,19 +131,43 @@
         android:background="@drawable/forest_background"
         android:scaleType="centerCrop">
 
-        <ImageView
-            android:id="@+id/box"
-            android:layout_width="72px"
-            android:layout_height="72px"
-            android:layout_below="@+id/mos"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/g1_player_front" />
+<!--        <ImageView-->
+<!--            android:id="@+id/box"-->
+<!--            android:layout_width="72px"-->
+<!--            android:layout_height="72px"-->
+<!--            android:layout_below="@+id/mos"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:src="@drawable/g1_player_front" />-->
 
         <ImageView
-            android:id="@+id/mos"
-            android:layout_width="72px"
-            android:layout_height="72px"
-            android:src="@drawable/g1_utoronto" />
+            android:id="@+id/imageView1"
+            android:layout_width="500px"
+            android:layout_height="500px"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/bat_brains_6" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="200px"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+        android:id="@+id/monster_status"
+        android:text="@string/this_is_a_cute_monster"
+        android:textStyle="bold"
+            android:textSize="60px"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/round_num"
+            android:text="Round Number:"
+            android:textColor="#FFFFFF"
+            android:textSize="50px"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -163,35 +185,43 @@
             android:background="#C0C0C0">
 
 
-            <Button
-                android:id="@+id/upBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="0"
-                android:layout_column="1"
-                android:text="@string/attack" />
+<!--            <Button-->
+<!--                android:id="@+id/upBtn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_row="0"-->
+<!--                android:layout_column="1"-->
+<!--                android:text="@string/attack" />-->
 
             <Button
-                android:id="@+id/leftBtn"
+                android:id="@+id/checkBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Left"
+                android:text="@string/check"
+                android:layout_column="1"
+                android:layout_row="0"/>
+
+            <Button
+                android:id="@+id/attackBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attack"
                 android:layout_column="0"
                 android:layout_row="1"/>
 
             <Button
-                android:id="@+id/rightBtn"
+                android:id="@+id/defenceBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Right"
+                android:text="Defence"
                 android:layout_column="2"
                 android:layout_row="1"/>
 
             <Button
-                android:id="@+id/downBtn"
+                android:id="@+id/evadeBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Down"
+                android:text="Evade"
                 android:layout_column="1"
                 android:layout_row="2"/>
         </GridLayout>
