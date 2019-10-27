@@ -2,7 +2,9 @@ package com.example.phase1.stage1;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
@@ -17,6 +19,12 @@ public class g1View extends SurfaceView implements Runnable{
     private g1Treasure treasure;
     private g1background background1;
 
+    private Paint lifePaint = new Paint();
+    private Paint attackPaint = new Paint();
+    private Paint defencePaint = new Paint();
+    private Paint flexibilityPaint = new Paint();
+    private Paint luckinessPaint = new Paint();
+
     public g1View(Context context, int screenX, int screenY){
         super(context);
 
@@ -29,6 +37,32 @@ public class g1View extends SurfaceView implements Runnable{
         treasure = new g1Treasure(this, screenY, getResources());
 
         paint = new Paint();
+
+        lifePaint.setColor(Color.WHITE);
+        lifePaint.setTextSize(70);
+        lifePaint.setTypeface(Typeface.DEFAULT_BOLD);
+        lifePaint.setAntiAlias(true);
+
+        attackPaint.setColor(Color.WHITE);
+        attackPaint.setTextSize(70);
+        attackPaint.setTypeface(Typeface.DEFAULT_BOLD);
+        attackPaint.setAntiAlias(true);
+
+        defencePaint.setColor(Color.WHITE);
+        defencePaint.setTextSize(70);
+        defencePaint.setTypeface(Typeface.DEFAULT_BOLD);
+        defencePaint.setAntiAlias(true);
+
+        flexibilityPaint.setColor(Color.WHITE);
+        flexibilityPaint.setTextSize(70);
+        flexibilityPaint.setTypeface(Typeface.DEFAULT_BOLD);
+        flexibilityPaint.setAntiAlias(true);
+
+        luckinessPaint.setColor(Color.WHITE);
+        luckinessPaint.setTextSize(70);
+        luckinessPaint.setTypeface(Typeface.DEFAULT_BOLD);
+        luckinessPaint.setAntiAlias(true);
+
     }
 
     public int getScreenX(){return screenX;}
@@ -114,6 +148,12 @@ public class g1View extends SurfaceView implements Runnable{
             canvas.drawBitmap(hero.getg1hero(), hero.x, hero.y, paint);
             canvas.drawBitmap(monster.getMonsterView(), monster.x, monster.y, paint);
             canvas.drawBitmap(treasure.getTreasurerview(), treasure.x, treasure.y, paint);
+
+            canvas.drawText("Life: " + 10, 20, 60, lifePaint);
+            canvas.drawText("Attack: " + 0, 20, 180, attackPaint);
+            canvas.drawText("Defence: " + 0, 500, 180, defencePaint);
+            canvas.drawText("Flexibility: " + 0, 20, 320, flexibilityPaint);
+            canvas.drawText("Luckiness: " + 0, 500, 320, luckinessPaint);
 
             getHolder().unlockCanvasAndPost(canvas);
 
