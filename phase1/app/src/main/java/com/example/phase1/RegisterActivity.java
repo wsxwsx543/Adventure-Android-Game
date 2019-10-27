@@ -35,10 +35,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         TextView password1TextView = findViewById(R.id.password1);
         TextView password2TextView = findViewById(R.id.password2);
 
-        String username = usernameTextView.toString();
-        String password1 = password1TextView.toString();
-        ;
-        String password2 = password2TextView.toString();
+        String username = usernameTextView.getText().toString();
+        String password1 = password1TextView.getText().toString();;
+        String password2 = password2TextView.getText().toString();
 
         if (username.equals("") || password1.equals("") || password2.equals("")) {
             Toast.makeText(this, "Username and password cannot be empty.", Toast.LENGTH_LONG).show();
@@ -54,6 +53,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 Toast.makeText(this, "Create new account successfully.", Toast.LENGTH_LONG).show();
                 return true;
             } else {
+                System.out.println(password1);
+                System.out.println(password2);
                 Toast.makeText(this, "Password entered are not same.",
                         Toast.LENGTH_LONG).show();
                 return false;

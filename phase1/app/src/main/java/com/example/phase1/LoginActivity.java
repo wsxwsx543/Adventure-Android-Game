@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,15 +52,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        UserManager userManagerInstance = UserManager.getInstance();
+        TextView usernameTextView = findViewById(R.id.username);
         switch (v.getId()){
-
             case R.id.login:
                 if(!checkPasswordCorrect()){
                     Toast.makeText(this, "Invalid username or password.",
                             Toast.LENGTH_LONG).show();
                 }
+                else{
+                    userManagerInstance.setCurUser(userManagerInstance.getUsers().get(usernameTextView.getText().toString()));
+                    startActivity(new Intent(LoginActivity.this, ChooseOrCreatePlayerActivity.class));
+                }
                 break;
-
             case R.id.register:
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
