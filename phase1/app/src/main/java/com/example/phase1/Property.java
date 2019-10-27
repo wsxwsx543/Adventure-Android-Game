@@ -15,19 +15,19 @@ public class Property implements Serializable {
         this.luckiness = luckiness;
     }
 
-    int getAttack() {
+    public int getAttack() {
         return attack;
     }
 
-    int getDefence() {
+    public int getDefence() {
         return defence;
     }
 
-    int getFlexibility() {
+    public int getFlexibility() {
         return flexibility;
     }
 
-    int getLuckiness() {
+    public int getLuckiness() {
         return luckiness;
     }
 

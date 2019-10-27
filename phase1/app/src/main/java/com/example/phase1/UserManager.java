@@ -1,46 +1,44 @@
 package com.example.phase1;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.HashMap;
 
-public class UserManager {
+/*
+ * Based on Singleton Design Pattern. https://www.geeksforgeeks.org/singleton-design-pattern/
+ */
+public class UserManager implements Serializable {
+    private static UserManager userManager = null;
+
     // The list that stores all the users
-    public static ArrayList<User> users = new ArrayList<>();
+    private HashMap<String, User> users;
+
+    private User curUser = null;
+
+    private UserManager(){
+
+    }
+
+    public User getCurUser(){return curUser;}
+    public void setCurUser(User curUser){this.curUser = curUser;}
+
+    public void setUsers(HashMap<String, User> users){
+        this.users = users;
+    }
+
+    public HashMap<String, User> getUsers(){
+        return users;
+    }
+
+    // Get the only instance in this class.
+    public static UserManager getInstance(){
+        if(userManager == null){
+            userManager = new UserManager();
+        }
+        return userManager;
+    }
 
     // Add a user in users
     public void addUser(User user){
-        users.add(user);
-    }
-    // Rewrite users to the declared file name
-    public void writeUsers(String usersFileName){
-        try {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(usersFileName));
-
-            objectOutputStream.writeObject(users);
-            objectOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-    public void outputUsers(String usersFileName){
-        try {
-            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(usersFileName));
-            try {
-                users = (ArrayList<User>) objectInputStream.readObject();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        users.put(user.getUsername(), user);
     }
 }
