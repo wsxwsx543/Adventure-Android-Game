@@ -10,18 +10,12 @@ public class User implements Serializable {
     // password of the User
     private String password;
     // The limit of how many players this User can initialize
-    private int playerNumLimit;
-    // List of all players the User initialized;
-    private Player[] players;
+//    private int playerNumLimit;
+//    // List of all players the User initialized;
+    private PlayerManager playerManager;
 
-
-    public User(int playNumLimit) {
-        this.playerNumLimit = playNumLimit;
-        players = new Player[this.playerNumLimit];
-
-    }
-    public User(int playerNumLimit, String username, String password){
-        this(playerNumLimit);
+    public User(String username, String password){
+        playerManager = new PlayerManager();
         setUsername(username);
         setPassword(password);
     }

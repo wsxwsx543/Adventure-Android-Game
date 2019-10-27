@@ -54,6 +54,7 @@
             android:layout_marginTop="15dp"
             android:singleLine="true"
             android:background="#fff"
+            android:inputType="textPassword"
             android:hint="@string/input_password1"
             android:ems="10" />
 
@@ -66,6 +67,7 @@
             android:layout_marginTop="15dp"
             android:singleLine="true"
             android:background="#fff"
+            android:inputType="textPassword"
             android:hint="@string/input_password2"
             android:ems="10" />
 
