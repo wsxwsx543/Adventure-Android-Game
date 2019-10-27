@@ -13,6 +13,7 @@ public class BattleActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_battle);
+        // setContentView(R.layout.activity_battle);
+        setContentView(new BattleView(this));
     }
 }
