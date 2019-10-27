@@ -58,11 +58,11 @@ public class g1View extends SurfaceView implements Runnable{
             hero.isGoingRight = false;
         }
 
-        if (hero.y < 0)
-            hero.y = 0;
+        if (hero.y < 360)
+            hero.y = 360;
 
-        if (hero.y >= screenY - hero.height)
-            hero.y = screenY - hero.height;
+        if (hero.y >= 1368)
+            hero.y = 1368;
 
         if (hero.x < 0)
             hero.x = 0;

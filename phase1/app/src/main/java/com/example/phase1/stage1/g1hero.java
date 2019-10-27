@@ -7,7 +7,7 @@ import android.graphics.BitmapFactory;
 import com.example.phase1.R;
 
 public class g1hero {
-    int x = 0, y = 0, width = 72, height = 72;
+    int x = 0, y = 360, width = 72, height = 72;
     boolean isGoingUp = false, isGoingdown = false, isGoingLeft = false, isGoingRight = false;
     Bitmap heroFront;
 
