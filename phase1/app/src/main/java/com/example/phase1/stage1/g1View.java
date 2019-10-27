@@ -13,6 +13,7 @@ public class g1View extends SurfaceView implements Runnable{
     private int screenX, screenY;
     private Paint paint;
     private g1hero hero;
+    private g1Monster monster;
     private g1background background1;
 
     public g1View(Context context, int screenX, int screenY){
@@ -23,9 +24,13 @@ public class g1View extends SurfaceView implements Runnable{
 
         background1 = new g1background(screenX, screenY, getResources());
         hero = new g1hero(screenY, getResources());
+        monster = new g1Monster(this, screenY, getResources());
 
         paint = new Paint();
     }
+
+    public int getScreenX(){return screenX;}
+    public int getScreenY(){return screenY;}
 
     @Override
     public void run() {
@@ -33,8 +38,17 @@ public class g1View extends SurfaceView implements Runnable{
             update();
             draw();
             sleep();
+            action();
         }
 
+    }
+
+    public void action(){
+        double d = Math.random();
+        if (d < 0.25 && monster.x <= this.getScreenX() - monster.width){monster.x += monster.width;}
+        else if(0.25 <= d && d < 0.5 && monster.x >= monster.width){monster.x -= monster.width;}
+        else if(0.5 <= d && d < 0.75 && monster.y <= this.getScreenY() - monster.height){monster.y += monster.height;}
+        else if(monster.y >= monster.height){monster.y -= monster.height;}
     }
 
     private void update(){
@@ -78,10 +92,13 @@ public class g1View extends SurfaceView implements Runnable{
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
 
             canvas.drawBitmap(hero.getg1hero(), hero.x, hero.y, paint);
+            canvas.drawBitmap(monster.getMonsterView(), monster.x, monster.y, paint);
 
             getHolder().unlockCanvasAndPost(canvas);
 
         }
+
+
 
     }
 
