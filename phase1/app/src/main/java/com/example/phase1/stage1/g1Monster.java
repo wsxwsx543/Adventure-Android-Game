@@ -7,7 +7,7 @@ import android.graphics.BitmapFactory;
 import com.example.phase1.R;
 
 public class g1Monster {
-    int x = 216, y = 216, width = 72, height = 72;
+    int x = 1008, y = 360, width = 72, height = 72;
     g1View view ;
 
     Bitmap monsterview;

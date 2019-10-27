@@ -37,18 +37,36 @@ public class g1View extends SurfaceView implements Runnable{
         while (isPlaying){
             update();
             draw();
-            sleep();
             action();
+//            sleep();
+
         }
 
     }
 
     public void action(){
         double d = Math.random();
-        if (d < 0.25 && monster.x <= this.getScreenX() - monster.width){monster.x += monster.width;}
-        else if(0.25 <= d && d < 0.5 && monster.x >= monster.width){monster.x -= monster.width;}
-        else if(0.5 <= d && d < 0.75 && monster.y <= this.getScreenY() - monster.height){monster.y += monster.height;}
-        else if(monster.y >= monster.height){monster.y -= monster.height;}
+        if (d < 0.25){
+            monster.x += monster.width;
+        } else if(0.25 <= d && d < 0.5){
+            monster.x -= monster.width;
+        } else if(0.5 <= d && d < 0.75){
+            monster.y += monster.height;
+        } else{
+            monster.y -= monster.height;
+        }
+        if (monster.y < 360)
+            monster.y = 360;
+
+        if (monster.y >= 1368)
+            monster.y = 1368;
+
+        if (monster.x < 0)
+            monster.x = 0;
+
+        if (monster.x >= screenX - monster.width)
+            monster.x = screenX - monster.width;
+        sleep();
     }
 
     private void update(){
@@ -104,7 +122,7 @@ public class g1View extends SurfaceView implements Runnable{
 
     private void sleep(){
         try {
-            Thread.sleep(17);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
