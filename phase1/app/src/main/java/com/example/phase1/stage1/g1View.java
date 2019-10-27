@@ -14,6 +14,7 @@ public class g1View extends SurfaceView implements Runnable{
     private Paint paint;
     private g1hero hero;
     private g1Monster monster;
+    private g1Treasure treasure;
     private g1background background1;
 
     public g1View(Context context, int screenX, int screenY){
@@ -25,6 +26,7 @@ public class g1View extends SurfaceView implements Runnable{
         background1 = new g1background(screenX, screenY, getResources());
         hero = new g1hero(screenY, getResources());
         monster = new g1Monster(this, screenY, getResources());
+        treasure = new g1Treasure(this, screenY, getResources());
 
         paint = new Paint();
     }
@@ -111,6 +113,7 @@ public class g1View extends SurfaceView implements Runnable{
 
             canvas.drawBitmap(hero.getg1hero(), hero.x, hero.y, paint);
             canvas.drawBitmap(monster.getMonsterView(), monster.x, monster.y, paint);
+            canvas.drawBitmap(treasure.getTreasurerview(), treasure.x, treasure.y, paint);
 
             getHolder().unlockCanvasAndPost(canvas);
 
