@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="careers">
+        <item>Attacker</item>
+        <item>Defender</item>
+        <item>Lucky Dog</item>
+        <item>Runner</item>
+    </string-array>
+</resources>
