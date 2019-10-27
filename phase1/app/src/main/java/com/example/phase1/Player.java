@@ -25,11 +25,11 @@ public class Player implements Serializable {
     // Total attack the player create.
     private int attackCreate;
 
-    public Player(String name, Property initialProperty, int livesRemain){
+    public Player(String name, Property initialProperty){
         weaponManager = new WeaponManager();
         this.name = name;
         this.property = initialProperty;
-        this.livesRemain = livesRemain;
+        this.livesRemain = 100;
         this.attackCreate = 0;
     }
 
@@ -59,8 +59,10 @@ public class Player implements Serializable {
     }
 
     void loseLives(int num){
-        this.livesRemain --;
+        this.livesRemain -= num;
     }
+    void addLives(int num) {this.livesRemain += num;}
+    void setLivesRemain(int num){this.livesRemain = num;}
     int getLivesRemain(){return this.livesRemain;}
 
     void createAttack(int attack){

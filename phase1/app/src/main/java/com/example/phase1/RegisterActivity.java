@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return false;
         } else {
             if (password1.equals(password2)) {
-                userManager.addUser(new User(username, password1));
+                userManager.addUser(new User(username, password1, 5));
                 fileSystem.save(userManager.getUsers(), "Users.ser");
                 Toast.makeText(this, "Create new account successfully.", Toast.LENGTH_LONG).show();
                 return true;
