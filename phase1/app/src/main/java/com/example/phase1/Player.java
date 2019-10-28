@@ -25,12 +25,22 @@ public class Player implements Serializable {
     // Total attack the player create.
     private int attackCreate;
 
+    private int curStage;
+
     public Player(String name, Property initialProperty){
         weaponManager = new WeaponManager();
         this.name = name;
         this.property = initialProperty;
         this.livesRemain = 100;
         this.attackCreate = 0;
+        this.curStage = 0;
+    }
+
+    public int getCurStage() {
+        return curStage;
+    }
+    public void setCurStage(int curStage) {
+        this.curStage = curStage;
     }
 
     void setLocation(int x, int y){

@@ -74,4 +74,11 @@ public class Property implements Serializable {
                 this.flexibility + property.flexibility,
                 this.luckiness + property.luckiness);
     }
+
+    public String toString(){
+        return new String("Attack: " + String.valueOf(this.attack) +
+                " Defence: " + String.valueOf(this.defence) +
+                " Flexibility: " + String.valueOf(this.flexibility) +
+                " Luckiness: " + String.valueOf(this.luckiness));
+    }
 }
