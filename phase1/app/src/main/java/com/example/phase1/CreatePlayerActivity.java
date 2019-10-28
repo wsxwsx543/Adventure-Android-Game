@@ -51,7 +51,7 @@ public class CreatePlayerActivity extends AppCompatActivity implements View.OnCl
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                propertyTextView.setText(" ");
+                propertyTextView.setText("");
             }
         });
     }
