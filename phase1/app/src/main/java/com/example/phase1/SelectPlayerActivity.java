@@ -41,7 +41,7 @@ public class SelectPlayerActivity extends AppCompatActivity implements View.OnCl
         String[] playerNames = new String[playerNamesSet.size()];
         int curIndex = 0;
         while(playerNamesIterator.hasNext()){
-            playerNames[curIndex] = playerNamesIterator.next();
+            playerNames[curIndex++] = playerNamesIterator.next();
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, playerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
