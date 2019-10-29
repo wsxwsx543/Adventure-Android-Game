@@ -7,7 +7,7 @@ import android.graphics.BitmapFactory;
 import com.example.phase1.R;
 
 public class g1Treasure {
-    int x = 1002, y = 1368, width = 72, height = 72;
+    int x = 1008, y = 1368, width = 72, height = 72;
     Bitmap treasurerview;
 
     g1Treasure(g1View view, int ScreenY, Resources res){

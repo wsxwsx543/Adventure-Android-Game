@@ -11,6 +11,7 @@ import android.view.SurfaceView;
 
 import com.example.phase1.User;
 import com.example.phase1.UserManager;
+import com.example.phase1.stage2.TreasureHuntActivity;
 
 public class g1View extends SurfaceView implements Runnable{
 
@@ -177,8 +178,8 @@ public class g1View extends SurfaceView implements Runnable{
             curUser.getCurPlayer().getProperty().setLuckiness(luckiness);
             curUser.getCurPlayer().setLivesRemain(life);
 
-            Intent restartg1Intent = new Intent(getContext(), g1moveActivity.class);
-            getContext().startActivity(restartg1Intent);
+            Intent tog2Intent = new Intent(getContext(), TreasureHuntActivity.class);
+            getContext().startActivity(tog2Intent);
         }
     }
 
