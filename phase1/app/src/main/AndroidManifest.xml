@@ -14,6 +14,7 @@
         <activity android:name=".SelectPlayerActivity" />
         <activity android:name=".ChooseOrCreatePlayerActivity" />
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".stage1.g1moveActivity"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
