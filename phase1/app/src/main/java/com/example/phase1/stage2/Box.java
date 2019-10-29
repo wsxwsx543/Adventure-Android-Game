@@ -1,5 +1,6 @@
 package com.example.phase1.stage2;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -12,11 +13,15 @@ public abstract  class Box {
     // The location of the Box
     private int x, y;
 
+    int unit_size;
+
     protected int imageID;
 
     public int numOfNeighbourTraps;
 
     public boolean expanded;
+
+    Resources res;
 
     public ArrayList<Box> getNeighbours() {
         return neighbours;
@@ -24,6 +29,9 @@ public abstract  class Box {
 
     // A reference to the neighbouring boxes
     private ArrayList<Box> neighbours;
+
+    private Bitmap grayTile;
+    public Bitmap bitmapToDraw;
 
     public int getX() {
         return x;
@@ -35,10 +43,14 @@ public abstract  class Box {
         this.x = x;
         this.y = y;
     }
-    public Box(int x, int y){
+    public Box(int x, int y, int unit_size, Resources res){
+        this.res = res;
         this.x = x;
         this.y = y;
-        this.imageID = R.drawable.gray;
+        this.unit_size = unit_size;
+        this.grayTile = BitmapFactory.decodeResource(res, R.drawable.gray);
+        this.grayTile = Bitmap.createScaledBitmap(this.grayTile, unit_size, unit_size, true);
+        this.bitmapToDraw = this.grayTile;
         this.expanded = false;
         neighbours = new ArrayList<>();
     }
@@ -58,7 +70,7 @@ public abstract  class Box {
         return sum;
     }
 
-    int getTrapsIndicatorImg(int num){
+    Bitmap getTrapsIndicatorImg(int num){
         int newImageId = 0;
         switch (num){
             case 0:
@@ -89,12 +101,14 @@ public abstract  class Box {
                 newImageId = R.drawable.open8;
                 break;
         }
-        return newImageId;
+        Bitmap bitmap = BitmapFactory.decodeResource(res, newImageId);
+        bitmap = Bitmap.createScaledBitmap(bitmap, unit_size, unit_size, true);
+        return bitmap;
     }
     public abstract void update();
     public void expand(ArrayList<Box> checked){
         this.expanded = true;
-        if (this.numOfNeighbourTraps == 0){
+        if (this.numOfNeighbourTraps == 0 && (!(this instanceof Trap))){
             for (int i = 0; i < this.neighbours.size(); i++){
                 Box thisBox = this.neighbours.get(i);
                 if (!checked.contains(thisBox)){

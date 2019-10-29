@@ -1,5 +1,7 @@
 package com.example.phase1.stage2;
 
+import android.content.res.Resources;
+
 import java.util.ArrayList;
 
 public class BoxesMapper {
@@ -9,7 +11,7 @@ public class BoxesMapper {
     private int boardLength;
     private int unit_size;
 
-    public BoxesMapper(int boardWidth, int boardLength, int unit_size, int startX, int start_Y){
+    public BoxesMapper(int boardWidth, int boardLength, int unit_size, int startX, int start_Y, Resources res){
         this.boardLength = boardLength;
         this.boardWidth = boardWidth;
         this.unit_size = unit_size;
@@ -21,11 +23,11 @@ public class BoxesMapper {
                 int cur_y = start_Y + y * unit_size;
                 Box thisBox = null;
                 if (decider < 0.6) {
-                    thisBox = new EmptyUnit(cur_x, cur_y);
+                    thisBox = new EmptyUnit(cur_x, cur_y, unit_size, res);
                 } else if (decider < 0.7) {
-                    thisBox = new Treasure(cur_x, cur_y);
+                    thisBox = new Treasure(cur_x, cur_y, unit_size, res);
                 } else {
-                    thisBox = new Trap(cur_x, cur_y);
+                    thisBox = new Trap(cur_x, cur_y, unit_size, res);
                 }
                 boxes[y][x] = thisBox;
             }
