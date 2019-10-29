@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.phase1.*;
 import com.example.phase1.R;
 
 import android.graphics.drawable.Drawable;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 
 
 public class BattleActivity extends AppCompatActivity implements View.OnClickListener {
+
+    User curUser;
 
     // private BattleView gameView;
     private boolean playerTurn;
@@ -66,7 +69,14 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         evadeBtn = findViewById(R.id.evadeBtn);
         evadeBtn.setOnClickListener(this);
 
+        Property monster_property = new Property(5, 5, 5, 5);
+        Monster monster = new Monster(200, monster_property);
+//        Property player_property = new Property(2, 2, 2, 2);
+        curUser = UserManager.getInstance().getCurUser();
+        Player player = curUser.getCurPlayer();
+
     }
+
 
     @Override
     public void onClick(View v) {
