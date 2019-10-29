@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.phase1.stage1.g1moveActivity;
+
 import java.util.Iterator;
 import java.util.Set;
 
@@ -77,8 +79,10 @@ public class SelectPlayerActivity extends AppCompatActivity implements View.OnCl
                 startActivity(new Intent(SelectPlayerActivity.this, ChooseOrCreatePlayerActivity.class));
                 break;
             case R.id.start:
-                if(curUser.getPlayers().containsKey(curPlayerName))
+                if(curUser.getPlayers().containsKey(curPlayerName)) {
                     curUser.setCurPlayer(curUser.getPlayers().get(curPlayerName));
+                    startActivity(new Intent(SelectPlayerActivity.this, g1moveActivity.class));
+                }
                 else{
                     Toast.makeText(this, "Please create a new player first.", Toast.LENGTH_LONG).show();
                 }
