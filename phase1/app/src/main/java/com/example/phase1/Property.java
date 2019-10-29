@@ -31,19 +31,19 @@ public class Property implements Serializable {
         return luckiness;
     }
 
-    void setAttack(int attack) {
+    public void setAttack(int attack) {
         this.attack = attack;
     }
 
-    void setDefence(int defence) {
+    public void setDefence(int defence) {
         this.defence = defence;
     }
 
-    void setFlexibility(int flexibility) {
+    public void setFlexibility(int flexibility) {
         this.flexibility = flexibility;
     }
 
-    void setLuckiness(int luckiness) {
+    public void setLuckiness(int luckiness) {
         this.luckiness = luckiness;
     }
 
@@ -55,7 +55,7 @@ public class Property implements Serializable {
         this.luckiness += luckiness;
     }
 
-    void addPropertyToSelf(Property property) {
+    public void addPropertyToSelf(Property property) {
         this.attack += property.attack;
         this.defence += property.defence;
         this.luckiness += property.luckiness;

@@ -7,17 +7,17 @@ import java.util.List;
 class WeaponManager implements Serializable {
     private List<Weapon> weapons;
 
-    WeaponManager(){
+    public WeaponManager(){
         weapons = new ArrayList<>();
     }
 
     // Add a new weapon to this WeaponManager.
-    void addWeapon(Weapon weapon){
+    public void addWeapon(Weapon weapon){
         weapons.add(weapon);
     }
 
     // Remove the weapon with specific name
-    void removeWeapon(String name){
+    public void removeWeapon(String name){
         for (Weapon weapon: weapons){
             if(weapon.getName().equals(name))
                 weapons.remove(weapon);
@@ -25,7 +25,7 @@ class WeaponManager implements Serializable {
     }
 
     // Return the weapon with specific name
-    Weapon takeWeapon(String name){
+    public Weapon takeWeapon(String name){
         for(Weapon weapon: weapons){
             if(weapon.getName().equals(name))
                 return weapon;
@@ -34,7 +34,7 @@ class WeaponManager implements Serializable {
     }
 
     // Return a new Property object which is summation of all weapons.
-    Property calculateProperty(){
+    public Property calculateProperty(){
         Property property = new Property(0, 0, 0, 0);
         for(Weapon weapon: weapons){
             property.addPropertyToSelf(weapon.getProperty());
