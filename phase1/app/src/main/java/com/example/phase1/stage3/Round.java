@@ -12,8 +12,8 @@ public class Round {
     private Property MP;
     private Property PP;
     private String monsterString;
-    private double damage1;  // player to monster
-    private double damage2;  //monster to player
+    private int damage1;  // player to monster
+    private int damage2;  //monster to player
 
     // put round number in battle activity
 
@@ -50,7 +50,7 @@ public class Round {
 
         if (damageToMonster > 0){
             if (luck > 0) {
-                damage1 = 1.5 * damageToMonster;
+                damage1 = 2 * damageToMonster;
             } else {
                 damage1 = damageToMonster;
             }
@@ -68,11 +68,11 @@ public class Round {
         // monster.getProperty().addPropertyToSelf(monstermove);
     }
 
-    public double getDamage1() {
+    public int getDamage1() {
         return damage1;
     }
 
-    public double getDamage2() {
+    public int getDamage2() {
         return damage2;
     }
 }

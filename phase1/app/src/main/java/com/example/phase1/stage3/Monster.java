@@ -18,4 +18,10 @@ public class Monster {
     Property getProperty(){
         return property;
     }
+
+    public void loseLives(int num){
+        this.livesRemain -= num;
+    }
+
+    public void addLives(int num) {this.livesRemain += num;}
 }

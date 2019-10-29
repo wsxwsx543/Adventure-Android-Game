@@ -1,5 +1,6 @@
 package com.example.phase1.stage3;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -22,11 +23,13 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     // private BattleView gameView;
     private boolean playerTurn;
     private boolean bossTurn;
-    private int roundNum;
+    private int roundNum = 1;
     private Button checkBtn;
     private Button attackBtn;
     private Button defenceBtn;
     private Button evadeBtn;
+
+    private String player_move;
 
     private int life;
     private int monsterLife;
@@ -43,6 +46,15 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     private TextView defenceview;
     private TextView flexibilityview;
     private TextView luckinessview;
+
+    Property monster_property = new Property(5, 5, 5, 5);
+    Monster monster = new Monster(200, monster_property);
+    Property player_property = new Property(2, 2, 2, 2);
+    //        curUser = UserManager.getInstance().getCurUser();
+//        Player player = curUser.getCurPlayer();
+    Player player = new Player("player1", player_property);
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,17 +81,74 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         evadeBtn = findViewById(R.id.evadeBtn);
         evadeBtn.setOnClickListener(this);
 
-        Property monster_property = new Property(5, 5, 5, 5);
-        Monster monster = new Monster(200, monster_property);
+        while (player.getLivesRemain() > 0 && monster.getLivesRemain() > 0) {
+            roundNum ++;
+            Round round = new Round(player, monster);
+            round.battle1();
+            String move = round.getMonsterString();
+            updatemonsterMove(move);
+            round.battle2(move); // player's move choose
+            int decreaseM = round.getDamage1();
+            int decreaseP = round.getDamage2();
+            player.loseLives(decreaseP);
+            monster.loseLives(decreaseM);
+        }
+
+//        Property monster_property = new Property(5, 5, 5, 5);
+//        Monster monster = new Monster(200, monster_property);
 //        Property player_property = new Property(2, 2, 2, 2);
-        curUser = UserManager.getInstance().getCurUser();
-        Player player = curUser.getCurPlayer();
+//        curUser = UserManager.getInstance().getCurUser();
+//        Player player = curUser.getCurPlayer();
+//        Player player = new Player("player1", player_property);
 
     }
 
 
     @Override
     public void onClick(View v) {
+        if(!((Button) v).getText().toString().equals("")){
+            return;
+        }
+        if (playerTurn){            //do not know what playerTurn is
 
+        }
+
+        if(bossTurn){
+
+        }
     }
+
+    private void updateRound(){
+        roundview.setText("Round Number:" + roundNum);
+    }
+
+    private void updatemonsterMove(String move){
+        monsterMove.setText(move);  //get monstermove
+    }
+
+    private void updateAttack(){
+        attackview.setText("Attack:" + player.getProperty().getAttack());
+    }
+
+    private void updateDefence(){
+        defenceview.setText("Defence:" + player.getProperty().getDefence());
+    }
+
+    private void updateFlexibility(){
+        flexibilityview.setText("Flexibility:" + player.getProperty().getFlexibility());
+    }
+
+    private void updateLuckiness(){
+        luckinessview.setText("Luckiness:" + player.getProperty().getLuckiness());
+    }
+
+    private void updateLife(){
+        lifeview.setText("Life:" + player.getLivesRemain());
+    }
+
+    private void updateMonsterLife(){
+        monsterLifeview.setText("Monster Life:" + monster.getLivesRemain());
+    }
+
+
 }
