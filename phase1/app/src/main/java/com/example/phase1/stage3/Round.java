@@ -26,7 +26,7 @@ public class Round {
     public void battle1() {
         int id;
         Random R = new Random();
-        if (monster.getLivesRemain() >= 1000) {
+        if (monster.getLivesRemain() >= 100) {
             id = R.nextInt(4);
             MP = moveFactory.monsterDoMove(id, monster);
         } else {
