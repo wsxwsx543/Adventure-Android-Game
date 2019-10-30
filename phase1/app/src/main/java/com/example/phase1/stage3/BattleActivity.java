@@ -3,7 +3,9 @@ package com.example.phase1.stage3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+
 import com.example.phase1.*;
 
 import com.example.phase1.R;
@@ -27,13 +29,9 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     private boolean playerTurn;
     private boolean bossTurn;
     private Button checkBtn;
-    private boolean p_check;
     private Button attackBtn;
-    private boolean p_attack;
     private Button defenceBtn;
-    private boolean p_defence;
     private Button evadeBtn;
-    private boolean p_evade;
 
     private boolean p_move = false;
 
@@ -61,22 +59,6 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     //        curUser = UserManager.getInstance().getCurUser();
 //        Player player = curUser.getCurPlayer();
     Player player = new Player("player1", player_property);
-
-
-
-//    while (player.getLivesRemain() > 0 && monster.getLivesRemain() > 0) {
-//        roundNum ++;
-//        Round round = new Round(player, monster);
-//        round.battle1();
-//        String move = round.getMonsterString();
-//        updatemonsterMove(move);
-//        round.battle2(move); // player's move choose
-//        int decreaseM = round.getDamage1();
-//        int decreaseP = round.getDamage2();
-//        player.loseLives(decreaseP);
-//        monster.loseLives(decreaseM);
-//    }
-
 
 
 //    public void startThread(View view){
@@ -197,49 +179,68 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
 //        if (playerTurn){            //do not know what playerTurn is
         Round round = new Round(player, monster);
-            switch (v.getId()){
-                case R.id.attackBtn:
-                    if (p_move){
-                    p_attack = true;
+        switch (v.getId()) {
+            case R.id.attackBtn:
+                if (p_move) {
                     player_move = "Attack";
                     round.battle2(player_move);
                     int decreaseM = round.getDamage1();
                     int decreaseP = round.getDamage2();
                     player.loseLives(decreaseP);
                     monster.loseLives(decreaseM);
-                    update();}
-                    break;
-                case R.id.defenceBtn:
-                    if (p_move){
-                    p_defence = true;
-                    player_move = "Defence";}
-                    break;
-                case R.id.evadeBtn:
-                    if (p_move){
-                    player_move = "Evade";}
+//                    player.loseLives(10);
+//                    monster.loseLives(20);
+                    update();
+                    p_move = false;
+                }
+                break;
+            case R.id.defenceBtn:
+                if (p_move) {
+                    player_move = "Defence";
+                    round.battle2(player_move);
+                    int decreaseM = round.getDamage1();
+                    int decreaseP = round.getDamage2();
+                    player.loseLives(decreaseP);
+                    monster.loseLives(decreaseM);
+                    update();
+                    p_move = false;
+                }
+                break;
+            case R.id.evadeBtn:
+                if (p_move) {
+                    player_move = "Evade";
+                    round.battle2(player_move);
+                    int decreaseM = round.getDamage1();
+                    int decreaseP = round.getDamage2();
+                    player.loseLives(decreaseP);
+                    monster.loseLives(decreaseM);
+                    update();
+                    p_move = false;
+                }
 
                     if (checklife(monster, player) == 1){
-
-                }
-                    break;
-                case R.id.checkBtn:
-                    if (p_move){
-                        break;
+                        //playerlose
+                        startActivity(new Intent(BattleActivity.this, LoseActivity.class));
                     }
-                    else{
-                    p_check = true;
+                    if (checklife(monster, player) == 2){
+                        //playerwin
+                        startActivity(new Intent(BattleActivity.this, WinActivity.class));
+                    }
+                break;
+            case R.id.checkBtn:
+                if (p_move) {
+                    break;
+                } else {
+                    p_move = true;
 //                    Round round = new Round(player, monster);
                     round.battle1();
                     String move = round.getMonsterString();
                     monsterMove.setText(move);
-//                    round.battle2(player_move);
-//                    int decreaseM = round.getDamage1();
-//                    int decreaseP = round.getDamage2();
-//                    player.loseLives(decreaseP);
-//                    monster.loseLives(decreaseM);
-//                    update();
-                    p_check = false;
-                    break;}
+                    break;
+                }
+
+            default:
+                break;
 
 
 //                    if (player.getLivesRemain() > 0 && monster.getLivesRemain() > 0) {
@@ -263,14 +264,19 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    private int checklife(Monster monster, Player player){
+    private int checklife(Monster monster, Player player) {
         // return 0 if both life greater than 0, return 1 if player lose, return 2 if monster lose
-        if (monster.getLivesRemain() > 0 && player.getLivesRemain() > 0){return 0;}
-        else if (player.getLivesRemain() <= 0){return 1;}
-        else{return 2;}
+        if (monster.getLivesRemain() > 0 && player.getLivesRemain() > 0) {
+            return 0;
+        } else if (player.getLivesRemain() <= 0) {
+            return 1;
+        } else {
+            return 2;
+        }
     }
 
-    private void update(){
+    private void update() {
+        roundNum++;
         roundview.setText("Round Number:" + roundNum);
         attackview.setText("Attack:" + player.getProperty().getAttack());
         defenceview.setText("Defence:" + player.getProperty().getDefence());
