@@ -193,6 +193,15 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     update();
                     p_move = false;
                 }
+
+                if (checklife(monster, player) == 1){
+                    //playerlose
+                    startActivity(new Intent(BattleActivity.this, LoseActivity.class));
+                }
+                if (checklife(monster, player) == 2){
+                    //playerwin
+                    startActivity(new Intent(BattleActivity.this, WinActivity.class));
+                }
                 break;
             case R.id.defenceBtn:
                 if (p_move) {
@@ -205,6 +214,15 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     update();
                     p_move = false;
                 }
+                if (checklife(monster, player) == 1){
+                    //playerlose
+                    startActivity(new Intent(BattleActivity.this, LoseActivity.class));
+                }
+                if (checklife(monster, player) == 2){
+                    //playerwin
+                    startActivity(new Intent(BattleActivity.this, WinActivity.class));
+                }
+
                 break;
             case R.id.evadeBtn:
                 if (p_move) {
