@@ -8,6 +8,9 @@ public class MoveFactory {
 
     private Property PP;
 
+    public MoveFactory() {
+    }
+
     //use player do move method to get property of player after each move
     public Property playerDoMove(String moveName, Player player){
 

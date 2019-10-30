@@ -20,6 +20,7 @@ public class Round {
     public Round(Player player, Monster monster){
         this.player = player;
         this.monster = monster;
+        this.moveFactory = new MoveFactory();
     }
 
 
@@ -33,7 +34,7 @@ public class Round {
             id = R.nextInt(4) + 2;
             MP = moveFactory.monsterDoMove(id, monster);
         }
-        monsterString = monsterMove.getString(id);
+        monsterString = MonsterMove.getString(id);
     }
 
     public String getMonsterString() {

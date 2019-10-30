@@ -42,7 +42,7 @@ f: magic attack
         } else { return null;}
     }
 
-    public String getString(int id){
+    public static String getString(int id){
         if(id == 0){
             return "Monster is doubting.";
         } else if (id == 1){
