@@ -5,7 +5,6 @@ import com.example.phase1.*;
 import java.util.Random;
 
 public class Round {
-    private int roundNumber = 0;
     private Player player;
     private Monster monster;
     private MoveFactory moveFactory;
@@ -13,8 +12,8 @@ public class Round {
     private Property MP;
     private Property PP;
     private String monsterString;
-    private double damage1;  //player to monster
-    private double damage2;  //monster to player
+    private int damage1;  // player to monster
+    private int damage2;  //monster to player
 
     // put round number in battle activity
 
@@ -44,7 +43,6 @@ public class Round {
     public void battle2(String move){
         PP = moveFactory.playerDoMove(move, player);//decided by input
 
-        roundNumber += 1;
         int damageToPlayer = MP.getAttack() - PP.getDefence();
         int damageToMonster = PP.getAttack() - MP.getDefence();
         int flex = PP.getFlexibility() - MP.getFlexibility();
@@ -52,7 +50,7 @@ public class Round {
 
         if (damageToMonster > 0){
             if (luck > 0) {
-                damage1 = 1.5 * damageToMonster;
+                damage1 = 2 * damageToMonster;
             } else {
                 damage1 = damageToMonster;
             }
@@ -65,23 +63,16 @@ public class Round {
                 damage2 = damageToPlayer;
             }
         } else {damage2 = 0;}
+        //Property player_property = player.getProperty(); //copy
+        // player.getProperty().addPropertyToSelf(playermove);
+        // monster.getProperty().addPropertyToSelf(monstermove);
     }
 
-    public double getDamage1() {
+    public int getDamage1() {
         return damage1;
     }
 
-    public double getDamage2() {
+    public int getDamage2() {
         return damage2;
-    }
-
-    public int getRoundNumber() {
-        return roundNumber;
-    }
-
-    public String getResult() {
-        String d1 = String.valueOf(damage1);
-        String d2 = String.valueOf(damage2);
-        return "You get " + d1 + "damage, And you do "+ d2 + "damage to the monster!";
     }
 }

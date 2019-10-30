@@ -5,27 +5,37 @@ import com.example.phase1.*;
 import java.util.Random;
 
 public class MoveFactory {
+
+    private Property PP;
+
     //use player do move method to get property of player after each move
     public Property playerDoMove(String moveName, Player player){
 
-        Property PP = player.getProperty();
+        Property p = player.getProperty();
+        PP = new Property(p.getAttack(), p.getDefence(), p.getFlexibility(), p.getLuckiness());
 
 
-        if(moveName.equals("a")){
+        if(moveName.equals("Attack")){
             PP.addPropertyToSelf(30, 0, 0, 0);
             return PP;
-        } else if(moveName.equals("b")){
+        } else if(moveName.equals("Defence")){
             PP.addPropertyToSelf(-100, 50, -10, -10);
             return PP;
-        } else if(moveName.equals("c")){
+        } else if(moveName.equals("Evade")){
             PP.addPropertyToSelf(0,0,5,10);
             return PP;
         } else { return null;}
     }
+
+    public Property getRoundProperty(){
+        return PP;
+    }
+
     //use monster do move method to get property of monster after each move
     public Property monsterDoMove(int id, Monster monster){
 
-        Property MP = monster.getProperty();
+        Property m = monster.getProperty();
+        Property MP = new Property(m.getAttack(), m.getDefence(), m.getFlexibility(), m.getLuckiness());
         Random R = new Random();
         int x = R.nextInt(10);
         int y = R.nextInt(10);

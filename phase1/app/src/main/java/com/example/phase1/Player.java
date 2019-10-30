@@ -43,40 +43,40 @@ public class Player implements Serializable {
         this.curStage = curStage;
     }
 
-    void setLocation(int x, int y){
+    public void setLocation(int x, int y){
         this.x = x;
         this.y = y;
     }
 
-    int getX(){return this.x;}
-    int getY(){return this.y;}
+    public int getX(){return this.x;}
+    public int getY(){return this.y;}
 
     // Move in x direction.
-    void moveInX(int move){
+    public void moveInX(int move){
         this.x += move;
     }
 
     // Move in y direction.
-    void moveInY(int move){
+    public void moveInY(int move){
         this.y += move;
     }
 
     // Add a new weapon to this player.
-    void addWeapon(Weapon weapon){
+    public void addWeapon(Weapon weapon){
         weaponManager.addWeapon(weapon);
         Property weaponsProperty = weaponManager.calculateProperty();
         this.property = this.property.addProperty(weaponsProperty);
     }
 
-    void loseLives(int num){
+    public void loseLives(int num){
         this.livesRemain -= num;
     }
-    void addLives(int num) {this.livesRemain += num;}
-    void setLivesRemain(int num){this.livesRemain = num;}
-    int getLivesRemain(){return this.livesRemain;}
+    public void addLives(int num) {this.livesRemain += num;}
+    public void setLivesRemain(int num){this.livesRemain = num;}
+    public int getLivesRemain(){return this.livesRemain;}
 
-    void createAttack(int attack){
+    public void createAttack(int attack){
         this.attackCreate += attack;
     }
-    int getAttackCreate(){return this.attackCreate;}
+    public int getAttackCreate(){return this.attackCreate;}
 }

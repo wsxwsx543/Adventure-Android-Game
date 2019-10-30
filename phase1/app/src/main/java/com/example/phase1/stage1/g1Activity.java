@@ -18,6 +18,11 @@ import android.widget.TextView;
 
 import com.example.phase1.R;
 
+
+//ideas come from
+//https://www.youtube.com/watch?v=rBVU9KBRRe8&list=PLteuIswuFU6aYjdjd6oKwId4tfxa4TSF9&index=2&t=0s
+//how to move button move character
+
 public class g1Activity extends AppCompatActivity implements View.OnTouchListener{
     private ImageView box;
     private ImageView mos;

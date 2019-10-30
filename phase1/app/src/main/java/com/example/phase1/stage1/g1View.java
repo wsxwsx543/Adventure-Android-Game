@@ -1,12 +1,17 @@
 package com.example.phase1.stage1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
+
+import com.example.phase1.User;
+import com.example.phase1.UserManager;
+import com.example.phase1.stage2.TreasureHuntActivity;
 
 public class g1View extends SurfaceView implements Runnable{
 
@@ -19,11 +24,18 @@ public class g1View extends SurfaceView implements Runnable{
     private g1Treasure treasure;
     private g1background background1;
 
+    User curUser;
+
     private Paint lifePaint = new Paint();
     private Paint attackPaint = new Paint();
     private Paint defencePaint = new Paint();
     private Paint flexibilityPaint = new Paint();
     private Paint luckinessPaint = new Paint();
+
+    private int attack;
+    private int defence;
+    private int flexibility;
+    private int luckiness;
 
     private int life;
 
@@ -32,6 +44,15 @@ public class g1View extends SurfaceView implements Runnable{
 
         this.screenX = screenX;
         this.screenY = screenY;
+
+        curUser = UserManager.getInstance().getCurUser();
+//        curUser.getCurPlayer();
+
+        attack = curUser.getCurPlayer().getProperty().getAttack();
+        defence = curUser.getCurPlayer().getProperty().getDefence();
+        flexibility = curUser.getCurPlayer().getProperty().getFlexibility();
+        luckiness = curUser.getCurPlayer().getProperty().getLuckiness();
+        life = curUser.getCurPlayer().getLivesRemain();
 
         background1 = new g1background(screenX, screenY, getResources());
         hero = new g1hero(screenY, getResources());
@@ -65,7 +86,7 @@ public class g1View extends SurfaceView implements Runnable{
         luckinessPaint.setTypeface(Typeface.DEFAULT_BOLD);
         luckinessPaint.setAntiAlias(true);
 
-        life = 10;
+//        life = 10;
 
     }
 
@@ -144,6 +165,21 @@ public class g1View extends SurfaceView implements Runnable{
 
         if (hero.x == monster.x && hero.y == monster.y){
             life --;
+            if (life == 0){
+                Intent restartg1Intent = new Intent(getContext(), g1moveActivity.class);
+                getContext().startActivity(restartg1Intent);
+            }
+        }
+
+        if (hero.x == treasure.x && hero.y == treasure.y){
+            curUser.getCurPlayer().getProperty().setAttack(attack);
+            curUser.getCurPlayer().getProperty().setDefence(defence);
+            curUser.getCurPlayer().getProperty().setFlexibility(flexibility);
+            curUser.getCurPlayer().getProperty().setLuckiness(luckiness);
+            curUser.getCurPlayer().setLivesRemain(life);
+
+            Intent tog2Intent = new Intent(getContext(), TreasureHuntActivity.class);
+            getContext().startActivity(tog2Intent);
         }
     }
 
@@ -158,10 +194,10 @@ public class g1View extends SurfaceView implements Runnable{
             canvas.drawBitmap(treasure.getTreasurerview(), treasure.x, treasure.y, paint);
 
             canvas.drawText("Life: " + life, 20, 60, lifePaint);
-            canvas.drawText("Attack: " + 0, 20, 180, attackPaint);
-            canvas.drawText("Defence: " + 0, 500, 180, defencePaint);
-            canvas.drawText("Flexibility: " + 0, 20, 320, flexibilityPaint);
-            canvas.drawText("Luckiness: " + 0, 500, 320, luckinessPaint);
+            canvas.drawText("Attack: " + attack, 20, 180, attackPaint);
+            canvas.drawText("Defence: " + defence, 500, 180, defencePaint);
+            canvas.drawText("Flexibility: " + flexibility, 20, 320, flexibilityPaint);
+            canvas.drawText("Luckiness: " + luckiness, 500, 320, luckinessPaint);
 
             getHolder().unlockCanvasAndPost(canvas);
 
