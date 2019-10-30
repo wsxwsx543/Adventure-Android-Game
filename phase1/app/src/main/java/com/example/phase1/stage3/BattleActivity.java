@@ -35,6 +35,8 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     private Button evadeBtn;
     private boolean p_evade;
 
+    private boolean p_move = false;
+
     private int roundNum = 1;
 
     private String player_move;
@@ -194,27 +196,50 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 //        }
 
 //        if (playerTurn){            //do not know what playerTurn is
+        Round round = new Round(player, monster);
             switch (v.getId()){
                 case R.id.attackBtn:
+                    if (p_move){
                     p_attack = true;
                     player_move = "Attack";
+                    round.battle2(player_move);
+                    int decreaseM = round.getDamage1();
+                    int decreaseP = round.getDamage2();
+                    player.loseLives(decreaseP);
+                    monster.loseLives(decreaseM);
+                    update();}
                     break;
                 case R.id.defenceBtn:
+                    if (p_move){
                     p_defence = true;
-                    player_move = "Defence";
+                    player_move = "Defence";}
                     break;
                 case R.id.evadeBtn:
-                    p_evade = true;
-                    player_move = "Evade";
+                    if (p_move){
+                    player_move = "Evade";}
+
+                    if (checklife(monster, player) == 1){
+
+                }
                     break;
                 case R.id.checkBtn:
+                    if (p_move){
+                        break;
+                    }
+                    else{
                     p_check = true;
-                    Round round = new Round(player, monster);
+//                    Round round = new Round(player, monster);
                     round.battle1();
                     String move = round.getMonsterString();
-//                    String move = "why why why why";
                     monsterMove.setText(move);
-                    break;
+//                    round.battle2(player_move);
+//                    int decreaseM = round.getDamage1();
+//                    int decreaseP = round.getDamage2();
+//                    player.loseLives(decreaseP);
+//                    monster.loseLives(decreaseM);
+//                    update();
+                    p_check = false;
+                    break;}
 
 
 //                    if (player.getLivesRemain() > 0 && monster.getLivesRemain() > 0) {
@@ -237,6 +262,14 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+
+    private int checklife(Monster monster, Player player){
+        // return 0 if both life greater than 0, return 1 if player lose, return 2 if monster lose
+        if (monster.getLivesRemain() > 0 && player.getLivesRemain() > 0){return 0;}
+        else if (player.getLivesRemain() <= 0){return 1;}
+        else{return 2;}
+    }
+
     private void update(){
         roundview.setText("Round Number:" + roundNum);
         attackview.setText("Attack:" + player.getProperty().getAttack());
@@ -251,9 +284,9 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 //        roundview.setText("Round Number:" + roundNum);
 //    }
 //
-    private void updatemonsterMove(String move){
-        monsterMove.setText(move);  //get monstermove
-    }
+//    private void updatemonsterMove(String move){
+//        monsterMove.setText(move);  //get monstermove
+//    }
 //
 //    private void updateAttack(){
 //        attackview.setText("Attack:" + player.getProperty().getAttack());
