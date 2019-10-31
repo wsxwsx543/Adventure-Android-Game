@@ -11,10 +11,8 @@ public class Trap extends Box {
         super(x, y, unit_size, res);
     }
 
-    public void update(){
-        if (expanded){
-            bitmapToDraw = BitmapFactory.decodeResource(res, R.drawable.trap);
-            bitmapToDraw = Bitmap.createScaledBitmap(this.bitmapToDraw, unit_size, unit_size, true);
-        }
+    void updateBitmap(){
+        bitmapToDraw = BitmapFactory.decodeResource(res, R.drawable.trap);
+        bitmapToDraw = Bitmap.createScaledBitmap(this.bitmapToDraw, unit_size, unit_size, true);
     }
 }

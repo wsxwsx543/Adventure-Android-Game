@@ -92,17 +92,9 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         while (running) {
             //Lock canvas so we can draw
 
-            if (curX != -1 && curY != -1) {
-                int[] pair = getCurBoxLoc(curX, curY);
-                if (register(pair)) {
-                    boxes[pair[1]][pair[0]].expand(new ArrayList<>());
-                }
-                curX = -1;
-                curY = -1;
-            }
 
-            //update boxes
-            update();
+            //expand if clicked
+            expand();
 
             //loot the treasure!!!
             loot();
@@ -115,7 +107,16 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
 
         }
     }
-
+    private void expand(){
+        if (curX != -1 && curY != -1) {
+            int[] pair = getCurBoxLoc(curX, curY);
+            if (register(pair)) {
+                boxes[pair[1]][pair[0]].expand(new ArrayList<>());
+            }
+            curX = -1;
+            curY = -1;
+        }
+    }
     private int[] getCurBoxLoc(double curX, double curY) {
         int[] pair = new int[2];
         int x = (int) ((curX - this.startX) / unit_size);
@@ -139,14 +140,6 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
             curY = event.getY();
         }
         return true;
-    }
-
-    private void update() {
-        for (int y = 0; y < this.boardLength; y++) {
-            for (int x = 0; x < this.boardWidth; x++) {
-                boxes[y][x].update();
-            }
-        }
     }
 
     private void checkEnded() {
