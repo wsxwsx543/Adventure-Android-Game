@@ -10,12 +10,9 @@ import com.example.phase1.*;
 
 import com.example.phase1.R;
 
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -28,9 +25,6 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     private Monster monster;
     private FileSystem fileSystem;
 
-    // private BattleView gameView;
-    private boolean playerTurn;
-    private boolean bossTurn;
     private Button checkBtn;
     private Button attackBtn;
     private Button defenceBtn;
@@ -63,15 +57,11 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
-        // gameView = new BattleView(this);
-        // setContentView(gameView);
 
         Property monster_property = new Property(10, 10, 0, 0);
-        Property p1 = new Property(5,5,3,5);
         monster = new Monster(200, monster_property);
         curUser = UserManager.getInstance().getCurUser();
         player = curUser.getCurPlayer();
-        //player = new Player("C",p1);
         fileSystem = new FileSystem(this.getApplicationContext());
 
 
@@ -100,9 +90,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         lifeview.setText("Life:" + player.getLivesRemain());
         monsterLifeview.setText("Monster Life:" + monster.getLivesRemain());
         roundview.setText("Round Number:" + roundNum);
-
     }
-
 
 
     @Override
@@ -120,19 +108,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     update();
                     p_move = false;
                 }
-
-                if (checklife(monster, player) == 1){
-                    //playerlose
-                    startActivity(new Intent(BattleActivity.this, LoseActivity.class));
-                    player.setCurStage(3);
-                    fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-                }
-                if (checklife(monster, player) == 2){
-                    //playerwin
-                    startActivity(new Intent(BattleActivity.this, WinActivity.class));
-                    player.setCurStage(3);
-                    fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-                }
+                winOrlose(checklife(monster, player));
                 break;
             case R.id.defenceBtn:
                 if (p_move) {
@@ -145,19 +121,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     update();
                     p_move = false;
                 }
-                if (checklife(monster, player) == 1){
-                    //playerlose
-                    startActivity(new Intent(BattleActivity.this, LoseActivity.class));
-                    player.setCurStage(3);
-                    fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-                }
-                if (checklife(monster, player) == 2){
-                    //playerwin
-                    startActivity(new Intent(BattleActivity.this, WinActivity.class));
-                    player.setCurStage(3);
-                    fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-                }
-
+                winOrlose(checklife(monster, player));
                 break;
             case R.id.evadeBtn:
                 if (p_move) {
@@ -170,19 +134,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     update();
                     p_move = false;
                 }
-
-                    if (checklife(monster, player) == 1){
-                        //playerlose
-                        startActivity(new Intent(BattleActivity.this, LoseActivity.class));
-                        player.setCurStage(3);
-                        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-                    }
-                    if (checklife(monster, player) == 2){
-                        //playerwin
-                        startActivity(new Intent(BattleActivity.this, WinActivity.class));
-                        player.setCurStage(3);
-                        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-                    }
+                winOrlose(checklife(monster, player));
                 break;
             case R.id.checkBtn:
                 if (p_move) {
@@ -211,6 +163,21 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             return 1;
         } else {
             return 2;
+        }
+    }
+
+    private void winOrlose(int num){
+        if (num == 1){
+            //playerlose
+            startActivity(new Intent(BattleActivity.this, LoseActivity.class));
+            player.setCurStage(3);
+            fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+        }
+        if (num == 2){
+            //playerwin
+            startActivity(new Intent(BattleActivity.this, WinActivity.class));
+            player.setCurStage(3);
+            fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
         }
     }
 
