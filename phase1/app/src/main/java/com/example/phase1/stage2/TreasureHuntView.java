@@ -156,6 +156,9 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         }
     }
 
+    public void saveUser() {
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+    }
 
     private void loot() {
         for (int y = 0; y < this.boardLength; y++) {
@@ -203,10 +206,6 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
             }
             holder.unlockCanvasAndPost(canvas);
         }
-    }
-
-    public void saveUser() {
-        fileSystem.save(user, "Users.ser");
     }
 
 

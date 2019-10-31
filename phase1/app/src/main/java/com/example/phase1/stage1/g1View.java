@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
+import com.example.phase1.FileSystem;
 import com.example.phase1.User;
 import com.example.phase1.UserManager;
 import com.example.phase1.stage2.TreasureHuntActivity;
@@ -27,6 +28,7 @@ public class g1View extends SurfaceView implements Runnable{
     private g1background background1;
 
     User curUser;
+    private FileSystem fileSystem;
 
     private Paint lifePaint = new Paint();
     private Paint attackPaint = new Paint();
@@ -57,6 +59,8 @@ public class g1View extends SurfaceView implements Runnable{
         flexibility = curUser.getCurPlayer().getProperty().getFlexibility();
         luckiness = curUser.getCurPlayer().getProperty().getLuckiness();
         life = curUser.getCurPlayer().getLivesRemain();
+
+        this.fileSystem = new FileSystem(context);
 
 
         background1 = new g1background(screenX, screenY, getResources());
@@ -118,6 +122,10 @@ public class g1View extends SurfaceView implements Runnable{
 
         }
 
+    }
+
+    public void saveUser() {
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
     public void escape(){
@@ -283,6 +291,7 @@ public class g1View extends SurfaceView implements Runnable{
             curUser.getCurPlayer().getProperty().setFlexibility(flexibility);
             curUser.getCurPlayer().getProperty().setLuckiness(luckiness);
             curUser.getCurPlayer().setLivesRemain(life);
+            curUser.getCurPlayer().setCurStage(1);
 
             Intent tog2Intent = new Intent(getContext(), TreasureHuntActivity.class);
             getContext().startActivity(tog2Intent);
