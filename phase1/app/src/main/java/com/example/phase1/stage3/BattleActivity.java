@@ -66,10 +66,12 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         // gameView = new BattleView(this);
         // setContentView(gameView);
 
-        Property monster_property = new Property(5, 5, 5, 5);
+        Property monster_property = new Property(10, 10, 0, 0);
+        Property p1 = new Property(5,5,3,5);
         monster = new Monster(200, monster_property);
         curUser = UserManager.getInstance().getCurUser();
         player = curUser.getCurPlayer();
+        //player = new Player("C",p1);
         fileSystem = new FileSystem(this.getApplicationContext());
 
 
