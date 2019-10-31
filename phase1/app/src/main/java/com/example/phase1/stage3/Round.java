@@ -24,7 +24,7 @@ public class Round {
     }
 
 
-    public void battle1() {
+    public Property battle1() {
         int id;
         Random R = new Random();
         if (monster.getLivesRemain() >= 100) {
@@ -35,14 +35,15 @@ public class Round {
             MP = moveFactory.monsterDoMove(id, monster);
         }
         monsterString = MonsterMove.getString(id);
+        return MP;
     }
 
     public String getMonsterString() {
         return monsterString;
     }
 
-    public void battle2(String move){
-        PP = moveFactory.playerDoMove(move, player);//decided by input
+    public void battle2(String move, Property MP){
+        PP = moveFactory.playerDoMove(move, player); //decided by input
 
         int damageToPlayer = MP.getAttack() - PP.getDefence();
         int damageToMonster = PP.getAttack() - MP.getDefence();
@@ -76,4 +77,6 @@ public class Round {
     public int getDamage2() {
         return damage2;
     }
+
+
 }

@@ -8,7 +8,7 @@ public class Monster {
 
     public Monster(int livesRemain, Property monsterProperty){
         this.livesRemain = livesRemain;
-        this.property = monsterProperty;
+        this.property = monsterProperty;                    
     }
 
     int getLivesRemain() {
@@ -22,6 +22,4 @@ public class Monster {
     public void loseLives(int num){
         this.livesRemain -= num;
     }
-
-    public void addLives(int num) {this.livesRemain += num;}
 }

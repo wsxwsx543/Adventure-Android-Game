@@ -5,18 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class LoseActivity extends AppCompatActivity {
+public class WinActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lose);
+        setContentView(R.layout.activity_win);
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        startActivity(new Intent(LoseActivity.this, ChooseOrCreatePlayerActivity.class));
+
+        startActivity(new Intent(WinActivity.this, ChooseOrCreatePlayerActivity.class));
 
     }
 }
