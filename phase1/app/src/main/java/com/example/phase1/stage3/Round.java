@@ -23,7 +23,10 @@ public class Round {
         this.moveFactory = new MoveFactory();
     }
 
-
+    /**
+     * To return monster's move
+     * @return
+     */
     public Property battle1() {
         int id;
         Random R = new Random();
@@ -38,10 +41,19 @@ public class Round {
         return MP;
     }
 
+    /**
+     * Return the monster's string
+     * @return
+     */
     public String getMonsterString() {
         return monsterString;
     }
 
+    /**
+     * Doing the damage calculation after player's choice
+     * @param move
+     * @param MP
+     */
     public void battle2(String move, Property MP){
         PP = moveFactory.playerDoMove(move, player); //decided by input
 
@@ -70,10 +82,18 @@ public class Round {
         // monster.getProperty().addPropertyToSelf(monstermove);
     }
 
+    /**
+     * get the damage player did to the monster
+     * @return
+     */
     public int getDamage1() {
         return damage1;
     }
 
+    /**
+     * get the damage monster did to the player
+     * @return
+     */
     public int getDamage2() {
         return damage2;
     }

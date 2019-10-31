@@ -11,7 +11,12 @@ public class MoveFactory {
     public MoveFactory() {
     }
 
-    //use player do move method to get property of player after each move
+    /**
+     * use playerDoMove method to get property of player after each move
+     * @param moveName
+     * @param player
+     * @return
+     */
     public Property playerDoMove(String moveName, Player player){
 
         Property p = player.getProperty();
@@ -19,7 +24,7 @@ public class MoveFactory {
 
 
         if(moveName.equals("Attack")){
-            PP.addPropertyToSelf(20, 0, 0, 0);
+            PP.addPropertyToSelf(10, 0, 0, 0);
             return PP;
         } else if(moveName.equals("Defence")){
             PP.addPropertyToSelf(-100, 30, -10, -10);
@@ -34,7 +39,12 @@ public class MoveFactory {
         return PP;
     }
 
-    //use monster do move method to get property of monster after each move
+    /**
+     * use monsterDoMove method to get property of monster after each move
+     * @param id
+     * @param monster
+     * @return
+     */
     public Property monsterDoMove(int id, Monster monster){
 
         Property m = monster.getProperty();
@@ -46,19 +56,19 @@ public class MoveFactory {
         if(id == 0){
             return MP;
         } else if(id == 1){
-            MP.addPropertyToSelf(0,10,10,10);
+            MP.addPropertyToSelf(10,10,20,20);
             return MP;
         } else if(id == 2){
-            MP.addPropertyToSelf(20,0,x,y);
+            MP.addPropertyToSelf(25,0,x,y);
             return MP;
         } else if(id == 3){
-            MP.addPropertyToSelf(30,0,x,y);
+            MP.addPropertyToSelf(35,0,x,y);
             return MP;
         } else if(id == 4){
-            MP.addPropertyToSelf(45,100,x-3,y);
+            MP.addPropertyToSelf(40,100,x-3,y);
             return MP;
         } else if(id == 5){
-            MP.addPropertyToSelf(45,0,20,y);
+            MP.addPropertyToSelf(40,0,20,y);
             return MP;
         } else if(id == 6){
             MP.addPropertyToSelf(-10,0,-10,-10);
