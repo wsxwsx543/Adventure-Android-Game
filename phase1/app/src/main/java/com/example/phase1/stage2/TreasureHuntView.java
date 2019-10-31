@@ -1,6 +1,7 @@
 package com.example.phase1.stage2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -9,11 +10,14 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.example.phase1.stage1.g1moveActivity;
+import com.example.phase1.stage3.BattleActivity;
+
 import java.util.ArrayList;
 
 public class TreasureHuntView extends SurfaceView implements Runnable {
 
-    private Paint paint;
+
     public float curX = -1, curY = -1;
     public Box[][] boxes;
     private BoxesMapper boxesMapper;
@@ -32,7 +36,6 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
     public TreasureHuntView(Context context, int boardWidth, int boardLength, int unit_size, int startX, int startY) {
         super(context);
 
-        this.paint = new Paint();
         this.holder = getHolder();
         this.boardWidth = boardWidth;
         this.boardLength = boardLength;
@@ -80,6 +83,8 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
             //Draw the boxes
             draw();
 
+            checkEnded();
+
         }
     }
 
@@ -91,6 +96,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         pair[1] = y;
         return pair;
     }
+
     private boolean register(int[] pair){
         if (pair[0] >= 0 && pair[0] <= boardWidth - 1&& pair[1] >= 0 && pair[1] <= boardLength - 1){
             return true;
@@ -111,6 +117,21 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         for (int y = 0; y < this.boardLength; y++) {
             for (int x = 0; x < this.boardWidth; x++) {
                 boxes[y][x].update();
+            }
+        }
+    }
+    private void checkEnded(){
+        for (int y = 0; y < this.boardLength; y++) {
+            for (int x = 0; x < this.boardWidth; x++) {
+                if (boxes[y][x] instanceof Trap && boxes[y][x].expanded){
+                    try {
+                        thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Intent switchToStage3 = new Intent(getContext(), BattleActivity.class);
+                    getContext().startActivity(switchToStage3);
+                }
             }
         }
     }
