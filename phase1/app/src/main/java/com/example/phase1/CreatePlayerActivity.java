@@ -35,16 +35,16 @@ public class CreatePlayerActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String[] careers = getResources().getStringArray(R.array.careers);
-                if(careers[position].equals("Attacker")) {
+                if(careers[position].equals("Computer Science")) {
                     propertyTextView.setText("Attack: 10, Defence: 5, Flexibility: 5, Luckiness: 5");
                 }
-                if(careers[position].equals("Defender")){
+                if(careers[position].equals("Life Science")){
                     propertyTextView.setText("Attack: 5, Defence: 10, Flexibility: 5, Luckiness: 5");
                 }
-                if(careers[position].equals("Runner")){
+                if(careers[position].equals("Rotman Commerce")){
                     propertyTextView.setText("Attack: 5, Defence: 5, Flexibility: 10, Luckiness: 5");
                 }
-                if(careers[position].equals("Lucky Dog")){
+                if(careers[position].equals("Engineer")){
                     propertyTextView.setText("Attack: 5, Defence: 5, Flexibility: 5, Luckiness: 10");
                 }
             }
@@ -54,9 +54,33 @@ public class CreatePlayerActivity extends AppCompatActivity implements View.OnCl
                 propertyTextView.setText("");
             }
         });
+
+        TextView weaponPropertyTextView = findViewById(R.id.weaponProperty);
+        Spinner weaponSpinner = (Spinner) findViewById(R.id.weapons);
+        weaponSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String[] weapons = getResources().getStringArray(R.array.weapons);
+                if(weapons[position].equals("Pencil"))
+                    weaponPropertyTextView.setText("Attack: 5, Defence: 0, Flexibility: 0, Luckiness: 0");
+                if(weapons[position].equals("Eraser"))
+                    weaponPropertyTextView.setText("Attack: 0, Defence: 5, Flexibility: 0, Luckiness: 0");
+                if(weapons[position].equals("Calculator"))
+                    weaponPropertyTextView.setText("Attack: 0, Defence: 0, Flexibility: 5, Luckiness: 0");
+                if(weapons[position].equals("CheatSheet"))
+                    weaponPropertyTextView.setText("Attack: 0, Defence: 0, Flexibility: 0, Luckiness: 5");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                weaponPropertyTextView.setText("");
+            }
+        });
     }
 
     public boolean createPlayer(){
+        Player player;
+
         EditText playerNameEditText = findViewById(R.id.playerName);
         String playerName = playerNameEditText.getText().toString();
 
@@ -65,21 +89,43 @@ public class CreatePlayerActivity extends AppCompatActivity implements View.OnCl
 
         Spinner careersSpinner = findViewById(R.id.careers);
         switch (careersSpinner.getSelectedItem().toString()){
-            case "Attacker":
+            case "Computer Science":
                 property = new Property(10, 5, 5, 5);
                 break;
-            case "Defender":
+            case "Life Science":
                 property = new Property(5, 10, 5, 5);
                 break;
-            case "Runner":
+            case "Rotman Commerce":
                 property = new Property(5, 5, 10, 5);
                 break;
-            case "Lucky Dog":
+            case "Engineer":
                 property = new Property(5, 5, 5, 10);
                 break;
         }
+
+        player = new Player(playerName, property);
+        Weapon weapon;
+        Spinner weaponsSpinner = findViewById(R.id.weapons);
+        switch (weaponsSpinner.getSelectedItem().toString()) {
+            case "Pencil":
+                weapon = new Weapon("Pencil", 5, 0, 0, 0);
+                break;
+            case "Eraser":
+                weapon = new Weapon("Eraser", 0, 5, 0, 0);
+                break;
+            case "Calculator":
+                weapon = new Weapon("Calculator", 0, 0, 5, 0);
+                break;
+            case "CheatSheet":
+                weapon = new Weapon("CheatSheet", 0, 0, 0, 5);
+                break;
+            default:
+                weapon = new Weapon("", 0, 0, 0, 0);
+        }
+        player.addWeapon(weapon);
+
         try{
-            curUser.addPlayer(new Player(playerName, property));
+            curUser.addPlayer(player);
             return true;
         } catch (SamePlayerNameException e) {
             Toast.makeText(this, "Player name should not be same.", Toast.LENGTH_LONG).show();
