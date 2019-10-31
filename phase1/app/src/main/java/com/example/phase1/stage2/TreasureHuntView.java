@@ -159,7 +159,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
     }
 
     public void saveUser() {
-        fileSystem.save(user, "Users.ser");
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
     private void loot() {
