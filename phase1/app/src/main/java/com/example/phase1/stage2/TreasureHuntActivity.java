@@ -20,5 +20,4 @@ public class TreasureHuntActivity extends AppCompatActivity {
         super.onResume();
         treasureHuntView.resume();
     }
-
 }
