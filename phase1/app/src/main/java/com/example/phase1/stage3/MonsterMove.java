@@ -6,7 +6,7 @@ class MonsterMove implements Move {
     private int id;
     private String moveName;
     private Property property;
-/* movename
+/* moveName
 a: doubt
 b: alert
 c: attack
@@ -30,24 +30,29 @@ f: magic attack
 
     Property MP = new Property(100, 100, 0, 0);
 
-    public String getName(int id){
-        if(id == 0){
-            return "Doubt";
-        } else if(id == 1){
-            return "Alert";
-        } else if(id == 2){
-            return "Attack";
-        } else if(id == 3){
-            return "Power";
-        } else if(id == 4){
-            return "Flying";
-        } else if(id == 5){
-            return "Fire";
-        } else if(id == 6) {
-            return "Tired";
-        } else {return null;}
-    }
+//    public String getName(int id){
+//        if(id == 0){
+//            return "Doubt";
+//        } else if(id == 1){
+//            return "Alert";
+//        } else if(id == 2){
+//            return "Attack";
+//        } else if(id == 3){
+//            return "Power";
+//        } else if(id == 4){
+//            return "Flying";
+//        } else if(id == 5){
+//            return "Fire";
+//        } else if(id == 6) {
+//            return "Tired";
+//        } else {return null;}
+//    }
 
+    /**
+     * the string of monster's move
+     * @param id
+     * @return
+     */
     public static String getString(int id){
         if(id == 0){
             return "Monster is doubting.";

@@ -17,21 +17,21 @@ import android.widget.TextView;
 
 public class BattleActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private User curUser;
+    User curUser;
     private Player player;
     private Monster monster;
     private FileSystem fileSystem;
 
-    private Button checkBtn;
-    private Button attackBtn;
-    private Button defenceBtn;
-    private Button evadeBtn;
+    Button checkBtn;
+    Button attackBtn;
+    Button defenceBtn;
+    Button evadeBtn;
 
     private boolean p_move = false;
 
     private int roundNum = 1;
 
-    private String player_move;
+    String player_move;
     private Property monsterP;
 
     private TextView lifeView;
@@ -96,8 +96,12 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     round.battle2(player_move, monsterP);
                     int decreaseM = round.getDamage1();
                     int decreaseP = round.getDamage2();
-                    player.loseLives(decreaseP);
-                    monster.loseLives(decreaseM);
+                    if (player.getLivesRemain() > decreaseP){
+                        player.loseLives(decreaseP);
+                    } else player.loseLives(player.getLivesRemain());
+                    if (monster.getLivesRemain() > decreaseM){
+                        monster.loseLives(decreaseM);
+                    } else monster.loseLives(monster.getLivesRemain());
                     update();
                     p_move = false;
                 }
@@ -109,8 +113,12 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     round.battle2(player_move, monsterP);
                     int decreaseM = round.getDamage1();
                     int decreaseP = round.getDamage2();
-                    player.loseLives(decreaseP);
-                    monster.loseLives(decreaseM);
+                    if (player.getLivesRemain() > decreaseP){
+                        player.loseLives(decreaseP);
+                    } else player.loseLives(player.getLivesRemain());
+                    if (monster.getLivesRemain() > decreaseM){
+                        monster.loseLives(decreaseM);
+                    } else monster.loseLives(monster.getLivesRemain());
                     update();
                     p_move = false;
                 }
@@ -122,8 +130,12 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     round.battle2(player_move, monsterP);
                     int decreaseM = round.getDamage1();
                     int decreaseP = round.getDamage2();
-                    player.loseLives(decreaseP);
-                    monster.loseLives(decreaseM);
+                    if (player.getLivesRemain() > decreaseP){
+                        player.loseLives(decreaseP);
+                    } else player.loseLives(player.getLivesRemain());
+                    if (monster.getLivesRemain() > decreaseM){
+                        monster.loseLives(decreaseM);
+                    } else monster.loseLives(monster.getLivesRemain());
                     update();
                     p_move = false;
                 }

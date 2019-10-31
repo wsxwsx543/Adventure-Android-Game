@@ -36,16 +36,16 @@ public class CreatePlayerActivity extends AppCompatActivity implements View.OnCl
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String[] careers = getResources().getStringArray(R.array.careers);
                 if(careers[position].equals("Computer Science")) {
-                    propertyTextView.setText("Attack: 10, Defence: 5, Flexibility: 5, Luckiness: 5");
+                    propertyTextView.setText("Attack: 20, Defence: 10, Flexibility: 0, Luckiness: 3");
                 }
                 if(careers[position].equals("Life Science")){
-                    propertyTextView.setText("Attack: 5, Defence: 10, Flexibility: 5, Luckiness: 5");
+                    propertyTextView.setText("Attack: 15, Defence: 15, Flexibility: 0, Luckiness: 3");
                 }
                 if(careers[position].equals("Rotman Commerce")){
-                    propertyTextView.setText("Attack: 5, Defence: 5, Flexibility: 10, Luckiness: 5");
+                    propertyTextView.setText("Attack: 15, Defence: 10, Flexibility: 5, Luckiness: 3");
                 }
                 if(careers[position].equals("Engineer")){
-                    propertyTextView.setText("Attack: 5, Defence: 5, Flexibility: 5, Luckiness: 10");
+                    propertyTextView.setText("Attack: 15, Defence: 10, Flexibility: 0, Luckiness: 7");
                 }
             }
 
@@ -66,9 +66,9 @@ public class CreatePlayerActivity extends AppCompatActivity implements View.OnCl
                 if(weapons[position].equals("Eraser"))
                     weaponPropertyTextView.setText("Attack: 0, Defence: 5, Flexibility: 0, Luckiness: 0");
                 if(weapons[position].equals("Calculator"))
-                    weaponPropertyTextView.setText("Attack: 0, Defence: 0, Flexibility: 5, Luckiness: 0");
+                    weaponPropertyTextView.setText("Attack: 0, Defence: 0, Flexibility: 3, Luckiness: 0");
                 if(weapons[position].equals("CheatSheet"))
-                    weaponPropertyTextView.setText("Attack: 0, Defence: 0, Flexibility: 0, Luckiness: 5");
+                    weaponPropertyTextView.setText("Attack: 0, Defence: 0, Flexibility: 0, Luckiness: 3");
             }
 
             @Override
@@ -90,16 +90,16 @@ public class CreatePlayerActivity extends AppCompatActivity implements View.OnCl
         Spinner careersSpinner = findViewById(R.id.careers);
         switch (careersSpinner.getSelectedItem().toString()){
             case "Computer Science":
-                property = new Property(10, 5, 5, 5);
+                property = new Property(20, 10, 0, 3);
                 break;
             case "Life Science":
-                property = new Property(5, 10, 5, 5);
+                property = new Property(15, 15, 0, 3);
                 break;
             case "Rotman Commerce":
-                property = new Property(5, 5, 10, 5);
+                property = new Property(15, 10, 5, 3);
                 break;
             case "Engineer":
-                property = new Property(5, 5, 5, 10);
+                property = new Property(15, 10, 0, 7);
                 break;
         }
 
@@ -108,16 +108,16 @@ public class CreatePlayerActivity extends AppCompatActivity implements View.OnCl
         Spinner weaponsSpinner = findViewById(R.id.weapons);
         switch (weaponsSpinner.getSelectedItem().toString()) {
             case "Pencil":
-                weapon = new Weapon("Pencil", 5, 0, 0, 0);
+                weapon = new Weapon("Pencil", 10, 0, 0, 0);
                 break;
             case "Eraser":
                 weapon = new Weapon("Eraser", 0, 5, 0, 0);
                 break;
             case "Calculator":
-                weapon = new Weapon("Calculator", 0, 0, 5, 0);
+                weapon = new Weapon("Calculator", 0, 0, 3, 0);
                 break;
             case "CheatSheet":
-                weapon = new Weapon("CheatSheet", 0, 0, 0, 5);
+                weapon = new Weapon("CheatSheet", 0, 0, 0, 3);
                 break;
             default:
                 weapon = new Weapon("", 0, 0, 0, 0);

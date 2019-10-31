@@ -7,7 +7,7 @@ class PlayerMove implements Move {
     private Player player;
     private Property playerProperty;
     private String moveName;
-/* movename
+/** moveName
 a: attack
 b: defence
 c: escape
