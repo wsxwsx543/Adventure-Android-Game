@@ -33,11 +33,13 @@ public class g1View extends SurfaceView implements Runnable{
     private Paint defencePaint = new Paint();
     private Paint flexibilityPaint = new Paint();
     private Paint luckinessPaint = new Paint();
+    private Paint weaponPaint = new Paint();
 
     private int attack;
     private int defence;
     private int flexibility;
     private int luckiness;
+    private String weapon;
 
     private int life;
 
@@ -55,6 +57,7 @@ public class g1View extends SurfaceView implements Runnable{
         flexibility = curUser.getCurPlayer().getProperty().getFlexibility();
         luckiness = curUser.getCurPlayer().getProperty().getLuckiness();
         life = curUser.getCurPlayer().getLivesRemain();
+
 
         background1 = new g1background(screenX, screenY, getResources());
         hero = new g1hero(screenY, getResources());
@@ -89,6 +92,11 @@ public class g1View extends SurfaceView implements Runnable{
         luckinessPaint.setTextSize(70);
         luckinessPaint.setTypeface(Typeface.DEFAULT_BOLD);
         luckinessPaint.setAntiAlias(true);
+
+        weaponPaint.setColor(Color.WHITE);
+        weaponPaint.setTextSize(70);
+        weaponPaint.setTypeface(Typeface.DEFAULT_BOLD);
+        weaponPaint.setAntiAlias(true);
 
 //        life = 10;
 
@@ -159,7 +167,7 @@ public class g1View extends SurfaceView implements Runnable{
 
         if (monster1.x >= screenX - monster1.width)
             monster1.x = screenX - monster1.width;
-        sleep();
+
     }
 
     public void action2(){
@@ -184,7 +192,7 @@ public class g1View extends SurfaceView implements Runnable{
 
         if (monster2.x >= screenX - monster2.width)
             monster2.x = screenX - monster2.width;
-        sleep();
+
     }
 
     public void action3(){
@@ -298,6 +306,7 @@ public class g1View extends SurfaceView implements Runnable{
             canvas.drawText("Defence: " + defence, 500, 180, defencePaint);
             canvas.drawText("Flexibility: " + flexibility, 20, 320, flexibilityPaint);
             canvas.drawText("Luckiness: " + luckiness, 500, 320, luckinessPaint);
+            canvas.drawText("Weapon: " + "guess what", 400, 60, luckinessPaint);
 
             getHolder().unlockCanvasAndPost(canvas);
 
