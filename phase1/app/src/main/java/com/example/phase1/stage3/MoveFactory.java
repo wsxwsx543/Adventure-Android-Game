@@ -19,10 +19,10 @@ public class MoveFactory {
 
 
         if(moveName.equals("Attack")){
-            PP.addPropertyToSelf(50, 0, 0, 0);
+            PP.addPropertyToSelf(20, 0, 0, 0);
             return PP;
         } else if(moveName.equals("Defence")){
-            PP.addPropertyToSelf(-100, 50, -10, -10);
+            PP.addPropertyToSelf(-100, 30, -10, -10);
             return PP;
         } else if(moveName.equals("Evade")){
             PP.addPropertyToSelf(0,0,5,10);
@@ -46,7 +46,7 @@ public class MoveFactory {
         if(id == 0){
             return MP;
         } else if(id == 1){
-            MP.addPropertyToSelf(0,0,10,0);
+            MP.addPropertyToSelf(0,10,10,10);
             return MP;
         } else if(id == 2){
             MP.addPropertyToSelf(20,0,x,y);
@@ -55,10 +55,13 @@ public class MoveFactory {
             MP.addPropertyToSelf(30,0,x,y);
             return MP;
         } else if(id == 4){
-            MP.addPropertyToSelf(40,100,x-5,y);
+            MP.addPropertyToSelf(45,100,x-3,y);
             return MP;
         } else if(id == 5){
-            MP.addPropertyToSelf(50,0,x,y);
+            MP.addPropertyToSelf(45,0,20,y);
+            return MP;
+        } else if(id == 6){
+            MP.addPropertyToSelf(-10,0,-10,-10);
             return MP;
         } else {return null;}
     }
