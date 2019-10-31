@@ -7,12 +7,15 @@ import android.graphics.BitmapFactory;
 import com.example.phase1.R;
 
 public class g1Monster {
-    int x = 1008, y = 360, width = 72, height = 72;
+    int x , y, width = 72, height = 72;
     g1View view ;
 
     Bitmap monsterview;
 
-    g1Monster(g1View view, int ScreenY, Resources res){
+    g1Monster(int curr_x, int curr_y, g1View view, int ScreenY, Resources res){
+        this.x = curr_x;
+        this.y = curr_y;
+
         monsterview = BitmapFactory.decodeResource(res, R.drawable.g1_utoronto);
 
         monsterview = Bitmap.createScaledBitmap(monsterview, width, height, false);

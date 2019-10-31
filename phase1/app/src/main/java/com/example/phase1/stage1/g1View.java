@@ -20,7 +20,9 @@ public class g1View extends SurfaceView implements Runnable{
     private int screenX, screenY;
     private Paint paint;
     private g1hero hero;
-    private g1Monster monster;
+    private g1Monster monster1;
+    private g1Monster monster2;
+    private g1Monster monster3;
     private g1Treasure treasure;
     private g1background background1;
 
@@ -56,7 +58,9 @@ public class g1View extends SurfaceView implements Runnable{
 
         background1 = new g1background(screenX, screenY, getResources());
         hero = new g1hero(screenY, getResources());
-        monster = new g1Monster(this, screenY, getResources());
+        monster1 = new g1Monster(720, 360,this, screenY, getResources());
+        monster2 = new g1Monster(1008, 576,this, screenY, getResources());
+        monster3 = new g1Monster(288, 1368,this, screenY, getResources());
         treasure = new g1Treasure(this, screenY, getResources());
 
         paint = new Paint();
@@ -98,35 +102,113 @@ public class g1View extends SurfaceView implements Runnable{
         while (isPlaying){
             update();
             draw();
-            action();
+            action1();
+            action2();
+            action3();
+            escape();
 //            sleep();
 
         }
 
     }
 
-    public void action(){
+    public void escape(){
         double d = Math.random();
         if (d < 0.25){
-            monster.x += monster.width;
+            treasure.x += treasure.width;
         } else if(0.25 <= d && d < 0.5){
-            monster.x -= monster.width;
+            treasure.x -= treasure.width;
         } else if(0.5 <= d && d < 0.75){
-            monster.y += monster.height;
+            treasure.y += treasure.height;
         } else{
-            monster.y -= monster.height;
+            treasure.y -= treasure.height;
         }
-        if (monster.y < 360)
-            monster.y = 360;
+        if (treasure.y < 360)
+            treasure.y = 360;
 
-        if (monster.y >= 1368)
-            monster.y = 1368;
+        if (treasure.y >= 1368)
+            treasure.y = 1368;
 
-        if (monster.x < 0)
-            monster.x = 0;
+        if (treasure.x < 0)
+            treasure.x = 0;
 
-        if (monster.x >= screenX - monster.width)
-            monster.x = screenX - monster.width;
+        if (treasure.x >= screenX - treasure.width)
+            treasure.x = screenX - treasure.width;
+        sleep();
+    }
+
+    public void action1(){
+        double d = Math.random();
+        if (d < 0.25){
+            monster1.x += monster1.width;
+        } else if(0.25 <= d && d < 0.5){
+            monster1.x -= monster1.width;
+        } else if(0.5 <= d && d < 0.75){
+            monster1.y += monster1.height;
+        } else{
+            monster1.y -= monster1.height;
+        }
+        if (monster1.y < 360)
+            monster1.y = 360;
+
+        if (monster1.y >= 1368)
+            monster1.y = 1368;
+
+        if (monster1.x < 0)
+            monster1.x = 0;
+
+        if (monster1.x >= screenX - monster1.width)
+            monster1.x = screenX - monster1.width;
+        sleep();
+    }
+
+    public void action2(){
+        double d = Math.random();
+        if (d < 0.25){
+            monster2.x += monster2.width;
+        } else if(0.25 <= d && d < 0.5){
+            monster2.x -= monster2.width;
+        } else if(0.5 <= d && d < 0.75){
+            monster2.y += monster2.height;
+        } else{
+            monster2.y -= monster2.height;
+        }
+        if (monster2.y < 360)
+            monster2.y = 360;
+
+        if (monster2.y >= 1368)
+            monster2.y = 1368;
+
+        if (monster2.x < 0)
+            monster2.x = 0;
+
+        if (monster2.x >= screenX - monster2.width)
+            monster2.x = screenX - monster2.width;
+        sleep();
+    }
+
+    public void action3(){
+        double d = Math.random();
+        if (d < 0.25){
+            monster3.x += monster3.width;
+        } else if(0.25 <= d && d < 0.5){
+            monster3.x -= monster3.width;
+        } else if(0.5 <= d && d < 0.75){
+            monster3.y += monster3.height;
+        } else{
+            monster3.y -= monster3.height;
+        }
+        if (monster3.y < 360)
+            monster3.y = 360;
+
+        if (monster3.y >= 1368)
+            monster3.y = 1368;
+
+        if (monster3.x < 0)
+            monster3.x = 0;
+
+        if (monster3.x >= screenX - monster3.width)
+            monster3.x = screenX - monster3.width;
         sleep();
     }
 
@@ -163,7 +245,23 @@ public class g1View extends SurfaceView implements Runnable{
         if (hero.x >= screenX - hero.width)
             hero.x = screenX - hero.width;
 
-        if (hero.x == monster.x && hero.y == monster.y){
+        if (hero.x == monster1.x && hero.y == monster1.y){
+            life --;
+            if (life == 0){
+                Intent restartg1Intent = new Intent(getContext(), g1moveActivity.class);
+                getContext().startActivity(restartg1Intent);
+            }
+        }
+
+        if (hero.x == monster2.x && hero.y == monster2.y){
+            life --;
+            if (life == 0){
+                Intent restartg1Intent = new Intent(getContext(), g1moveActivity.class);
+                getContext().startActivity(restartg1Intent);
+            }
+        }
+
+        if (hero.x == monster3.x && hero.y == monster3.y){
             life --;
             if (life == 0){
                 Intent restartg1Intent = new Intent(getContext(), g1moveActivity.class);
@@ -190,7 +288,9 @@ public class g1View extends SurfaceView implements Runnable{
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
 
             canvas.drawBitmap(hero.getg1hero(), hero.x, hero.y, paint);
-            canvas.drawBitmap(monster.getMonsterView(), monster.x, monster.y, paint);
+            canvas.drawBitmap(monster1.getMonsterView(), monster1.x, monster1.y, paint);
+            canvas.drawBitmap(monster2.getMonsterView(), monster2.x, monster2.y, paint);
+            canvas.drawBitmap(monster3.getMonsterView(), monster3.x, monster3.y, paint);
             canvas.drawBitmap(treasure.getTreasurerview(), treasure.x, treasure.y, paint);
 
             canvas.drawText("Life: " + life, 20, 60, lifePaint);
