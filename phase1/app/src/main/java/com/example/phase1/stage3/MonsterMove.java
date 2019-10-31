@@ -43,7 +43,9 @@ f: magic attack
             return "Flying";
         } else if(id == 5){
             return "Fire";
-        } { return null;}
+        } else if(id == 6) {
+            return "Tired";
+        } else {return null;}
     }
 
     public static String getString(int id){
@@ -59,6 +61,8 @@ f: magic attack
             return "Monster is flying";
         } else if (id == 5) {
             return "Monster is using fire";
+        } else if (id == 6) {
+            return "Monster is tired";
         } else {return null;}
     }
 }

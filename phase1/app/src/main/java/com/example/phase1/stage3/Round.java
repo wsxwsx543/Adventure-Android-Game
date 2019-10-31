@@ -31,7 +31,7 @@ public class Round {
             id = R.nextInt(4);
             MP = moveFactory.monsterDoMove(id, monster);
         } else {
-            id = R.nextInt(4) + 2;
+            id = R.nextInt(4) + 3;
             MP = moveFactory.monsterDoMove(id, monster);
         }
         monsterString = MonsterMove.getString(id);

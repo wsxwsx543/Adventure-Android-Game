@@ -66,16 +66,16 @@ public class CreatePlayerActivity extends AppCompatActivity implements View.OnCl
         Spinner careersSpinner = findViewById(R.id.careers);
         switch (careersSpinner.getSelectedItem().toString()){
             case "Attacker":
-                property = new Property(10, 5, 5, 5);
+                property = new Property(10, 5, 0, 5);
                 break;
             case "Defender":
-                property = new Property(5, 10, 5, 5);
+                property = new Property(5, 10, 0, 3);
                 break;
             case "Runner":
-                property = new Property(5, 5, 10, 5);
+                property = new Property(5, 5, 5, 3);
                 break;
             case "Lucky Dog":
-                property = new Property(5, 5, 5, 10);
+                property = new Property(5, 5, 0, 10);
                 break;
         }
         try{
