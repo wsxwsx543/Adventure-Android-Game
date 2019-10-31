@@ -23,10 +23,6 @@ public abstract  class Box {
 
     Resources res;
 
-    public ArrayList<Box> getNeighbours() {
-        return neighbours;
-    }
-
     // A reference to the neighbouring boxes
     private ArrayList<Box> neighbours;
 
@@ -105,15 +101,23 @@ public abstract  class Box {
         bitmap = Bitmap.createScaledBitmap(bitmap, unit_size, unit_size, true);
         return bitmap;
     }
+
+    public ArrayList<Box> getNeighbours() {
+        return neighbours;
+    }
+
     public abstract void update();
+
     public void expand(ArrayList<Box> checked){
-        this.expanded = true;
-        if (this.numOfNeighbourTraps == 0 && (!(this instanceof Trap))){
-            for (int i = 0; i < this.neighbours.size(); i++){
-                Box thisBox = this.neighbours.get(i);
-                if (!checked.contains(thisBox)){
-                    checked.add(thisBox);
-                    thisBox.expand(checked);
+        if (!expanded) {
+            this.expanded = true;
+            if (this.numOfNeighbourTraps == 0 && (!(this instanceof Trap))) {
+                for (int i = 0; i < this.neighbours.size(); i++) {
+                    Box thisBox = this.neighbours.get(i);
+                    if (!checked.contains(thisBox)) {
+                        checked.add(thisBox);
+                        thisBox.expand(checked);
+                    }
                 }
             }
         }
