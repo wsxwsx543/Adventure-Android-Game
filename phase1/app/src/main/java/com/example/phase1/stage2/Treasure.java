@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.example.phase1.R;
+import com.example.phase1.User;
+import com.example.phase1.UserManager;
 
 public class Treasure extends Box {
 
@@ -39,9 +41,31 @@ public class Treasure extends Box {
             case 3:
                 treasureType = "Flexibility";
                 break;
-            default:
-                treasureType = "Attack";
-                break;
+        }
+    }
+
+    public void loot(){
+        if (this.expanded && (!this.looted)) {
+            int originalStat;
+            switch (treasureType) {
+                case "Attack":
+                    originalStat = UserManager.getInstance().getCurUser().getCurPlayer().getProperty().getAttack();
+                    UserManager.getInstance().getCurUser().getCurPlayer().getProperty().setAttack(originalStat + 1);
+                    break;
+                case "Defense":
+                    originalStat = UserManager.getInstance().getCurUser().getCurPlayer().getProperty().getDefence();
+                    UserManager.getInstance().getCurUser().getCurPlayer().getProperty().setDefence(originalStat + 1);
+                    break;
+                case "Luckiness":
+                    originalStat = UserManager.getInstance().getCurUser().getCurPlayer().getProperty().getDefence();
+                    UserManager.getInstance().getCurUser().getCurPlayer().getProperty().setLuckiness(originalStat + 1);
+                    break;
+                case "Flexibility":
+                    originalStat = UserManager.getInstance().getCurUser().getCurPlayer().getProperty().getFlexibility();
+                    UserManager.getInstance().getCurUser().getCurPlayer().getProperty().setFlexibility(originalStat + 1);
+                    break;
+            }
+            looted = true;
         }
     }
 }

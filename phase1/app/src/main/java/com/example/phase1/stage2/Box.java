@@ -122,4 +122,8 @@ public abstract  class Box {
             }
         }
     }
+    public boolean getExpand(){
+        return expanded;
+    }
+
 }
