@@ -24,6 +24,14 @@ class WeaponManager implements Serializable {
         }
     }
 
+    public List<String> getWeaponNames(){
+        List<String> weaponNames = new ArrayList<>();
+        for (Weapon weapon: weapons){
+            weaponNames.add(weapon.getName());
+        }
+        return weaponNames;
+    }
+
     // Return the weapon with specific name
     public Weapon takeWeapon(String name){
         for(Weapon weapon: weapons){
