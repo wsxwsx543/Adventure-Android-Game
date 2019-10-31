@@ -30,12 +30,13 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
 
     //Current user
     private User user = UserManager.getInstance().getCurUser();
+    //The Property of the current user
     private Property property = user.getCurPlayer().getProperty();
-    private Player player = user.getCurPlayer();
-
+    //The boxes that this class will refer to
     public Box[][] boxes;
+    //boxesmapper to map the boxes
     private BoxesMapper boxesMapper;
-    private ArrayList<Bitmap> boxesBitmap;
+
     private int boardWidth, boardLength, startX, startY;
     private int unit_size;
     public Thread thread;
@@ -102,8 +103,13 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
 
             //update boxes
             update();
+
+            //loot the treasure!!!
+            loot();
+
             //Draw the boxes
             draw();
+
             //Check if trap is triggered
             checkEnded();
 
@@ -161,6 +167,17 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
 
     public void saveUser() {
         fileSystem.save(user, "Users.ser");
+    }
+
+    private void loot() {
+        for (int y = 0; y < this.boardLength; y++) {
+            for (int x = 0; x < this.boardWidth; x++) {
+                if (boxes[y][x] instanceof Treasure) {
+                    Treasure thisTreasure = (Treasure)boxes[y][x];
+                    thisTreasure.loot();
+                }
+            }
+        }
     }
 
     private void draw() {
