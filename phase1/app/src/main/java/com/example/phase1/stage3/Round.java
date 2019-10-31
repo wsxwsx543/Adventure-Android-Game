@@ -21,34 +21,34 @@ public class Round {
         this.player = player;
         this.monster = monster;
         this.moveFactory = new MoveFactory();
-        this.MP = new Property(0, 0, 0, 0);
     }
 
 
-    public void battle1() {
+    public Property battle1() {
         int id;
         Random R = new Random();
         if (monster.getLivesRemain() >= 100) {
             id = R.nextInt(4);
-            this.MP = moveFactory.monsterDoMove(id, monster);
+            MP = moveFactory.monsterDoMove(id, monster);
         } else {
             id = R.nextInt(4) + 2;
-            this.MP = moveFactory.monsterDoMove(id, monster);
+            MP = moveFactory.monsterDoMove(id, monster);
         }
         monsterString = MonsterMove.getString(id);
+        return MP;
     }
 
     public String getMonsterString() {
         return monsterString;
     }
 
-    public void battle2(String move){
+    public void battle2(String move, Property MP){
         PP = moveFactory.playerDoMove(move, player); //decided by input
 
-        int damageToPlayer = this.MP.getAttack() - PP.getDefence();
-        int damageToMonster = PP.getAttack() - this.MP.getDefence();
-        int flex = PP.getFlexibility() - this.MP.getFlexibility();
-        int luck = PP.getLuckiness() - this.MP.getLuckiness();
+        int damageToPlayer = MP.getAttack() - PP.getDefence();
+        int damageToMonster = PP.getAttack() - MP.getDefence();
+        int flex = PP.getFlexibility() - MP.getFlexibility();
+        int luck = PP.getLuckiness() - MP.getLuckiness();
 
         if (damageToMonster > 0){
             if (luck > 0) {

@@ -19,7 +19,7 @@ public class MoveFactory {
 
 
         if(moveName.equals("Attack")){
-            PP.addPropertyToSelf(30, 0, 0, 0);
+            PP.addPropertyToSelf(50, 0, 0, 0);
             return PP;
         } else if(moveName.equals("Defence")){
             PP.addPropertyToSelf(-100, 50, -10, -10);
@@ -52,8 +52,14 @@ public class MoveFactory {
             MP.addPropertyToSelf(20,0,x,y);
             return MP;
         } else if(id == 3){
-            MP.addPropertyToSelf(50,0,10,y);
+            MP.addPropertyToSelf(30,0,x,y);
             return MP;
-        } else { return null;}
+        } else if(id == 4){
+            MP.addPropertyToSelf(40,100,x-5,y);
+            return MP;
+        } else if(id == 5){
+            MP.addPropertyToSelf(50,0,x,y);
+            return MP;
+        } else {return null;}
     }
 }
