@@ -159,4 +159,5 @@ public class g1Activity extends AppCompatActivity implements View.OnTouchListene
         }
         return true;
     }
+
 }

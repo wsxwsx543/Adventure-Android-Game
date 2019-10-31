@@ -10,15 +10,9 @@ import com.example.phase1.*;
 
 import com.example.phase1.R;
 
-import android.graphics.drawable.Drawable;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import java.util.Timer;
 
 
 public class BattleActivity extends AppCompatActivity implements View.OnClickListener {
@@ -28,9 +22,6 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     private Monster monster;
     private FileSystem fileSystem;
 
-    // private BattleView gameView;
-    private boolean playerTurn;
-    private boolean bossTurn;
     private Button checkBtn;
     private Button attackBtn;
     private Button defenceBtn;
@@ -43,18 +34,14 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     private String player_move;
     private Property monsterP;
 
-    private TextView lifeview;
-    private TextView monsterLifeview;
+    private TextView lifeView;
+    private TextView monsterLifeView;
     private TextView monsterMove;
-    private TextView roundview;
-    private TextView attackview;
-    private TextView defenceview;
-    private TextView flexibilityview;
-    private TextView luckinessview;
-
-
-    private Timer timer = new Timer();
-    private Handler handler = new Handler();
+    private TextView roundView;
+    private TextView attackView;
+    private TextView defenceView;
+    private TextView flexibilityView;
+    private TextView luckinessView;
 
 
 
@@ -63,26 +50,22 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
-        // gameView = new BattleView(this);
-        // setContentView(gameView);
 
         Property monster_property = new Property(10, 10, 0, 0);
-        Property p1 = new Property(5,5,3,5);
         monster = new Monster(200, monster_property);
         curUser = UserManager.getInstance().getCurUser();
         player = curUser.getCurPlayer();
-        //player = new Player("C",p1);
         fileSystem = new FileSystem(this.getApplicationContext());
 
 
-        lifeview = findViewById(R.id.life);
-        monsterLifeview = findViewById(R.id.monster_life);
+        lifeView = findViewById(R.id.life);
+        monsterLifeView = findViewById(R.id.monster_life);
         monsterMove = findViewById(R.id.monster_status);
-        roundview = findViewById(R.id.round_num);
-        attackview = findViewById(R.id.your_attack);
-        defenceview = findViewById(R.id.your_defence);
-        flexibilityview = findViewById(R.id.your_flexibility);
-        luckinessview = findViewById(R.id.your_luckiness);
+        roundView = findViewById(R.id.round_num);
+        attackView = findViewById(R.id.your_attack);
+        defenceView = findViewById(R.id.your_defence);
+        flexibilityView = findViewById(R.id.your_flexibility);
+        luckinessView = findViewById(R.id.your_luckiness);
 
         checkBtn = findViewById(R.id.checkBtn);
         checkBtn.setOnClickListener(this);
@@ -93,16 +76,14 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         evadeBtn = findViewById(R.id.evadeBtn);
         evadeBtn.setOnClickListener(this);
 
-        attackview.setText("Attack:" + player.getProperty().getAttack());
-        defenceview.setText("Defence:" + player.getProperty().getDefence());
-        flexibilityview.setText("Flexibility:" + player.getProperty().getFlexibility());
-        luckinessview.setText("Luckiness:" + player.getProperty().getLuckiness());
-        lifeview.setText("Life:" + player.getLivesRemain());
-        monsterLifeview.setText("Monster Life:" + monster.getLivesRemain());
-        roundview.setText("Round Number:" + roundNum);
-
+        attackView.setText("Attack:" + player.getProperty().getAttack());
+        defenceView.setText("Defence:" + player.getProperty().getDefence());
+        flexibilityView.setText("Flexibility:" + player.getProperty().getFlexibility());
+        luckinessView.setText("Luckiness:" + player.getProperty().getLuckiness());
+        lifeView.setText("Life:" + player.getLivesRemain());
+        monsterLifeView.setText("Monster Life:" + monster.getLivesRemain());
+        roundView.setText("Round Number:" + roundNum);
     }
-
 
 
     @Override
@@ -120,19 +101,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     update();
                     p_move = false;
                 }
-
-                if (checklife(monster, player) == 1){
-                    //playerlose
-                    startActivity(new Intent(BattleActivity.this, LoseActivity.class));
-                    player.setCurStage(3);
-                    fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-                }
-                if (checklife(monster, player) == 2){
-                    //playerwin
-                    startActivity(new Intent(BattleActivity.this, WinActivity.class));
-                    player.setCurStage(3);
-                    fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-                }
+                winOrLose(checkLife(monster, player));
                 break;
             case R.id.defenceBtn:
                 if (p_move) {
@@ -145,19 +114,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     update();
                     p_move = false;
                 }
-                if (checklife(monster, player) == 1){
-                    //playerlose
-                    startActivity(new Intent(BattleActivity.this, LoseActivity.class));
-                    player.setCurStage(3);
-                    fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-                }
-                if (checklife(monster, player) == 2){
-                    //playerwin
-                    startActivity(new Intent(BattleActivity.this, WinActivity.class));
-                    player.setCurStage(3);
-                    fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-                }
-
+                winOrLose(checkLife(monster, player));
                 break;
             case R.id.evadeBtn:
                 if (p_move) {
@@ -170,26 +127,13 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     update();
                     p_move = false;
                 }
-
-                    if (checklife(monster, player) == 1){
-                        //playerlose
-                        startActivity(new Intent(BattleActivity.this, LoseActivity.class));
-                        player.setCurStage(3);
-                        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-                    }
-                    if (checklife(monster, player) == 2){
-                        //playerwin
-                        startActivity(new Intent(BattleActivity.this, WinActivity.class));
-                        player.setCurStage(3);
-                        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-                    }
+                winOrLose(checkLife(monster, player));
                 break;
             case R.id.checkBtn:
                 if (p_move) {
                     break;
                 } else {
                     p_move = true;
-//                    Round round = new Round(player, monster);
                     monsterP = round.battle1();
                     String move = round.getMonsterString();
                     monsterMove.setText(move);
@@ -203,8 +147,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    private int checklife(Monster monster, Player player) {
-        // return 0 if both life greater than 0, return 1 if player lose, return 2 if monster lose
+    private int checkLife(Monster monster, Player player) {
         if (monster.getLivesRemain() > 0 && player.getLivesRemain() > 0) {
             return 0;
         } else if (player.getLivesRemain() <= 0) {
@@ -214,15 +157,30 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    private void winOrLose(int num){
+        if (num == 1){
+            //player lose
+            startActivity(new Intent(BattleActivity.this, LoseActivity.class));
+            player.setCurStage(3);
+            fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+        }
+        if (num == 2){
+            //player win
+            startActivity(new Intent(BattleActivity.this, WinActivity.class));
+            player.setCurStage(3);
+            fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+        }
+    }
+
     private void update() {
         roundNum++;
-        roundview.setText("Round Number:" + roundNum);
-        attackview.setText("Attack:" + player.getProperty().getAttack());
-        defenceview.setText("Defence:" + player.getProperty().getDefence());
-        flexibilityview.setText("Flexibility:" + player.getProperty().getFlexibility());
-        luckinessview.setText("Luckiness:" + player.getProperty().getLuckiness());
-        lifeview.setText("Life:" + player.getLivesRemain());
-        monsterLifeview.setText("Monster Life:" + monster.getLivesRemain());
+        roundView.setText("Round Number:" + roundNum);
+        attackView.setText("Attack:" + player.getProperty().getAttack());
+        defenceView.setText("Defence:" + player.getProperty().getDefence());
+        flexibilityView.setText("Flexibility:" + player.getProperty().getFlexibility());
+        luckinessView.setText("Luckiness:" + player.getProperty().getLuckiness());
+        lifeView.setText("Life:" + player.getLivesRemain());
+        monsterLifeView.setText("Monster Life:" + monster.getLivesRemain());
     }
 
 }
