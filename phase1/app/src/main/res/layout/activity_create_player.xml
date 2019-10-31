@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select career for player:"
+            android:text="Select a department for your player:"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             />
@@ -62,6 +62,30 @@
 
         <TextView
             android:id="@+id/property"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="#fff"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please select your starting weapon"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            />
+
+        <Spinner
+            android:id="@+id/weapons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:entries="@array/weapons"
+            />
+
+        <TextView
+            android:id="@+id/weaponProperty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

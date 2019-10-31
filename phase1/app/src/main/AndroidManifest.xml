@@ -9,25 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoseActivity"></activity>
         <activity android:name=".WinActivity"></activity>
-        <activity android:name=".stage2.TreasureHuntActivity">
-        </activity>
+        <activity android:name=".LoseActivity" />
+        <activity android:name=".stage2.TreasureHuntActivity" />
         <activity android:name=".CreatePlayerActivity" />
         <activity android:name=".SelectPlayerActivity" />
         <activity android:name=".ChooseOrCreatePlayerActivity" />
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".stage1.g1moveActivity">
-        </activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".stage1.g1moveActivity" />
+        <activity android:name=".stage3.BattleActivity" />
+        <activity android:name=".stage1.g1Activity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".stage1.g1Activity" />
-        <activity android:name=".stage3.BattleActivity">
         </activity>
     </application>
 
