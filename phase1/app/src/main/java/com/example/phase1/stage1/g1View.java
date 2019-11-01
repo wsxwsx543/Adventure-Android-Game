@@ -15,21 +15,49 @@ import com.example.phase1.UserManager;
 import com.example.phase1.stage2.TreasureHuntActivity;
 
 public class g1View extends SurfaceView implements Runnable{
-
+    /**
+     * The main Thread
+     */
     private Thread thread;
+    /**
+     * If current game1 is playing
+     */
     private boolean isPlaying;
+    /**
+     * the length and width of the screen
+     */
     private int screenX, screenY;
     private Paint paint;
+    /**
+     * The player
+     */
     private g1hero hero;
+    /**
+     * The three monsters in the screen
+     */
     private g1Monster monster1;
     private g1Monster monster2;
     private g1Monster monster3;
+    /**
+     * The treasure
+     */
     private g1Treasure treasure;
+    /**
+     * The background
+     */
     private g1background background1;
 
+    /**
+     * The current user we've selected
+     */
     User curUser;
+    /**
+     * Where we store the data in case of data loss
+     */
     private FileSystem fileSystem;
-
+    /**
+     * The paint of 4 properties and 1 life and 1 weapon
+     */
     private Paint lifePaint = new Paint();
     private Paint attackPaint = new Paint();
     private Paint defencePaint = new Paint();
@@ -37,14 +65,21 @@ public class g1View extends SurfaceView implements Runnable{
     private Paint luckinessPaint = new Paint();
     private Paint weaponPaint = new Paint();
 
+    /**
+     * Four properties and one weapon and life
+     */
     private int attack;
     private int defence;
     private int flexibility;
     private int luckiness;
     private String weapon;
-
     private int life;
 
+    /**
+     * @param context
+     * @param screenX the width of the screen
+     * @param screenY the length of the screen
+     */
     public g1View(Context context, int screenX, int screenY){
         super(context);
 
@@ -52,7 +87,6 @@ public class g1View extends SurfaceView implements Runnable{
         this.screenY = screenY;
 
         curUser = UserManager.getInstance().getCurUser();
-//        curUser.getCurPlayer();
 
         attack = curUser.getCurPlayer().getProperty().getAttack();
         defence = curUser.getCurPlayer().getProperty().getDefence();
@@ -64,11 +98,11 @@ public class g1View extends SurfaceView implements Runnable{
 
 
         background1 = new g1background(screenX, screenY, getResources());
-        hero = new g1hero(screenY, getResources());
-        monster1 = new g1Monster(720, 360,this, screenY, getResources());
-        monster2 = new g1Monster(1008, 576,this, screenY, getResources());
-        monster3 = new g1Monster(288, 1368,this, screenY, getResources());
-        treasure = new g1Treasure(this, screenY, getResources());
+        hero = new g1hero(getResources());
+        monster1 = new g1Monster(720, 360, getResources());
+        monster2 = new g1Monster(1008, 576, getResources());
+        monster3 = new g1Monster(288, 1368, getResources());
+        treasure = new g1Treasure(getResources());
 
         paint = new Paint();
 
@@ -102,13 +136,17 @@ public class g1View extends SurfaceView implements Runnable{
         weaponPaint.setTypeface(Typeface.DEFAULT_BOLD);
         weaponPaint.setAntiAlias(true);
 
-//        life = 10;
+        curUser.getCurPlayer().setCurStage(1);
+
 
     }
 
     public int getScreenX(){return screenX;}
     public int getScreenY(){return screenY;}
 
+    /**
+     * in where we keep running the methods
+     */
     @Override
     public void run() {
         while (isPlaying){
@@ -118,16 +156,21 @@ public class g1View extends SurfaceView implements Runnable{
             action2();
             action3();
             escape();
-//            sleep();
 
         }
 
     }
 
+    /**
+     * method to save the User data
+     */
     public void saveUser() {
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
+    /**
+     * Method to move the treasure
+     */
     public void escape(){
         double d = Math.random();
         if (d < 0.25){
@@ -153,6 +196,9 @@ public class g1View extends SurfaceView implements Runnable{
         sleep();
     }
 
+    /**
+     * Action to move monster1
+     */
     public void action1(){
         double d = Math.random();
         if (d < 0.25){
@@ -178,6 +224,9 @@ public class g1View extends SurfaceView implements Runnable{
 
     }
 
+    /**
+     * Action to move monster2
+     */
     public void action2(){
         double d = Math.random();
         if (d < 0.25){
@@ -203,6 +252,9 @@ public class g1View extends SurfaceView implements Runnable{
 
     }
 
+    /**
+     * Action to move monster3
+     */
     public void action3(){
         double d = Math.random();
         if (d < 0.25){
@@ -228,6 +280,10 @@ public class g1View extends SurfaceView implements Runnable{
         sleep();
     }
 
+    /**
+     * update the x,y of monster, hte situation where player hit monsters and when to
+     * jump to the next activity
+     */
     private void update(){
         if (hero.isGoingUp){
             hero.y -= hero.height;
@@ -291,13 +347,16 @@ public class g1View extends SurfaceView implements Runnable{
             curUser.getCurPlayer().getProperty().setFlexibility(flexibility);
             curUser.getCurPlayer().getProperty().setLuckiness(luckiness);
             curUser.getCurPlayer().setLivesRemain(life);
-            curUser.getCurPlayer().setCurStage(1);
+            curUser.getCurPlayer().setCurStage(2);
 
             Intent tog2Intent = new Intent(getContext(), TreasureHuntActivity.class);
             getContext().startActivity(tog2Intent);
         }
     }
 
+    /**
+     * Where to draw the bitmap background, player, treasure and monsters
+     */
     private void draw(){
         if (getHolder().getSurface().isValid()){
 
@@ -321,10 +380,11 @@ public class g1View extends SurfaceView implements Runnable{
 
         }
 
-
-
     }
 
+    /**
+     * we suspend the program for 200 millis
+     */
     private void sleep(){
         try {
             Thread.sleep(200);
@@ -335,12 +395,18 @@ public class g1View extends SurfaceView implements Runnable{
 
     }
 
+    /**
+     * resume the thread
+     */
     public void resume(){
         isPlaying = true;
         thread = new Thread(this);
         thread.start();
     }
 
+    /**
+     * pause the thread
+     */
     public void pause(){
         try {
             isPlaying = false;
@@ -350,6 +416,13 @@ public class g1View extends SurfaceView implements Runnable{
         }
     }
 
+    /**
+     * Where we move the player
+     * click the upper screen to move player upwards
+     * click the lower screen to move player downwards
+     * click the left screen to move player leftwards
+     * click the right screen to move player rightwards
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
