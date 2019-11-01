@@ -8,7 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -37,7 +36,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
     //The boxes that this class will refer to
     public Box[][] boxes;
     //boxesmapper to map the boxes
-    private BoxesMapper boxesMapper;
+    private BoxesManager boxesManager;
 
     private int boardWidth, boardLength, startX, startY;
     private int unit_size;
@@ -51,7 +50,6 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
 
     private Bitmap treasureHuntMsg;
     private Bitmap trapMsg;
-    //Temp var
 
     public TreasureHuntView(Context context, int boardWidth, int boardLength, int unit_size, int startX, int startY) {
         super(context);
@@ -78,35 +76,17 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         trapMsg = BitmapFactory.decodeResource(getResources(), R.drawable.trapmessage);
         trapMsg = Bitmap.createScaledBitmap(this.trapMsg, 980, 200, true);
 
-        boxesMapper = new BoxesMapper(this.boardWidth, this.boardLength, this.unit_size, this.startX, this.startY, getResources());
-        boxes = boxesMapper.getBoxes();
+        boxesManager = new BoxesManager(this.boardWidth, this.boardLength, this.unit_size, this.startX, this.startY, getResources());
+        boxes = boxesManager.getBoxes();
     }
 
     public TreasureHuntView(Context context) {
         this(context, 15, 18, 72, 0, 300);
     }
 
-    public void pause() {
-        try {
-            running = false;
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void resume() {
-        running = true;
-        thread = new Thread(this);
-        thread.start();
-    }
-
     @Override
     public void run() {
         while (running) {
-            //Lock canvas so we can draw
-
-
             //expand if clicked
             expand();
 
@@ -118,14 +98,13 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
 
             //Check if trap is triggered
             checkEnded();
-
         }
     }
     private void expand(){
         if (curX != -1 && curY != -1) {
             int[] pair = getCurBoxLoc(curX, curY);
             if (register(pair)) {
-                boxes[pair[1]][pair[0]].expand(new ArrayList<>());
+                boxesManager.expand(pair[0], pair[1]);
             }
             curX = -1;
             curY = -1;
@@ -140,6 +119,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         return pair;
     }
 
+    // To see whether or not the x, y coordinates are legal
     private boolean register(int[] pair) {
         if (pair[0] >= 0 && pair[0] <= boardWidth - 1 && pair[1] >= 0 && pair[1] <= boardLength - 1) {
             return true;
@@ -147,31 +127,20 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         return false;
     }
 
+    // Check if the game is about to end
     private void checkEnded() {
-        for (int y = 0; y < this.boardLength; y++) {
-            for (int x = 0; x < this.boardWidth; x++) {
-                if (boxes[y][x] instanceof Trap && boxes[y][x].expanded) {
-                    aboutToEnd = true;
-                }
-            }
-        }
+        aboutToEnd = boxesManager.checkAllExpanded() || boxesManager.checkTrapTriggered();
     }
 
+    // Save the current progress
     public void saveUser() {
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
-
-    private void loot() {
-        for (int y = 0; y < this.boardLength; y++) {
-            for (int x = 0; x < this.boardWidth; x++) {
-                if (boxes[y][x] instanceof Treasure) {
-                    Treasure thisTreasure = (Treasure)boxes[y][x];
-                    thisTreasure.loot();
-                }
-            }
-        }
+    private void loot(){
+        boxesManager.loot();
     }
 
+    //
     private void draw() {
         if (holder.getSurface().isValid()) {
             Canvas canvas = getHolder().lockCanvas();
@@ -200,12 +169,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
                     }
                 }, 5000);
             }
-            for (int y = 0; y < this.boardLength; y++) {
-                for (int x = 0; x < this.boardWidth; x++) {
-                    Box thisBox = boxes[y][x];
-                    canvas.drawBitmap(thisBox.bitmapToDraw, thisBox.getX(), thisBox.getY(), null);
-                }
-            }
+            boxesManager.draw(canvas);
             holder.unlockCanvasAndPost(canvas);
         }
     }
@@ -217,5 +181,20 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
             curY = event.getY();
         }
         return true;
+    }
+
+    public void pause() {
+        try {
+            running = false;
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void resume() {
+        running = true;
+        thread = new Thread(this);
+        thread.start();
     }
 }
