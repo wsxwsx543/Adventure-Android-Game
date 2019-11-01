@@ -56,23 +56,21 @@ public class g1View extends SurfaceView implements Runnable{
      */
     private FileSystem fileSystem;
     /**
-     * The paint of 4 properties and 1 life and 1 weapon
+     * The paint of 4 properties and 1 life
      */
     private Paint lifePaint = new Paint();
     private Paint attackPaint = new Paint();
     private Paint defencePaint = new Paint();
     private Paint flexibilityPaint = new Paint();
     private Paint luckinessPaint = new Paint();
-    private Paint weaponPaint = new Paint();
 
     /**
-     * Four properties and one weapon and life
+     * Four properties and life
      */
     private int attack;
     private int defence;
     private int flexibility;
     private int luckiness;
-    private String weapon;
     private int life;
 
     /**
@@ -130,11 +128,6 @@ public class g1View extends SurfaceView implements Runnable{
         luckinessPaint.setTextSize(70);
         luckinessPaint.setTypeface(Typeface.DEFAULT_BOLD);
         luckinessPaint.setAntiAlias(true);
-
-        weaponPaint.setColor(Color.WHITE);
-        weaponPaint.setTextSize(70);
-        weaponPaint.setTypeface(Typeface.DEFAULT_BOLD);
-        weaponPaint.setAntiAlias(true);
 
         curUser.getCurPlayer().setCurStage(1);
 
@@ -374,7 +367,6 @@ public class g1View extends SurfaceView implements Runnable{
             canvas.drawText("Defence: " + defence, 500, 180, defencePaint);
             canvas.drawText("Flexibility: " + flexibility, 20, 320, flexibilityPaint);
             canvas.drawText("Luckiness: " + luckiness, 500, 320, luckinessPaint);
-            canvas.drawText("Weapon: " + "guess what", 400, 60, luckinessPaint);
 
             getHolder().unlockCanvasAndPost(canvas);
 
