@@ -5,14 +5,14 @@ import com.example.phase1.Property;
 /**
  * A monster.
  */
-public class Monster{
+class Monster{
     private int livesRemain;
     private Property property;
 
     /**
      * Constructs a new monster.
      */
-    public Monster(int livesRemain, Property monsterProperty){
+    Monster(int livesRemain, Property monsterProperty){
         this.livesRemain = livesRemain;
         this.property = monsterProperty;
     }
@@ -40,7 +40,7 @@ public class Monster{
      *
      * @param num the number live lose.
      */
-    public void loseLives(int num){
+    void loseLives(int num){
         this.livesRemain -= num;
     }
 }
