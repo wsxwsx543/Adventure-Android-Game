@@ -35,13 +35,18 @@ public class g1View extends SurfaceView implements Runnable{
     /**
      * The three monsters in the screen
      */
-    private g1Monster monster1;
-    private g1Monster monster2;
-    private g1Monster monster3;
+    private g1Monster[] mymonsters = {
+            new g1Monster(720, 360, getResources()),
+            new g1Monster(1008, 576, getResources()),
+            new g1Monster(288, 1368, getResources()),
+            new g1Monster(144, 864,getResources()),
+            new g1Monster(864, 144, getResources())
+    };
+
     /**
      * The treasure
      */
-    private g1Treasure treasure;
+    private g1Treasure[] myTreasures = {new g1Treasure(792, 648, getResources())};
     /**
      * The background
      */
@@ -97,10 +102,6 @@ public class g1View extends SurfaceView implements Runnable{
 
         background1 = new g1background(screenX, screenY, getResources());
         hero = new g1hero(getResources());
-        monster1 = new g1Monster(720, 360, getResources());
-        monster2 = new g1Monster(1008, 576, getResources());
-        monster3 = new g1Monster(288, 1368, getResources());
-        treasure = new g1Treasure(getResources());
 
         paint = new Paint();
 
@@ -145,10 +146,14 @@ public class g1View extends SurfaceView implements Runnable{
         while (isPlaying){
             update();
             draw();
-            action1();
-            action2();
-            action3();
-            escape();
+
+            for (g1Monster monster : this.mymonsters) {
+                action(monster);
+            }
+
+            for (g1Treasure treasure : this.myTreasures) {
+                escape(treasure);
+            }
 
         }
 
@@ -164,7 +169,7 @@ public class g1View extends SurfaceView implements Runnable{
     /**
      * Method to move the treasure
      */
-    public void escape(){
+    public void escape(g1Treasure treasure){
         double d = Math.random();
         if (d < 0.25){
             treasure.x += treasure.width;
@@ -190,87 +195,31 @@ public class g1View extends SurfaceView implements Runnable{
     }
 
     /**
-     * Action to move monster1
+     * Action to move monsters
      */
-    public void action1(){
+    public void action(g1Monster monster){
         double d = Math.random();
         if (d < 0.25){
-            monster1.x += monster1.width;
+            monster.x += monster.width;
         } else if(0.25 <= d && d < 0.5){
-            monster1.x -= monster1.width;
+            monster.x -= monster.width;
         } else if(0.5 <= d && d < 0.75){
-            monster1.y += monster1.height;
+            monster.y += monster.height;
         } else{
-            monster1.y -= monster1.height;
+            monster.y -= monster.height;
         }
-        if (monster1.y < 360)
-            monster1.y = 360;
+        if (monster.y < 360)
+            monster.y = 360;
 
-        if (monster1.y >= 1368)
-            monster1.y = 1368;
+        if (monster.y >= 1368)
+            monster.y = 1368;
 
-        if (monster1.x < 0)
-            monster1.x = 0;
+        if (monster.x < 0)
+            monster.x = 0;
 
-        if (monster1.x >= screenX - monster1.width)
-            monster1.x = screenX - monster1.width;
+        if (monster.x >= screenX - monster.width)
+            monster.x = screenX - monster.width;
 
-    }
-
-    /**
-     * Action to move monster2
-     */
-    public void action2(){
-        double d = Math.random();
-        if (d < 0.25){
-            monster2.x += monster2.width;
-        } else if(0.25 <= d && d < 0.5){
-            monster2.x -= monster2.width;
-        } else if(0.5 <= d && d < 0.75){
-            monster2.y += monster2.height;
-        } else{
-            monster2.y -= monster2.height;
-        }
-        if (monster2.y < 360)
-            monster2.y = 360;
-
-        if (monster2.y >= 1368)
-            monster2.y = 1368;
-
-        if (monster2.x < 0)
-            monster2.x = 0;
-
-        if (monster2.x >= screenX - monster2.width)
-            monster2.x = screenX - monster2.width;
-
-    }
-
-    /**
-     * Action to move monster3
-     */
-    public void action3(){
-        double d = Math.random();
-        if (d < 0.25){
-            monster3.x += monster3.width;
-        } else if(0.25 <= d && d < 0.5){
-            monster3.x -= monster3.width;
-        } else if(0.5 <= d && d < 0.75){
-            monster3.y += monster3.height;
-        } else{
-            monster3.y -= monster3.height;
-        }
-        if (monster3.y < 360)
-            monster3.y = 360;
-
-        if (monster3.y >= 1368)
-            monster3.y = 1368;
-
-        if (monster3.x < 0)
-            monster3.x = 0;
-
-        if (monster3.x >= screenX - monster3.width)
-            monster3.x = screenX - monster3.width;
-        sleep();
     }
 
     /**
@@ -310,31 +259,17 @@ public class g1View extends SurfaceView implements Runnable{
         if (hero.x >= screenX - hero.width)
             hero.x = screenX - hero.width;
 
-        if (hero.x == monster1.x && hero.y == monster1.y){
-            life --;
-            if (life == 0){
-                Intent restartg1Intent = new Intent(getContext(), g1moveActivity.class);
-                getContext().startActivity(restartg1Intent);
+        for (g1Monster monster : this.mymonsters) {
+            if (hero.x == monster.x && hero.y == monster.y) {
+                life--;
+                if (life == 0) {
+                    Intent restartg1Intent = new Intent(getContext(), g1moveActivity.class);
+                    getContext().startActivity(restartg1Intent);
+                }
             }
         }
 
-        if (hero.x == monster2.x && hero.y == monster2.y){
-            life --;
-            if (life == 0){
-                Intent restartg1Intent = new Intent(getContext(), g1moveActivity.class);
-                getContext().startActivity(restartg1Intent);
-            }
-        }
-
-        if (hero.x == monster3.x && hero.y == monster3.y){
-            life --;
-            if (life == 0){
-                Intent restartg1Intent = new Intent(getContext(), g1moveActivity.class);
-                getContext().startActivity(restartg1Intent);
-            }
-        }
-
-        if (hero.x == treasure.x && hero.y == treasure.y){
+        if (hero.x == myTreasures[0].x && hero.y == myTreasures[0].y){
             curUser.getCurPlayer().getProperty().setAttack(attack);
             curUser.getCurPlayer().getProperty().setDefence(defence);
             curUser.getCurPlayer().getProperty().setFlexibility(flexibility);
@@ -357,10 +292,14 @@ public class g1View extends SurfaceView implements Runnable{
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
 
             canvas.drawBitmap(hero.getg1hero(), hero.x, hero.y, paint);
-            canvas.drawBitmap(monster1.getMonsterView(), monster1.x, monster1.y, paint);
-            canvas.drawBitmap(monster2.getMonsterView(), monster2.x, monster2.y, paint);
-            canvas.drawBitmap(monster3.getMonsterView(), monster3.x, monster3.y, paint);
-            canvas.drawBitmap(treasure.getTreasurerview(), treasure.x, treasure.y, paint);
+
+            for (g1Monster monster : this.mymonsters) {
+                canvas.drawBitmap(monster.getMonsterView(), monster.x, monster.y, paint);
+            }
+
+            for (g1Treasure treasure : this.myTreasures) {
+                canvas.drawBitmap(treasure.getTreasurerview(), treasure.x, treasure.y, paint);
+            }
 
             canvas.drawText("Life: " + life, 20, 60, lifePaint);
             canvas.drawText("Attack: " + attack, 20, 180, attackPaint);
