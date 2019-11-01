@@ -56,6 +56,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         curUser = UserManager.getInstance().getCurUser();
         player = curUser.getCurPlayer();
         fileSystem = new FileSystem(this.getApplicationContext());
+        player.setCurStage(3);
 
 
         lifeView = findViewById(R.id.life);
@@ -76,13 +77,20 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         evadeBtn = findViewById(R.id.evadeBtn);
         evadeBtn.setOnClickListener(this);
 
-        attackView.setText("Attack:" + player.getProperty().getAttack());
-        defenceView.setText("Defence:" + player.getProperty().getDefence());
-        flexibilityView.setText("Flexibility:" + player.getProperty().getFlexibility());
-        luckinessView.setText("Luckiness:" + player.getProperty().getLuckiness());
-        lifeView.setText("Life:" + player.getLivesRemain());
-        monsterLifeView.setText("Monster Life:" + monster.getLivesRemain());
-        roundView.setText("Round Number:" + roundNum);
+        String atk = ("Attack:" + player.getProperty().getAttack());
+        String def = ("Defence:" + player.getProperty().getDefence());
+        String fle = ("Flexibility:" + player.getProperty().getFlexibility());
+        String luc = ("Luckiness:" + player.getProperty().getLuckiness());
+        String lif = ("Life:" + player.getLivesRemain());
+        String mon_lif = ("Monster Life:" + monster.getLivesRemain());
+        String rn = ("Round Number:" + roundNum);
+        attackView.setText(atk);
+        defenceView.setText(def);
+        flexibilityView.setText(fle);
+        luckinessView.setText(luc);
+        lifeView.setText(lif);
+        monsterLifeView.setText(mon_lif);
+        roundView.setText(rn);
     }
 
 
@@ -151,11 +159,22 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     monsterMove.setText(move);
                     break;
                 }
-
             default:
                 break;
         }
 
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
 
@@ -173,13 +192,13 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         if (num == 1){
             //player lose
             startActivity(new Intent(BattleActivity.this, LoseActivity.class));
-            player.setCurStage(3);
+            player.setCurStage(4);
             fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
         }
         if (num == 2){
             //player win
             startActivity(new Intent(BattleActivity.this, WinActivity.class));
-            player.setCurStage(3);
+            player.setCurStage(4);
             fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
         }
     }
