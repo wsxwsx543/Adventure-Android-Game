@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Point;
 import android.os.Bundle;
 
-import com.example.phase1.R;
 
 public class g1moveActivity extends AppCompatActivity {
     /**
