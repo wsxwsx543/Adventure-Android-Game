@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Point;
 import android.os.Bundle;
 
-import com.example.phase1.R;
 
 public class g1moveActivity extends AppCompatActivity {
     /**
@@ -17,7 +16,7 @@ public class g1moveActivity extends AppCompatActivity {
      * Every time intent to this activity, we jump to the corresponding
      * game view
      *
-     * @param savedInstanceState
+     * @param savedInstanceState save the instance state.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

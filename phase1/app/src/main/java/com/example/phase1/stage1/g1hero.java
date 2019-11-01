@@ -11,7 +11,7 @@ import com.example.phase1.R;
  */
 public class g1hero {
     /**
-     * The x, y coordinate and the length and width of the hero image
+     * The x, y coordinate and the length and width of the hero image 
      */
     int x = 0, y = 360, width = 72, height = 72;
     /**
