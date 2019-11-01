@@ -12,15 +12,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CreatePlayerActivity extends AppCompatActivity implements View.OnClickListener {
+public class CreatePlayerActivity extends AppCompatActivity implements View.OnClickListener, Initializable {
     FileSystem fileSystem;
+    Phase1App app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_player);
-
-        fileSystem = new FileSystem(this.getApplicationContext());
+        init();
 
         Button createButton = findViewById(R.id.create);
         Button backButton = findViewById(R.id.back);
@@ -162,12 +161,27 @@ public class CreatePlayerActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onStop() {
         super.onStop();
-        fileSystem.save(UserManager.getInstance(), "Users.ser");
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        fileSystem.save(UserManager.getInstance(), "Users.ser");
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+    }
+
+    @Override
+    public void init() {
+        app = (Phase1App) getApplication();
+        if(app.getColorTheme().equals("blue")){
+            setTheme(R.style.blue);
+        }
+        else if(app.getColorTheme().equals("yellow")){
+            setTheme(R.style.yellow);
+        }
+
+        setContentView(R.layout.activity_create_player);
+
+        fileSystem = new FileSystem(this.getApplicationContext());
     }
 }

@@ -19,25 +19,15 @@ import com.example.phase1.stage3.BattleActivity;
 import java.util.Iterator;
 import java.util.Set;
 
-public class SelectPlayerActivity extends AppCompatActivity implements View.OnClickListener{
+public class SelectPlayerActivity extends AppCompatActivity implements View.OnClickListener, Initializable{
     User curUser;
     FileSystem fileSystem;
+    Phase1App app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_player);
-
-        curUser = UserManager.getInstance().getCurUser();
-
-        Button startButton = findViewById(R.id.start);
-        Button backButton = findViewById(R.id.back);
-
-        startButton.setOnClickListener(this);
-        backButton.setOnClickListener(this);
-
-        initSpinner();
-        fileSystem = new FileSystem(this.getApplicationContext());
+        init();
     }
 
     public void initSpinner(){
@@ -121,12 +111,35 @@ public class SelectPlayerActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onStop() {
         super.onStop();
-        fileSystem.save(UserManager.getInstance(), "Users.ser");
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        fileSystem.save(UserManager.getInstance(), "Users.ser");
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+    }
+
+    @Override
+    public void init() {
+        app = (Phase1App) getApplication();
+        if(app.getColorTheme().equals("blue")){
+            setTheme(R.style.blue);
+        }
+        else if(app.getColorTheme().equals("yellow")){
+            setTheme(R.style.yellow);
+        }
+        setContentView(R.layout.activity_select_player);
+
+        curUser = UserManager.getInstance().getCurUser();
+
+        Button startButton = findViewById(R.id.start);
+        Button backButton = findViewById(R.id.back);
+
+        startButton.setOnClickListener(this);
+        backButton.setOnClickListener(this);
+
+        initSpinner();
+        fileSystem = new FileSystem(this.getApplicationContext());
     }
 }

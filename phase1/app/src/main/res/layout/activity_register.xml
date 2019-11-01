@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="@drawable/background_login">
+    android:background="?attr/backColor">
 
     <LinearLayout
         android:id="@+id/loginPanel"
@@ -21,12 +21,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/welcome"
+            android:textColor="?attr/textColor"
             android:layout_marginTop="15dp"
             android:textSize="25sp"/>
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
+            android:textColor="?attr/textColor"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
@@ -79,7 +81,6 @@
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"
             android:text="@string/register"
-            android:background="@drawable/background_button_div"
             />
         <Button
             android:id="@+id/back"
@@ -88,7 +89,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="25dp"
             android:text="back"
-            android:background="@drawable/background_button_div"
             />
     </LinearLayout>
 </RelativeLayout>
