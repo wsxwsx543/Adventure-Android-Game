@@ -11,8 +11,6 @@ public class Round {
     private Player player;
     /** The monster of this round. */
     private Monster monster;
-    /** The move factory of this monster's move. */
-    private MoveFactory moveFactory;
     /** The property of this monster. */
     private Property MP;
     /** The property of this player. */
@@ -23,13 +21,18 @@ public class Round {
     private int damage1;
     /** The damage from monster to player. */
     private int damage2;
+    /** The move of player. */
+    private PlayerMove playerMove;
+    /** The move of player. */
+    private MonsterMove monsterMove;
 
 
     /** Constructs a new round of given player and monster */
     public Round(Player player, Monster monster){
         this.player = player;
         this.monster = monster;
-        this.moveFactory = new MoveFactory();
+        this.playerMove = new PlayerMove();
+        this.monsterMove = new MonsterMove();
     }
 
     /**
@@ -41,12 +44,12 @@ public class Round {
         Random R = new Random();
         if (monster.getLivesRemain() >= 100) {
             id = R.nextInt(4);
-            MP = moveFactory.monsterDoMove(id, monster);
+            MP = monsterMove.monsterDoMove(id, monster);
         } else {
             id = R.nextInt(4) + 3;
-            MP = moveFactory.monsterDoMove(id, monster);
+            MP = monsterMove.monsterDoMove(id, monster);
         }
-        monsterString = MonsterMove.getString(id);
+        monsterString = monsterMove.getString(id);
         return MP;
     }
 
@@ -63,7 +66,7 @@ public class Round {
      * @param MP the monster's property we get from battle1
      */
     public void battle2(String move, Property MP){
-        PP = moveFactory.playerDoMove(move, player); //decided by input
+        PP = playerMove.playerDoMove(move, player); //decided by input
 
         int damageToPlayer = MP.getAttack() - PP.getDefence();
         int damageToMonster = PP.getAttack() - MP.getDefence();
