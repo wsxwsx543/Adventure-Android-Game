@@ -1,6 +1,7 @@
 package com.example.phase1;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Player implements Serializable {
     private String name;
@@ -33,7 +34,7 @@ public class Player implements Serializable {
         this.property = initialProperty;
         this.livesRemain = 100;
         this.attackCreate = 0;
-        this.curStage = 0;
+        this.curStage = 1;
     }
 
     public int getCurStage() {
@@ -79,4 +80,8 @@ public class Player implements Serializable {
         this.attackCreate += attack;
     }
     public int getAttackCreate(){return this.attackCreate;}
+
+    public List<String> getWeaponNames(){
+        return weaponManager.getWeaponNames();
+    }
 }

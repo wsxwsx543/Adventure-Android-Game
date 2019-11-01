@@ -3,6 +3,7 @@ package com.example.phase1.stage2;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -12,8 +13,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.example.phase1.FileSystem;
-import com.example.phase1.Player;
 import com.example.phase1.Property;
+import com.example.phase1.R;
 import com.example.phase1.User;
 import com.example.phase1.UserManager;
 import com.example.phase1.stage3.BattleActivity;
@@ -41,9 +42,14 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
     private int unit_size;
     public Thread thread;
     public SurfaceHolder holder;
-    public boolean running;
+
+    private boolean running;
+    private boolean aboutToEnd;
+
     private FileSystem fileSystem;
 
+    private Bitmap treasureHuntMsg;
+    private Bitmap trapMsg;
     //Temp var
 
     public TreasureHuntView(Context context, int boardWidth, int boardLength, int unit_size, int startX, int startY) {
@@ -63,6 +69,13 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         this.startX = startX;
         this.startY = startY;
         this.unit_size = unit_size;
+
+        this.aboutToEnd = false;
+
+        treasureHuntMsg = BitmapFactory.decodeResource(getResources(), R.drawable.treasurehuntmessage);
+        treasureHuntMsg = Bitmap.createScaledBitmap(this.treasureHuntMsg, getWidth() - 100, 100, true);
+        trapMsg = BitmapFactory.decodeResource(getResources(), R.drawable.trapmessage);
+        trapMsg = Bitmap.createScaledBitmap(this.treasureHuntMsg, getWidth() - 100, 100, true);
 
         boxesMapper = new BoxesMapper(this.boardWidth, this.boardLength, this.unit_size, this.startX, this.startY, getResources());
         boxes = boxesMapper.getBoxes();
@@ -133,26 +146,11 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         return false;
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            curX = event.getX();
-            curY = event.getY();
-        }
-        return true;
-    }
-
     private void checkEnded() {
         for (int y = 0; y < this.boardLength; y++) {
             for (int x = 0; x < this.boardWidth; x++) {
                 if (boxes[y][x] instanceof Trap && boxes[y][x].expanded) {
-                    try {
-                        thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    Intent switchToStage3 = new Intent(getContext(), BattleActivity.class);
-                    getContext().startActivity(switchToStage3);
+                    aboutToEnd = true;
                 }
             }
         }
@@ -178,12 +176,28 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
             Canvas canvas = getHolder().lockCanvas();
             // Draw background
             canvas.drawARGB(255, 255, 255, 255);
+
             // Draw the stats of the player
             canvas.drawText("Attack: " + property.getAttack(), 20, (float) (startY + boardLength * unit_size + 100), textPaint);
             canvas.drawText("Defence: " + property.getDefence(), 500, (float) (startY + boardLength * unit_size + 100), textPaint);
             canvas.drawText("Flexibility: " + property.getFlexibility(), 20, (float) (startY + boardLength * unit_size + 200), textPaint);
             canvas.drawText("Luckiness: " + property.getLuckiness(), 500, (float) (startY + boardLength * unit_size + 200), textPaint);
 
+            //Draw the message
+            if (!aboutToEnd){
+                canvas.drawBitmap(treasureHuntMsg, 10, 10, null);
+            }
+            else {
+                canvas.drawBitmap(trapMsg, 10, 10, null);
+                try {
+                    thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                running = false;
+                Intent switchToStage3 = new Intent(getContext(), BattleActivity.class);
+                getContext().startActivity(switchToStage3);
+            }
             for (int y = 0; y < this.boardLength; y++) {
                 for (int x = 0; x < this.boardWidth; x++) {
                     Box thisBox = boxes[y][x];
@@ -192,5 +206,15 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
             }
             holder.unlockCanvasAndPost(canvas);
         }
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            curX = event.getX();
+            curY = event.getY();
+        }
+        return true;
     }
 }
