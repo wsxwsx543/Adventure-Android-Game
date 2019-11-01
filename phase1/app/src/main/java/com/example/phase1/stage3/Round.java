@@ -4,19 +4,28 @@ import com.example.phase1.*;
 
 import java.util.Random;
 
+/** A round. */
 public class Round {
+
+    /** The player of this round. */
     private Player player;
+    /** The monster of this round. */
     private Monster monster;
+    /** The move factory of this monster's move. */
     private MoveFactory moveFactory;
-    private MonsterMove monsterMove;
+    /** The property of this monster. */
     private Property MP;
+    /** The property of this player. */
     private Property PP;
+    /** The string that show the monster's move. */
     private String monsterString;
-    private int damage1;  // player to monster
-    private int damage2;  //monster to player
+    /** The damage from player to monster. */
+    private int damage1;
+    /** The damage from monster to player. */
+    private int damage2;
 
-    // put round number in battle activity
 
+    /** Constructs a new round of given player and monster */
     public Round(Player player, Monster monster){
         this.player = player;
         this.monster = monster;
@@ -25,7 +34,7 @@ public class Round {
 
     /**
      * To return monster's move
-     * @return
+     * @return monster's property
      */
     public Property battle1() {
         int id;
@@ -42,8 +51,7 @@ public class Round {
     }
 
     /**
-     * Return the monster's string
-     * @return
+     * @return Return the monster's string
      */
     public String getMonsterString() {
         return monsterString;
@@ -51,8 +59,8 @@ public class Round {
 
     /**
      * Doing the damage calculation after player's choice
-     * @param move
-     * @param MP
+     * @param move the move player choose
+     * @param MP the monster's property we get from battle1
      */
     public void battle2(String move, Property MP){
         PP = moveFactory.playerDoMove(move, player); //decided by input
@@ -77,22 +85,17 @@ public class Round {
                 damage2 = damageToPlayer;
             }
         } else {damage2 = 0;}
-        //Property player_property = player.getProperty(); //copy
-        // player.getProperty().addPropertyToSelf(playermove);
-        // monster.getProperty().addPropertyToSelf(monstermove);
     }
 
     /**
-     * get the damage player did to the monster
-     * @return
+     * @return the damage player did to the monster
      */
     public int getDamage1() {
         return damage1;
     }
 
     /**
-     * get the damage monster did to the player
-     * @return
+     * @return get the damage monster did to the player
      */
     public int getDamage2() {
         return damage2;

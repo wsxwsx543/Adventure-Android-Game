@@ -13,9 +13,9 @@ public class MoveFactory {
 
     /**
      * use playerDoMove method to get property of player after each move
-     * @param moveName
-     * @param player
-     * @return
+     * @param moveName the name of player's move
+     * @param player the player
+     * @return the property of the player after move
      */
     public Property playerDoMove(String moveName, Player player){
 
@@ -35,15 +35,12 @@ public class MoveFactory {
         } else { return null;}
     }
 
-    public Property getRoundProperty(){
-        return PP;
-    }
 
     /**
      * use monsterDoMove method to get property of monster after each move
-     * @param id
-     * @param monster
-     * @return
+     * @param id an random number to decide what the monster would do
+     * @param monster the monster we decided
+     * @return the property of monster after the move
      */
     public Property monsterDoMove(int id, Monster monster){
 

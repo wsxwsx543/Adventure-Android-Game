@@ -15,7 +15,7 @@ e: flying attack
 f: magic attack
  */
     public MonsterMove(int id, String moveName, Property property){
-        this.id = id;
+
         this.moveName = moveName;
         this.property = property;
     }
@@ -24,34 +24,10 @@ f: magic attack
         return this.moveName;
     }
 
-    public int getMoveId() {
-        return id;
-    }
-
-    Property MP = new Property(100, 100, 0, 0);
-
-//    public String getName(int id){
-//        if(id == 0){
-//            return "Doubt";
-//        } else if(id == 1){
-//            return "Alert";
-//        } else if(id == 2){
-//            return "Attack";
-//        } else if(id == 3){
-//            return "Power";
-//        } else if(id == 4){
-//            return "Flying";
-//        } else if(id == 5){
-//            return "Fire";
-//        } else if(id == 6) {
-//            return "Tired";
-//        } else {return null;}
-//    }
 
     /**
-     * the string of monster's move
-     * @param id
-     * @return
+     * @param id an number
+     * @return the string of monster's move
      */
     public static String getString(int id){
         if(id == 0){
