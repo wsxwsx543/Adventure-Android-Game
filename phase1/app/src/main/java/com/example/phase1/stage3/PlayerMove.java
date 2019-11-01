@@ -5,15 +5,16 @@ import com.example.phase1.*;
 public class PlayerMove implements Move {
 
 
+    /** A player move. */
     public PlayerMove() {
     }
 
     /**
-     * use playerDoMove method to get property of player after each move
+     * use playerDoMove method to get property of player after each move.
      *
-     * @param moveName the name of player's move
-     * @param player   the player
-     * @return the property of the player after move
+     * @param moveName the name of player's move.
+     * @param player   the player.
+     * @return the property of the player after move.
      */
     public Property playerDoMove(String moveName, Player player) {
 
@@ -36,9 +37,9 @@ public class PlayerMove implements Move {
     }
 
     /**
-     * Get the name of move of the player
-     * @param id An number
-     * @return The name of the move
+     * Get the name of move of the player.
+     * @param id An number.
+     * @return The name of the move in a string type.
      */
     @Override
     public String getString(int id) {
