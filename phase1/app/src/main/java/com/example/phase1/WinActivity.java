@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/** Jump to this activity if the player win the game. */
 public class WinActivity extends AppCompatActivity implements Initializable{
 
     Phase1App app;
