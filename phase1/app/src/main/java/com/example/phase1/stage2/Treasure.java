@@ -41,6 +41,7 @@ class Treasure extends Box {
         }
     }
 
+    // Add to the stats according to the type of this treasure
     void loot(){
         if (this.expanded && (!this.looted)) {
             int originalStat;
