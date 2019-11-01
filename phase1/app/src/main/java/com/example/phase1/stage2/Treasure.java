@@ -5,15 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.example.phase1.R;
-import com.example.phase1.User;
 import com.example.phase1.UserManager;
 
-public class Treasure extends Box {
+class Treasure extends Box {
 
-    public String treasureType;
-    public boolean looted;
+    private String treasureType;
+    private boolean looted;
 
-    public Treasure(int x, int y, int unit_size, Resources res){
+    Treasure(int x, int y, int unit_size, Resources res){
         super(x, y, unit_size, res);
         this.looted = false;
         setType();
@@ -42,7 +41,7 @@ public class Treasure extends Box {
         }
     }
 
-    public void loot(){
+    void loot(){
         if (this.expanded && (!this.looted)) {
             int originalStat;
             switch (treasureType) {

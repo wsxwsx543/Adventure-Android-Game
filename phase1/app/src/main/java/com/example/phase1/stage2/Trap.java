@@ -6,8 +6,8 @@ import android.graphics.BitmapFactory;
 
 import com.example.phase1.R;
 
-public class Trap extends Box {
-    public Trap(int x, int y, int unit_size, Resources res){
+class Trap extends Box {
+    Trap(int x, int y, int unit_size, Resources res){
         super(x, y, unit_size, res);
     }
 

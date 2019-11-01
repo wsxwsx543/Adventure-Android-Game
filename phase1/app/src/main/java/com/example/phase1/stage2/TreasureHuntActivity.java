@@ -9,6 +9,7 @@ public class TreasureHuntActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Initiate the view that this activity is using
         treasureHuntView = new TreasureHuntView(this);
         setContentView(treasureHuntView);
     }
