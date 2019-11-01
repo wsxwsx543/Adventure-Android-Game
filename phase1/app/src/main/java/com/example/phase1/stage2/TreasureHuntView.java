@@ -48,6 +48,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
 
     private Bitmap treasureHuntMsg;
     private Bitmap trapMsg;
+    private Bitmap winMsg;
 
     public TreasureHuntView(Context context, int boardWidth, int boardLength, int unit_size, int startX, int startY) {
         super(context);
@@ -76,6 +77,8 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         treasureHuntMsg = Bitmap.createScaledBitmap(this.treasureHuntMsg, 980, 200, true);
         trapMsg = BitmapFactory.decodeResource(getResources(), R.drawable.trapmessage);
         trapMsg = Bitmap.createScaledBitmap(this.trapMsg, 980, 200, true);
+        winMsg = BitmapFactory.decodeResource(getResources(), R.drawable.gotallofthem);
+        winMsg = Bitmap.createScaledBitmap(this.winMsg, 980, 200, true);
 
         boxesManager = new BoxesManager(this.boardWidth, this.boardLength, this.unit_size, this.startX, this.startY, getResources());
         boxes = boxesManager.getBoxes();
@@ -165,8 +168,14 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
                 canvas.drawBitmap(treasureHuntMsg, 50, 50, null);
             }
             else {
-                // Draw the fell in a trap message
-                canvas.drawBitmap(trapMsg, 50, 50, null);
+                if (boxesManager.checkTrapTriggered()) {
+                    // Draw the fell in a trap message
+                    canvas.drawBitmap(trapMsg, 50, 50, null);
+                }
+                else{
+                    // Draw the win message
+                    canvas.drawBitmap(winMsg, 50, 50, null);
+                }
                 // Set stage to 3 since we are about to finish
                 user.getCurPlayer().setCurStage(3);
                 // Set running to false;
