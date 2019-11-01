@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -54,7 +55,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
 
     public TreasureHuntView(Context context, int boardWidth, int boardLength, int unit_size, int startX, int startY) {
         super(context);
-
+        user.getCurPlayer().setCurStage(2);
         this.textPaint = new Paint();
 
         textPaint.setColor(Color.rgb(255, 215, 0));
@@ -73,9 +74,9 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         this.aboutToEnd = false;
 
         treasureHuntMsg = BitmapFactory.decodeResource(getResources(), R.drawable.treasurehuntmessage);
-        treasureHuntMsg = Bitmap.createScaledBitmap(this.treasureHuntMsg, getWidth() - 100, 100, true);
+        treasureHuntMsg = Bitmap.createScaledBitmap(this.treasureHuntMsg, 980, 200, true);
         trapMsg = BitmapFactory.decodeResource(getResources(), R.drawable.trapmessage);
-        trapMsg = Bitmap.createScaledBitmap(this.treasureHuntMsg, getWidth() - 100, 100, true);
+        trapMsg = Bitmap.createScaledBitmap(this.trapMsg, 980, 200, true);
 
         boxesMapper = new BoxesMapper(this.boardWidth, this.boardLength, this.unit_size, this.startX, this.startY, getResources());
         boxes = boxesMapper.getBoxes();
@@ -185,18 +186,19 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
 
             //Draw the message
             if (!aboutToEnd){
-                canvas.drawBitmap(treasureHuntMsg, 10, 10, null);
+                canvas.drawBitmap(treasureHuntMsg, 50, 50, null);
             }
             else {
-                canvas.drawBitmap(trapMsg, 10, 10, null);
-                try {
-                    thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                canvas.drawBitmap(trapMsg, 50, 50, null);
+                user.getCurPlayer().setCurStage(3);
                 running = false;
-                Intent switchToStage3 = new Intent(getContext(), BattleActivity.class);
-                getContext().startActivity(switchToStage3);
+                getHandler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent switchToStage3 = new Intent(getContext(), BattleActivity.class);
+                        getContext().startActivity(switchToStage3);
+                    }
+                }, 5000);
             }
             for (int y = 0; y < this.boardLength; y++) {
                 for (int x = 0; x < this.boardWidth; x++) {
@@ -207,7 +209,6 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
             holder.unlockCanvasAndPost(canvas);
         }
     }
-
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {

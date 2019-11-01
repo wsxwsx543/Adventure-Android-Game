@@ -55,7 +55,7 @@ public class Treasure extends Box {
                     UserManager.getInstance().getCurUser().getCurPlayer().getProperty().setDefence(originalStat + 1);
                     break;
                 case "Luckiness":
-                    originalStat = UserManager.getInstance().getCurUser().getCurPlayer().getProperty().getDefence();
+                    originalStat = UserManager.getInstance().getCurUser().getCurPlayer().getProperty().getLuckiness();
                     UserManager.getInstance().getCurUser().getCurPlayer().getProperty().setLuckiness(originalStat + 1);
                     break;
                 case "Flexibility":
