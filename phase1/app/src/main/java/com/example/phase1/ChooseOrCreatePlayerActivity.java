@@ -9,8 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 /** An activity used to choose a player or create a new player. */
 public class ChooseOrCreatePlayerActivity extends AppCompatActivity implements View.OnClickListener, Initializable{
-    /**  */
+    /** The app where player is chosen and created */
     Phase1App app;
+    /** The file system that helps storing and operating the information of the player */
     FileSystem fileSystem;
 
     @Override

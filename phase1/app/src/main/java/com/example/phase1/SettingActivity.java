@@ -8,7 +8,7 @@ import android.widget.RadioButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-/** An activity choose which theme color you want to use. */
+/** An activity that represents the setting of the game */
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener, Initializable{
 
     private Phase1App app;

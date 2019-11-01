@@ -31,6 +31,9 @@ public class SelectPlayerActivity extends AppCompatActivity implements View.OnCl
         init();
     }
 
+    /**
+     * Use Iterator pattern.
+     */
     public void initSpinner(){
         Spinner players = (Spinner) findViewById(R.id.players);
         Set<String> playerNamesSet = curUser.getPlayers().keySet();
@@ -63,6 +66,11 @@ public class SelectPlayerActivity extends AppCompatActivity implements View.OnCl
         });
     }
 
+    /**
+     * Check whether this player could continue his/her game. If finished all games, return false. Otherwise, return true.
+     * @param playerName the name of the player.
+     * @return a boolean value shows whether this player could continue playing the game.
+     */
     public boolean checkPlayerAvailable(String playerName){
         if (curUser.getPlayers().containsKey(playerName)){
             Player player;
