@@ -13,12 +13,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase1.stage1.g1moveActivity;
+import com.example.phase1.stage2.TreasureHuntActivity;
+import com.example.phase1.stage3.BattleActivity;
 
 import java.util.Iterator;
 import java.util.Set;
 
 public class SelectPlayerActivity extends AppCompatActivity implements View.OnClickListener{
     User curUser;
+    FileSystem fileSystem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class SelectPlayerActivity extends AppCompatActivity implements View.OnCl
         backButton.setOnClickListener(this);
 
         initSpinner();
+        fileSystem = new FileSystem(this.getApplicationContext());
     }
 
     public void initSpinner(){
@@ -52,11 +56,12 @@ public class SelectPlayerActivity extends AppCompatActivity implements View.OnCl
         players.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             TextView stageTextView = findViewById(R.id.curStage);
             TextView propertyTextView = findViewById(R.id.property);
-
+            TextView livesTextView = findViewById(R.id.curLives);
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 stageTextView.setText("Current at Stage: " + String.valueOf(curUser.getPlayers().get(playerNames[position]).getCurStage()));
                 propertyTextView.setText(curUser.getPlayers().get(playerNames[position]).getProperty().toString());
+                livesTextView.setText("Current remaining lives:" + String.valueOf(curUser.getPlayers().get(playerNames[position]).getLivesRemain()));
             }
 
             @Override
@@ -65,6 +70,22 @@ public class SelectPlayerActivity extends AppCompatActivity implements View.OnCl
                 propertyTextView.setText("");
             }
         });
+    }
+
+    public boolean checkPlayerAvailable(String playerName){
+        if (curUser.getPlayers().containsKey(playerName)){
+            Player player;
+            player = curUser.getPlayers().get(playerName);
+            if (player.getLivesRemain() <= 0){
+                Toast.makeText(this, "This player is dead.", Toast.LENGTH_LONG).show();
+                return false;
+            }
+            else if(player.getCurStage() == 4){
+                Toast.makeText(this, "This player has finished game.", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -80,13 +101,32 @@ public class SelectPlayerActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.start:
                 if(curUser.getPlayers().containsKey(curPlayerName)) {
-                    curUser.setCurPlayer(curUser.getPlayers().get(curPlayerName));
-                    startActivity(new Intent(SelectPlayerActivity.this, g1moveActivity.class));
+                    if (checkPlayerAvailable(curPlayerName)) {
+                        curUser.setCurPlayer(curUser.getPlayers().get(curPlayerName));
+                        if(curUser.getPlayers().get(curPlayerName).getCurStage() == 1)
+                            startActivity(new Intent(SelectPlayerActivity.this, g1moveActivity.class));
+                        if(curUser.getPlayers().get(curPlayerName).getCurStage() == 2)
+                            startActivity(new Intent(SelectPlayerActivity.this, TreasureHuntActivity.class));
+                        if(curUser.getPlayers().get(curPlayerName).getCurStage() == 3)
+                            startActivity(new Intent(SelectPlayerActivity.this, BattleActivity.class));
+                    }
                 }
                 else{
                     Toast.makeText(this, "Please create a new player first.", Toast.LENGTH_LONG).show();
                 }
                 break;
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        fileSystem.save(UserManager.getInstance(), "Users.ser");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        fileSystem.save(UserManager.getInstance(), "Users.ser");
     }
 }

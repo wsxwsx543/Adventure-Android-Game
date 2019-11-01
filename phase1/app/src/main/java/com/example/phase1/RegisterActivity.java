@@ -48,13 +48,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return false;
         } else {
             if (password1.equals(password2)) {
-                userManager.addUser(new User(username, password1, 5));
+                userManager.addUser(new User(username, password1, 500));
                 fileSystem.save(userManager.getUsers(), "Users.ser");
                 Toast.makeText(this, "Create new account successfully.", Toast.LENGTH_LONG).show();
                 return true;
             } else {
-                System.out.println(password1);
-                System.out.println(password2);
                 Toast.makeText(this, "Password entered are not same.",
                         Toast.LENGTH_LONG).show();
                 return false;
@@ -64,15 +62,29 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.register:
-                if(addNewUser()){
+        switch (v.getId()) {
+            case R.id.register: {
+                if (addNewUser()) {
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 }
                 break;
-            case R.id.back:
+            }
+            case R.id.back: {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 break;
+            }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        fileSystem.save(UserManager.getInstance(), "Users.ser");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        fileSystem.save(UserManager.getInstance(), "Users.ser");
     }
 }

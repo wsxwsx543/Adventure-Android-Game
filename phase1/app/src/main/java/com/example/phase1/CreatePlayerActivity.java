@@ -158,4 +158,16 @@ public class CreatePlayerActivity extends AppCompatActivity implements View.OnCl
                 break;
         }
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        fileSystem.save(UserManager.getInstance(), "Users.ser");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        fileSystem.save(UserManager.getInstance(), "Users.ser");
+    }
 }

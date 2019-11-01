@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ChooseOrCreatePlayerActivity extends AppCompatActivity implements View.OnClickListener{
+    FileSystem fileSystem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class ChooseOrCreatePlayerActivity extends AppCompatActivity implements V
         createButton.setOnClickListener(this);
         logoutButton.setOnClickListener(this);
 
+        fileSystem = new FileSystem(this.getApplicationContext());
         // System.out.println(UserManager.getInstance().getCurUser().getUsername());
     }
 
@@ -38,5 +40,17 @@ public class ChooseOrCreatePlayerActivity extends AppCompatActivity implements V
                 UserManager.getInstance().setCurUser(null);
                 startActivity(new Intent(ChooseOrCreatePlayerActivity.this, LoginActivity.class));
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        fileSystem.save(UserManager.getInstance(), "Users.ser");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        fileSystem.save(UserManager.getInstance(), "Users.ser");
     }
 }

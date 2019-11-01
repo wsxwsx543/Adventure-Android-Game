@@ -55,19 +55,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         UserManager userManagerInstance = UserManager.getInstance();
         TextView usernameTextView = findViewById(R.id.username);
         switch (v.getId()){
-            case R.id.login:
-                if(!checkPasswordCorrect()){
+            case R.id.login: {
+                if (!checkPasswordCorrect()) {
                     Toast.makeText(this, "Invalid username or password.",
                             Toast.LENGTH_LONG).show();
-                }
-                else{
+                } else {
                     userManagerInstance.setCurUser(userManagerInstance.getUsers().get(usernameTextView.getText().toString()));
                     startActivity(new Intent(LoginActivity.this, ChooseOrCreatePlayerActivity.class));
                 }
                 break;
-            case R.id.register:
+            }
+            case R.id.register: {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
+            }
         }
     }
 
@@ -81,5 +82,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             UserManager.getInstance().setUsers(new HashMap<>());
             fileSystem.save(UserManager.getInstance(), "Users.ser");
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        fileSystem.save(UserManager.getInstance(), "Users.ser");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        fileSystem.save(UserManager.getInstance(), "Users.ser");
     }
 }
