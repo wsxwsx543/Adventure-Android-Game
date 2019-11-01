@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/** A register activity. */
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, Initializable{
     FileSystem fileSystem;
     Phase1App app;
@@ -20,6 +21,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    /**
+     * Return whether a account is created successfully or not.
+     * @return a boolean value.
+     */
     public boolean addNewUser() {
         UserManager userManager = UserManager.getInstance();
 

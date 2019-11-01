@@ -19,6 +19,7 @@ import com.example.phase1.stage3.BattleActivity;
 import java.util.Iterator;
 import java.util.Set;
 
+/** An activity to select which player you want to use. */
 public class SelectPlayerActivity extends AppCompatActivity implements View.OnClickListener, Initializable{
     User curUser;
     FileSystem fileSystem;

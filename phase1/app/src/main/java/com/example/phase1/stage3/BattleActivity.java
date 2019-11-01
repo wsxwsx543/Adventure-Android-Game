@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
+/** An activity shows the battle of monster and player for stage 3. */
 public class BattleActivity extends AppCompatActivity implements View.OnClickListener {
 
     /**

@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
+/** A login activity. */
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, Initializable{
     Phase1App app;
     FileSystem fileSystem;
@@ -23,6 +25,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    /**
+     * Return a boolean value states whether the password is correct or nor.
+     * @return a boolean value.
+     */
     public boolean checkPasswordCorrect(){
         // EditText initiation
         final EditText usernameEditText = findViewById(R.id.username);

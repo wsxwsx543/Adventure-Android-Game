@@ -11,14 +11,15 @@ import java.io.ObjectOutputStream;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/** A file system. */
 public class FileSystem {
 
-    // This is used to make sure the save location to be app\data\files.
+    /** This is used to make sure the save location to be app\data\files. */
     private Context context;
 
     public FileSystem(Context appContext){this.context = appContext;}
 
-    // Save object to fileName.
+    /** Save object to fileName. */
     public <T> void save(T object, String fileName){
         try{
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(
@@ -31,7 +32,7 @@ public class FileSystem {
             Log.e("Exception", "Cannot save " + fileName);}
     }
 
-    //Load object from fileName.
+    /** Load object from fileName. */
     public <T> T load(String fileName){
         T ret = null;
         try{
