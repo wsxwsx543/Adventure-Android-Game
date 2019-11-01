@@ -2,12 +2,16 @@ package com.example.phase1;
 
 import java.io.Serializable;
 
+/**
+ * The property.
+ */
 public class Property implements Serializable {
     private int attack; // Obvious
     private int defence; // Obvious
     private int flexibility; // Obvious
     private int luckiness; // Obvious
 
+    /** Constructs a new property. */
     public Property(int attack, int defence, int flexibility, int luckiness) {
         this.attack = attack;
         this.defence = defence;
@@ -15,6 +19,10 @@ public class Property implements Serializable {
         this.luckiness = luckiness;
     }
 
+    /**
+     *
+     * @return the attack value.
+     */
     public int getAttack() {
         return attack;
     }

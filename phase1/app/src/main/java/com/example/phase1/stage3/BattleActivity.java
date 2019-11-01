@@ -1,14 +1,11 @@
 package com.example.phase1.stage3;
-
+import com.example.phase1.*;
+import com.example.phase1.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.phase1.*;
-
-import com.example.phase1.R;
 
 import android.view.View;
 import android.widget.Button;
@@ -17,23 +14,46 @@ import android.widget.TextView;
 
 public class BattleActivity extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     * The current user.
+     */
     User curUser;
+    /**
+     * The current player and current monster.
+     */
     private Player player;
     private Monster monster;
+    /**
+     * The file system.
+     */
     private FileSystem fileSystem;
-
+    /**
+     * The four buttons. Where check button check monster's move.
+     */
     Button checkBtn;
     Button attackBtn;
     Button defenceBtn;
     Button evadeBtn;
-
+    /**
+     * The boolean value decide whether is the round that player could move.
+     */
     private boolean p_move = false;
 
+    /**
+     * The current round number of the battle game.
+     */
     private int roundNum = 1;
-
+    /**
+     * The move that player choose.
+     */
     String player_move;
+    /**
+     * Monster's property.
+     */
     private Property monsterP;
-
+    /**
+     * The eight text views.
+     */
     private TextView lifeView;
     private TextView monsterLifeView;
     private TextView monsterMove;
@@ -42,7 +62,6 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     private TextView defenceView;
     private TextView flexibilityView;
     private TextView luckinessView;
-
 
 
     @Override
@@ -105,10 +124,10 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     round.battle2(player_move, monsterP);
                     int decreaseM = round.getDamage1();
                     int decreaseP = round.getDamage2();
-                    if (player.getLivesRemain() > decreaseP){
+                    if (player.getLivesRemain() > decreaseP) {
                         player.loseLives(decreaseP);
                     } else player.loseLives(player.getLivesRemain());
-                    if (monster.getLivesRemain() > decreaseM){
+                    if (monster.getLivesRemain() > decreaseM) {
                         monster.loseLives(decreaseM);
                     } else monster.loseLives(monster.getLivesRemain());
                     update();
@@ -122,10 +141,10 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     round.battle2(player_move, monsterP);
                     int decreaseM = round.getDamage1();
                     int decreaseP = round.getDamage2();
-                    if (player.getLivesRemain() > decreaseP){
+                    if (player.getLivesRemain() > decreaseP) {
                         player.loseLives(decreaseP);
                     } else player.loseLives(player.getLivesRemain());
-                    if (monster.getLivesRemain() > decreaseM){
+                    if (monster.getLivesRemain() > decreaseM) {
                         monster.loseLives(decreaseM);
                     } else monster.loseLives(monster.getLivesRemain());
                     update();
@@ -139,10 +158,10 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     round.battle2(player_move, monsterP);
                     int decreaseM = round.getDamage1();
                     int decreaseP = round.getDamage2();
-                    if (player.getLivesRemain() > decreaseP){
+                    if (player.getLivesRemain() > decreaseP) {
                         player.loseLives(decreaseP);
                     } else player.loseLives(player.getLivesRemain());
-                    if (monster.getLivesRemain() > decreaseM){
+                    if (monster.getLivesRemain() > decreaseM) {
                         monster.loseLives(decreaseM);
                     } else monster.loseLives(monster.getLivesRemain());
                     update();
@@ -171,13 +190,20 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         super.onStop();
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
+
     @Override
-    protected void onDestroy(){
+    protected void onDestroy() {
         super.onDestroy();
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
 
+    /**
+     * Check the remain live of the monster.
+     * @param monster current monster.
+     * @param player current player.
+     * @return the integer indication. 1 represents player lose, and 2 represent monster lose.
+     */
     private int checkLife(Monster monster, Player player) {
         if (monster.getLivesRemain() > 0 && player.getLivesRemain() > 0) {
             return 0;
@@ -188,14 +214,18 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private void winOrLose(int num){
-        if (num == 1){
+    /**
+     * Check whether player lose or player win.
+     * @param num integer indicator of player's status.
+     */
+    private void winOrLose(int num) {
+        if (num == 1) {
             //player lose
             startActivity(new Intent(BattleActivity.this, LoseActivity.class));
             player.setCurStage(4);
             fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
         }
-        if (num == 2){
+        if (num == 2) {
             //player win
             startActivity(new Intent(BattleActivity.this, WinActivity.class));
             player.setCurStage(4);
@@ -203,6 +233,9 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    /**
+     * Update all the statistics of this game.
+     */
     private void update() {
         roundNum++;
         String round_n = ("Round Number:" + roundNum);
