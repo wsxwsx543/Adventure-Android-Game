@@ -3,31 +3,51 @@ package com.example.phase1;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * A player.
+ */
 public class Player implements Serializable {
+
+    /**
+     * The player's name.
+     */
     private String name;
+
+    /**
+     * The weapon manager store all the weapons of this player.
+     */
     private WeaponManager weaponManager; // Store all weapons.
 
-    String getName(){return name;}
-
+    /**
+     * The property of this player.
+     */
     private Property property;
+
+    /**
+     * The lives this player remain.
+     */
     private int livesRemain;
 
-    public Property getProperty() {
-        return property;
-    }
-    void setProperty(Property property) {
-        this.property = property;
-    }
-
-    // x, y is the location of this player.
+    /**
+     * The x-axis of this player.
+     */
     private int x;
-    private int y;
 
+    /**
+     * The y-axis of this player.
+     */
+    private int y;
     // Total attack the player create.
+
+    /**
+     * The total damage to the monster.
+     */
     private int attackCreate;
 
+    /**
+     * The current stage of this player.
+     */
     private int curStage;
-
     public Player(String name, Property initialProperty){
         weaponManager = new WeaponManager();
         this.name = name;
@@ -35,6 +55,16 @@ public class Player implements Serializable {
         this.livesRemain = 100;
         this.attackCreate = 0;
         this.curStage = 1;
+    }
+
+    String getName(){return name;}
+
+    public Property getProperty() {
+        return property;
+    }
+
+    void setProperty(Property property) {
+        this.property = property;
     }
 
     public int getCurStage() {
@@ -73,8 +103,10 @@ public class Player implements Serializable {
         this.livesRemain -= num;
     }
     public void addLives(int num) {this.livesRemain += num;}
-    public void setLivesRemain(int num){this.livesRemain = num;}
+
     public int getLivesRemain(){return this.livesRemain;}
+
+    public void setLivesRemain(int num){this.livesRemain = num;}
 
     public void createAttack(int attack){
         this.attackCreate += attack;

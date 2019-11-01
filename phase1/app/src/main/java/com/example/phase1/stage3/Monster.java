@@ -37,7 +37,7 @@ public class Monster{
 
     /**
      * Make monster lose specific live.
-     * 
+     *
      * @param num the number live lose.
      */
     public void loseLives(int num){

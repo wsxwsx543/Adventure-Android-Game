@@ -163,7 +163,6 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             default:
                 break;
         }
-
     }
 
 
@@ -206,13 +205,20 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
     private void update() {
         roundNum++;
-        roundView.setText("Round Number:" + roundNum);
-        attackView.setText("Attack:" + player.getProperty().getAttack());
-        defenceView.setText("Defence:" + player.getProperty().getDefence());
-        flexibilityView.setText("Flexibility:" + player.getProperty().getFlexibility());
-        luckinessView.setText("Luckiness:" + player.getProperty().getLuckiness());
-        lifeView.setText("Life:" + player.getLivesRemain());
-        monsterLifeView.setText("Monster Life:" + monster.getLivesRemain());
+        String round_n = ("Round Number:" + roundNum);
+        String attack = ("Defence:" + player.getProperty().getDefence());
+        String defence = ("Defence:" + player.getProperty().getDefence());
+        String flexibility = ("Flexibility:" + player.getProperty().getFlexibility());
+        String luckiness = ("Luckiness:" + player.getProperty().getLuckiness());
+        String life = ("Life:" + player.getLivesRemain());
+        String monster_life = ("Monster Life:" + monster.getLivesRemain());
+        roundView.setText(round_n);
+        attackView.setText(attack);
+        defenceView.setText(defence);
+        flexibilityView.setText(flexibility);
+        luckinessView.setText(luckiness);
+        lifeView.setText(life);
+        monsterLifeView.setText(monster_life);
     }
 
 }
