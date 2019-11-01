@@ -11,12 +11,13 @@ import java.io.ObjectOutputStream;
 
 import static android.content.Context.MODE_PRIVATE;
 
-/** A file system. */
+/** A file system used to save and load all data. */
 public class FileSystem {
 
     /** This is used to make sure the save location to be app\data\files. */
     private Context context;
 
+    /** Constructs a file system with given context. */
     public FileSystem(Context appContext){this.context = appContext;}
 
     /** Save object to fileName. */

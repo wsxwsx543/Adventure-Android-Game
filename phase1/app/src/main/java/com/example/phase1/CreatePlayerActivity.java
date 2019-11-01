@@ -13,10 +13,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CreatePlayerActivity extends AppCompatActivity implements View.OnClickListener, Initializable {
-    /**
-     *
-     */
+    /** A file system to save and load information to the context. */
     FileSystem fileSystem;
+    /** An app store the data used by all the activities. */
     Phase1App app;
 
     @Override
@@ -80,6 +79,10 @@ public class CreatePlayerActivity extends AppCompatActivity implements View.OnCl
         });
     }
 
+    /**
+     * Create a new player. Return true if the new player created successfully and false otherwise.
+     * @return a boolean value represents whether the player is created.
+     */
     public boolean createPlayer(){
         Player player;
 

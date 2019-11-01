@@ -7,7 +7,9 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/** An activity used to choose a player or create a new player. */
 public class ChooseOrCreatePlayerActivity extends AppCompatActivity implements View.OnClickListener, Initializable{
+    /**  */
     Phase1App app;
     FileSystem fileSystem;
 

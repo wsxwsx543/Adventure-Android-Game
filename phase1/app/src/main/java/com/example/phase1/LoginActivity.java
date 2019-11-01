@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    // Try to load users data from local file named Users.ser
+    /** Load users data from local file named Users.ser. */
     public void loadUsers(){
         fileSystem = new FileSystem(this.getApplicationContext());
         if(fileSystem.load("Users.ser") instanceof HashMap){
