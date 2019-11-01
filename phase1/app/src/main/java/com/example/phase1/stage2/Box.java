@@ -106,11 +106,10 @@ public abstract  class Box {
         return neighbours;
     }
 
-    public abstract void update();
-
     public void expand(ArrayList<Box> checked){
         if (!expanded) {
             this.expanded = true;
+            updateBitmap();
             if (this.numOfNeighbourTraps == 0 && (!(this instanceof Trap))) {
                 for (int i = 0; i < this.neighbours.size(); i++) {
                     Box thisBox = this.neighbours.get(i);
@@ -122,4 +121,11 @@ public abstract  class Box {
             }
         }
     }
+
+    abstract void updateBitmap();
+
+    public boolean getExpand(){
+        return expanded;
+    }
+
 }

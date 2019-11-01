@@ -12,6 +12,17 @@ public class TreasureHuntActivity extends AppCompatActivity {
         treasureHuntView = new TreasureHuntView(this);
         setContentView(treasureHuntView);
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        treasureHuntView.saveUser();
+    }
+    protected void onDestroy(){
+        super.onDestroy();
+        treasureHuntView.saveUser();
+    }
+
     protected void onPause(){
         super.onPause();
         treasureHuntView.pause();
@@ -20,4 +31,5 @@ public class TreasureHuntActivity extends AppCompatActivity {
         super.onResume();
         treasureHuntView.resume();
     }
+
 }

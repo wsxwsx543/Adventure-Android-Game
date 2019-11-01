@@ -34,4 +34,16 @@ public class g1moveActivity extends AppCompatActivity {
         super.onResume();
         myg1View.resume();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        myg1View.saveUser();
+    }
+    protected void onDestroy(){
+        super.onDestroy();
+        myg1View.saveUser();
+    }
+
+
 }
