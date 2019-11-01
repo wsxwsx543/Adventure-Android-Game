@@ -6,7 +6,7 @@ public class PlayerMove implements Move {
 
 
     /** A player move. */
-    public PlayerMove() {
+    PlayerMove() {
     }
 
     /**
@@ -16,23 +16,22 @@ public class PlayerMove implements Move {
      * @param player   the player.
      * @return the property of the player after move.
      */
-    public Property playerDoMove(String moveName, Player player) {
+    Property playerDoMove(String moveName, Player player) {
 
         Property p = player.getProperty();
         Property PP = new Property(p.getAttack(), p.getDefence(), p.getFlexibility(), p.getLuckiness());
-
-
-        if (moveName.equals("Attack")) {
-            PP.addPropertyToSelf(10, 0, 0, 0);
-            return PP;
-        } else if (moveName.equals("Defence")) {
-            PP.addPropertyToSelf(-100, 30, -10, -10);
-            return PP;
-        } else if (moveName.equals("Evade")) {
-            PP.addPropertyToSelf(0, 0, 5, 10);
-            return PP;
-        } else {
-            return null;
+        switch (moveName) {
+            case "Attack":
+                PP.addPropertyToSelf(10, 0, 0, 0);
+                return PP;
+            case "Defence":
+                PP.addPropertyToSelf(-100, 30, -10, -10);
+                return PP;
+            case "Evade":
+                PP.addPropertyToSelf(0, 0, 5, 10);
+                return PP;
+            default:
+                return null;
         }
     }
 
