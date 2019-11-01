@@ -57,6 +57,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         player = curUser.getCurPlayer();
         fileSystem = new FileSystem(this.getApplicationContext());
         player.setCurStage(3);
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
 
 
         lifeView = findViewById(R.id.life);
