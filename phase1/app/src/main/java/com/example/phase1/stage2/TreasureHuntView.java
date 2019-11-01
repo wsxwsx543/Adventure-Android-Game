@@ -19,8 +19,6 @@ import com.example.phase1.User;
 import com.example.phase1.UserManager;
 import com.example.phase1.stage3.BattleActivity;
 
-import java.util.ArrayList;
-
 public class TreasureHuntView extends SurfaceView implements Runnable {
 
     //Paint for text
@@ -35,7 +33,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
     private Property property = user.getCurPlayer().getProperty();
     //The boxes that this class will refer to
     public Box[][] boxes;
-    //boxesmapper to map the boxes
+    //BoxManager to manage the boxes
     private BoxesManager boxesManager;
 
     private int boardWidth, boardLength, startX, startY;
@@ -53,9 +51,11 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
 
     public TreasureHuntView(Context context, int boardWidth, int boardLength, int unit_size, int startX, int startY) {
         super(context);
+        // Set the current stage as 2 since we are about to start
         user.getCurPlayer().setCurStage(2);
-        this.textPaint = new Paint();
 
+        // Set up the paint for the texts
+        this.textPaint = new Paint();
         textPaint.setColor(Color.rgb(255, 215, 0));
         textPaint.setTextSize(70);
         textPaint.setTypeface(Typeface.DEFAULT_BOLD);
@@ -71,6 +71,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
 
         this.aboutToEnd = false;
 
+        // Store the bitmap for the messages shown on the top of the screen
         treasureHuntMsg = BitmapFactory.decodeResource(getResources(), R.drawable.treasurehuntmessage);
         treasureHuntMsg = Bitmap.createScaledBitmap(this.treasureHuntMsg, 980, 200, true);
         trapMsg = BitmapFactory.decodeResource(getResources(), R.drawable.trapmessage);
@@ -100,6 +101,8 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
             checkEnded();
         }
     }
+
+    // Expand if curX and curY are at a valid location
     private void expand(){
         if (curX != -1 && curY != -1) {
             int[] pair = getCurBoxLoc(curX, curY);
@@ -110,6 +113,8 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
             curY = -1;
         }
     }
+
+    // Return the location of the box that the cursor is pointing
     private int[] getCurBoxLoc(double curX, double curY) {
         int[] pair = new int[2];
         int x = (int) ((curX - this.startX) / unit_size);
@@ -136,11 +141,13 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
     public void saveUser() {
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
+
+    // Call the loot method in boxesManager
     private void loot(){
         boxesManager.loot();
     }
 
-    //
+    // Draw everything we need
     private void draw() {
         if (holder.getSurface().isValid()) {
             Canvas canvas = getHolder().lockCanvas();
@@ -158,22 +165,25 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
                 canvas.drawBitmap(treasureHuntMsg, 50, 50, null);
             }
             else {
+                // Draw the fell in a trap message
                 canvas.drawBitmap(trapMsg, 50, 50, null);
+                // Set stage to 3 since we are about to finish
                 user.getCurPlayer().setCurStage(3);
+                // Set running to false;
                 running = false;
-                getHandler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent switchToStage3 = new Intent(getContext(), BattleActivity.class);
-                        getContext().startActivity(switchToStage3);
-                    }
+                // Delay for 5000ms then we switch to Stage 3's activity
+                getHandler().postDelayed(() -> {
+                    Intent switchToStage3 = new Intent(getContext(), BattleActivity.class);
+                    getContext().startActivity(switchToStage3);
                 }, 5000);
             }
+            // Draw the boxes
             boxesManager.draw(canvas);
             holder.unlockCanvasAndPost(canvas);
         }
     }
 
+    // Get the location of the cursor when pressed down
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -183,6 +193,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         return true;
     }
 
+    // Set up the pause method
     public void pause() {
         try {
             running = false;
@@ -192,6 +203,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         }
     }
 
+    // Set up the resume method
     public void resume() {
         running = true;
         thread = new Thread(this);
