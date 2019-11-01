@@ -131,6 +131,7 @@ public class g1View extends SurfaceView implements Runnable{
         luckinessPaint.setAntiAlias(true);
 
         curUser.getCurPlayer().setCurStage(1);
+        saveUser();
 
 
     }
@@ -146,6 +147,7 @@ public class g1View extends SurfaceView implements Runnable{
         while (isPlaying){
             update();
             draw();
+            
 
             for (g1Monster monster : this.mymonsters) {
                 action(monster);
@@ -262,6 +264,8 @@ public class g1View extends SurfaceView implements Runnable{
         for (g1Monster monster : this.mymonsters) {
             if (hero.x == monster.x && hero.y == monster.y) {
                 life--;
+                curUser.getCurPlayer().setLivesRemain(life);
+                saveUser();
                 if (life == 0) {
                     Intent restartg1Intent = new Intent(getContext(), g1moveActivity.class);
                     getContext().startActivity(restartg1Intent);
