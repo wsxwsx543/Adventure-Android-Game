@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".stage1.g1Activity"
-    android:background="@drawable/background_login">
+    android:background="?attr/backColor">
 
     <LinearLayout
         android:id="@+id/loginPanel"
@@ -19,6 +19,7 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="?attr/textColor"
             android:layout_gravity="center_horizontal"
             android:text="Ready to start!"
             android:layout_marginTop="15dp"
@@ -27,6 +28,7 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
+            android:textColor="?attr/textColor"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Choose a player to start:"
@@ -73,7 +75,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             android:text="Start"
-            android:background="@drawable/background_button_div"
             />
 
         <Button
@@ -84,7 +85,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
             android:text="back"
-            android:background="@drawable/background_button_div"
             />
     </LinearLayout>
 </RelativeLayout>

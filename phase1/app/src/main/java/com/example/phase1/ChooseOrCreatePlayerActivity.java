@@ -7,23 +7,14 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ChooseOrCreatePlayerActivity extends AppCompatActivity implements View.OnClickListener{
+public class ChooseOrCreatePlayerActivity extends AppCompatActivity implements View.OnClickListener, Initializable{
+    Phase1App app;
     FileSystem fileSystem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_or_create_player);
-
-        final Button selectButton = findViewById(R.id.select);
-        final Button createButton = findViewById(R.id.create);
-        final Button logoutButton = findViewById(R.id.logout);
-
-        selectButton.setOnClickListener(this);
-        createButton.setOnClickListener(this);
-        logoutButton.setOnClickListener(this);
-
-        fileSystem = new FileSystem(this.getApplicationContext());
+        init();
         // System.out.println(UserManager.getInstance().getCurUser().getUsername());
     }
 
@@ -39,18 +30,48 @@ public class ChooseOrCreatePlayerActivity extends AppCompatActivity implements V
             case R.id.logout:
                 UserManager.getInstance().setCurUser(null);
                 startActivity(new Intent(ChooseOrCreatePlayerActivity.this, LoginActivity.class));
+                break;
+            case R.id.settings:
+                startActivity(new Intent(ChooseOrCreatePlayerActivity.this, SettingActivity.class));
+                break;
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        fileSystem.save(UserManager.getInstance(), "Users.ser");
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        fileSystem.save(UserManager.getInstance(), "Users.ser");
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+    }
+
+    @Override
+    public void init() {
+        app = (Phase1App) getApplication();
+        if(app.getColorTheme().equals("blue")){
+            setTheme(R.style.blue);
+        }
+        else if(app.getColorTheme().equals("yellow")){
+            setTheme(R.style.yellow);
+        }
+
+
+        setContentView(R.layout.activity_choose_or_create_player);
+
+        final Button selectButton = findViewById(R.id.select);
+        final Button createButton = findViewById(R.id.create);
+        final Button logoutButton = findViewById(R.id.logout);
+        final Button settingButton = findViewById(R.id.settings);
+
+        selectButton.setOnClickListener(this);
+        createButton.setOnClickListener(this);
+        logoutButton.setOnClickListener(this);
+        settingButton.setOnClickListener(this);
+
+        fileSystem = new FileSystem(this.getApplicationContext());
     }
 }

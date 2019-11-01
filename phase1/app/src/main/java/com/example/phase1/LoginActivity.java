@@ -12,23 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, Initializable{
+    Phase1App app;
     FileSystem fileSystem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadUsers();
-
-        setContentView(R.layout.activity_login);
-        //Button initiation reference: https://www.youtube.com/watch?v=GtxVILjLcw8
-        final Button loginButton = findViewById(R.id.login);
-        final Button registerButton = findViewById(R.id.register);
-
-        //OnClickListener setup
-        loginButton.setOnClickListener(this);
-        registerButton.setOnClickListener(this);
+        init();
 
     }
 
@@ -87,12 +78,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        fileSystem.save(UserManager.getInstance(), "Users.ser");
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        fileSystem.save(UserManager.getInstance(), "Users.ser");
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+    }
+
+    @Override
+    public void init() {
+        app = (Phase1App) getApplication();
+        if(app.getColorTheme().equals("blue")){
+            setTheme(R.style.blue);
+        }
+        else if(app.getColorTheme().equals("yellow")){
+            setTheme(R.style.yellow);
+        }
+
+        setContentView(R.layout.activity_login);
+        loadUsers();
+
+        //Button initiation reference: https://www.youtube.com/watch?v=GtxVILjLcw8
+        final Button loginButton = findViewById(R.id.login);
+        final Button registerButton = findViewById(R.id.register);
+
+        //OnClickListener setup
+        loginButton.setOnClickListener(this);
+        registerButton.setOnClickListener(this);
     }
 }

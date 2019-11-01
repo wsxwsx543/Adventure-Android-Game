@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:orientation="vertical"
         android:layout_marginTop="50dp"
-        android:background="@drawable/background_login_div" >
+        android:background="?attr/backColor">
 
         <TextView
             android:id="@+id/textView1"
@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="It's time to create a new player!"
+            android:textColor="?attr/textColor"
             android:layout_marginTop="15dp"
             android:textSize="25sp"/>
 
@@ -28,6 +29,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="?attr/textColor"
             android:layout_gravity="center_horizontal"
             android:text="Give your player an amazing name:"
             android:layout_marginTop="25dp"
@@ -48,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select a department for your player:"
+            android:textColor="?attr/textColor"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             />
@@ -65,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="#fff"
+            android:textColor="?attr/textColor"
             />
 
         <TextView
@@ -73,6 +76,7 @@
             android:layout_height="wrap_content"
             android:text="Please select your starting weapon"
             android:layout_gravity="center_horizontal"
+            android:textColor="?attr/textColor"
             android:layout_marginTop="25dp"
             />
 
@@ -99,7 +103,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             android:text="Create this player"
-            android:background="@drawable/background_button_div"
             />
 
         <Button
@@ -110,7 +113,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
             android:text="back"
-            android:background="@drawable/background_button_div"
             />
     </LinearLayout>
 </RelativeLayout>

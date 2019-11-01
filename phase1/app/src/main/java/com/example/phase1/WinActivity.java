@@ -1,16 +1,19 @@
 package com.example.phase1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 
-public class WinActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class WinActivity extends AppCompatActivity implements Initializable{
+
+    Phase1App app;
+    FileSystem fileSystem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_win);
+        init();
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -19,5 +22,30 @@ public class WinActivity extends AppCompatActivity {
 
         startActivity(new Intent(WinActivity.this, ChooseOrCreatePlayerActivity.class));
 
+    }
+
+    @Override
+    public void init() {
+        app = (Phase1App) getApplication();
+        if(app.getColorTheme().equals("blue")){
+            setTheme(R.style.blue);
+        }
+        else if(app.getColorTheme().equals("yellow")){
+            setTheme(R.style.yellow);
+        }
+        setContentView(R.layout.activity_win);
+        fileSystem = new FileSystem(getApplicationContext());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 }
