@@ -17,7 +17,7 @@ f: magic attack
     /**
      * A monster move.
      */
-    public MonsterMove() {
+    MonsterMove() {
     }
 
     /**
@@ -26,7 +26,7 @@ f: magic attack
      * @param monster the monster we decided.
      * @return the property of monster after the move.
      */
-    public Property monsterDoMove(int id, Monster monster) {
+    Property monsterDoMove(int id, Monster monster) {
 
         Property m = monster.getProperty();
         Property MP = new Property(m.getAttack(), m.getDefence(), m.getFlexibility(), m.getLuckiness());
