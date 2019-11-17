@@ -1,10 +1,10 @@
-package com.example.phase1.stage2;
+package com.example.phase2.stage2;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.phase1.R;
+import com.example.phase2.R;
 
 /** The trap. */
 class Trap extends Box {
