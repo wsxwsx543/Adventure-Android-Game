@@ -127,15 +127,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.attackBtn:
                 if (p_move) {
                     player_move = "Attack";
-                    round.battle2(player_move, monsterP);
-                    int decreaseM = round.getDamage1();
-                    int decreaseP = round.getDamage2();
-                    if (player.getLivesRemain() > decreaseP) {
-                        player.loseLives(decreaseP);
-                    } else player.loseLives(player.getLivesRemain());
-                    if (monster.getLivesRemain() > decreaseM) {
-                        monster.loseLives(decreaseM);
-                    } else monster.loseLives(monster.getLivesRemain());
+                    battleRound(round, player_move);
                     update();
                     p_move = false;
                 }
@@ -144,15 +136,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.defenceBtn:
                 if (p_move) {
                     player_move = "Defence";
-                    round.battle2(player_move, monsterP);
-                    int decreaseM = round.getDamage1();
-                    int decreaseP = round.getDamage2();
-                    if (player.getLivesRemain() > decreaseP) {
-                        player.loseLives(decreaseP);
-                    } else player.loseLives(player.getLivesRemain());
-                    if (monster.getLivesRemain() > decreaseM) {
-                        monster.loseLives(decreaseM);
-                    } else monster.loseLives(monster.getLivesRemain());
+                    battleRound(round, player_move);
                     update();
                     p_move = false;
                 }
@@ -161,15 +145,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.evadeBtn:
                 if (p_move) {
                     player_move = "Evade";
-                    round.battle2(player_move, monsterP);
-                    int decreaseM = round.getDamage1();
-                    int decreaseP = round.getDamage2();
-                    if (player.getLivesRemain() > decreaseP) {
-                        player.loseLives(decreaseP);
-                    } else player.loseLives(player.getLivesRemain());
-                    if (monster.getLivesRemain() > decreaseM) {
-                        monster.loseLives(decreaseM);
-                    } else monster.loseLives(monster.getLivesRemain());
+                    battleRound(round, player_move);
                     update();
                     p_move = false;
                 }
@@ -188,6 +164,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             default:
                 break;
         }
+
     }
 
 
@@ -203,6 +180,18 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
+
+    private void battleRound(Round round, String player_move){
+        round.battle2(player_move, monsterP);
+        int decreaseM = round.getDamage1();
+        int decreaseP = round.getDamage2();
+        if (player.getLivesRemain() > decreaseP) {
+            player.loseLives(decreaseP);
+        } else player.loseLives(player.getLivesRemain());
+        if (monster.getLivesRemain() > decreaseM) {
+            monster.loseLives(decreaseM);
+        } else monster.loseLives(monster.getLivesRemain());
+    }
 
     /**
      * Check the remain live of the monster.
