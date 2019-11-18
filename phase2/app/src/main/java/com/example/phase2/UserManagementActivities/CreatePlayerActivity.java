@@ -16,7 +16,7 @@ import com.example.phase2.Exceptions.EmptyPlayerNameException;
 import com.example.phase2.Exceptions.SamePlayerNameException;
 import com.example.phase2.DataManagement.FileSystem;
 import com.example.phase2.Initializable;
-import com.example.phase2.Phase1App;
+import com.example.phase2.AppCoreClasses.Phase1App;
 import com.example.phase2.AppCoreClasses.Player;
 import com.example.phase2.AppCoreClasses.Property;
 import com.example.phase2.R;

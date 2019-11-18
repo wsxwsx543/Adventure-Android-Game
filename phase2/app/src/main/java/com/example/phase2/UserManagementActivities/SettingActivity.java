@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase2.DataManagement.FileSystem;
 import com.example.phase2.Initializable;
-import com.example.phase2.Phase1App;
+import com.example.phase2.AppCoreClasses.Phase1App;
 import com.example.phase2.R;
 import com.example.phase2.AppCoreClasses.UserManager;
 
