@@ -18,7 +18,7 @@
         <activity android:name="com.example.phase2.UserManagementActivities.SelectPlayerActivity" />
         <activity android:name="com.example.phase2.UserManagementActivities.ChooseOrCreatePlayerActivity" />
         <activity android:name="com.example.phase2.UserManagementActivities.RegisterActivity" />
-        <activity android:name="com.example.phase2.stage1.g1moveActivity" />
+        <activity android:name="com.example.phase2.stage1.UoftMazeActivity" />
         <activity android:name="com.example.phase2.stage3.BattleActivity" />
         <activity android:name="com.example.phase2.UserManagementActivities.LoginActivity">
             <intent-filter>

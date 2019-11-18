@@ -9,7 +9,7 @@ import com.example.phase2.R;
 /**
  * the class to store the background
  */
-public class g1background {
+public class Background {
     /**
      * the x, y coordinates of background
      */
@@ -24,7 +24,7 @@ public class g1background {
      * @param screenY the length of the background
      * @param res
      */
-    g1background(int screenX, int screenY, Resources res){
+    Background(int screenX, int screenY, Resources res){
 
         background = BitmapFactory.decodeResource(res, R.drawable.g1_dialoguebackground);
         background = Bitmap.createScaledBitmap(background, screenX, screenY, false);

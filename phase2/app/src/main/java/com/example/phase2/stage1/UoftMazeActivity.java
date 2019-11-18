@@ -6,11 +6,11 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class g1moveActivity extends AppCompatActivity {
+public class UoftMazeActivity extends AppCompatActivity {
     /**
      * The game view we are gonna present
      */
-    private g1View myg1View;
+    private UoftMazeView myg1View;
 
     /**
      * Every time intent to this activity, we jump to the corresponding
@@ -25,7 +25,7 @@ public class g1moveActivity extends AppCompatActivity {
         Point point = new Point();
         getWindowManager().getDefaultDisplay().getSize(point);
 
-        myg1View = new g1View(this, point.x, point.y);
+        myg1View = new UoftMazeView(this, point.x, point.y);
 
         setContentView(myg1View);
     }

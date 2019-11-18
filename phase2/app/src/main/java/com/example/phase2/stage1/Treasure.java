@@ -9,17 +9,17 @@ import com.example.phase2.R;
 /**
  * The treasure class
  */
-public class g1Treasure {
+public class Treasure {
     /**
      * The x, y coordinate and the length and width of the treasure image
      */
-    int x, y, width = 72, height = 72;
+    private int x, y, width = 72, height = 72;
     private Bitmap treasurerview;
 
     /**
      * @param res
      */
-    g1Treasure(int curr_x, int curr_y, Resources res){
+    Treasure(int curr_x, int curr_y, Resources res){
         this.x = curr_x;
         this.y = curr_y;
 
@@ -32,4 +32,36 @@ public class g1Treasure {
      * Return the treasure image
      */
     Bitmap getTreasurerview(){ return treasurerview;}
+
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
+
+    public int getWidth(){
+        return width;
+    }
+
+    public int getHeight(){
+        return height;
+    }
+
+    public void setX(int x){
+        this.x = x;
+    }
+
+    public void setY(int y){
+        this.y = y;
+    }
+
+    public void setWidth(int width){
+        this.width = width;
+    }
+
+    public void setHeight(int height){
+        this.height = height;
+    }
 }

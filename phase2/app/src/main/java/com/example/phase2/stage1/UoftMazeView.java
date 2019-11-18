@@ -14,7 +14,7 @@ import com.example.phase2.AppCoreClasses.User;
 import com.example.phase2.AppCoreClasses.UserManager;
 import com.example.phase2.stage2.TreasureHuntActivity;
 
-public class g1View extends SurfaceView implements Runnable{
+public class UoftMazeView extends SurfaceView implements Runnable{
     /**
      * The main Thread
      */
@@ -31,26 +31,26 @@ public class g1View extends SurfaceView implements Runnable{
     /**
      * The player
      */
-    private g1hero hero;
+    private Hero hero;
     /**
      * The three monsters in the screen
      */
-    private g1Monster[] mymonsters = {
-            new g1Monster(720, 360, getResources()),
-            new g1Monster(1008, 576, getResources()),
-            new g1Monster(288, 1368, getResources()),
-            new g1Monster(144, 864,getResources()),
-            new g1Monster(864, 144, getResources())
+    private Monster[] mymonsters = {
+            new Monster(720, 360, getResources()),
+            new Monster(1008, 576, getResources()),
+            new Monster(288, 1368, getResources()),
+            new Monster(144, 864,getResources()),
+            new Monster(864, 144, getResources())
     };
 
     /**
      * The treasure
      */
-    private g1Treasure[] myTreasures = {new g1Treasure(792, 648, getResources())};
+    private Treasure[] myTreasures = {new Treasure(792, 648, getResources())};
     /**
      * The background
      */
-    private g1background background1;
+    private Background background1;
 
     /**
      * The current user we've selected
@@ -83,7 +83,7 @@ public class g1View extends SurfaceView implements Runnable{
      * @param screenX the width of the screen
      * @param screenY the length of the screen
      */
-    public g1View(Context context, int screenX, int screenY){
+    public UoftMazeView(Context context, int screenX, int screenY){
         super(context);
 
         this.screenX = screenX;
@@ -100,8 +100,8 @@ public class g1View extends SurfaceView implements Runnable{
         this.fileSystem = new FileSystem(context);
 
 
-        background1 = new g1background(screenX, screenY, getResources());
-        hero = new g1hero(getResources());
+        background1 = new Background(screenX, screenY, getResources());
+        hero = new Hero(getResources());
 
         paint = new Paint();
 
@@ -149,11 +149,11 @@ public class g1View extends SurfaceView implements Runnable{
             draw();
             
 
-            for (g1Monster monster : this.mymonsters) {
+            for (Monster monster : this.mymonsters) {
                 action(monster);
             }
 
-            for (g1Treasure treasure : this.myTreasures) {
+            for (Treasure treasure : this.myTreasures) {
                 escape(treasure);
             }
 
@@ -171,57 +171,60 @@ public class g1View extends SurfaceView implements Runnable{
     /**
      * Method to move the treasure
      */
-    public void escape(g1Treasure treasure){
+    public void escape(Treasure treasure){
         double d = Math.random();
         if (d < 0.25){
-            treasure.x += treasure.width;
+//            treasure.x += treasure.width;
+            treasure.setX(treasure.getX()+treasure.getWidth());
         } else if(0.25 <= d && d < 0.5){
-            treasure.x -= treasure.width;
+//            treasure.x -= treasure.width;
+            treasure.setX(treasure.getX()-treasure.getWidth());
         } else if(0.5 <= d && d < 0.75){
-            treasure.y += treasure.height;
+//            treasure.y += treasure.height;
+            treasure.setY(treasure.getY()+treasure.getHeight());
         } else{
-            treasure.y -= treasure.height;
+//            treasure.y -= treasure.height;
+            treasure.setY(treasure.getY()-treasure.getHeight());
         }
-        if (treasure.y < 360)
-            treasure.y = 360;
+        if (treasure.getY() < 360)
+            treasure.setY(360);
 
-        if (treasure.y >= 1368)
-            treasure.y = 1368;
+        if (treasure.getY() >= 1368)
+            treasure.setY(1368);
 
-        if (treasure.x < 0)
-            treasure.x = 0;
+        if (treasure.getX() < 0)
+            treasure.setX(0);
 
-        if (treasure.x >= screenX - treasure.width)
-            treasure.x = screenX - treasure.width;
+        if (treasure.getX() >= screenX - treasure.getWidth())
+            treasure.setX(screenX - treasure.getWidth());
         sleep();
     }
 
     /**
      * Action to move monsters
      */
-    public void action(g1Monster monster){
+    public void action(Monster monster){
         double d = Math.random();
         if (d < 0.25){
-            monster.x += monster.width;
+            monster.setX(monster.getX()+monster.getWidth());
         } else if(0.25 <= d && d < 0.5){
-            monster.x -= monster.width;
+            monster.setX(monster.getX()-monster.getWidth());
         } else if(0.5 <= d && d < 0.75){
-            monster.y += monster.height;
+            monster.setY(monster.getY()+monster.getHeight());
         } else{
-            monster.y -= monster.height;
+            monster.setY(monster.getY()-monster.getHeight());
         }
-        if (monster.y < 360)
-            monster.y = 360;
+        if (monster.getY() < 360)
+            monster.setY(360);
 
-        if (monster.y >= 1368)
-            monster.y = 1368;
+        if (monster.getY() >= 1368)
+            monster.setY(1368);
 
-        if (monster.x < 0)
-            monster.x = 0;
+        if (monster.getX() < 0)
+            monster.setX(0);
 
-        if (monster.x >= screenX - monster.width)
-            monster.x = screenX - monster.width;
-
+        if (monster.getX() >= screenX - monster.getWidth())
+            monster.setX(screenX - monster.getWidth());
     }
 
     /**
@@ -229,51 +232,55 @@ public class g1View extends SurfaceView implements Runnable{
      * jump to the next activity
      */
     private void update(){
-        if (hero.isGoingUp){
-            hero.y -= hero.height;
-            hero.isGoingUp = false;
+        if (hero.getIsGoingUp()){
+//            hero.y -= hero.height;
+            hero.setY(hero.getY()-hero.getHeight());
+            hero.setIsGoingUp(false);
         }
 
-        if (hero.isGoingdown){
-            hero.y += hero.height;
-            hero.isGoingdown = false;
+        if (hero.getIsGoingDown()){
+//            hero.y += hero.height;
+            hero.setY(hero.getY()+hero.getHeight());
+            hero.setIsGoingDown(false);
         }
 
-        if (hero.isGoingLeft){
-            hero.x -= hero.width;
-            hero.isGoingLeft = false;
+        if (hero.getIsGoingLeft()){
+//            hero.x -= hero.width;
+            hero.setX(hero.getX()-hero.getWidth());
+            hero.setIsGoingLeft(false);
         }
 
-        if (hero.isGoingRight){
-            hero.x += hero.width;
-            hero.isGoingRight = false;
+        if (hero.getIsGoingRight()){
+//            hero.x += hero.width;
+            hero.setX(hero.getX()+hero.getWidth());
+            hero.setIsGoingRight(false);
         }
 
-        if (hero.y < 360)
-            hero.y = 360;
+        if (hero.getY() < 360)
+            hero.setY(360);
 
-        if (hero.y >= 1368)
-            hero.y = 1368;
+        if (hero.getY() >= 1368)
+            hero.setY(1368);
 
-        if (hero.x < 0)
-            hero.x = 0;
+        if (hero.getX() < 0)
+            hero.setX(0);
 
-        if (hero.x >= screenX - hero.width)
-            hero.x = screenX - hero.width;
+        if (hero.getX() >= screenX - hero.getWidth())
+            hero.setX(screenX - hero.getWidth());
 
-        for (g1Monster monster : this.mymonsters) {
-            if (hero.x == monster.x && hero.y == monster.y) {
+        for (Monster monster : this.mymonsters) {
+            if (hero.getX() == monster.getX() && hero.getY() == monster.getY()) {
                 life--;
                 curUser.getCurPlayer().setLivesRemain(life);
                 saveUser();
                 if (life == 0) {
-                    Intent restartg1Intent = new Intent(getContext(), g1moveActivity.class);
+                    Intent restartg1Intent = new Intent(getContext(), UoftMazeActivity.class);
                     getContext().startActivity(restartg1Intent);
                 }
             }
         }
 
-        if (hero.x == myTreasures[0].x && hero.y == myTreasures[0].y){
+        if (hero.getX() == myTreasures[0].getX() && hero.getY() == myTreasures[0].getY()){
             curUser.getCurPlayer().getProperty().setAttack(attack);
             curUser.getCurPlayer().getProperty().setDefence(defence);
             curUser.getCurPlayer().getProperty().setFlexibility(flexibility);
@@ -295,14 +302,14 @@ public class g1View extends SurfaceView implements Runnable{
             Canvas canvas = getHolder().lockCanvas();
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
 
-            canvas.drawBitmap(hero.getg1hero(), hero.x, hero.y, paint);
+            canvas.drawBitmap(hero.getg1hero(), hero.getX(), hero.getY(), paint);
 
-            for (g1Monster monster : this.mymonsters) {
-                canvas.drawBitmap(monster.getMonsterView(), monster.x, monster.y, paint);
+            for (Monster monster : this.mymonsters) {
+                canvas.drawBitmap(monster.getMonsterView(), monster.getX(), monster.getY(), paint);
             }
 
-            for (g1Treasure treasure : this.myTreasures) {
-                canvas.drawBitmap(treasure.getTreasurerview(), treasure.x, treasure.y, paint);
+            for (Treasure treasure : this.myTreasures) {
+                canvas.drawBitmap(treasure.getTreasurerview(), treasure.getX(), treasure.getY(), paint);
             }
 
             canvas.drawText("Life: " + life, 20, 60, lifePaint);
@@ -364,19 +371,19 @@ public class g1View extends SurfaceView implements Runnable{
         if (event.getAction() == MotionEvent.ACTION_DOWN){
             if (event.getX() > 0 && event.getX() < screenX &&
                     event.getY() > 0 && event.getY() < screenY / 3){
-                hero.isGoingUp = true;
+                hero.setIsGoingUp(true);
             }
             if (event.getX() > 0 && event.getX() < screenX / 2 &&
                     event.getY() > screenY /3 && event.getY() < screenY * 2 /3){
-                hero.isGoingLeft = true;
+                hero.setIsGoingLeft(true);
             }
             if (event.getX() > screenX / 2 && event.getX() < screenX &&
                     event.getY() > screenY /3 && event.getY() < screenY * 2 /3){
-                hero.isGoingRight = true;
+                hero.setIsGoingRight(true);
             }
             if (event.getX() > 0 && event.getX() < screenX &&
                     event.getY() > screenY * 2 / 3 && event.getY() < screenY){
-                hero.isGoingdown = true;
+                hero.setIsGoingDown(true);
             }
         }
 
