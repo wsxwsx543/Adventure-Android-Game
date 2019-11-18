@@ -1,19 +1,21 @@
-package com.example.phase2;
+package com.example.phase2.UserManagementActivities;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.text.Layout;
 
 import com.example.phase2.AppCoreClasses.Phase1App;
 import com.example.phase2.AppCoreClasses.UserManager;
 import com.example.phase2.DataManagement.FileSystem;
-import com.example.phase2.UserManagementActivities.ChooseOrCreatePlayerActivity;
+import com.example.phase2.Initializable;
+import com.example.phase2.R;
 
-/** Jump to this activity if the player win the game. */
-public class WinActivity extends AppCompatActivity implements Initializable{
+public class ResultActivity extends AppCompatActivity implements Initializable {
+
 
     Phase1App app;
     FileSystem fileSystem;
@@ -23,7 +25,7 @@ public class WinActivity extends AppCompatActivity implements Initializable{
             super.handleMessage(msg);
             switch (msg.what){
                 case 1:
-                    startActivity(new Intent(WinActivity.this, ChooseOrCreatePlayerActivity.class));
+                    startActivity(new Intent(ResultActivity.this, ChooseOrCreatePlayerActivity.class));
             }
         }
     };
@@ -32,12 +34,6 @@ public class WinActivity extends AppCompatActivity implements Initializable{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        startActivity(new Intent(WinActivity.this, ChooseOrCreatePlayerActivity.class));
         myhandler.sendEmptyMessageDelayed(1, 3000);
     }
 
@@ -50,7 +46,6 @@ public class WinActivity extends AppCompatActivity implements Initializable{
         else if(app.getColorTheme().equals("yellow")){
             setTheme(R.style.yellow);
         }
-        setContentView(R.layout.activity_win);
         fileSystem = new FileSystem(getApplicationContext());
     }
 
