@@ -1,4 +1,4 @@
-package com.example.phase2;
+package com.example.phase2.UserManagementActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase2.Exceptions.EmptyPlayerNameException;
 import com.example.phase2.Exceptions.SamePlayerNameException;
+import com.example.phase2.DataManagement.FileSystem;
+import com.example.phase2.Initializable;
+import com.example.phase2.Phase1App;
+import com.example.phase2.AppCoreClasses.Player;
+import com.example.phase2.AppCoreClasses.Property;
+import com.example.phase2.R;
+import com.example.phase2.AppCoreClasses.User;
+import com.example.phase2.AppCoreClasses.UserManager;
+import com.example.phase2.AppCoreClasses.Weapon;
 
 public class CreatePlayerActivity extends AppCompatActivity implements View.OnClickListener, Initializable {
     /** A file system to save and load information to the context. */

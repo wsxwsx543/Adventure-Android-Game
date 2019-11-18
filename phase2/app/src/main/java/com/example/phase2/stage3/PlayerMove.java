@@ -1,7 +1,7 @@
 package com.example.phase2.stage3;
 
-import com.example.phase2.Player;
-import com.example.phase2.Property;
+import com.example.phase2.AppCoreClasses.Player;
+import com.example.phase2.AppCoreClasses.Property;
 
 public class PlayerMove implements Move {
 

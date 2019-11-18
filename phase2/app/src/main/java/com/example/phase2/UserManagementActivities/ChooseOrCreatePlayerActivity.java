@@ -1,4 +1,4 @@
-package com.example.phase2;
+package com.example.phase2.UserManagementActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,14 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.phase2.DataManagement.FileSystem;
+import com.example.phase2.Initializable;
+import com.example.phase2.Phase1App;
+import com.example.phase2.R;
+import com.example.phase2.AppCoreClasses.UserManager;
+
 /** An activity used to choose a player or create a new player. */
-public class ChooseOrCreatePlayerActivity extends AppCompatActivity implements View.OnClickListener, Initializable{
+public class ChooseOrCreatePlayerActivity extends AppCompatActivity implements View.OnClickListener, Initializable {
     /** The app where player is chosen and created */
     Phase1App app;
     /** The file system that helps storing and operating the information of the player */

@@ -9,9 +9,9 @@ import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
-import com.example.phase2.FileSystem;
-import com.example.phase2.User;
-import com.example.phase2.UserManager;
+import com.example.phase2.DataManagement.FileSystem;
+import com.example.phase2.AppCoreClasses.User;
+import com.example.phase2.AppCoreClasses.UserManager;
 import com.example.phase2.stage2.TreasureHuntActivity;
 
 public class g1View extends SurfaceView implements Runnable{

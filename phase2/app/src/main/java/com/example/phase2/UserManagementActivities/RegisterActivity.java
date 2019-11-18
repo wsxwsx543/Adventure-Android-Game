@@ -1,4 +1,4 @@
-package com.example.phase2;
+package com.example.phase2.UserManagementActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.phase2.DataManagement.FileSystem;
+import com.example.phase2.Initializable;
+import com.example.phase2.Phase1App;
+import com.example.phase2.R;
+import com.example.phase2.AppCoreClasses.User;
+import com.example.phase2.AppCoreClasses.UserManager;
+
 /** A register activity. */
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, Initializable{
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, Initializable {
     FileSystem fileSystem;
     Phase1App app;
 
@@ -18,7 +25,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
-
     }
 
     /**

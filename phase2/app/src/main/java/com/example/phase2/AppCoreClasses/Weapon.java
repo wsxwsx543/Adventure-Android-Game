@@ -1,4 +1,6 @@
-package com.example.phase2;
+package com.example.phase2.AppCoreClasses;
+
+import com.example.phase2.AppCoreClasses.Property;
 
 import java.io.Serializable;
 

@@ -10,17 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.phase2.SettingActivity"></activity>
+        <activity android:name="com.example.phase2.UserManagementActivities.SettingActivity"></activity>
         <activity android:name="com.example.phase2.WinActivity" />
         <activity android:name="com.example.phase2.LoseActivity" />
         <activity android:name="com.example.phase2.stage2.TreasureHuntActivity" />
-        <activity android:name="com.example.phase2.CreatePlayerActivity" />
-        <activity android:name="com.example.phase2.SelectPlayerActivity" />
-        <activity android:name="com.example.phase2.ChooseOrCreatePlayerActivity" />
-        <activity android:name="com.example.phase2.RegisterActivity" />
+        <activity android:name="com.example.phase2.UserManagementActivities.CreatePlayerActivity" />
+        <activity android:name="com.example.phase2.UserManagementActivities.SelectPlayerActivity" />
+        <activity android:name="com.example.phase2.UserManagementActivities.ChooseOrCreatePlayerActivity" />
+        <activity android:name="com.example.phase2.UserManagementActivities.RegisterActivity" />
         <activity android:name="com.example.phase2.stage1.g1moveActivity" />
         <activity android:name="com.example.phase2.stage3.BattleActivity" />
-        <activity android:name="com.example.phase2.LoginActivity">
+        <activity android:name="com.example.phase2.UserManagementActivities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

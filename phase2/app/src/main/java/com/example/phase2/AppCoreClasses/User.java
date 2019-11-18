@@ -1,5 +1,7 @@
-package com.example.phase2;
+package com.example.phase2.AppCoreClasses;
 
+import com.example.phase2.AppCoreClasses.Player;
+import com.example.phase2.AppCoreClasses.Property;
 import com.example.phase2.Exceptions.EmptyPlayerNameException;
 import com.example.phase2.Exceptions.SamePlayerNameException;
 

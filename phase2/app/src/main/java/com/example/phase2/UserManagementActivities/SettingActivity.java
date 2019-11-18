@@ -1,4 +1,4 @@
-package com.example.phase2;
+package com.example.phase2.UserManagementActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,12 @@ import android.widget.Button;
 import android.widget.RadioButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.phase2.DataManagement.FileSystem;
+import com.example.phase2.Initializable;
+import com.example.phase2.Phase1App;
+import com.example.phase2.R;
+import com.example.phase2.AppCoreClasses.UserManager;
 
 /** An activity that represents the setting of the game */
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener, Initializable {

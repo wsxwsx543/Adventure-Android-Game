@@ -7,6 +7,10 @@ import android.os.Message;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.phase2.AppCoreClasses.UserManager;
+import com.example.phase2.DataManagement.FileSystem;
+import com.example.phase2.UserManagementActivities.ChooseOrCreatePlayerActivity;
+
 /** Jump to this activity if the player win the game. */
 public class WinActivity extends AppCompatActivity implements Initializable{
 

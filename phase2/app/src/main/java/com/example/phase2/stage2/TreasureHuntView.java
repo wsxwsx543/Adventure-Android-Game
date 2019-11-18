@@ -12,11 +12,11 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.example.phase2.FileSystem;
-import com.example.phase2.Property;
+import com.example.phase2.DataManagement.FileSystem;
+import com.example.phase2.AppCoreClasses.Property;
 import com.example.phase2.R;
-import com.example.phase2.User;
-import com.example.phase2.UserManager;
+import com.example.phase2.AppCoreClasses.User;
+import com.example.phase2.AppCoreClasses.UserManager;
 import com.example.phase2.stage3.BattleActivity;
 
 public class TreasureHuntView extends SurfaceView implements Runnable {

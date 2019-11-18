@@ -3,7 +3,7 @@ package com.example.phase2.stage2;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 
-import com.example.phase2.UserManager;
+import com.example.phase2.AppCoreClasses.UserManager;
 
 import java.util.ArrayList;
 
