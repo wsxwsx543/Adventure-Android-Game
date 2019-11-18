@@ -1,5 +1,8 @@
 package com.example.phase2;
 
+import com.example.phase2.Exceptions.EmptyPlayerNameException;
+import com.example.phase2.Exceptions.SamePlayerNameException;
+
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -14,34 +17,15 @@ public class User implements Serializable {
     private String password;
     /** Current player for this user. */
     private Player curPlayer;
-    /** Max number of players for a user.*/
-    private int playersNumberLimit;
     /** Players this user have. */
     private HashMap<String, Player> players;
 
     /** Constructs a new user with given username, password and player's number limit. */
-    public User(String username, String password, int playersNumberLimit){
+    public User(String username, String password){
         setUsername(username);
         setPassword(password);
-        setPlayersNumberLimit(playersNumberLimit);
         players = new HashMap<>();
         curPlayer = null;
-    }
-
-    /**
-     *  Set the limit of the number of players that a user could build.
-     * @param playersNumberLimit the limit of the number of playrs a user could build.
-     */
-    public void setPlayersNumberLimit(int playersNumberLimit) {
-        this.playersNumberLimit = playersNumberLimit;
-    }
-
-    /**
-     * Get the limit number.
-     * @return the limit number.
-     */
-    public int getPlayersNumberLimit() {
-        return playersNumberLimit;
     }
 
     /**
@@ -111,15 +95,11 @@ public class User implements Serializable {
     /**
      * Add the given player.
      * @param player the given player.
-     * @throws TooMuchPlayersException
      * @throws SamePlayerNameException
      * @throws EmptyPlayerNameException
      */
-    public void addPlayer(Player player) throws TooMuchPlayersException, SamePlayerNameException, EmptyPlayerNameException {
-        if(players.size() >= playersNumberLimit) {
-            throw new TooMuchPlayersException();
-        }
-        else if(players.containsKey(player.getName())){
+    public void addPlayer(Player player) throws SamePlayerNameException, EmptyPlayerNameException {
+        if(players.containsKey(player.getName())){
             throw new SamePlayerNameException();
         }
         else if(player.getName().equals("")){
@@ -143,23 +123,5 @@ public class User implements Serializable {
             }
         }
         return ret_player;
-    }
-}
-
-class TooMuchPlayersException extends Exception{
-    public TooMuchPlayersException(){
-        super();
-    }
-}
-
-class SamePlayerNameException extends Exception{
-    public SamePlayerNameException(){
-        super();
-    }
-}
-
-class EmptyPlayerNameException extends Exception{
-    EmptyPlayerNameException(){
-        super();
     }
 }

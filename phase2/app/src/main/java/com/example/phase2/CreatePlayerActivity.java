@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.phase2.Exceptions.EmptyPlayerNameException;
+import com.example.phase2.Exceptions.SamePlayerNameException;
+
 public class CreatePlayerActivity extends AppCompatActivity implements View.OnClickListener, Initializable {
     /** A file system to save and load information to the context. */
     FileSystem fileSystem;
@@ -134,10 +137,6 @@ public class CreatePlayerActivity extends AppCompatActivity implements View.OnCl
             return true;
         } catch (SamePlayerNameException e) {
             Toast.makeText(this, "Player name should not be same.", Toast.LENGTH_LONG).show();
-            e.printStackTrace();
-            return false;
-        } catch (TooMuchPlayersException e) {
-            Toast.makeText(this, "You have too many players.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
             return false;
         } catch (EmptyPlayerNameException e) {

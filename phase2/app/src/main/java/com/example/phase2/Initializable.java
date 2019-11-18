@@ -4,5 +4,5 @@ package com.example.phase2;
 
 public interface Initializable {
     /** Initializable. */
-    public void init();
+    void init();
 }
