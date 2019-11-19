@@ -11,15 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase2.DataManagement.FileSystem;
 import com.example.phase2.Initializable;
-import com.example.phase2.AppCoreClasses.Phase1App;
+import com.example.phase2.AppCoreClasses.GameApp;
 import com.example.phase2.R;
 import com.example.phase2.AppCoreClasses.User;
 import com.example.phase2.AppCoreClasses.UserManager;
 
 /** A register activity. */
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, Initializable {
-    FileSystem fileSystem;
-    Phase1App app;
+public class RegisterActivity extends SuperActivity implements View.OnClickListener, Initializable {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,30 +78,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-    }
-
-
-    @Override
     public void init() {
-        app = (Phase1App) getApplication();
-        if(app.getColorTheme().equals("blue")){
-            setTheme(R.style.blue);
-        }
-        else if(app.getColorTheme().equals("yellow")){
-            setTheme(R.style.yellow);
-        }
-
+        super.init();
         setContentView(R.layout.activity_register);
-        fileSystem = new FileSystem(this.getApplicationContext());
 
         //Button initiation reference: https://www.youtube.com/watch?v=GtxVILjLcw8
         final Button registerButton = findViewById(R.id.register);

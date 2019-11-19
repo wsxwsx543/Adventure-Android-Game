@@ -3,7 +3,7 @@ package com.example.phase2.AppCoreClasses;
 import android.app.Application;
 
 /** An app store the data that used by all activities. */
-public class Phase1App extends Application {
+public class GameApp extends Application {
 
     /**
      * The color theme of this app.

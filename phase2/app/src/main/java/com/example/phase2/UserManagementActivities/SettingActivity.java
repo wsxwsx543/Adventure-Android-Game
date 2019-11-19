@@ -10,15 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase2.DataManagement.FileSystem;
 import com.example.phase2.Initializable;
-import com.example.phase2.AppCoreClasses.Phase1App;
+import com.example.phase2.AppCoreClasses.GameApp;
 import com.example.phase2.R;
 import com.example.phase2.AppCoreClasses.UserManager;
 
 /** An activity that represents the setting of the game */
-public class SettingActivity extends AppCompatActivity implements View.OnClickListener, Initializable {
-
-    private Phase1App app;
-    private FileSystem fileSystem;
+public class SettingActivity extends SuperActivity implements View.OnClickListener, Initializable {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +45,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void init() {
-        app = (Phase1App) getApplication();
-        if(app.getColorTheme().equals("blue")){
-            setTheme(R.style.blue);
-        }
-        else if(app.getColorTheme().equals("yellow")){
-            setTheme(R.style.yellow);
-        }
+        super.init();
         setContentView(R.layout.activity_setting);
-
-        fileSystem = new FileSystem(this.getApplicationContext());
 
         final RadioButton blueButton = findViewById(R.id.blue);
         final RadioButton yellowButton = findViewById(R.id.yellow);
@@ -66,17 +55,5 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         blueButton.setOnClickListener(this);
         yellowButton.setOnClickListener(this);
         backButton.setOnClickListener(this);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 }

@@ -9,22 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase2.DataManagement.FileSystem;
 import com.example.phase2.Initializable;
-import com.example.phase2.AppCoreClasses.Phase1App;
+import com.example.phase2.AppCoreClasses.GameApp;
 import com.example.phase2.R;
 import com.example.phase2.AppCoreClasses.UserManager;
 
 /** An activity used to choose a player or create a new player. */
-public class ChooseOrCreatePlayerActivity extends AppCompatActivity implements View.OnClickListener, Initializable {
-    /** The app where player is chosen and created */
-    Phase1App app;
-    /** The file system that helps storing and operating the information of the player */
-    FileSystem fileSystem;
+public class ChooseOrCreatePlayerActivity extends SuperActivity implements View.OnClickListener, Initializable {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
-        // System.out.println(UserManager.getInstance().getCurUser().getUsername());
     }
 
     @Override
@@ -47,28 +42,8 @@ public class ChooseOrCreatePlayerActivity extends AppCompatActivity implements V
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-    }
-
-    @Override
     public void init() {
-        app = (Phase1App) getApplication();
-        if(app.getColorTheme().equals("blue")){
-            setTheme(R.style.blue);
-        }
-        else if(app.getColorTheme().equals("yellow")){
-            setTheme(R.style.yellow);
-        }
-
-
+        super.init();
         setContentView(R.layout.activity_choose_or_create_player);
 
         final Button selectButton = findViewById(R.id.select);
@@ -80,7 +55,5 @@ public class ChooseOrCreatePlayerActivity extends AppCompatActivity implements V
         createButton.setOnClickListener(this);
         logoutButton.setOnClickListener(this);
         settingButton.setOnClickListener(this);
-
-        fileSystem = new FileSystem(this.getApplicationContext());
     }
 }

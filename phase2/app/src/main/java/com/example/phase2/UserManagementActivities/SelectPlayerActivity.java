@@ -14,12 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase2.DataManagement.FileSystem;
 import com.example.phase2.Initializable;
-import com.example.phase2.AppCoreClasses.Phase1App;
+import com.example.phase2.AppCoreClasses.GameApp;
 import com.example.phase2.AppCoreClasses.Player;
 import com.example.phase2.R;
 import com.example.phase2.AppCoreClasses.User;
 import com.example.phase2.AppCoreClasses.UserManager;
-import com.example.phase2.stage1.g1moveActivity;
+import com.example.phase2.stage1.UoftMazeActivity;
 import com.example.phase2.stage2.TreasureHuntActivity;
 import com.example.phase2.stage3.BattleActivity;
 
@@ -27,10 +27,8 @@ import java.util.Iterator;
 import java.util.Set;
 
 /** An activity to select which player you want to use. */
-public class SelectPlayerActivity extends AppCompatActivity implements View.OnClickListener, Initializable {
-    User curUser;
-    FileSystem fileSystem;
-    Phase1App app;
+public class SelectPlayerActivity extends SuperActivity implements View.OnClickListener, Initializable {
+    private User curUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +108,7 @@ public class SelectPlayerActivity extends AppCompatActivity implements View.OnCl
                     if (checkPlayerAvailable(curPlayerName)) {
                         curUser.setCurPlayer(curUser.getPlayers().get(curPlayerName));
                         if(curUser.getPlayers().get(curPlayerName).getCurStage() == 1)
-                            startActivity(new Intent(SelectPlayerActivity.this, g1moveActivity.class));
+                            startActivity(new Intent(SelectPlayerActivity.this, UoftMazeActivity.class));
                         if(curUser.getPlayers().get(curPlayerName).getCurStage() == 2)
                             startActivity(new Intent(SelectPlayerActivity.this, TreasureHuntActivity.class));
                         if(curUser.getPlayers().get(curPlayerName).getCurStage() == 3)
@@ -125,26 +123,8 @@ public class SelectPlayerActivity extends AppCompatActivity implements View.OnCl
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-    }
-
-    @Override
     public void init() {
-        app = (Phase1App) getApplication();
-        if(app.getColorTheme().equals("blue")){
-            setTheme(R.style.blue);
-        }
-        else if(app.getColorTheme().equals("yellow")){
-            setTheme(R.style.yellow);
-        }
+        super.init();
         setContentView(R.layout.activity_select_player);
 
         curUser = UserManager.getInstance().getCurUser();
@@ -156,6 +136,5 @@ public class SelectPlayerActivity extends AppCompatActivity implements View.OnCl
         backButton.setOnClickListener(this);
 
         initSpinner();
-        fileSystem = new FileSystem(this.getApplicationContext());
     }
 }
