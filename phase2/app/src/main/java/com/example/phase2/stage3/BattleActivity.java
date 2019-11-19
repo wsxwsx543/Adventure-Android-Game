@@ -17,6 +17,7 @@ import com.example.phase2.AppCoreClasses.User;
 import com.example.phase2.AppCoreClasses.UserManager;
 import com.example.phase2.UserManagementActivities.WinActivity;
 
+
 /** An activity shows the battle of monster and player for stage 3. */
 public class BattleActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -127,7 +128,15 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.attackBtn:
                 if (p_move) {
                     player_move = "Attack";
-                    battleRound(round, player_move);
+                    round.battle2(player_move, monsterP);
+                    int decreaseM = round.getDamage1();
+                    int decreaseP = round.getDamage2();
+                    if (player.getLivesRemain() > decreaseP) {
+                        player.loseLives(decreaseP);
+                    } else player.loseLives(player.getLivesRemain());
+                    if (monster.getLivesRemain() > decreaseM) {
+                        monster.loseLives(decreaseM);
+                    } else monster.loseLives(monster.getLivesRemain());
                     update();
                     p_move = false;
                 }
@@ -136,7 +145,15 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.defenceBtn:
                 if (p_move) {
                     player_move = "Defence";
-                    battleRound(round, player_move);
+                    round.battle2(player_move, monsterP);
+                    int decreaseM = round.getDamage1();
+                    int decreaseP = round.getDamage2();
+                    if (player.getLivesRemain() > decreaseP) {
+                        player.loseLives(decreaseP);
+                    } else player.loseLives(player.getLivesRemain());
+                    if (monster.getLivesRemain() > decreaseM) {
+                        monster.loseLives(decreaseM);
+                    } else monster.loseLives(monster.getLivesRemain());
                     update();
                     p_move = false;
                 }
@@ -145,7 +162,15 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.evadeBtn:
                 if (p_move) {
                     player_move = "Evade";
-                    battleRound(round, player_move);
+                    round.battle2(player_move, monsterP);
+                    int decreaseM = round.getDamage1();
+                    int decreaseP = round.getDamage2();
+                    if (player.getLivesRemain() > decreaseP) {
+                        player.loseLives(decreaseP);
+                    } else player.loseLives(player.getLivesRemain());
+                    if (monster.getLivesRemain() > decreaseM) {
+                        monster.loseLives(decreaseM);
+                    } else monster.loseLives(monster.getLivesRemain());
                     update();
                     p_move = false;
                 }
@@ -164,7 +189,6 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             default:
                 break;
         }
-
     }
 
 
@@ -180,18 +204,6 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
-
-    private void battleRound(Round round, String player_move){
-        round.battle2(player_move, monsterP);
-        int decreaseM = round.getDamage1();
-        int decreaseP = round.getDamage2();
-        if (player.getLivesRemain() > decreaseP) {
-            player.loseLives(decreaseP);
-        } else player.loseLives(player.getLivesRemain());
-        if (monster.getLivesRemain() > decreaseM) {
-            monster.loseLives(decreaseM);
-        } else monster.loseLives(monster.getLivesRemain());
-    }
 
     /**
      * Check the remain live of the monster.
@@ -234,7 +246,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     private void update() {
         roundNum++;
         String round_n = ("Round Number:" + roundNum);
-        String attack = ("Defence:" + player.getProperty().getDefence());
+        String attack = ("Attack:" + player.getProperty().getAttack());
         String defence = ("Defence:" + player.getProperty().getDefence());
         String flexibility = ("Flexibility:" + player.getProperty().getFlexibility());
         String luckiness = ("Luckiness:" + player.getProperty().getLuckiness());
@@ -248,5 +260,4 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         lifeView.setText(life);
         monsterLifeView.setText(monster_life);
     }
-
 }
