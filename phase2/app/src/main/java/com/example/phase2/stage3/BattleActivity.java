@@ -180,9 +180,9 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
-    
+
     private void battle(String playermove, Round round){
-        round.battle2(player_move, monsterP);
+        round.battle2(playermove, monsterP);
         int decreaseM = round.getDamage1();
         int decreaseP = round.getDamage2();
         if (player.getLivesRemain() > decreaseP) {
