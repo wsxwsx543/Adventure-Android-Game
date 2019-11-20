@@ -21,55 +21,31 @@ import com.example.phase2.UserManagementActivities.WinActivity;
 /** An activity shows the battle of monster and player for stage 3. */
 public class BattleActivity extends AppCompatActivity implements View.OnClickListener {
 
-    /**
-     * The current user.
-     */
+    /** The current user. */
     User curUser;
-    /**
-     * The current player and current monster.
-     */
+    /** The current player and current monster. */
     private Player player;
     private Monster monster;
-    /**
-     * The file system.
-     */
+    /** The file system. */
     private FileSystem fileSystem;
-    /**
-     * The four buttons. Where check button check monster's move.
-     */
+    /** The four buttons. Where check button check monster's move. */
     Button checkBtn;
     Button attackBtn;
     Button defenceBtn;
     Button evadeBtn;
-    /**
-     * The boolean value decide whether is the round that player could move.
-     */
+    /** The boolean value decide whether is the round that player could move. */
     private boolean p_move = false;
-
-    /**
-     * The current round number of the battle game.
-     */
+    /** The current round number of the battle game. */
     private int roundNum = 1;
-    /**
-     * The move that player choose.
-     */
+    /** The move that player choose. */
     String player_move;
-    /**
-     * Monster's property.
-     */
-    private Property monsterP;
-    /**
-     * The eight text views.
-     */
+    /** Monster's property. */
+    private Property monsterProperty;
+    /** The text views. */
+    private TextView monsterMove;
     private TextView lifeView;
     private TextView monsterLifeView;
-    private TextView monsterMove;
     private TextView roundView;
-    private TextView attackView;
-    private TextView defenceView;
-    private TextView flexibilityView;
-    private TextView luckinessView;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,15 +61,14 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         player.setCurStage(3);
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
 
-
+        monsterMove = findViewById(R.id.monster_status);
         lifeView = findViewById(R.id.life);
         monsterLifeView = findViewById(R.id.monster_life);
-        monsterMove = findViewById(R.id.monster_status);
         roundView = findViewById(R.id.round_num);
-        attackView = findViewById(R.id.your_attack);
-        defenceView = findViewById(R.id.your_defence);
-        flexibilityView = findViewById(R.id.your_flexibility);
-        luckinessView = findViewById(R.id.your_luckiness);
+        TextView attackView = findViewById(R.id.your_attack);
+        TextView defenceView = findViewById(R.id.your_defence);
+        TextView flexibilityView = findViewById(R.id.your_flexibility);
+        TextView luckinessView = findViewById(R.id.your_luckiness);
 
         checkBtn = findViewById(R.id.checkBtn);
         checkBtn.setOnClickListener(this);
@@ -157,13 +132,11 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                     break;
                 } else {
                     p_move = true;
-                    monsterP = round.battle1();
+                    monsterProperty = round.getMP();
                     String move = round.getMonsterString();
                     monsterMove.setText(move);
                     break;
                 }
-            default:
-                break;
         }
     }
 
@@ -180,9 +153,13 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
-
-    private void battle(String playermove, Round round){
-        round.battle2(playermove, monsterP);
+    /**
+     * A battle between the player and the monster in one round.
+     * @param playerMove the player's choose of move.
+     * @param round the current game round.
+     */
+    private void battle(String playerMove, Round round){
+        round.battle(playerMove, monsterProperty);
         int decreaseM = round.getDamage1();
         int decreaseP = round.getDamage2();
         if (player.getLivesRemain() > decreaseP) {
@@ -229,23 +206,13 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    /**
-     * Update all the statistics of this game.
-     */
+    /** Update all round number, player's remainLive, and monster's remainLive after each battle. */
     private void update() {
         roundNum++;
         String round_n = ("Round Number:" + roundNum);
-        String attack = ("Attack:" + player.getProperty().getAttack());
-        String defence = ("Defence:" + player.getProperty().getDefence());
-        String flexibility = ("Flexibility:" + player.getProperty().getFlexibility());
-        String luckiness = ("Luckiness:" + player.getProperty().getLuckiness());
         String life = ("Life:" + player.getLivesRemain());
         String monster_life = ("Monster Life:" + monster.getLivesRemain());
         roundView.setText(round_n);
-        attackView.setText(attack);
-        defenceView.setText(defence);
-        flexibilityView.setText(flexibility);
-        luckinessView.setText(luckiness);
         lifeView.setText(life);
         monsterLifeView.setText(monster_life);
     }

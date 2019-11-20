@@ -25,10 +25,10 @@ public class Round {
     /**
      * The property of this player.
      */
-    private Property PP;
-    /**
-     * The string that show the monster's move.
-     */
+//    private Property PP;
+//    /**
+//     * The string that show the monster's move.
+//     */
     private String monsterString;
     /**
      * The damage from player to monster.
@@ -63,7 +63,7 @@ public class Round {
      *
      * @return monster's property.
      */
-    public Property battle1() {
+    private void monsterDoMove() {
         int id;
         Random R = new Random();
         if (monster.getLivesRemain() >= 100) {
@@ -74,6 +74,10 @@ public class Round {
             MP = monsterMove.monsterDoMove(id, monster);
         }
         monsterString = monsterMove.getString(id);
+    }
+
+    public Property getMP(){
+        monsterDoMove();
         return MP;
     }
 
@@ -92,8 +96,8 @@ public class Round {
      * @param move the move player choose.
      * @param MP   the monster's property we get from battle1.
      */
-    public void battle2(String move, Property MP) {
-        PP = playerMove.playerDoMove(move, player); //decided by input
+    public void battle(String move, Property MP) {
+        Property PP = playerMove.playerDoMove(move, player); //decided by input
 
         int damageToPlayer = MP.getAttack() - PP.getDefence();
         int damageToMonster = PP.getAttack() - MP.getDefence();
