@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase2.DataManagement.FileSystem;
@@ -16,8 +18,15 @@ import com.example.phase2.AppCoreClasses.GameApp;
 import com.example.phase2.R;
 import com.example.phase2.AppCoreClasses.User;
 import com.example.phase2.AppCoreClasses.UserManager;
+import com.example.phase2.ScoreBoard.ScoreBoard;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 
 /** A login activity. */
 
@@ -81,7 +90,17 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
                     fileSystem.load("Users.ser"));
         } else {
             UserManager.getInstance().setUsers(new HashMap<>());
-            fileSystem.save(UserManager.getInstance(), "Users.ser");
+            fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+        }
+    }
+
+    public void loadScoreBoard(){
+        if(fileSystem.load("ScoreBoard.ser") instanceof ScoreBoard){
+            ScoreBoard.setScoreBoard((ScoreBoard) fileSystem.load("ScoreBoard.ser"));
+        } else {
+            ScoreBoard.getInstance().setNameLives(new HashMap<>());
+            ScoreBoard.getInstance().setRankNameLives(new ArrayList<>());
+            fileSystem.save(ScoreBoard.getInstance(), "ScoreBoard.ser");
         }
     }
 
@@ -91,6 +110,7 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
 
         setContentView(R.layout.activity_login);
         loadUsers();
+        loadScoreBoard();
 
         //Button initiation reference: https://www.youtube.com/watch?v=GtxVILjLcw8
         final Button loginButton = findViewById(R.id.login);

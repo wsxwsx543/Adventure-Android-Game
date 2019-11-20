@@ -12,6 +12,8 @@ import com.example.phase2.Initializable;
 import com.example.phase2.AppCoreClasses.GameApp;
 import com.example.phase2.R;
 import com.example.phase2.AppCoreClasses.UserManager;
+import com.example.phase2.ScoreBoard.ScoreBoard;
+import com.example.phase2.ScoreBoard.ScoreBoardActivity;
 
 /** An activity used to choose a player or create a new player. */
 public class ChooseOrCreatePlayerActivity extends SuperActivity implements View.OnClickListener, Initializable {
@@ -38,6 +40,9 @@ public class ChooseOrCreatePlayerActivity extends SuperActivity implements View.
             case R.id.settings:
                 startActivity(new Intent(ChooseOrCreatePlayerActivity.this, SettingActivity.class));
                 break;
+            case R.id.scoreboard:
+                startActivity(new Intent(ChooseOrCreatePlayerActivity.this, ScoreBoardActivity.class));
+                break;
         }
     }
 
@@ -50,10 +55,12 @@ public class ChooseOrCreatePlayerActivity extends SuperActivity implements View.
         final Button createButton = findViewById(R.id.create);
         final Button logoutButton = findViewById(R.id.logout);
         final Button settingButton = findViewById(R.id.settings);
+        final Button scoreBoardButton = findViewById(R.id.scoreboard);
 
         selectButton.setOnClickListener(this);
         createButton.setOnClickListener(this);
         logoutButton.setOnClickListener(this);
         settingButton.setOnClickListener(this);
+        scoreBoardButton.setOnClickListener(this);
     }
 }

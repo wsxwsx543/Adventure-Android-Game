@@ -8,6 +8,7 @@ import com.example.phase2.AppCoreClasses.UserManager;
 import com.example.phase2.DataManagement.FileSystem;
 import com.example.phase2.Initializable;
 import com.example.phase2.R;
+import com.example.phase2.ScoreBoard.ScoreBoard;
 
 public class SuperActivity extends AppCompatActivity implements Initializable {
     FileSystem fileSystem;
@@ -34,11 +35,13 @@ public class SuperActivity extends AppCompatActivity implements Initializable {
     protected void onDestroy() {
         super.onDestroy();
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+        fileSystem.save(ScoreBoard.getInstance(), "ScoreBoard.ser");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+        fileSystem.save(ScoreBoard.getInstance(), "ScoreBoard.ser");
     }
 }
