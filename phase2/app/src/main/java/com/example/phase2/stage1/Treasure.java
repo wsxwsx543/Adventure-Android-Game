@@ -23,7 +23,7 @@ public class Treasure {
         this.x = curr_x;
         this.y = curr_y;
 
-        treasurerview = BitmapFactory.decodeResource(res, R.drawable.baoxiang2);
+        treasurerview = BitmapFactory.decodeResource(res, R.drawable.uoftcertificate);
 
         treasurerview = Bitmap.createScaledBitmap(treasurerview, width, height, false);
     }

@@ -35,18 +35,12 @@ public class UoftMazeView extends SurfaceView implements Runnable{
     /**
      * The three monsters in the screen
      */
-    private Monster[] mymonsters = {
-            new Monster(720, 360, getResources()),
-            new Monster(1008, 576, getResources()),
-            new Monster(288, 1368, getResources()),
-            new Monster(144, 864,getResources()),
-            new Monster(864, 144, getResources())
-    };
+    private Monster[] mymonsters;
 
     /**
      * The treasure
      */
-    private Treasure[] myTreasures = {new Treasure(792, 648, getResources())};
+    private Treasure[] myTreasures;
     /**
      * The background
      */
@@ -103,6 +97,18 @@ public class UoftMazeView extends SurfaceView implements Runnable{
         background1 = new Background(screenX, screenY, getResources());
         hero = new Hero(getResources());
 
+        mymonsters = new Monster[]{
+                new Monster(720, 360, getResources()),
+                new Monster(1008, 576, getResources()),
+                new Monster(288, 1368, getResources()),
+                new Monster(144, 864, getResources()),
+                new Monster(864, 144, getResources())
+        };
+
+        myTreasures = new Treasure[]{
+                new Treasure(792, 648, getResources())
+        };
+
         paint = new Paint();
 
         lifePaint.setColor(Color.WHITE);
@@ -129,6 +135,8 @@ public class UoftMazeView extends SurfaceView implements Runnable{
         luckinessPaint.setTextSize(70);
         luckinessPaint.setTypeface(Typeface.DEFAULT_BOLD);
         luckinessPaint.setAntiAlias(true);
+
+
 
         curUser.getCurPlayer().setCurStage(1);
         saveUser();
@@ -174,16 +182,12 @@ public class UoftMazeView extends SurfaceView implements Runnable{
     public void escape(Treasure treasure){
         double d = Math.random();
         if (d < 0.25){
-//            treasure.x += treasure.width;
             treasure.setX(treasure.getX()+treasure.getWidth());
         } else if(0.25 <= d && d < 0.5){
-//            treasure.x -= treasure.width;
             treasure.setX(treasure.getX()-treasure.getWidth());
         } else if(0.5 <= d && d < 0.75){
-//            treasure.y += treasure.height;
             treasure.setY(treasure.getY()+treasure.getHeight());
         } else{
-//            treasure.y -= treasure.height;
             treasure.setY(treasure.getY()-treasure.getHeight());
         }
         if (treasure.getY() < 360)
@@ -233,25 +237,21 @@ public class UoftMazeView extends SurfaceView implements Runnable{
      */
     private void update(){
         if (hero.getIsGoingUp()){
-//            hero.y -= hero.height;
             hero.setY(hero.getY()-hero.getHeight());
             hero.setIsGoingUp(false);
         }
 
         if (hero.getIsGoingDown()){
-//            hero.y += hero.height;
             hero.setY(hero.getY()+hero.getHeight());
             hero.setIsGoingDown(false);
         }
 
         if (hero.getIsGoingLeft()){
-//            hero.x -= hero.width;
             hero.setX(hero.getX()-hero.getWidth());
             hero.setIsGoingLeft(false);
         }
 
         if (hero.getIsGoingRight()){
-//            hero.x += hero.width;
             hero.setX(hero.getX()+hero.getWidth());
             hero.setIsGoingRight(false);
         }
