@@ -1,10 +1,15 @@
 package com.example.phase2.AppCoreClasses;
 
+import androidx.annotation.NonNull;
+
+import com.example.phase2.ScoreBoard.ScoreBoard;
+
 import java.io.Serializable;
 import java.util.List;
+import java.util.Observable;
 
 /** A player. */
-public class Player implements Serializable {
+public class Player extends Observable implements Serializable {
 
     /** The player's name. */
     private String name;
@@ -34,6 +39,7 @@ public class Player implements Serializable {
         this.livesRemain = 100;
         this.attackCreate = 0;
         this.curStage = 1;
+        this.addObserver(ScoreBoard.getInstance());
     }
 
     /**
@@ -72,6 +78,14 @@ public class Player implements Serializable {
      */
     public void setCurStage(int curStage) {
         this.curStage = curStage;
+    }
+
+    public void setCurStage(int curStage, boolean win){
+        this.curStage = curStage;
+        if(curStage == 4 && win){
+            setChanged();
+            notifyObservers(this);
+        }
     }
 
     /**
@@ -169,5 +183,11 @@ public class Player implements Serializable {
      */
     public List<String> getWeaponNames(){
         return weaponManager.getWeaponNames();
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return getName() + ":" + getLivesRemain();
     }
 }

@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserManagementActivities.SuperActivity"></activity>
+        <activity android:name=".ScoreBoard.ScoreBoardActivity"></activity>
+        <activity android:name=".UserManagementActivities.SuperActivity" />
         <activity android:name=".UserManagementActivities.SettingActivity" />
         <activity android:name=".UserManagementActivities.WinActivity" />
         <activity android:name=".UserManagementActivities.LoseActivity" />
