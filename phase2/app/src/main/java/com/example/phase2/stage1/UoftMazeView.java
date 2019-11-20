@@ -35,12 +35,12 @@ public class UoftMazeView extends SurfaceView implements Runnable{
     /**
      * The three monsters in the screen
      */
-    private Monster[] mymonsters;
+    private UoftObjects[] mymonsters;
 
     /**
      * The treasure
      */
-    private Treasure[] myTreasures;
+    private UoftObjects[] myTreasures;
     /**
      * The background
      */
@@ -97,17 +97,26 @@ public class UoftMazeView extends SurfaceView implements Runnable{
         background1 = new Background(screenX, screenY, getResources());
         hero = new Hero(getResources());
 
-        mymonsters = new Monster[]{
-                new Monster(720, 360, getResources()),
-                new Monster(1008, 576, getResources()),
-                new Monster(288, 1368, getResources()),
-                new Monster(144, 864, getResources()),
-                new Monster(864, 144, getResources())
-        };
+        UoftObjects m1 = UoftObjectsFactory.getUoftObjects("Monster", 720, 360, getResources());
+        UoftObjects m2 = UoftObjectsFactory.getUoftObjects("Monster", 1008, 576, getResources());
+        UoftObjects m3 = UoftObjectsFactory.getUoftObjects("Monster", 288, 1368, getResources());
+        UoftObjects m4 = UoftObjectsFactory.getUoftObjects("Monster", 144, 864, getResources());
+        UoftObjects m5 = UoftObjectsFactory.getUoftObjects("Monster", 864, 144, getResources());
+        mymonsters = new UoftObjects[]{m1, m2, m3, m4, m5};
 
-        myTreasures = new Treasure[]{
-                new Treasure(792, 648, getResources())
-        };
+//        mymonsters = new Monster[]{
+//                new Monster(720, 360, getResources()),
+//                new Monster(1008, 576, getResources()),
+//                new Monster(288, 1368, getResources()),
+//                new Monster(144, 864, getResources()),
+//                new Monster(864, 144, getResources())
+//        };
+
+//        myTreasures = new Treasure[]{
+//                new Treasure(792, 648, getResources())
+//        };
+        UoftObjects t1 = UoftObjectsFactory.getUoftObjects("Treasure", 792, 648, getResources());
+        myTreasures = new UoftObjects[]{t1};
 
         paint = new Paint();
 
@@ -136,8 +145,6 @@ public class UoftMazeView extends SurfaceView implements Runnable{
         luckinessPaint.setTypeface(Typeface.DEFAULT_BOLD);
         luckinessPaint.setAntiAlias(true);
 
-
-
         curUser.getCurPlayer().setCurStage(1);
         saveUser();
 
@@ -157,11 +164,11 @@ public class UoftMazeView extends SurfaceView implements Runnable{
             draw();
             
 
-            for (Monster monster : this.mymonsters) {
+            for (UoftObjects monster : this.mymonsters) {
                 action(monster);
             }
 
-            for (Treasure treasure : this.myTreasures) {
+            for (UoftObjects treasure : this.myTreasures) {
                 escape(treasure);
             }
 
@@ -179,7 +186,7 @@ public class UoftMazeView extends SurfaceView implements Runnable{
     /**
      * Method to move the treasure
      */
-    public void escape(Treasure treasure){
+    public void escape(UoftObjects treasure){
         double d = Math.random();
         if (d < 0.25){
             treasure.setX(treasure.getX()+treasure.getWidth());
@@ -207,7 +214,7 @@ public class UoftMazeView extends SurfaceView implements Runnable{
     /**
      * Action to move monsters
      */
-    public void action(Monster monster){
+    public void action(UoftObjects monster){
         double d = Math.random();
         if (d < 0.25){
             monster.setX(monster.getX()+monster.getWidth());
@@ -268,7 +275,7 @@ public class UoftMazeView extends SurfaceView implements Runnable{
         if (hero.getX() >= screenX - hero.getWidth())
             hero.setX(screenX - hero.getWidth());
 
-        for (Monster monster : this.mymonsters) {
+        for (UoftObjects monster : this.mymonsters) {
             if (hero.getX() == monster.getX() && hero.getY() == monster.getY()) {
                 life--;
                 curUser.getCurPlayer().setLivesRemain(life);
@@ -304,12 +311,12 @@ public class UoftMazeView extends SurfaceView implements Runnable{
 
             canvas.drawBitmap(hero.getg1hero(), hero.getX(), hero.getY(), paint);
 
-            for (Monster monster : this.mymonsters) {
-                canvas.drawBitmap(monster.getMonsterView(), monster.getX(), monster.getY(), paint);
+            for (UoftObjects monster : this.mymonsters) {
+                canvas.drawBitmap(monster.getView(), monster.getX(), monster.getY(), paint);
             }
 
-            for (Treasure treasure : this.myTreasures) {
-                canvas.drawBitmap(treasure.getTreasurerview(), treasure.getX(), treasure.getY(), paint);
+            for (UoftObjects treasure : this.myTreasures) {
+                canvas.drawBitmap(treasure.getView(), treasure.getX(), treasure.getY(), paint);
             }
 
             canvas.drawText("Life: " + life, 20, 60, lifePaint);

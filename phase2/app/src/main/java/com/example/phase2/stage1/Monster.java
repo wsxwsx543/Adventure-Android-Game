@@ -9,7 +9,7 @@ import com.example.phase2.R;
 /**
  * The monster class
  */
-public class Monster {
+public class Monster extends UoftObjects{
     /**
      * The x, y coordinate and the length and width of the Monster image
      */
@@ -30,41 +30,78 @@ public class Monster {
         monsterview = Bitmap.createScaledBitmap(monsterview, width, height, false);
     }
 
-    /**
-     * Return the image of monster
-     */
-    Bitmap getMonsterView(){ return monsterview;}
-
+    @Override
     public int getX(){
         return x;
     }
-
+    @Override
     public int getY(){
         return y;
     }
-
+    @Override
     public int getWidth(){
         return width;
     }
-
+    @Override
     public int getHeight(){
         return height;
     }
-
+    @Override
     public void setX(int x){
         this.x = x;
     }
-
+    @Override
     public void setY(int y){
         this.y = y;
     }
-
+    @Override
     public void setWidth(int width){
         this.width = width;
     }
-
+    @Override
     public void setHeight(int height){
         this.height = height;
     }
+    @Override
+    public Bitmap getView() {
+        return monsterview;
+    }
+
+    /**
+     * Return the image of monster
+     */
+//    Bitmap getMonsterView(){ return monsterview;}
+//
+//    public int getX(){
+//        return x;
+//    }
+//
+//    public int getY(){
+//        return y;
+//    }
+//
+//    public int getWidth(){
+//        return width;
+//    }
+//
+//    public int getHeight(){
+//        return height;
+//    }
+//
+//    public void setX(int x){
+//        this.x = x;
+//    }
+//
+//    public void setY(int y){
+//        this.y = y;
+//    }
+//
+//    public void setWidth(int width){
+//        this.width = width;
+//    }
+//
+//    public void setHeight(int height){
+//        this.height = height;
+//    }
 
 }

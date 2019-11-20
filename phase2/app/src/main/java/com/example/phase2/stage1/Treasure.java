@@ -9,7 +9,7 @@ import com.example.phase2.R;
 /**
  * The treasure class
  */
-public class Treasure {
+public class Treasure extends UoftObjects{
     /**
      * The x, y coordinate and the length and width of the treasure image
      */
@@ -31,37 +31,42 @@ public class Treasure {
     /**
      * Return the treasure image
      */
-    Bitmap getTreasurerview(){ return treasurerview;}
+//    Bitmap getTreasurerview(){ return treasurerview;}
 
+    @Override
     public int getX(){
         return x;
     }
-
+    @Override
     public int getY(){
         return y;
     }
-
+    @Override
     public int getWidth(){
         return width;
     }
-
+    @Override
     public int getHeight(){
         return height;
     }
-
+    @Override
     public void setX(int x){
         this.x = x;
     }
-
+    @Override
     public void setY(int y){
         this.y = y;
     }
-
+    @Override
     public void setWidth(int width){
         this.width = width;
     }
-
+    @Override
     public void setHeight(int height){
         this.height = height;
+    }
+    @Override
+    public Bitmap getView() {
+        return treasurerview;
     }
 }
