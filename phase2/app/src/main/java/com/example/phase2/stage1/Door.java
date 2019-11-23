@@ -6,41 +6,42 @@ import android.graphics.BitmapFactory;
 
 import com.example.phase2.R;
 
-/**
- * The treasure class
- */
-public class Treasure extends UoftObjects{
+public class Door extends UoftObjects {
     /**
-     * The x, y coordinate and the length and width of the treasure image
+     * The x, y coordinate and the length and width of the door image
      */
     private int x, y, width = 90, height = 90;
-    private Bitmap treasurerview;
-
-    private String gift;
+    private Bitmap doorview;
 
     /**
      * @param res
      */
-    Treasure(int curr_x, int curr_y, Resources res){
+    Door(int curr_x, int curr_y, Resources res){
         this.x = curr_x;
         this.y = curr_y;
 
-        treasurerview = BitmapFactory.decodeResource(res, R.drawable.treasure);
+        doorview = BitmapFactory.decodeResource(res, R.drawable.door2);
 
-        treasurerview = Bitmap.createScaledBitmap(treasurerview, width, height, false);
+        doorview = Bitmap.createScaledBitmap(doorview, width, height, false);
     }
 
     /**
-     * Return the treasure image
+     * Return the door image
      */
 //    Bitmap getTreasurerview(){ return treasurerview;}
 
     @Override
-    public int getX(){ return x; }
+    public int getX(){
+        return x;
+    }
     @Override
-    public int getY(){ return y; }
+    public int getY(){
+        return y;
+    }
     @Override
-    public int getWidth(){ return width; }
+    public int getWidth(){
+        return width;
+    }
     @Override
     public int getHeight(){
         return height;
@@ -63,10 +64,6 @@ public class Treasure extends UoftObjects{
     }
     @Override
     public Bitmap getView() {
-        return treasurerview;
+        return doorview;
     }
-
-    public void setGift(String gift){ this.gift = gift; }
-
-    public String getGift(){ return this.gift;}
 }

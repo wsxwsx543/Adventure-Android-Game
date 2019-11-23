@@ -13,7 +13,7 @@ public class Monster extends UoftObjects{
     /**
      * The x, y coordinate and the length and width of the Monster image
      */
-    private int x , y, width = 72, height = 72;
+    private int x , y, width = 90, height = 90;
 
     Bitmap monsterview;
 
@@ -25,7 +25,7 @@ public class Monster extends UoftObjects{
         this.x = curr_x;
         this.y = curr_y;
 
-        monsterview = BitmapFactory.decodeResource(res, R.drawable.g1_utoronto);
+        monsterview = BitmapFactory.decodeResource(res, R.drawable.monster);
 
         monsterview = Bitmap.createScaledBitmap(monsterview, width, height, false);
     }

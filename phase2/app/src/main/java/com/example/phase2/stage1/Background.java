@@ -26,7 +26,7 @@ public class Background {
      */
     Background(int screenX, int screenY, Resources res){
 
-        background = BitmapFactory.decodeResource(res, R.drawable.g1_dialoguebackground);
+        background = BitmapFactory.decodeResource(res, R.drawable.background2);
         background = Bitmap.createScaledBitmap(background, screenX, screenY, false);
 
     }

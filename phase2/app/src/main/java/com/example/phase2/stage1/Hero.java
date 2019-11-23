@@ -13,7 +13,7 @@ public class Hero {
     /**
      * The x, y coordinate and the length and width of the hero image 
      */
-    private int x = 0, y = 360, width = 72, height = 72;
+    private int x = 0, y = 360, width = 90, height = 90;
     /**
      * if the hero is going up/ down/ right/ left
      */
@@ -21,13 +21,16 @@ public class Hero {
     private boolean isGoingdown = false;
     private boolean isGoingLeft = false;
     private boolean isGoingRight = false;
+
+    private boolean key = false;
+
     Bitmap heroFront;
 
     /**
      * @param res
      */
     Hero(Resources res){
-        heroFront = BitmapFactory.decodeResource(res, R.drawable.g1_player_front);
+        heroFront = BitmapFactory.decodeResource(res, R.drawable.hero2);
 
         heroFront = Bitmap.createScaledBitmap(heroFront, width, height, false);
 
@@ -103,4 +106,8 @@ public class Hero {
     public void setHeight(int height){
         this.height = height;
     }
+
+    public void setKey(){ this.key = true;}
+
+    public boolean getKey(){ return  this.key;}
 }
