@@ -20,7 +20,7 @@
         <activity android:name=".UserManagementActivities.SelectPlayerActivity" />
         <activity android:name=".UserManagementActivities.ChooseOrCreatePlayerActivity" />
         <activity android:name=".UserManagementActivities.RegisterActivity" />
-        <activity android:name=".stage1.UoftMazeActivity" />
+        <activity android:name=".stage1.MazeActivity" />
         <activity android:name=".stage3.BattleActivity" />
         <activity android:name=".UserManagementActivities.LoginActivity">
             <intent-filter>

@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 
 import com.example.phase2.R;
 
-public class Door extends UoftObjects {
+public class Door extends MazeObjects {
     /**
      * The x, y coordinate and the length and width of the door image
      */
