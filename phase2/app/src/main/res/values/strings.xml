@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">phase1</string>
+    <string name="app_name">phase2</string>
     <string name="welcome">Welcome</string>
     <string name="input_username">Please enter user name</string>
     <string name="input_password">Please enter password</string>
@@ -23,4 +23,7 @@
     <string name="check_monster_move">Check Monster Move</string>
     <string name="check">Check</string>
     <string name="this_is_a_cute_monster">This is a cute monster.</string>
+    <string name="save_record">Do you want to save this record?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 </resources>
