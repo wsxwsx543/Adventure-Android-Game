@@ -10,16 +10,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.phase2.DataManagement.FileSystem;
 import com.example.phase2.Initializable;
-import com.example.phase2.AppCoreClasses.GameApp;
 import com.example.phase2.AppCoreClasses.Player;
 import com.example.phase2.R;
 import com.example.phase2.AppCoreClasses.User;
 import com.example.phase2.AppCoreClasses.UserManager;
-import com.example.phase2.stage1.UoftMazeActivity;
+import com.example.phase2.stage1.MazeActivity;
 import com.example.phase2.stage2.TreasureHuntActivity;
 import com.example.phase2.stage3.BattleActivity;
 
@@ -108,7 +104,7 @@ public class SelectPlayerActivity extends SuperActivity implements View.OnClickL
                     if (checkPlayerAvailable(curPlayerName)) {
                         curUser.setCurPlayer(curUser.getPlayers().get(curPlayerName));
                         if(curUser.getPlayers().get(curPlayerName).getCurStage() == 1)
-                            startActivity(new Intent(SelectPlayerActivity.this, UoftMazeActivity.class));
+                            startActivity(new Intent(SelectPlayerActivity.this, MazeActivity.class));
                         if(curUser.getPlayers().get(curPlayerName).getCurStage() == 2)
                             startActivity(new Intent(SelectPlayerActivity.this, TreasureHuntActivity.class));
                         if(curUser.getPlayers().get(curPlayerName).getCurStage() == 3)

@@ -2,7 +2,7 @@ package com.example.phase2.stage1;
 
 import android.graphics.Bitmap;
 
-public abstract class UoftObjects {
+public abstract class MazeObjects {
     public abstract int getX();
     public abstract int getY();
     public abstract int getWidth();

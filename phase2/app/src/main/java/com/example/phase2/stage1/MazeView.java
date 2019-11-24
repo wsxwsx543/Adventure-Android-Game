@@ -17,7 +17,7 @@ import com.example.phase2.stage2.TreasureHuntActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UoftMazeView extends SurfaceView implements Runnable{
+public class MazeView extends SurfaceView implements Runnable{
     /**
      * The main Thread
      */
@@ -40,17 +40,17 @@ public class UoftMazeView extends SurfaceView implements Runnable{
     /**
      * The three monsters in the screen
      */
-    private List<UoftObjects> mymonsters;
+    private List<MazeObjects> mymonsters;
 
     /**
      * The treasure
      */
-    private List<UoftObjects> myTreasures;
+    private List<MazeObjects> myTreasures;
 
     /**
      * The Door
      */
-    private List<UoftObjects> myDoors;
+    private List<MazeObjects> myDoors;
 
 
     /**
@@ -96,7 +96,7 @@ public class UoftMazeView extends SurfaceView implements Runnable{
      * @param screenX the width of the screen
      * @param screenY the length of the screen
      */
-    public UoftMazeView(Context context, int screenX, int screenY){
+    public MazeView(Context context, int screenX, int screenY){
         super(context);
 
         this.screenX = screenX;
@@ -125,41 +125,29 @@ public class UoftMazeView extends SurfaceView implements Runnable{
         background1 = new Background(screenX, screenY, getResources());
         hero = new Hero(getResources());
 
-        UoftObjects m1 = UoftObjectsFactory.getUoftObjects("Monster", 900, 360, getResources());
-        UoftObjects m2 = UoftObjectsFactory.getUoftObjects("Monster", 540, 270, getResources());
-        UoftObjects m3 = UoftObjectsFactory.getUoftObjects("Monster", 360, 990, getResources());
-        UoftObjects m4 = UoftObjectsFactory.getUoftObjects("Monster", 90, 180, getResources());
-        UoftObjects m5 = UoftObjectsFactory.getUoftObjects("Monster", 270, 450, getResources());
+        MazeObjects m1 = MazeObjectsFactory.getMazeObject("Monster", 900, 360, getResources());
+        MazeObjects m2 = MazeObjectsFactory.getMazeObject("Monster", 540, 270, getResources());
+        MazeObjects m3 = MazeObjectsFactory.getMazeObject("Monster", 360, 990, getResources());
+        MazeObjects m4 = MazeObjectsFactory.getMazeObject("Monster", 90, 180, getResources());
+        MazeObjects m5 = MazeObjectsFactory.getMazeObject("Monster", 270, 450, getResources());
         mymonsters.add(m1);
         mymonsters.add(m2);
         mymonsters.add(m3);
         mymonsters.add(m4);
         mymonsters.add(m5);
 
-        // mymonsters = new UoftObjects[]{m1, m2, m3, m4, m5};
 
-//        mymonsters = new Monster[]{
-//                new Monster(720, 360, getResources()),
-//                new Monster(1008, 576, getResources()),
-//                new Monster(288, 1368, getResources()),
-//                new Monster(144, 864, getResources()),
-//                new Monster(864, 144, getResources())
-//        };
-
-//        myTreasures = new Treasure[]{
-//                new Treasure(792, 648, getResources())
-//        };
-        UoftObjects t1 = UoftObjectsFactory.getUoftObjects("Treasure", 720, 630, getResources());
+        MazeObjects t1 = MazeObjectsFactory.getMazeObject("Treasure", 720, 630, getResources());
         ((Treasure) t1).setGift("Key");
-        UoftObjects t2 = UoftObjectsFactory.getUoftObjects("Treasure", 90, 720, getResources());
+        MazeObjects t2 = MazeObjectsFactory.getMazeObject("Treasure", 90, 720, getResources());
         ((Treasure) t2).setGift("Life");
-        UoftObjects t3 = UoftObjectsFactory.getUoftObjects("Treasure", 540, 360, getResources());
+        MazeObjects t3 = MazeObjectsFactory.getMazeObject("Treasure", 540, 360, getResources());
         ((Treasure) t3).setGift("attack");
-        UoftObjects t4 = UoftObjectsFactory.getUoftObjects("Treasure", 180, 990, getResources());
+        MazeObjects t4 = MazeObjectsFactory.getMazeObject("Treasure", 180, 990, getResources());
         ((Treasure) t4).setGift("defence");
-        UoftObjects t5 = UoftObjectsFactory.getUoftObjects("Treasure", 630, 630, getResources());
+        MazeObjects t5 = MazeObjectsFactory.getMazeObject("Treasure", 630, 630, getResources());
         ((Treasure) t5).setGift("flexibility");
-        UoftObjects t6 = UoftObjectsFactory.getUoftObjects("Treasure", 270, 450, getResources());
+        MazeObjects t6 = MazeObjectsFactory.getMazeObject("Treasure", 270, 450, getResources());
         ((Treasure) t6).setGift("luckiness");
 
         myTreasures.add(t1);
@@ -169,8 +157,8 @@ public class UoftMazeView extends SurfaceView implements Runnable{
         myTreasures.add(t5);
         myTreasures.add(t6);
 
-        //myTreasures = new UoftObjects[]{t1};
-        UoftObjects d1 = UoftObjectsFactory.getUoftObjects("Door", 990, 1350, getResources());
+
+        MazeObjects d1 = MazeObjectsFactory.getMazeObject("Door", 990, 1350, getResources());
         myDoors.add(d1);
 
 
@@ -231,13 +219,10 @@ public class UoftMazeView extends SurfaceView implements Runnable{
             sleep();
             
 
-            for (UoftObjects monster : this.mymonsters) {
+            for (MazeObjects monster : this.mymonsters) {
                 action(monster);
             }
 
-//            for (UoftObjects treasure : this.myTreasures) {
-//                escape(treasure);
-//            }
 
         }
 
@@ -250,38 +235,11 @@ public class UoftMazeView extends SurfaceView implements Runnable{
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
     }
 
-    /**
-     * Method to move the treasure
-     */
-//    public void escape(UoftObjects treasure){
-//        double d = Math.random();
-//        if (d < 0.25){
-//            treasure.setX(treasure.getX()+treasure.getWidth());
-//        } else if(0.25 <= d && d < 0.5){
-//            treasure.setX(treasure.getX()-treasure.getWidth());
-//        } else if(0.5 <= d && d < 0.75){
-//            treasure.setY(treasure.getY()+treasure.getHeight());
-//        } else{
-//            treasure.setY(treasure.getY()-treasure.getHeight());
-//        }
-//        if (treasure.getY() < 360)
-//            treasure.setY(360);
-//
-//        if (treasure.getY() >= 1440)
-//            treasure.setY(1440);
-//
-//        if (treasure.getX() < 0)
-//            treasure.setX(0);
-//
-//        if (treasure.getX() >= screenX - treasure.getWidth())
-//            treasure.setX(screenX - treasure.getWidth());
-//        sleep();
-//    }
 
     /**
      * Action to move monsters
      */
-    public void action(UoftObjects monster){
+    public void action(MazeObjects monster){
         double d = Math.random();
         if (d < 0.25){
             monster.setX(monster.getX()+monster.getWidth());
@@ -342,56 +300,44 @@ public class UoftMazeView extends SurfaceView implements Runnable{
         if (hero.getX() >= screenX - hero.getWidth())
             hero.setX(screenX - hero.getWidth());
 
-        for (UoftObjects monster : this.mymonsters) {
+        for (MazeObjects monster : this.mymonsters) {
             if (hero.getX() == monster.getX() && hero.getY() == monster.getY()) {
                 life--;
-//                curUser.getCurPlayer().setLivesRemain(life);
-//                saveUser();
                 if (life == 0) {
-                    Intent restartg1Intent = new Intent(getContext(), UoftMazeActivity.class);
+                    Intent restartg1Intent = new Intent(getContext(), MazeActivity.class);
                     getContext().startActivity(restartg1Intent);
                 }
             }
         }
 
-        for (UoftObjects treasure : this.myTreasures){
+        for (MazeObjects treasure : this.myTreasures){
             if (hero.getX() == treasure.getX() && hero.getY() == treasure.getY()){
                 if (((Treasure) treasure).getGift().equals("Life")){
                     life += 5;
-//                    curUser.getCurPlayer().setLivesRemain(life);
-//                    saveUser();
                     giftlife += 5;
                     ((Treasure) treasure).setGift("Empty");
                     myTreasures.remove(treasure);
                     break;
                 } else if(((Treasure) treasure).getGift().equals("attack")){
                     attack += 5;
-//                    curUser.getCurPlayer().getProperty().setAttack(attack);
-//                    saveUser();
                     giftattack += 5;
                     ((Treasure) treasure).setGift("Empty");
                     myTreasures.remove(treasure);
                     break;
                 } else if(((Treasure) treasure).getGift().equals("defence")){
                     defence += 5;
-//                    curUser.getCurPlayer().setLivesRemain(defence);
-//                    saveUser();
                     giftdefence += 5;
                     ((Treasure) treasure).setGift("Empty");
                     myTreasures.remove(treasure);
                     break;
                 } else if(((Treasure) treasure).getGift().equals("flexibility")){
                     flexibility += 5;
-//                    curUser.getCurPlayer().setLivesRemain(flexibility);
-//                    saveUser();
                     giftflexibility += 5;
                     ((Treasure) treasure).setGift("Empty");
                     myTreasures.remove(treasure);
                     break;
                 } else if(((Treasure) treasure).getGift().equals("luckiness")){
                     luckiness += 5;
-//                    curUser.getCurPlayer().setLivesRemain(luckiness);
-//                    saveUser();
                     giftluckiness += 5;
                     ((Treasure) treasure).setGift("Empty");
                     myTreasures.remove(treasure);
@@ -434,15 +380,15 @@ public class UoftMazeView extends SurfaceView implements Runnable{
 
             canvas.drawBitmap(hero.getg1hero(), hero.getX(), hero.getY(), paint);
 
-            for (UoftObjects monster : this.mymonsters) {
+            for (MazeObjects monster : this.mymonsters) {
                 canvas.drawBitmap(monster.getView(), monster.getX(), monster.getY(), paint);
             }
 
-            for (UoftObjects treasure : this.myTreasures) {
+            for (MazeObjects treasure : this.myTreasures) {
                 canvas.drawBitmap(treasure.getView(), treasure.getX(), treasure.getY(), paint);
             }
 
-            for (UoftObjects door : this.myDoors) {
+            for (MazeObjects door : this.myDoors) {
                 canvas.drawBitmap(door.getView(), door.getX(), door.getY(), paint);
             }
 
