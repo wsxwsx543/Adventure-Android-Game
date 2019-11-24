@@ -7,6 +7,7 @@ import android.os.Message;
 
 import com.example.phase2.Initializable;
 import com.example.phase2.R;
+import com.example.phase2.stage3.PopUpActivity;
 
 /** Jump to this activity if the player win the game. */
 public class WinActivity extends SuperActivity implements Initializable {
@@ -16,7 +17,7 @@ public class WinActivity extends SuperActivity implements Initializable {
             super.handleMessage(msg);
             switch (msg.what){
                 case 1:
-                    startActivity(new Intent(WinActivity.this, ChooseOrCreatePlayerActivity.class));
+                    startActivity(new Intent(WinActivity.this, PopUpActivity.class));
             }
         }
     };

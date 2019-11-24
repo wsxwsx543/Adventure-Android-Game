@@ -12,7 +12,7 @@ class BoxesManager {
 
     private int boardWidth;
     private int boardLength;
-    private int unit_size;
+    private int unitSize;
 
     private double emptyBoxRate;
     private double treasureRate;
@@ -20,28 +20,28 @@ class BoxesManager {
 
     private int luckiness = UserManager.getInstance().getCurUser().getCurPlayer().getProperty().getLuckiness();
 
-    BoxesManager(int boardWidth, int boardLength, int unit_size, int startX, int start_Y, Resources res){
+    BoxesManager(int boardWidth, int boardLength, int unitSize, int startX, int start_Y, Resources res){
         this.boardLength = boardLength;
         this.boardWidth = boardWidth;
-        this.unit_size = unit_size;
+        this.unitSize = unitSize;
         boxes = new Box[this.boardLength][this.boardWidth];
+        BoxFactory boxFactory = new BoxFactory();
+        setUpTheOdd();
 
-        // Sets the type for every box
+        // Sets the type for every box by the chances specified above
         for (int y = 0; y < this.boardLength; y++){
             for (int x = 0; x < this.boardWidth; x++) {
 
-                setUpTheOdd();
-
                 double decider = Math.random();
-                int cur_x = startX + x * this.unit_size;
-                int cur_y = start_Y + y * this.unit_size;
+                int curX = startX + x * this.unitSize;
+                int curY = start_Y + y * this.unitSize;
                 Box thisBox;
                 if (decider < emptyBoxRate) {
-                    thisBox = new EmptyUnit(cur_x, cur_y, this.unit_size, res);
+                    thisBox = boxFactory.createBox("EmptyUnit", curX, curY, this.unitSize, res);
                 } else if (decider < emptyBoxRate + treasureRate) {
-                    thisBox = new Treasure(cur_x, cur_y, this.unit_size, res);
+                    thisBox = boxFactory.createBox("Treasure", curX, curY, this.unitSize, res);
                 } else {
-                    thisBox = new Trap(cur_x, cur_y, this.unit_size, res);
+                    thisBox = boxFactory.createBox("Trap", curX, curY, this.unitSize, res);
                 }
                 boxes[y][x] = thisBox;
             }

@@ -45,7 +45,6 @@ abstract class Box {
         this.neighbours.add(box);
     }
 
-    // Return number of traps that is around this box
     int returnNumOfTrap(){
         int sum = 0;
         for (int i = 0; i < neighbours.size(); i++){

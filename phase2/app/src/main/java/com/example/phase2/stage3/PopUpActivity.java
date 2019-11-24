@@ -2,6 +2,7 @@ package com.example.phase2.stage3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -13,6 +14,7 @@ import com.example.phase2.AppCoreClasses.UserManager;
 import com.example.phase2.DataManagement.FileSystem;
 import com.example.phase2.R;
 import com.example.phase2.ScoreBoard.ScoreBoard;
+import com.example.phase2.UserManagementActivities.ChooseOrCreatePlayerActivity;
 
 public class PopUpActivity extends AppCompatActivity implements View.OnClickListener {
     FileSystem fileSystem;
@@ -63,6 +65,7 @@ public class PopUpActivity extends AppCompatActivity implements View.OnClickList
 //        else{
 //            // choose not to store this record
 //        }
+        startActivity(new Intent(PopUpActivity.this, ChooseOrCreatePlayerActivity.class));
     }
     @Override
     protected void onDestroy() {

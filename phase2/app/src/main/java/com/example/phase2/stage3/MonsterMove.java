@@ -2,22 +2,13 @@ package com.example.phase2.stage3;
 
 import com.example.phase2.AppCoreClasses.Property;
 
-import java.util.Random;
 
 public class MonsterMove implements Move {
-/* moveName
-a: doubt
-b: alert
-c: attack
-d: power attack
-e: flying attack
-f: magic attack
- */
+private MoveFactory factory;
 
-    /**
-     * A monster move.
-     */
+    /** A monster move. */
     MonsterMove() {
+        factory = new MoveFactory();
     }
 
     /**
@@ -30,33 +21,7 @@ f: magic attack
 
         Property m = monster.getProperty();
         Property MP = new Property(m.getAttack(), m.getDefence(), m.getFlexibility(), m.getLuckiness());
-        Random R = new Random();
-        int x = R.nextInt(10);
-        int y = R.nextInt(10);
-
-        if (id == 0) {
-            return MP;
-        } else if (id == 1) {
-            MP.addPropertyToSelf(10, 10, 20, 20);
-            return MP;
-        } else if (id == 2) {
-            MP.addPropertyToSelf(25, 0, x, y);
-            return MP;
-        } else if (id == 3) {
-            MP.addPropertyToSelf(35, 0, x, y);
-            return MP;
-        } else if (id == 4) {
-            MP.addPropertyToSelf(40, 100, x - 3, y);
-            return MP;
-        } else if (id == 5) {
-            MP.addPropertyToSelf(40, 0, 20, y);
-            return MP;
-        } else if (id == 6) {
-            MP.addPropertyToSelf(-10, 0, -10, -10);
-            return MP;
-        } else {
-            return null;
-        }
+        return factory.chooseMove(MP, id);
     }
 
     /**
@@ -64,24 +29,7 @@ f: magic attack
      * @param id An number which represent a move.
      * @return string of monster's move
      */
-    @Override
     public String getString(int id) {
-        if (id == 0) {
-            return "Monster is doubting.";
-        } else if (id == 1) {
-            return "Monster is alerting.";
-        } else if (id == 2) {
-            return "Monster is going to attack.";
-        } else if (id == 3) {
-            return "Monster seems getting power up.";
-        } else if (id == 4) {
-            return "Monster is flying";
-        } else if (id == 5) {
-            return "Monster is using fire";
-        } else if (id == 6) {
-            return "Monster is tired";
-        } else {
-            return null;
-        }
+        return factory.getString(id);
     }
 }
