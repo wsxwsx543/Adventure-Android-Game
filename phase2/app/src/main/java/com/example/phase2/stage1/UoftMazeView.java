@@ -86,6 +86,10 @@ public class UoftMazeView extends SurfaceView implements Runnable{
     private int luckiness;
     private int life;
     private int giftlife;
+    private int giftattack;
+    private int giftdefence;
+    private int giftflexibility;
+    private int giftluckiness;
 
     /**
      * @param context
@@ -110,6 +114,10 @@ public class UoftMazeView extends SurfaceView implements Runnable{
         luckiness = curUser.getCurPlayer().getProperty().getLuckiness();
         life = curUser.getCurPlayer().getLivesRemain();
         giftlife = 0;
+        giftattack = 0;
+        giftdefence = 0;
+        giftflexibility = 0;
+        giftluckiness = 0;
 
         this.fileSystem = new FileSystem(context);
 
@@ -146,17 +154,20 @@ public class UoftMazeView extends SurfaceView implements Runnable{
         UoftObjects t2 = UoftObjectsFactory.getUoftObjects("Treasure", 90, 720, getResources());
         ((Treasure) t2).setGift("Life");
         UoftObjects t3 = UoftObjectsFactory.getUoftObjects("Treasure", 540, 360, getResources());
-        ((Treasure) t3).setGift("Life");
+        ((Treasure) t3).setGift("attack");
         UoftObjects t4 = UoftObjectsFactory.getUoftObjects("Treasure", 180, 990, getResources());
-        ((Treasure) t4).setGift("Life");
+        ((Treasure) t4).setGift("defence");
         UoftObjects t5 = UoftObjectsFactory.getUoftObjects("Treasure", 630, 630, getResources());
-        ((Treasure) t5).setGift("Life");
+        ((Treasure) t5).setGift("flexibility");
+        UoftObjects t6 = UoftObjectsFactory.getUoftObjects("Treasure", 270, 450, getResources());
+        ((Treasure) t6).setGift("luckiness");
 
         myTreasures.add(t1);
         myTreasures.add(t2);
         myTreasures.add(t3);
         myTreasures.add(t4);
         myTreasures.add(t5);
+        myTreasures.add(t6);
 
         //myTreasures = new UoftObjects[]{t1};
         UoftObjects d1 = UoftObjectsFactory.getUoftObjects("Door", 990, 1350, getResources());
@@ -334,8 +345,8 @@ public class UoftMazeView extends SurfaceView implements Runnable{
         for (UoftObjects monster : this.mymonsters) {
             if (hero.getX() == monster.getX() && hero.getY() == monster.getY()) {
                 life--;
-                curUser.getCurPlayer().setLivesRemain(life);
-                saveUser();
+//                curUser.getCurPlayer().setLivesRemain(life);
+//                saveUser();
                 if (life == 0) {
                     Intent restartg1Intent = new Intent(getContext(), UoftMazeActivity.class);
                     getContext().startActivity(restartg1Intent);
@@ -347,15 +358,51 @@ public class UoftMazeView extends SurfaceView implements Runnable{
             if (hero.getX() == treasure.getX() && hero.getY() == treasure.getY()){
                 if (((Treasure) treasure).getGift().equals("Life")){
                     life += 5;
-                    curUser.getCurPlayer().setLivesRemain(life);
-                    saveUser();
+//                    curUser.getCurPlayer().setLivesRemain(life);
+//                    saveUser();
                     giftlife += 5;
                     ((Treasure) treasure).setGift("Empty");
+                    myTreasures.remove(treasure);
+                    break;
+                } else if(((Treasure) treasure).getGift().equals("attack")){
+                    attack += 5;
+//                    curUser.getCurPlayer().getProperty().setAttack(attack);
+//                    saveUser();
+                    giftattack += 5;
+                    ((Treasure) treasure).setGift("Empty");
+                    myTreasures.remove(treasure);
+                    break;
+                } else if(((Treasure) treasure).getGift().equals("defence")){
+                    defence += 5;
+//                    curUser.getCurPlayer().setLivesRemain(defence);
+//                    saveUser();
+                    giftdefence += 5;
+                    ((Treasure) treasure).setGift("Empty");
+                    myTreasures.remove(treasure);
+                    break;
+                } else if(((Treasure) treasure).getGift().equals("flexibility")){
+                    flexibility += 5;
+//                    curUser.getCurPlayer().setLivesRemain(flexibility);
+//                    saveUser();
+                    giftflexibility += 5;
+                    ((Treasure) treasure).setGift("Empty");
+                    myTreasures.remove(treasure);
+                    break;
+                } else if(((Treasure) treasure).getGift().equals("luckiness")){
+                    luckiness += 5;
+//                    curUser.getCurPlayer().setLivesRemain(luckiness);
+//                    saveUser();
+                    giftluckiness += 5;
+                    ((Treasure) treasure).setGift("Empty");
+                    myTreasures.remove(treasure);
+                    break;
                 }
                 else if (((Treasure) treasure).getGift().equals("Key")){
                     hero.setKey();
                     haskey = "Yes";
                     ((Treasure) treasure).setGift("Empty");
+                    myTreasures.remove(treasure);
+                    break;
                 }
             }
         }
@@ -368,6 +415,7 @@ public class UoftMazeView extends SurfaceView implements Runnable{
             curUser.getCurPlayer().getProperty().setLuckiness(luckiness);
             curUser.getCurPlayer().setLivesRemain(life);
             curUser.getCurPlayer().setCurStage(2);
+            saveUser();
 
             Intent tog2Intent = new Intent(getContext(), TreasureHuntActivity.class);
             getContext().startActivity(tog2Intent);
@@ -405,7 +453,11 @@ public class UoftMazeView extends SurfaceView implements Runnable{
             canvas.drawText("Flexibility: " + flexibility, 20, 320, flexibilityPaint);
             canvas.drawText("Luckiness: " + luckiness, 500, 320, luckinessPaint);
 
-            canvas.drawText("Life from the treasure: " + giftlife, 150, 1600, giftPaint);
+            canvas.drawText("Life from the treasure: " + giftlife, 100, 1600, giftPaint);
+            canvas.drawText("Attack from the treasure: " + giftattack, 100, 1680, giftPaint);
+            canvas.drawText("Defence from the treasure: " + giftdefence, 100, 1760, giftPaint);
+            canvas.drawText("Flexibility from the treasure: " + giftflexibility, 100, 1840, giftPaint);
+            canvas.drawText("Luckiness from the treasure: " + giftluckiness, 100, 1920, giftPaint);
 
             getHolder().unlockCanvasAndPost(canvas);
 
