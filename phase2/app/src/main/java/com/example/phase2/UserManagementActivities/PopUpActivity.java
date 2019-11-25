@@ -1,6 +1,4 @@
-package com.example.phase2.stage3;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.phase2.UserManagementActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,14 +6,9 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.phase2.AppCoreClasses.GameApp;
 import com.example.phase2.AppCoreClasses.UserManager;
 import com.example.phase2.DataManagement.FileSystem;
-import com.example.phase2.Initializable;
 import com.example.phase2.R;
-import com.example.phase2.ScoreBoard.ScoreBoard;
-import com.example.phase2.UserManagementActivities.ChooseOrCreatePlayerActivity;
-import com.example.phase2.UserManagementActivities.SuperActivity;
 
 public class PopUpActivity extends SuperActivity implements View.OnClickListener{
     FileSystem fileSystem;
@@ -49,10 +42,10 @@ public class PopUpActivity extends SuperActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.yesBtn:
-                save = true;
+                UserManager.getInstance().getCurUser().getCurPlayer().setWin(true);
                 break;
             case R.id.noBtn:
-                save = false;
+                UserManager.getInstance().getCurUser().getCurPlayer().setWin(false);
                 break;
         }
 //        if (save) {
