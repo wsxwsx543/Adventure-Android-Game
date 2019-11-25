@@ -23,14 +23,14 @@ public class PlayerMove implements Move {
         Property PP = new Property(p.getAttack(), p.getDefence(), p.getFlexibility(), p.getLuckiness());
         switch (moveName) {
             case "Attack":
-                PP.addPropertyToSelf(10, 0, 0, 0);
-                return PP;
+                Context context = new Context(new Attack());
+                return context.executeStrategy(PP);
             case "Defence":
-                PP.addPropertyToSelf(-100, 30, -10, -10);
-                return PP;
+                context = new Context(new Defence());
+                return context.executeStrategy(PP);
             case "Evade":
-                PP.addPropertyToSelf(0, 0, 5, 10);
-                return PP;
+                context = new Context(new Evade());
+                return context.executeStrategy(PP);
             default:
                 return null;
         }
