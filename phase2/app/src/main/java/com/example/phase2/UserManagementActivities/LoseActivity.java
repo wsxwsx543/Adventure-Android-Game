@@ -17,7 +17,7 @@ public class LoseActivity extends SuperActivity implements Initializable {
             super.handleMessage(msg);
             switch (msg.what){
                 case 1:
-                    startActivity(new Intent(LoseActivity.this, ChooseOrCreatePlayerActivity.class));
+                    startActivity(new Intent(LoseActivity.this, PopUpActivity.class));
             }
         }
     };
