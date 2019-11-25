@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 
@@ -26,14 +25,8 @@ public class PopUpActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pop_up);
         app = (GameApp) getApplication();
-        if(app.getColorTheme().equals("blue")){
-            setTheme(R.style.blue);
-        }
-        else if(app.getColorTheme().equals("yellow")){
-            setTheme(R.style.yellow);
-        }
+        setContentView(R.layout.activity_pop_up);
 
         fileSystem = new FileSystem(this.getApplicationContext());
         yesBtn = findViewById(R.id.yesBtn);
@@ -41,12 +34,18 @@ public class PopUpActivity extends AppCompatActivity implements View.OnClickList
         noBtn = findViewById(R.id.noBtn);
         noBtn.setOnClickListener(this);
 
+        if(app.getColorTheme().equals("blue")){
+            setTheme(R.style.blue);
+        }
+        else if(app.getColorTheme().equals("yellow")){
+            setTheme(R.style.yellow);
+        }
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
         int height = dm.heightPixels;
         getWindow().setLayout((int)(width * 0.9), (int)(height * 0.3));
-
     }
 
     @Override
