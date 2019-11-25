@@ -5,8 +5,10 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.phase2.UserManagementActivities.SuperActivity;
 
-public class MazeActivity extends AppCompatActivity {
+
+public class MazeActivity extends SuperActivity {
     /**
      * The game view we are gonna present
      */
@@ -21,6 +23,8 @@ public class MazeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        super.init();
+        
 
         Point point = new Point();
         getWindowManager().getDefaultDisplay().getSize(point);
@@ -46,23 +50,6 @@ public class MazeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         myg1View.resume();
-    }
-
-    /**
-     * save the data to file when intent to new activity
-     */
-    @Override
-    protected void onStop() {
-        super.onStop();
-        myg1View.saveUser();
-    }
-
-    /**
-     * save the data to file when stop the game in the middle
-     */
-    protected void onDestroy(){
-        super.onDestroy();
-        myg1View.saveUser();
     }
 
 
