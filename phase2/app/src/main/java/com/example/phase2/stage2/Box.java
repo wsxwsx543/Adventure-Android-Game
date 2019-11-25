@@ -45,6 +45,15 @@ abstract class Box {
         this.neighbours.add(box);
     }
 
+    boolean checkNeighbourExisted(Box box){
+        for (int i = 0; i < this.neighbours.size(); i++){
+            if (this.neighbours.get(i) == box){
+                return true;
+            }
+        }
+        return false;
+    }
+
     int returnNumOfTrap(){
         int sum = 0;
         for (int i = 0; i < neighbours.size(); i++){
