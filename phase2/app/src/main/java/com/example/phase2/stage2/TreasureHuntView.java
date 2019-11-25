@@ -32,12 +32,11 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
     //The Property of the current user
     private Property property = user.getCurPlayer().getProperty();
     //The boxes that this class will refer to
-    public Box[][] boxes;
     //BoxManager to manage the boxes
     private BoxesManager boxesManager;
 
     private int boardWidth, boardLength, startX, startY;
-    private int unit_size;
+    private int unitSize;
     public Thread thread;
     public SurfaceHolder holder;
 
@@ -50,7 +49,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
     private Bitmap trapMsg;
     private Bitmap winMsg;
 
-    public TreasureHuntView(Context context, int boardWidth, int boardLength, int unit_size, int startX, int startY) {
+    public TreasureHuntView(Context context, int boardWidth, int boardLength, int unitSize, int startX, int startY) {
         super(context);
         // Set the current stage as 2 since we are about to start
         user.getCurPlayer().setCurStage(2);
@@ -68,7 +67,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         this.boardLength = boardLength;
         this.startX = startX;
         this.startY = startY;
-        this.unit_size = unit_size;
+        this.unitSize = unitSize;
 
         this.aboutToEnd = false;
 
@@ -80,8 +79,9 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         winMsg = BitmapFactory.decodeResource(getResources(), R.drawable.gotallofthem);
         winMsg = Bitmap.createScaledBitmap(this.winMsg, 980, 200, true);
 
-        boxesManager = new BoxesManager(this.boardWidth, this.boardLength, this.unit_size, this.startX, this.startY, getResources());
-        boxes = boxesManager.getBoxes();
+        // Implementation of dependency injection design principle
+        boxesManager = new BoxesManager(this.boardWidth, this.boardLength, this.unitSize, this.startX, this.startY, getResources());
+        boxesManager.fillWithRandomBoxes();
     }
 
     public TreasureHuntView(Context context) {
@@ -120,8 +120,8 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
     // Return the location of the box that the cursor is pointing
     private int[] getCurBoxLoc(double curX, double curY) {
         int[] pair = new int[2];
-        int x = (int) ((curX - this.startX) / unit_size);
-        int y = (int) ((curY - this.startY) / unit_size);
+        int x = (int) ((curX - this.startX) / unitSize);
+        int y = (int) ((curY - this.startY) / unitSize);
         pair[0] = x;
         pair[1] = y;
         return pair;
@@ -158,10 +158,10 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
             canvas.drawARGB(255, 255, 255, 255);
 
             // Draw the stats of the player
-            canvas.drawText("Attack: " + property.getAttack(), 20, (float) (startY + boardLength * unit_size + 100), textPaint);
-            canvas.drawText("Defence: " + property.getDefence(), 500, (float) (startY + boardLength * unit_size + 100), textPaint);
-            canvas.drawText("Flexibility: " + property.getFlexibility(), 20, (float) (startY + boardLength * unit_size + 200), textPaint);
-            canvas.drawText("Luckiness: " + property.getLuckiness(), 500, (float) (startY + boardLength * unit_size + 200), textPaint);
+            canvas.drawText("Attack: " + property.getAttack(), 20, (float) (startY + boardLength * unitSize + 100), textPaint);
+            canvas.drawText("Defence: " + property.getDefence(), 500, (float) (startY + boardLength * unitSize + 100), textPaint);
+            canvas.drawText("Flexibility: " + property.getFlexibility(), 20, (float) (startY + boardLength * unitSize + 200), textPaint);
+            canvas.drawText("Luckiness: " + property.getLuckiness(), 500, (float) (startY + boardLength * unitSize + 200), textPaint);
 
             //Draw the message
             if (!aboutToEnd){
