@@ -11,13 +11,14 @@ import android.widget.Button;
 import com.example.phase2.AppCoreClasses.GameApp;
 import com.example.phase2.AppCoreClasses.UserManager;
 import com.example.phase2.DataManagement.FileSystem;
+import com.example.phase2.Initializable;
 import com.example.phase2.R;
 import com.example.phase2.ScoreBoard.ScoreBoard;
 import com.example.phase2.UserManagementActivities.ChooseOrCreatePlayerActivity;
+import com.example.phase2.UserManagementActivities.SuperActivity;
 
-public class PopUpActivity extends AppCompatActivity implements View.OnClickListener {
+public class PopUpActivity extends SuperActivity implements View.OnClickListener{
     FileSystem fileSystem;
-    GameApp app;
     Button yesBtn;
     Button noBtn;
     private boolean save;
@@ -25,21 +26,17 @@ public class PopUpActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        app = (GameApp) getApplication();
         setContentView(R.layout.activity_pop_up);
+        init();
+    }
 
-        fileSystem = new FileSystem(this.getApplicationContext());
+    @Override
+    public void init(){
+        super.init();
         yesBtn = findViewById(R.id.yesBtn);
         yesBtn.setOnClickListener(this);
         noBtn = findViewById(R.id.noBtn);
         noBtn.setOnClickListener(this);
-
-        if(app.getColorTheme().equals("blue")){
-            setTheme(R.style.blue);
-        }
-        else if(app.getColorTheme().equals("yellow")){
-            setTheme(R.style.yellow);
-        }
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -65,19 +62,6 @@ public class PopUpActivity extends AppCompatActivity implements View.OnClickList
 //            // choose not to store this record
 //        }
         startActivity(new Intent(PopUpActivity.this, ChooseOrCreatePlayerActivity.class));
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-        fileSystem.save(ScoreBoard.getInstance(), "ScoreBoard.ser");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-        fileSystem.save(ScoreBoard.getInstance(), "ScoreBoard.ser");
     }
 
 }
