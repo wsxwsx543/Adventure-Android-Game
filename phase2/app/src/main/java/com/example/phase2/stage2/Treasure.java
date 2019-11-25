@@ -12,14 +12,14 @@ class Treasure extends Box {
     private String treasureType;
     private boolean looted;
 
-    Treasure(int x, int y, int unit_size, Resources res){
-        super(x, y, unit_size, res);
+    Treasure(int x, int y, int unitSize, Resources res){
+        super(x, y, unitSize, res);
         this.looted = false;
         setType();
     }
     void updateBitmap(){
         bitmapToDraw = BitmapFactory.decodeResource(res, R.drawable.baoxiang2);
-        bitmapToDraw = Bitmap.createScaledBitmap(this.bitmapToDraw, unit_size, unit_size, true);
+        bitmapToDraw = Bitmap.createScaledBitmap(this.bitmapToDraw, unitSize, unitSize, true);
     }
 
     //Method that randomly sets the type of the treasure

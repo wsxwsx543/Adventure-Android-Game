@@ -43,7 +43,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
     private boolean running;
     private boolean aboutToEnd;
 
-    private FileSystem fileSystem;
+    // private FileSystem fileSystem;
 
     private Bitmap treasureHuntMsg;
     private Bitmap trapMsg;
@@ -61,7 +61,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
         textPaint.setTypeface(Typeface.DEFAULT_BOLD);
         textPaint.setAntiAlias(true);
 
-        this.fileSystem = new FileSystem(context);
+        // this.fileSystem = new FileSystem(context);
         this.holder = getHolder();
         this.boardWidth = boardWidth;
         this.boardLength = boardLength;
@@ -141,9 +141,9 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
     }
 
     // Save the current progress
-    public void saveUser() {
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-    }
+//    public void saveUser() {
+//        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+//    }
 
     // Call the loot method in boxesManager
     private void loot(){
