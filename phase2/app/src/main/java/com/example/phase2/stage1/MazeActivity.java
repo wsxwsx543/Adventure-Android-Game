@@ -24,7 +24,7 @@ public class MazeActivity extends SuperActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.init();
-        
+
 
         Point point = new Point();
         getWindowManager().getDefaultDisplay().getSize(point);
