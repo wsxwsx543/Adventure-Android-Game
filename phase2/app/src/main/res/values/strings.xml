@@ -26,4 +26,5 @@
     <string name="save_record">Do you want to save this record?</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
+    <string name="scoreboard">ScoreBoard</string>
 </resources>

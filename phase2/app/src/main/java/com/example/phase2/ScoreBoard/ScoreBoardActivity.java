@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.phase2.Initializable;
@@ -23,6 +24,8 @@ public class ScoreBoardActivity extends SuperActivity implements Initializable, 
     private TextView fourth;
     private TextView fifth;
 
+    List<Map.Entry<String, Integer>> rankList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +33,6 @@ public class ScoreBoardActivity extends SuperActivity implements Initializable, 
     }
 
     private void drawScoreBoard(){
-        ScoreBoard scoreBoard = ScoreBoard.getInstance();
-        List<Map.Entry<String, Integer>> rankList = scoreBoard.sort(new PlayerLivesStrategy());
         if(rankList == null)
             return;
         if(rankList.size() > 0)
@@ -55,12 +56,28 @@ public class ScoreBoardActivity extends SuperActivity implements Initializable, 
         third = findViewById(R.id.third);
         fourth = findViewById(R.id.fourth);
         fifth = findViewById(R.id.fifth);
+        final Button lifeButton = findViewById(R.id.life);
+        final Button propertyButton = findViewById(R.id.property);
         backButton.setOnClickListener(this);
+        propertyButton.setOnClickListener(this);
+        lifeButton.setOnClickListener(this);
         drawScoreBoard();
     }
 
     @Override
     public void onClick(View v) {
-        startActivity(new Intent(ScoreBoardActivity.this, ChooseOrCreatePlayerActivity.class));
+        switch (v.getId()){
+            case R.id.back:
+                startActivity(new Intent(ScoreBoardActivity.this, ChooseOrCreatePlayerActivity.class));
+                break;
+            case R.id.life:
+                rankList = new PlayerLivesStrategy().sort(ScoreBoard.getInstance().getUserPlayers());
+                drawScoreBoard();
+                break;
+            case R.id.property:
+                rankList = new PlayerPropertyStrategy().sort(ScoreBoard.getInstance().getUserPlayers());
+                drawScoreBoard();;
+                break;
+        }
     }
 }

@@ -138,9 +138,13 @@ public class Property implements Serializable {
      * @return a string of the property.
      */
     public String toString(){
-        return new String("Attack: " + String.valueOf(this.attack) +
-                " Defence: " + String.valueOf(this.defence) +
-                " Flexibility: " + String.valueOf(this.flexibility) +
-                " Luckiness: " + String.valueOf(this.luckiness));
+        return "Attack: " + this.attack +
+                " Defence: " + this.defence +
+                " Flexibility: " + this.flexibility +
+                " Luckiness: " + this.luckiness;
+    }
+
+    public Integer getTotal(){
+        return attack + defence + flexibility + luckiness;
     }
 }
