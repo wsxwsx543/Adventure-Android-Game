@@ -11,10 +11,8 @@ import com.example.phase2.DataManagement.FileSystem;
 import com.example.phase2.R;
 
 public class PopUpActivity extends SuperActivity implements View.OnClickListener{
-    FileSystem fileSystem;
     Button yesBtn;
     Button noBtn;
-    private boolean save;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +46,6 @@ public class PopUpActivity extends SuperActivity implements View.OnClickListener
                 UserManager.getInstance().getCurUser().getCurPlayer().setWin(false);
                 break;
         }
-//        if (save) {
-//            // choose to store this record
-//        }
-//        else{
-//            // choose not to store this record
-//        }
         startActivity(new Intent(PopUpActivity.this, ChooseOrCreatePlayerActivity.class));
     }
 
