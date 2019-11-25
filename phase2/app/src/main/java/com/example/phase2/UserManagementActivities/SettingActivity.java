@@ -36,6 +36,16 @@ public class SettingActivity extends SuperActivity implements View.OnClickListen
                 startActivity(new Intent(SettingActivity.this, SettingActivity.class));
                 break;
             }
+            case R.id.pink:{
+                app.setColorTheme("pink");
+                startActivity(new Intent(SettingActivity.this, SettingActivity.class));
+                break;
+            }
+            case R.id.green:{
+                app.setColorTheme("green");
+                startActivity(new Intent(SettingActivity.this, SettingActivity.class));
+                break;
+            }
             case R.id.back:{
                 startActivity(new Intent(SettingActivity.this, ChooseOrCreatePlayerActivity.class));
                 break;
@@ -50,10 +60,14 @@ public class SettingActivity extends SuperActivity implements View.OnClickListen
 
         final RadioButton blueButton = findViewById(R.id.blue);
         final RadioButton yellowButton = findViewById(R.id.yellow);
+        final RadioButton pinkButton = findViewById(R.id.pink);
+        final RadioButton greenButton = findViewById(R.id.green);
         final Button backButton = findViewById(R.id.back);
 
         blueButton.setOnClickListener(this);
         yellowButton.setOnClickListener(this);
+        pinkButton.setOnClickListener(this);
+        greenButton.setOnClickListener(this);
         backButton.setOnClickListener(this);
     }
 }

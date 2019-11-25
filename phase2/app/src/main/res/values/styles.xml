@@ -24,4 +24,20 @@
         <item name="backColor">#FFFC00</item>
     </style>
 
+    <style name="pink" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="textColor">#000</item>
+        <item name="backColor">#FFC1C1</item>
+    </style>
+
+    <style name="green" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="textColor">#000</item>
+        <item name="backColor">#C1FFC1</item>
+    </style>
+
 </resources>

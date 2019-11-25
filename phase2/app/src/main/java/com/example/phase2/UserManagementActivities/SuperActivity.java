@@ -28,6 +28,12 @@ public class SuperActivity extends AppCompatActivity implements Initializable {
         else if(app.getColorTheme().equals("yellow")){
             setTheme(R.style.yellow);
         }
+        else if(app.getColorTheme().equals("pink")){
+            setTheme(R.style.pink);
+        }
+        else if(app.getColorTheme().equals("green")){
+            setTheme(R.style.green);
+        }
         fileSystem = new FileSystem(this.getApplicationContext());
     }
 
