@@ -9,7 +9,7 @@ import com.example.phase2.R;
 /**
  * The treasure class
  */
-public class Treasure extends UoftObjects{
+public class Treasure extends MazeObjects{
     /**
      * The x, y coordinate and the length and width of the treasure image
      */

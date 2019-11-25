@@ -7,12 +7,12 @@ import android.graphics.BitmapFactory;
 import com.example.phase2.R;
 
 class EmptyUnit extends Box {
-    EmptyUnit(int x, int y, int unit_size, Resources resources){
-        super(x, y, unit_size, resources);
+    EmptyUnit(int x, int y, int unitSize, Resources resources){
+        super(x, y, unitSize, resources);
     }
     void updateBitmap(){
         bitmapToDraw = getTrapsIndicatorImg(numOfNeighbourTraps);
-        bitmapToDraw = Bitmap.createScaledBitmap(this.bitmapToDraw, unit_size, unit_size, true);
+        bitmapToDraw = Bitmap.createScaledBitmap(this.bitmapToDraw, unitSize, unitSize, true);
     }
 
     // Return the bitmap of an expanded empty box
@@ -48,7 +48,7 @@ class EmptyUnit extends Box {
                 break;
         }
         Bitmap bitmap = BitmapFactory.decodeResource(res, newImageId);
-        bitmap = Bitmap.createScaledBitmap(bitmap, unit_size, unit_size, true);
+        bitmap = Bitmap.createScaledBitmap(bitmap, unitSize, unitSize, true);
         return bitmap;
     }
 }

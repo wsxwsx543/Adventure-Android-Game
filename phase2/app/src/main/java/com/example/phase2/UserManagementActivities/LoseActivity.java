@@ -8,6 +8,7 @@ import android.os.Message;
 import com.example.phase2.AppCoreClasses.UserManager;
 import com.example.phase2.Initializable;
 import com.example.phase2.R;
+import com.example.phase2.stage3.PopUpActivity;
 
 /** Jump to this activity if the player lose the game. */
 public class LoseActivity extends SuperActivity implements Initializable {
@@ -17,7 +18,7 @@ public class LoseActivity extends SuperActivity implements Initializable {
             super.handleMessage(msg);
             switch (msg.what){
                 case 1:
-                    startActivity(new Intent(LoseActivity.this, ChooseOrCreatePlayerActivity.class));
+                    startActivity(new Intent(LoseActivity.this, PopUpActivity.class));
             }
         }
     };

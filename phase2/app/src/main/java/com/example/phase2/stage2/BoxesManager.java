@@ -10,82 +10,114 @@ import java.util.ArrayList;
 class BoxesManager {
     private Box[][] boxes;
 
+    private int startX;
+    private int startY;
     private int boardWidth;
     private int boardLength;
-    private int unit_size;
+    private int unitSize;
 
     private double emptyBoxRate;
     private double treasureRate;
     private double trapRate;
 
+    private Resources res;
+    private BoxFactory boxFactory;
     private int luckiness = UserManager.getInstance().getCurUser().getCurPlayer().getProperty().getLuckiness();
 
-    BoxesManager(int boardWidth, int boardLength, int unit_size, int startX, int start_Y, Resources res){
+    BoxesManager(int boardWidth, int boardLength, int unitSize, int startX, int startY, Resources res){
+        this.startX = startX;
+        this.startY = startY;
         this.boardLength = boardLength;
         this.boardWidth = boardWidth;
-        this.unit_size = unit_size;
+        this.unitSize = unitSize;
+        this.res = res;
         boxes = new Box[this.boardLength][this.boardWidth];
-
-        // Sets the type for every box
-        for (int y = 0; y < this.boardLength; y++){
-            for (int x = 0; x < this.boardWidth; x++) {
-
-                setUpTheOdd();
-
-                double decider = Math.random();
-                int cur_x = startX + x * this.unit_size;
-                int cur_y = start_Y + y * this.unit_size;
-                Box thisBox;
-                if (decider < emptyBoxRate) {
-                    thisBox = new EmptyUnit(cur_x, cur_y, this.unit_size, res);
-                } else if (decider < emptyBoxRate + treasureRate) {
-                    thisBox = new Treasure(cur_x, cur_y, this.unit_size, res);
-                } else {
-                    thisBox = new Trap(cur_x, cur_y, this.unit_size, res);
-                }
-                boxes[y][x] = thisBox;
-            }
-        }
-
-        // Assign neighbours to all the boxes
-        for (int y = 0; y < this.boardLength; y++){
-            for (int x = 0; x < this.boardWidth; x++){
-                if (x + 1 <= this.boardWidth -  1){
-                    boxes[y][x].addNeighbourBox(boxes[y][x + 1]);
-                }
-                if (x + 1 <= this.boardWidth -  1 && y - 1 >= 0){
-                    boxes[y][x].addNeighbourBox(boxes[y - 1][x + 1]);
-                }
-                if (y - 1 >= 0){
-                    boxes[y][x].addNeighbourBox(boxes[y - 1][x]);
-                }
-                if (x - 1 >= 0 && y - 1 >= 0){
-                    boxes[y][x].addNeighbourBox(boxes[y - 1][x - 1]);
-                }
-                if (x - 1 >= 0){
-                    boxes[y][x].addNeighbourBox(boxes[y][x - 1]);
-                }
-                if (x - 1 >= 0 && y + 1 <= this.boardLength - 1){
-                    boxes[y][x].addNeighbourBox(boxes[y + 1][x - 1]);
-                }
-                if (y + 1 <= this.boardLength - 1){
-                    boxes[y][x].addNeighbourBox(boxes[y + 1][x]);
-                }
-                if (x + 1 <= this.boardWidth - 1 && y + 1 <= this.boardLength - 1){
-                    boxes[y][x].addNeighbourBox(boxes[y + 1][x + 1]);
-                }
-
-            }
-        }
-
-        // Record how many neighbours each box has
+        boxFactory = new BoxFactory();
+        setUpTheOdd();
+    }
+    private void assign(){
+        assignNeighbour();
+        assignNumOfTraps();
+    }
+    private void assignNumOfTraps(){
         for (int y = 0; y < this.boardLength; y++){
             for (int x = 0; x < this.boardWidth; x++){
                 boxes[y][x].numOfNeighbourTraps = boxes[y][x].returnNumOfTrap();
             }
         }
     }
+    private void assignNeighbour(){
+        for (int y = 0; y < this.boardLength; y++){
+            for (int x = 0; x < this.boardWidth; x++){
+                if (x + 1 <= this.boardWidth -  1){
+                    if (!boxes[y][x].checkNeighbourExisted(boxes[y][x + 1])) {
+                        boxes[y][x].addNeighbourBox(boxes[y][x + 1]);
+                    }
+                }
+                if (x + 1 <= this.boardWidth -  1 && y - 1 >= 0){
+                    if (!boxes[y][x].checkNeighbourExisted(boxes[y - 1][x + 1])){
+                        boxes[y][x].addNeighbourBox(boxes[y - 1][x + 1]);
+                    }
+                }
+                if (y - 1 >= 0){
+                    if (!boxes[y][x].checkNeighbourExisted(boxes[y - 1][x])) {
+                        boxes[y][x].addNeighbourBox(boxes[y - 1][x]);
+                    }
+                }
+                if (x - 1 >= 0 && y - 1 >= 0){
+                    if (!boxes[y][x].checkNeighbourExisted(boxes[y - 1][x - 1])) {
+                        boxes[y][x].addNeighbourBox(boxes[y - 1][x - 1]);
+                    }
+                }
+                if (x - 1 >= 0){
+                    if (!boxes[y][x].checkNeighbourExisted(boxes[y][x - 1])) {
+                        boxes[y][x].addNeighbourBox(boxes[y][x - 1]);
+                    }
+                }
+                if (x - 1 >= 0 && y + 1 <= this.boardLength - 1){
+                    if (!boxes[y][x].checkNeighbourExisted(boxes[y + 1][x - 1])) {
+                        boxes[y][x].addNeighbourBox(boxes[y + 1][x - 1]);
+                    }
+                }
+                if (y + 1 <= this.boardLength - 1){
+                    if (!boxes[y][x].checkNeighbourExisted(boxes[y + 1][x])) {
+                        boxes[y][x].addNeighbourBox(boxes[y + 1][x]);
+                    }
+                }
+                if (x + 1 <= this.boardWidth - 1 && y + 1 <= this.boardLength - 1){
+                    if (!boxes[y][x].checkNeighbourExisted(boxes[y + 1][x + 1])) {
+                        boxes[y][x].addNeighbourBox(boxes[y + 1][x + 1]);
+                    }
+                }
+            }
+        }
+    }
+    void fillWithRandomBoxes(){
+        for (int y = 0; y < this.boardLength; y++){
+            for (int x = 0; x < this.boardWidth; x++) {
 
+                double decider = Math.random();
+                int curX = this.startX + x * this.unitSize;
+                int curY = this.startY + y * this.unitSize;
+                Box thisBox;
+                if (decider < emptyBoxRate) {
+                    thisBox = boxFactory.createBox("EmptyUnit", curX, curY, this.unitSize, res);
+                } else if (decider < emptyBoxRate + treasureRate) {
+                    thisBox = boxFactory.createBox("Treasure", curX, curY, this.unitSize, res);
+                } else {
+                    thisBox = boxFactory.createBox("Trap", curX, curY, this.unitSize, res);
+                }
+                boxes[y][x] = thisBox;
+            }
+        }
+        assign();
+    }
+
+    void addBox(Box box, int x, int y){
+        boxes[y][x] = box;
+        assign();
+
+    }
     // Set up the odds of the type of each boxes according to the player's luckiness
     private void setUpTheOdd(){
         if (luckiness >= 8){

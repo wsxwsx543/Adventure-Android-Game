@@ -2,26 +2,18 @@ package com.example.phase2.stage2;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.phase2.UserManagementActivities.SuperActivity;
 
-public class TreasureHuntActivity extends AppCompatActivity {
+
+public class TreasureHuntActivity extends SuperActivity {
     private TreasureHuntView treasureHuntView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        super.init();
         // Initiate the view that this activity is using
         treasureHuntView = new TreasureHuntView(this);
         setContentView(treasureHuntView);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        treasureHuntView.saveUser();
-    }
-    protected void onDestroy(){
-        super.onDestroy();
-        treasureHuntView.saveUser();
     }
 
     protected void onPause(){

@@ -13,7 +13,7 @@ abstract class Box {
     // The location of the Box
     private int x, y;
 
-    int unit_size;
+    int unitSize;
 
     int numOfNeighbourTraps;
 
@@ -26,15 +26,15 @@ abstract class Box {
 
     Bitmap bitmapToDraw;
 
-    Box(int x, int y, int unit_size, Resources res){
+    Box(int x, int y, int unitSize, Resources res){
         this.res = res;
         this.x = x;
         this.y = y;
-        this.unit_size = unit_size;
+        this.unitSize = unitSize;
 
         // The default gray box that every boxes use at first
         Bitmap grayTile = BitmapFactory.decodeResource(res, R.drawable.gray);
-        grayTile = Bitmap.createScaledBitmap(grayTile, unit_size, unit_size, true);
+        grayTile = Bitmap.createScaledBitmap(grayTile, unitSize, unitSize, true);
 
         this.bitmapToDraw = grayTile;
         this.expanded = false;
@@ -45,7 +45,15 @@ abstract class Box {
         this.neighbours.add(box);
     }
 
-    // Return number of traps that is around this box
+    boolean checkNeighbourExisted(Box box){
+        for (int i = 0; i < this.neighbours.size(); i++){
+            if (this.neighbours.get(i) == box){
+                return true;
+            }
+        }
+        return false;
+    }
+
     int returnNumOfTrap(){
         int sum = 0;
         for (int i = 0; i < neighbours.size(); i++){

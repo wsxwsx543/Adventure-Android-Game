@@ -9,13 +9,13 @@ import com.example.phase2.R;
 /** The trap. */
 class Trap extends Box {
     /** Contract a new trap with given x,y coordinate, unit size and resource */
-    Trap(int x, int y, int unit_size, Resources res){
-        super(x, y, unit_size, res);
+    Trap(int x, int y, int unitSize, Resources res){
+        super(x, y, unitSize, res);
     }
 
     /** Update bitmap. */
     void updateBitmap(){
         bitmapToDraw = BitmapFactory.decodeResource(res, R.drawable.trap);
-        bitmapToDraw = Bitmap.createScaledBitmap(this.bitmapToDraw, unit_size, unit_size, true);
+        bitmapToDraw = Bitmap.createScaledBitmap(this.bitmapToDraw, unitSize, unitSize, true);
     }
 }
