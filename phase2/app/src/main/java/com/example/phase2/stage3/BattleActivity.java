@@ -195,13 +195,13 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         if (num == 1) {
             //player lose
             startActivity(new Intent(BattleActivity.this, LoseActivity.class));
-            player.setCurStage(4, false);
+            player.setCurStage(4);
             fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
         }
         if (num == 2) {
             //player win
             startActivity(new Intent(BattleActivity.this, WinActivity.class));
-            player.setCurStage(4, true);
+            player.setCurStage(4);
             fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
         }
     }

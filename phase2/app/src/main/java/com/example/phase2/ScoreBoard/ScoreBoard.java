@@ -1,9 +1,12 @@
 package com.example.phase2.ScoreBoard;
 
+import com.example.phase2.AppCoreClasses.Player;
+import com.example.phase2.AppCoreClasses.User;
+import com.example.phase2.AppCoreClasses.UserManager;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,27 +17,10 @@ import java.util.Observer;
 
 public class ScoreBoard implements Observer, Serializable {
     private static ScoreBoard scoreBoard = null;
-    private List<Map.Entry<String, Integer>> rankNameLives;
-    private HashMap<String, Integer> nameLives;
+    private HashMap<User, ArrayList<Player>> userPlayers;
 
     private ScoreBoard(){
 
-    }
-
-    public void setRankNameLives(List<Map.Entry<String, Integer>> rankNameLives) {
-        this.rankNameLives = rankNameLives;
-    }
-
-    public List<Map.Entry<String, Integer>> getRankNameLives() {
-        return rankNameLives;
-    }
-
-    public void setNameLives(HashMap<String, Integer> nameLives) {
-        this.nameLives = nameLives;
-    }
-
-    public HashMap<String, Integer> getNameLives() {
-        return nameLives;
     }
 
     public static ScoreBoard getInstance(){
@@ -47,19 +33,27 @@ public class ScoreBoard implements Observer, Serializable {
         ScoreBoard.scoreBoard = scoreBoard;
     }
 
-    private void sort(){
-        scoreBoard.rankNameLives = new PlayerLivesStrategy().sort(nameLives);
+    public ArrayList sort(SortStrategy sortStrategy){
+        return sortStrategy.sort(userPlayers);
+    }
+
+    public HashMap<User, ArrayList<Player>> getUserPlayers() {
+        return userPlayers;
+    }
+
+    public void setUserPlayers(HashMap<User, ArrayList<Player>> userPlayers) {
+        this.userPlayers = userPlayers;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println(o);
-        String[] strings = o.toString().split(":");
-        String name = strings[0];
-        System.out.println(name);
-        Integer lives = Integer.valueOf(strings[1]);
-        System.out.println(lives);
-        ScoreBoard.getInstance().getNameLives().put(name, lives);
-        sort();
+        if(userPlayers.containsKey(UserManager.getInstance().getCurUser())){
+            userPlayers.get(UserManager.getInstance().getCurUser()).add(UserManager.getInstance().getCurUser().getCurPlayer());
+        }
+        else{
+            ArrayList<Player> players = new ArrayList<>();
+            players.add(UserManager.getInstance().getCurUser().getCurPlayer());
+            userPlayers.put(UserManager.getInstance().getCurUser(), players);
+        }
     }
 }

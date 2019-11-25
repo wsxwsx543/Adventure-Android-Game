@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
+import com.example.phase2.AppCoreClasses.UserManager;
 import com.example.phase2.Initializable;
 import com.example.phase2.R;
 
@@ -32,5 +33,6 @@ public class LoseActivity extends SuperActivity implements Initializable {
     public void init() {
         super.init();
         setContentView(R.layout.activity_lose);
+        UserManager.getInstance().getCurUser().getCurPlayer().setWin(false);
     }
 }

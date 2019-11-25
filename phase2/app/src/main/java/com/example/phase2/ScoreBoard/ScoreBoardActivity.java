@@ -31,7 +31,7 @@ public class ScoreBoardActivity extends SuperActivity implements Initializable, 
 
     private void drawScoreBoard(){
         ScoreBoard scoreBoard = ScoreBoard.getInstance();
-        List<Map.Entry<String, Integer>> rankList = scoreBoard.getRankNameLives();
+        List<Map.Entry<String, Integer>> rankList = scoreBoard.sort(new PlayerLivesStrategy());
         if(rankList == null)
             return;
         if(rankList.size() > 0)

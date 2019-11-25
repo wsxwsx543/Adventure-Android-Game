@@ -27,7 +27,6 @@ public class FileSystem {
                     context.openFileOutput(fileName, MODE_PRIVATE));
             objectOutputStream.writeObject(object);
             objectOutputStream.close();
-
         }
         catch (IOException e){
             Log.e("Exception", "Cannot save " + fileName);}

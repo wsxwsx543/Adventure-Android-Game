@@ -31,6 +31,9 @@ public class Player extends Observable implements Serializable {
     /** The current stage of this player. */
     private int curStage;
 
+    /** This fields will be set to true iff the player win the game.**/
+    private boolean win;
+
     /** Constructs a new player with given name and property. */
     public Player(String name, Property initialProperty){
         weaponManager = new WeaponManager();
@@ -46,7 +49,7 @@ public class Player extends Observable implements Serializable {
      * Return the player's name.
      * @return name
      */
-    String getName(){return name;}
+    public String getName(){return name;}
 
     /**
      * Return the player's property.
@@ -80,11 +83,11 @@ public class Player extends Observable implements Serializable {
         this.curStage = curStage;
     }
 
-    public void setCurStage(int curStage, boolean win){
-        this.curStage = curStage;
-        if(curStage == 4 && win){
+    public void setWin(boolean win){
+        this.win = win;
+        if(win){
             setChanged();
-            notifyObservers(this);
+            notifyObservers();
         }
     }
 
@@ -188,6 +191,6 @@ public class Player extends Observable implements Serializable {
     @NonNull
     @Override
     public String toString() {
-        return getName() + ":" + getLivesRemain();
+        return UserManager.getInstance().getCurUser().getUsername() + ":" + getName();
     }
 }

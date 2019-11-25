@@ -36,7 +36,6 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
-
     }
 
     /**
@@ -95,12 +94,11 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
     }
 
     public void loadScoreBoard(){
-        if(fileSystem.load("ScoreBoard.ser") instanceof ScoreBoard){
-            ScoreBoard.setScoreBoard((ScoreBoard) fileSystem.load("ScoreBoard.ser"));
+        if(fileSystem.load("ScoreBoard.ser") instanceof HashMap){
+            ScoreBoard.getInstance().setUserPlayers(fileSystem.load("ScoreBoard.ser"));
         } else {
-            ScoreBoard.getInstance().setNameLives(new HashMap<>());
-            ScoreBoard.getInstance().setRankNameLives(new ArrayList<>());
-            fileSystem.save(ScoreBoard.getInstance(), "ScoreBoard.ser");
+            ScoreBoard.getInstance().setUserPlayers(new HashMap<>());
+            fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
         }
     }
 

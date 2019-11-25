@@ -35,13 +35,13 @@ public class SuperActivity extends AppCompatActivity implements Initializable {
     protected void onDestroy() {
         super.onDestroy();
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-        fileSystem.save(ScoreBoard.getInstance(), "ScoreBoard.ser");
+        fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-        fileSystem.save(ScoreBoard.getInstance(), "ScoreBoard.ser");
+        fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
     }
 }
