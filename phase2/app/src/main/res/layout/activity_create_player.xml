@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".usermanagementactivities.CreatePlayerActivity"
-    android:background="@drawable/background_login">
+    android:background="?attr/backColor">
 
     <LinearLayout
         android:id="@+id/loginPanel"
