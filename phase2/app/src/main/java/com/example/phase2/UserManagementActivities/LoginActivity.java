@@ -28,7 +28,9 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
-/** A login activity. */
+/**
+ * A login activity.
+ */
 
 public class LoginActivity extends SuperActivity implements View.OnClickListener, Initializable {
 
@@ -40,9 +42,10 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
 
     /**
      * Return a boolean value states whether the password is correct or nor.
+     *
      * @return a boolean value.
      */
-    public boolean checkPasswordCorrect(){
+    public boolean checkPasswordCorrect() {
         // EditText initiation
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
@@ -51,8 +54,8 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
         String password = passwordEditText.getText().toString();
         UserManager userManagerInstance = UserManager.getInstance();
 
-        if(userManagerInstance.getUsers().containsKey(username)){
-            if (password.equals(userManagerInstance.getUsers().get(username).getPassword())){
+        if (userManagerInstance.getUsers().containsKey(username)) {
+            if (password.equals(userManagerInstance.getUsers().get(username).getPassword())) {
                 userManagerInstance.setCurUser(userManagerInstance.getUsers().get(username));
                 return true;
             }
@@ -64,7 +67,7 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
     public void onClick(View v) {
         UserManager userManagerInstance = UserManager.getInstance();
         TextView usernameTextView = findViewById(R.id.username);
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.login: {
                 if (!checkPasswordCorrect()) {
                     Toast.makeText(this, "Invalid username or password.",
@@ -82,9 +85,11 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
         }
     }
 
-    /** Load users data from local file named Users.ser. */
-    public void loadUsers(){
-        if(fileSystem.load("Users.ser") instanceof HashMap){
+    /**
+     * Load users data from local file named Users.ser.
+     */
+    public void loadUsers() {
+        if (fileSystem.load("Users.ser") instanceof HashMap) {
             UserManager.getInstance().setUsers((HashMap<String, User>)
                     fileSystem.load("Users.ser"));
         } else {
@@ -93,8 +98,8 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
         }
     }
 
-    public void loadScoreBoard(){
-        if(fileSystem.load("ScoreBoard.ser") instanceof HashMap){
+    public void loadScoreBoard() {
+        if (fileSystem.load("ScoreBoard.ser") instanceof HashMap) {
             ScoreBoard.getInstance().setUserPlayers(fileSystem.load("ScoreBoard.ser"));
         } else {
             ScoreBoard.getInstance().setUserPlayers(new HashMap<>());
