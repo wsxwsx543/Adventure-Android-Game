@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.phase2.DataManagement.FileSystem;
 import com.example.phase2.UserManagementActivities.LoseActivity;
 import com.example.phase2.AppCoreClasses.Player;
@@ -15,11 +13,12 @@ import com.example.phase2.AppCoreClasses.Property;
 import com.example.phase2.R;
 import com.example.phase2.AppCoreClasses.User;
 import com.example.phase2.AppCoreClasses.UserManager;
+import com.example.phase2.UserManagementActivities.SuperActivity;
 import com.example.phase2.UserManagementActivities.WinActivity;
 
 
 /** An activity shows the battle of monster and player for stage 3. */
-public class BattleActivity extends AppCompatActivity implements View.OnClickListener {
+public class BattleActivity extends SuperActivity implements View.OnClickListener {
 
     /** The current user. */
     User curUser;
@@ -140,18 +139,6 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-    }
 
     /**
      * A battle between the player and the monster in one round.
