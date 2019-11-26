@@ -15,7 +15,7 @@ public class Monster extends MazeObjects{
      */
     private int x , y, width = 90, height = 90;
 
-    Bitmap monsterview;
+    Bitmap monsterView;
 
     /**
      * @param curr_x the x coordinate of monster
@@ -25,9 +25,9 @@ public class Monster extends MazeObjects{
         this.x = curr_x;
         this.y = curr_y;
 
-        monsterview = BitmapFactory.decodeResource(res, R.drawable.monster);
+        monsterView = BitmapFactory.decodeResource(res, R.drawable.monster);
 
-        monsterview = Bitmap.createScaledBitmap(monsterview, width, height, false);
+        monsterView = Bitmap.createScaledBitmap(monsterView, width, height, false);
     }
 
     @Override
@@ -64,44 +64,7 @@ public class Monster extends MazeObjects{
     }
     @Override
     public Bitmap getView() {
-        return monsterview;
+        return monsterView;
     }
-
-    /**
-     * Return the image of monster
-     */
-//    Bitmap getMonsterView(){ return monsterview;}
-//
-//    public int getX(){
-//        return x;
-//    }
-//
-//    public int getY(){
-//        return y;
-//    }
-//
-//    public int getWidth(){
-//        return width;
-//    }
-//
-//    public int getHeight(){
-//        return height;
-//    }
-//
-//    public void setX(int x){
-//        this.x = x;
-//    }
-//
-//    public void setY(int y){
-//        this.y = y;
-//    }
-//
-//    public void setWidth(int width){
-//        this.width = width;
-//    }
-//
-//    public void setHeight(int height){
-//        this.height = height;
-//    }
 
 }

@@ -36,11 +36,11 @@ public class MazeView extends SurfaceView implements Runnable{
      */
     private Hero hero;
 
-    private String haskey = "No";
+    private String hasKey = "No";
     /**
      * The three monsters in the screen
      */
-    private List<MazeObjects> mymonsters;
+    private List<MazeObjects> myMonsters;
 
     /**
      * The treasure
@@ -85,11 +85,11 @@ public class MazeView extends SurfaceView implements Runnable{
     private int flexibility;
     private int luckiness;
     private int life;
-    private int giftlife;
-    private int giftattack;
-    private int giftdefence;
-    private int giftflexibility;
-    private int giftluckiness;
+    private int giftLife;
+    private int giftAttack;
+    private int giftDefence;
+    private int giftFlexibility;
+    private int giftLuckiness;
 
     /**
      * @param context
@@ -102,7 +102,7 @@ public class MazeView extends SurfaceView implements Runnable{
         this.screenX = screenX;
         this.screenY = screenY;
 
-        this.mymonsters = new ArrayList<>();
+        this.myMonsters = new ArrayList<>();
         this.myTreasures = new ArrayList<>();
         this.myDoors = new ArrayList<>();
 
@@ -113,11 +113,11 @@ public class MazeView extends SurfaceView implements Runnable{
         flexibility = curUser.getCurPlayer().getProperty().getFlexibility();
         luckiness = curUser.getCurPlayer().getProperty().getLuckiness();
         life = curUser.getCurPlayer().getLivesRemain();
-        giftlife = 0;
-        giftattack = 0;
-        giftdefence = 0;
-        giftflexibility = 0;
-        giftluckiness = 0;
+        giftLife = 0;
+        giftAttack = 0;
+        giftDefence = 0;
+        giftFlexibility = 0;
+        giftLuckiness = 0;
 
         this.fileSystem = new FileSystem(context);
 
@@ -130,11 +130,11 @@ public class MazeView extends SurfaceView implements Runnable{
         MazeObjects m3 = MazeObjectsFactory.getMazeObject("Monster", 360, 990, getResources());
         MazeObjects m4 = MazeObjectsFactory.getMazeObject("Monster", 90, 180, getResources());
         MazeObjects m5 = MazeObjectsFactory.getMazeObject("Monster", 270, 450, getResources());
-        mymonsters.add(m1);
-        mymonsters.add(m2);
-        mymonsters.add(m3);
-        mymonsters.add(m4);
-        mymonsters.add(m5);
+        myMonsters.add(m1);
+        myMonsters.add(m2);
+        myMonsters.add(m3);
+        myMonsters.add(m4);
+        myMonsters.add(m5);
 
 
         MazeObjects t1 = MazeObjectsFactory.getMazeObject("Treasure", 720, 630, getResources());
@@ -219,7 +219,7 @@ public class MazeView extends SurfaceView implements Runnable{
             sleep();
             
 
-            for (MazeObjects monster : this.mymonsters) {
+            for (MazeObjects monster : this.myMonsters) {
                 action(monster);
             }
 
@@ -300,7 +300,7 @@ public class MazeView extends SurfaceView implements Runnable{
         if (hero.getX() >= screenX - hero.getWidth())
             hero.setX(screenX - hero.getWidth());
 
-        for (MazeObjects monster : this.mymonsters) {
+        for (MazeObjects monster : this.myMonsters) {
             if (hero.getX() == monster.getX() && hero.getY() == monster.getY()) {
                 life--;
                 if (life == 0) {
@@ -314,38 +314,38 @@ public class MazeView extends SurfaceView implements Runnable{
             if (hero.getX() == treasure.getX() && hero.getY() == treasure.getY()){
                 if (((Treasure) treasure).getGift().equals("Life")){
                     life += 5;
-                    giftlife += 5;
+                    giftLife += 5;
                     ((Treasure) treasure).setGift("Empty");
                     myTreasures.remove(treasure);
                     break;
                 } else if(((Treasure) treasure).getGift().equals("attack")){
                     attack += 5;
-                    giftattack += 5;
+                    giftAttack += 5;
                     ((Treasure) treasure).setGift("Empty");
                     myTreasures.remove(treasure);
                     break;
                 } else if(((Treasure) treasure).getGift().equals("defence")){
                     defence += 5;
-                    giftdefence += 5;
+                    giftDefence += 5;
                     ((Treasure) treasure).setGift("Empty");
                     myTreasures.remove(treasure);
                     break;
                 } else if(((Treasure) treasure).getGift().equals("flexibility")){
                     flexibility += 5;
-                    giftflexibility += 5;
+                    giftFlexibility += 5;
                     ((Treasure) treasure).setGift("Empty");
                     myTreasures.remove(treasure);
                     break;
                 } else if(((Treasure) treasure).getGift().equals("luckiness")){
                     luckiness += 5;
-                    giftluckiness += 5;
+                    giftLuckiness += 5;
                     ((Treasure) treasure).setGift("Empty");
                     myTreasures.remove(treasure);
                     break;
                 }
                 else if (((Treasure) treasure).getGift().equals("Key")){
                     hero.setKey();
-                    haskey = "Yes";
+                    hasKey = "Yes";
                     ((Treasure) treasure).setGift("Empty");
                     myTreasures.remove(treasure);
                     break;
@@ -378,9 +378,9 @@ public class MazeView extends SurfaceView implements Runnable{
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
 
 
-            canvas.drawBitmap(hero.getg1hero(), hero.getX(), hero.getY(), paint);
+            canvas.drawBitmap(hero.getHero(), hero.getX(), hero.getY(), paint);
 
-            for (MazeObjects monster : this.mymonsters) {
+            for (MazeObjects monster : this.myMonsters) {
                 canvas.drawBitmap(monster.getView(), monster.getX(), monster.getY(), paint);
             }
 
@@ -393,17 +393,17 @@ public class MazeView extends SurfaceView implements Runnable{
             }
 
             canvas.drawText("Life: " + life, 20, 60, lifePaint);
-            canvas.drawText("Key: " + haskey, 500, 60, keyPaint);
+            canvas.drawText("Key: " + hasKey, 500, 60, keyPaint);
             canvas.drawText("Attack: " + attack, 20, 180, attackPaint);
             canvas.drawText("Defence: " + defence, 500, 180, defencePaint);
             canvas.drawText("Flexibility: " + flexibility, 20, 320, flexibilityPaint);
             canvas.drawText("Luckiness: " + luckiness, 500, 320, luckinessPaint);
 
-            canvas.drawText("Life from the treasure: " + giftlife, 100, 1600, giftPaint);
-            canvas.drawText("Attack from the treasure: " + giftattack, 100, 1680, giftPaint);
-            canvas.drawText("Defence from the treasure: " + giftdefence, 100, 1760, giftPaint);
-            canvas.drawText("Flexibility from the treasure: " + giftflexibility, 100, 1840, giftPaint);
-            canvas.drawText("Luckiness from the treasure: " + giftluckiness, 100, 1920, giftPaint);
+            canvas.drawText("Life from the treasure: " + giftLife, 100, 1600, giftPaint);
+            canvas.drawText("Attack from the treasure: " + giftAttack, 100, 1680, giftPaint);
+            canvas.drawText("Defence from the treasure: " + giftDefence, 100, 1760, giftPaint);
+            canvas.drawText("Flexibility from the treasure: " + giftFlexibility, 100, 1840, giftPaint);
+            canvas.drawText("Luckiness from the treasure: " + giftLuckiness, 100, 1920, giftPaint);
 
             getHolder().unlockCanvasAndPost(canvas);
 

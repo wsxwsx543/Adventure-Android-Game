@@ -18,7 +18,7 @@ public class Hero {
      * if the hero is going up/ down/ right/ left
      */
     private boolean isGoingUp = false;
-    private boolean isGoingdown = false;
+    private boolean isGoingDown = false;
     private boolean isGoingLeft = false;
     private boolean isGoingRight = false;
 
@@ -39,7 +39,7 @@ public class Hero {
     /**
      * Return the player image
      */
-    Bitmap getg1hero(){
+    Bitmap getHero(){
         return heroFront;
     }
 
@@ -48,7 +48,7 @@ public class Hero {
     }
 
     public void setIsGoingDown(Boolean goDown){
-        this.isGoingdown = goDown;
+        this.isGoingDown = goDown;
     }
 
     public void setIsGoingLeft(Boolean goLeft){
@@ -64,7 +64,7 @@ public class Hero {
     }
 
     public boolean getIsGoingDown(){
-        return this.isGoingdown;
+        return this.isGoingDown;
     }
 
     public boolean getIsGoingLeft(){

@@ -14,7 +14,7 @@ public class Treasure extends MazeObjects{
      * The x, y coordinate and the length and width of the treasure image
      */
     private int x, y, width = 90, height = 90;
-    private Bitmap treasurerview;
+    private Bitmap treasureView;
 
     private String gift;
 
@@ -25,15 +25,11 @@ public class Treasure extends MazeObjects{
         this.x = curr_x;
         this.y = curr_y;
 
-        treasurerview = BitmapFactory.decodeResource(res, R.drawable.treasure);
+        treasureView = BitmapFactory.decodeResource(res, R.drawable.treasure);
 
-        treasurerview = Bitmap.createScaledBitmap(treasurerview, width, height, false);
+        treasureView = Bitmap.createScaledBitmap(treasureView, width, height, false);
     }
 
-    /**
-     * Return the treasure image
-     */
-//    Bitmap getTreasurerview(){ return treasurerview;}
 
     @Override
     public int getX(){ return x; }
@@ -63,7 +59,7 @@ public class Treasure extends MazeObjects{
     }
     @Override
     public Bitmap getView() {
-        return treasurerview;
+        return treasureView;
     }
 
     public void setGift(String gift){ this.gift = gift; }
