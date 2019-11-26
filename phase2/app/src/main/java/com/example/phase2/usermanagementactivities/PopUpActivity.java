@@ -1,4 +1,4 @@
-package com.example.phase2.UserManagementActivities;
+package com.example.phase2.usermanagementactivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.phase2.AppCoreClasses.UserManager;
-import com.example.phase2.DataManagement.FileSystem;
+import com.example.phase2.appcore.UserManager;
 import com.example.phase2.R;
 
 public class PopUpActivity extends SuperActivity implements View.OnClickListener{

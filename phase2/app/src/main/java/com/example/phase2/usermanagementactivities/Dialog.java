@@ -1,4 +1,4 @@
-package com.example.phase2.UserManagementActivities;
+package com.example.phase2.usermanagementactivities;
 
 import android.content.Context;
 import android.content.DialogInterface;

@@ -1,8 +1,8 @@
-package com.example.phase2.ScoreBoard;
+package com.example.phase2.scoreboard;
 
-import com.example.phase2.AppCoreClasses.Player;
-import com.example.phase2.AppCoreClasses.User;
-import com.example.phase2.AppCoreClasses.UserManager;
+import com.example.phase2.appcore.Player;
+import com.example.phase2.appcore.User;
+import com.example.phase2.appcore.UserManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;

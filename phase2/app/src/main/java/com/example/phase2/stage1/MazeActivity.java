@@ -3,9 +3,7 @@ package com.example.phase2.stage1;
 import android.graphics.Point;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.phase2.UserManagementActivities.SuperActivity;
+import com.example.phase2.usermanagementactivities.SuperActivity;
 
 
 public class MazeActivity extends SuperActivity {

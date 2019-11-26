@@ -1,4 +1,4 @@
-package com.example.phase2.AppCoreClasses;
+package com.example.phase2.appcore;
 
 import java.io.Serializable;
 import java.util.HashMap;

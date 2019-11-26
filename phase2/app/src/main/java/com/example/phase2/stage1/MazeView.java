@@ -9,9 +9,9 @@ import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
-import com.example.phase2.DataManagement.FileSystem;
-import com.example.phase2.AppCoreClasses.User;
-import com.example.phase2.AppCoreClasses.UserManager;
+import com.example.phase2.datamanagement.FileSystem;
+import com.example.phase2.appcore.User;
+import com.example.phase2.appcore.UserManager;
 import com.example.phase2.stage2.TreasureHuntActivity;
 
 import java.util.ArrayList;

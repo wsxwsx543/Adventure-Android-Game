@@ -1,4 +1,4 @@
-package com.example.phase2.UserManagementActivities;
+package com.example.phase2.usermanagementactivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,19 +10,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.phase2.Exceptions.EmptyPlayerNameException;
-import com.example.phase2.Exceptions.SamePlayerNameException;
-import com.example.phase2.DataManagement.FileSystem;
+import com.example.phase2.exceptions.EmptyPlayerNameException;
+import com.example.phase2.exceptions.SamePlayerNameException;
 import com.example.phase2.Initializable;
-import com.example.phase2.AppCoreClasses.GameApp;
-import com.example.phase2.AppCoreClasses.Player;
-import com.example.phase2.AppCoreClasses.Property;
+import com.example.phase2.appcore.Player;
+import com.example.phase2.appcore.Property;
 import com.example.phase2.R;
-import com.example.phase2.AppCoreClasses.User;
-import com.example.phase2.AppCoreClasses.UserManager;
-import com.example.phase2.AppCoreClasses.Weapon;
+import com.example.phase2.appcore.User;
+import com.example.phase2.appcore.UserManager;
+import com.example.phase2.appcore.Weapon;
 
 public class CreatePlayerActivity extends SuperActivity implements View.OnClickListener, Initializable {
 

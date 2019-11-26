@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#838b8b"
     android:orientation="vertical"
-    tools:context="com.example.phase2.UserManagementActivities.PopUpActivity">
+    tools:context="com.example.phase2.usermanagementactivities.PopUpActivity">
 
     <RelativeLayout
         android:layout_width="wrap_content"

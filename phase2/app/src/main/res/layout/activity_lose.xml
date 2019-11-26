@@ -4,7 +4,7 @@
     android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserManagementActivities.LoseActivity"
+    tools:context=".usermanagementactivities.LoseActivity"
     android:background="?attr/backColor">
 
 

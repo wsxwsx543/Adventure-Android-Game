@@ -1,19 +1,14 @@
-package com.example.phase2.UserManagementActivities;
+package com.example.phase2.usermanagementactivities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.phase2.DataManagement.FileSystem;
 import com.example.phase2.Initializable;
-import com.example.phase2.AppCoreClasses.GameApp;
 import com.example.phase2.R;
-import com.example.phase2.AppCoreClasses.UserManager;
-import com.example.phase2.ScoreBoard.ScoreBoard;
-import com.example.phase2.ScoreBoard.ScoreBoardActivity;
+import com.example.phase2.appcore.UserManager;
+import com.example.phase2.scoreboard.ScoreBoardActivity;
 
 /** An activity used to choose a player or create a new player. */
 public class ChooseOrCreatePlayerActivity extends SuperActivity implements View.OnClickListener, Initializable {

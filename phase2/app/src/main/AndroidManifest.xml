@@ -3,27 +3,27 @@
     package="com.example.phase2">
 
     <application
-        android:name=".AppCoreClasses.GameApp"
+        android:name=".appcore.GameApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserManagementActivities.PopUpActivity"></activity>
-        <activity android:name=".ScoreBoard.ScoreBoardActivity"></activity>
-        <activity android:name=".UserManagementActivities.SuperActivity" />
-        <activity android:name=".UserManagementActivities.SettingActivity" />
-        <activity android:name=".UserManagementActivities.WinActivity" />
-        <activity android:name=".UserManagementActivities.LoseActivity" />
+        <activity android:name=".usermanagementactivities.PopUpActivity"></activity>
+        <activity android:name=".scoreboard.ScoreBoardActivity"></activity>
+        <activity android:name=".usermanagementactivities.SuperActivity" />
+        <activity android:name=".usermanagementactivities.SettingActivity" />
+        <activity android:name=".usermanagementactivities.WinActivity" />
+        <activity android:name=".usermanagementactivities.LoseActivity" />
         <activity android:name=".stage2.TreasureHuntActivity" />
-        <activity android:name=".UserManagementActivities.CreatePlayerActivity" />
-        <activity android:name=".UserManagementActivities.SelectPlayerActivity" />
-        <activity android:name=".UserManagementActivities.ChooseOrCreatePlayerActivity" />
-        <activity android:name=".UserManagementActivities.RegisterActivity" />
+        <activity android:name=".usermanagementactivities.CreatePlayerActivity" />
+        <activity android:name=".usermanagementactivities.SelectPlayerActivity" />
+        <activity android:name=".usermanagementactivities.ChooseOrCreatePlayerActivity" />
+        <activity android:name=".usermanagementactivities.RegisterActivity" />
         <activity android:name=".stage1.MazeActivity" />
         <activity android:name=".stage3.BattleActivity" />
-        <activity android:name=".UserManagementActivities.LoginActivity">
+        <activity android:name=".usermanagementactivities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
