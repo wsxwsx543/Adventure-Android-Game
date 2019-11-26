@@ -12,13 +12,16 @@ public class Door extends MazeObjects {
      */
     private int x, y, width = 90, height = 90;
     private Bitmap doorView;
+    private String type;
 
     /**
      * @param res
      */
-    Door(int curr_x, int curr_y, Resources res){
+    Door(int curr_x, int curr_y, Resources res, String type){
         this.x = curr_x;
         this.y = curr_y;
+
+        this.type = type;
 
         doorView = BitmapFactory.decodeResource(res, R.drawable.door2);
 
@@ -61,5 +64,15 @@ public class Door extends MazeObjects {
     @Override
     public Bitmap getView() {
         return doorView;
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -125,11 +125,11 @@ public class MazeView extends SurfaceView implements Runnable{
         background1 = new Background(screenX, screenY, getResources());
         hero = new Hero(getResources());
 
-        MazeObjects m1 = MazeObjectsFactory.getMazeObject("Monster", 900, 360, getResources());
-        MazeObjects m2 = MazeObjectsFactory.getMazeObject("Monster", 540, 270, getResources());
-        MazeObjects m3 = MazeObjectsFactory.getMazeObject("Monster", 360, 990, getResources());
-        MazeObjects m4 = MazeObjectsFactory.getMazeObject("Monster", 90, 180, getResources());
-        MazeObjects m5 = MazeObjectsFactory.getMazeObject("Monster", 270, 450, getResources());
+        MazeObjects m1 = MazeObjectsFactory.getMazeObject("Monster", 900, 360, getResources(), "Strong");
+        MazeObjects m2 = MazeObjectsFactory.getMazeObject("Monster", 540, 270, getResources(), "Weak");
+        MazeObjects m3 = MazeObjectsFactory.getMazeObject("Monster", 360, 990, getResources(), "Weak");
+        MazeObjects m4 = MazeObjectsFactory.getMazeObject("Monster", 90, 180, getResources(), "Weak");
+        MazeObjects m5 = MazeObjectsFactory.getMazeObject("Monster", 270, 450, getResources(), "Weak");
         myMonsters.add(m1);
         myMonsters.add(m2);
         myMonsters.add(m3);
@@ -137,18 +137,12 @@ public class MazeView extends SurfaceView implements Runnable{
         myMonsters.add(m5);
 
 
-        MazeObjects t1 = MazeObjectsFactory.getMazeObject("Treasure", 720, 630, getResources());
-        ((Treasure) t1).setGift("Key");
-        MazeObjects t2 = MazeObjectsFactory.getMazeObject("Treasure", 90, 720, getResources());
-        ((Treasure) t2).setGift("Life");
-        MazeObjects t3 = MazeObjectsFactory.getMazeObject("Treasure", 540, 360, getResources());
-        ((Treasure) t3).setGift("attack");
-        MazeObjects t4 = MazeObjectsFactory.getMazeObject("Treasure", 180, 990, getResources());
-        ((Treasure) t4).setGift("defence");
-        MazeObjects t5 = MazeObjectsFactory.getMazeObject("Treasure", 630, 630, getResources());
-        ((Treasure) t5).setGift("flexibility");
-        MazeObjects t6 = MazeObjectsFactory.getMazeObject("Treasure", 270, 450, getResources());
-        ((Treasure) t6).setGift("luckiness");
+        MazeObjects t1 = MazeObjectsFactory.getMazeObject("Treasure", 720, 630, getResources(), "Key");
+        MazeObjects t2 = MazeObjectsFactory.getMazeObject("Treasure", 90, 720, getResources(), "Life");
+        MazeObjects t3 = MazeObjectsFactory.getMazeObject("Treasure", 540, 360, getResources(), "Attack");
+        MazeObjects t4 = MazeObjectsFactory.getMazeObject("Treasure", 180, 990, getResources(), "Defence");
+        MazeObjects t5 = MazeObjectsFactory.getMazeObject("Treasure", 630, 630, getResources(), "Flexibility");
+        MazeObjects t6 = MazeObjectsFactory.getMazeObject("Treasure", 270, 450, getResources(), "Luckiness");
 
         myTreasures.add(t1);
         myTreasures.add(t2);
@@ -158,8 +152,10 @@ public class MazeView extends SurfaceView implements Runnable{
         myTreasures.add(t6);
 
 
-        MazeObjects d1 = MazeObjectsFactory.getMazeObject("Door", 990, 1350, getResources());
+        MazeObjects d1 = MazeObjectsFactory.getMazeObject("Door", 990, 1350, getResources(), "True");
+        MazeObjects d2 = MazeObjectsFactory.getMazeObject("Door", 90, 1350, getResources(), "False");
         myDoors.add(d1);
+        myDoors.add(d2);
 
 
         paint = new Paint();
@@ -217,7 +213,7 @@ public class MazeView extends SurfaceView implements Runnable{
             update();
             draw();
             sleep();
-            
+
 
             for (MazeObjects monster : this.myMonsters) {
                 action(monster);
@@ -300,54 +296,91 @@ public class MazeView extends SurfaceView implements Runnable{
         if (hero.getX() >= screenX - hero.getWidth())
             hero.setX(screenX - hero.getWidth());
 
+
         for (MazeObjects monster : this.myMonsters) {
-            if (hero.getX() == monster.getX() && hero.getY() == monster.getY()) {
-                life--;
-                if (life == 0) {
-                    Intent restartg1Intent = new Intent(getContext(), MazeActivity.class);
-                    getContext().startActivity(restartg1Intent);
+            if (monster.getType().equals("Strong")){
+                if (hero.getX() == monster.getX() && hero.getY() == monster.getY()) {
+                    life -= 5;
+                    if (life <= 0) {
+                        Intent restartg1Intent = new Intent(getContext(), MazeActivity.class);
+                        getContext().startActivity(restartg1Intent);
+                    }
+                }
+            }
+            else if (monster.getType().equals("Weak")){
+                if (hero.getX() == monster.getX() && hero.getY() == monster.getY()) {
+                    life --;
+                    if (life <= 0) {
+                        Intent restartg1Intent = new Intent(getContext(), MazeActivity.class);
+                        getContext().startActivity(restartg1Intent);
+                    }
                 }
             }
         }
 
         for (MazeObjects treasure : this.myTreasures){
             if (hero.getX() == treasure.getX() && hero.getY() == treasure.getY()){
-                if (((Treasure) treasure).getGift().equals("Life")){
+                if (treasure.getType().equals("Life")){
                     life += 5;
                     giftLife += 5;
-                    ((Treasure) treasure).setGift("Empty");
+                    treasure.setType("Empty");
                     myTreasures.remove(treasure);
                     break;
-                } else if(((Treasure) treasure).getGift().equals("attack")){
+                } else if(treasure.getType().equals("Attack")){
                     attack += 5;
                     giftAttack += 5;
-                    ((Treasure) treasure).setGift("Empty");
+                    treasure.setType("Empty");
                     myTreasures.remove(treasure);
                     break;
-                } else if(((Treasure) treasure).getGift().equals("defence")){
+                } else if(treasure.getType().equals("Defence")){
                     defence += 5;
                     giftDefence += 5;
-                    ((Treasure) treasure).setGift("Empty");
+                    treasure.setType("Empty");
                     myTreasures.remove(treasure);
                     break;
-                } else if(((Treasure) treasure).getGift().equals("flexibility")){
+                } else if(treasure.getType().equals("Flexibility")){
                     flexibility += 5;
                     giftFlexibility += 5;
-                    ((Treasure) treasure).setGift("Empty");
+                    treasure.setType("Empty");
                     myTreasures.remove(treasure);
                     break;
-                } else if(((Treasure) treasure).getGift().equals("luckiness")){
+                } else if(treasure.getType().equals("Luckiness")){
                     luckiness += 5;
                     giftLuckiness += 5;
-                    ((Treasure) treasure).setGift("Empty");
+                    treasure.setType("Empty");
                     myTreasures.remove(treasure);
                     break;
                 }
-                else if (((Treasure) treasure).getGift().equals("Key")){
+                else if (treasure.getType().equals("Key")){
                     hero.setKey();
                     hasKey = "Yes";
-                    ((Treasure) treasure).setGift("Empty");
+                    treasure.setType("Empty");
                     myTreasures.remove(treasure);
+                    break;
+                }
+            }
+        }
+
+        for (MazeObjects door : myDoors){
+            if (door.getType().equals("True")){
+                if (hero.getX() == door.getX() && hero.getY() == door.getY() && hero.getKey()){
+                    curUser.getCurPlayer().getProperty().setAttack(attack);
+                    curUser.getCurPlayer().getProperty().setDefence(defence);
+                    curUser.getCurPlayer().getProperty().setFlexibility(flexibility);
+                    curUser.getCurPlayer().getProperty().setLuckiness(luckiness);
+                    curUser.getCurPlayer().setLivesRemain(life);
+                    curUser.getCurPlayer().setCurStage(2);
+                    saveUser();
+
+                    Intent tog2Intent = new Intent(getContext(), TreasureHuntActivity.class);
+                    getContext().startActivity(tog2Intent);
+                }
+            }
+            else if (door.getType().equals("False")){
+                if (hero.getX() == door.getX() && hero.getY() == door.getY() && hero.getKey()){
+                    life -= 5;
+                    door.setType("Used");
+                    myDoors.remove(door);
                     break;
                 }
             }

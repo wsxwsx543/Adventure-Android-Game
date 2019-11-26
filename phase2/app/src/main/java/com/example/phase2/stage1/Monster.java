@@ -17,13 +17,17 @@ public class Monster extends MazeObjects{
 
     Bitmap monsterView;
 
+    String type;
+
     /**
      * @param curr_x the x coordinate of monster
      * @param curr_y the y coordinate of monster
      */
-    Monster(int curr_x, int curr_y, Resources res){
+    Monster(int curr_x, int curr_y, Resources res, String type){
         this.x = curr_x;
         this.y = curr_y;
+
+        this.type = type;
 
         monsterView = BitmapFactory.decodeResource(res, R.drawable.monster);
 
@@ -67,4 +71,13 @@ public class Monster extends MazeObjects{
         return monsterView;
     }
 
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public void setType(String type) {
+        this.type = type;
+    }
 }
