@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.phase2.datamanagement.FileSystem;
+import com.example.phase2.scoreboard.ScoreBoard;
 import com.example.phase2.usermanagementactivities.LoseActivity;
 import com.example.phase2.appcore.Player;
 import com.example.phase2.appcore.Property;
@@ -49,6 +50,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
+        super.init();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
 
@@ -139,6 +141,19 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+        fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+        fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
+    }
 
     /**
      * A battle between the player and the monster in one round.
