@@ -50,18 +50,4 @@ public class SuperActivity extends AppCompatActivity implements Initializable {
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
         fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-        fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-        fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
-    }
 }
