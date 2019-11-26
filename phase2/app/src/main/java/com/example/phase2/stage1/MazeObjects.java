@@ -11,5 +11,7 @@ public abstract class MazeObjects {
     public abstract void setY(int y);
     public abstract void setWidth(int width);
     public abstract void setHeight(int height);
+    public abstract void setType(String type);
+    public abstract String getType();
     public abstract Bitmap getView();
 }

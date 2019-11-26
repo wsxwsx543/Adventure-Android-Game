@@ -15,19 +15,23 @@ public class Monster extends MazeObjects{
      */
     private int x , y, width = 90, height = 90;
 
-    Bitmap monsterview;
+    Bitmap monsterView;
+
+    String type;
 
     /**
      * @param curr_x the x coordinate of monster
      * @param curr_y the y coordinate of monster
      */
-    Monster(int curr_x, int curr_y, Resources res){
+    Monster(int curr_x, int curr_y, Resources res, String type){
         this.x = curr_x;
         this.y = curr_y;
 
-        monsterview = BitmapFactory.decodeResource(res, R.drawable.monster);
+        this.type = type;
 
-        monsterview = Bitmap.createScaledBitmap(monsterview, width, height, false);
+        monsterView = BitmapFactory.decodeResource(res, R.drawable.monster);
+
+        monsterView = Bitmap.createScaledBitmap(monsterView, width, height, false);
     }
 
     @Override
@@ -64,44 +68,16 @@ public class Monster extends MazeObjects{
     }
     @Override
     public Bitmap getView() {
-        return monsterview;
+        return monsterView;
     }
 
-    /**
-     * Return the image of monster
-     */
-//    Bitmap getMonsterView(){ return monsterview;}
-//
-//    public int getX(){
-//        return x;
-//    }
-//
-//    public int getY(){
-//        return y;
-//    }
-//
-//    public int getWidth(){
-//        return width;
-//    }
-//
-//    public int getHeight(){
-//        return height;
-//    }
-//
-//    public void setX(int x){
-//        this.x = x;
-//    }
-//
-//    public void setY(int y){
-//        this.y = y;
-//    }
-//
-//    public void setWidth(int width){
-//        this.width = width;
-//    }
-//
-//    public void setHeight(int height){
-//        this.height = height;
-//    }
+    @Override
+    public String getType() {
+        return type;
+    }
 
+    @Override
+    public void setType(String type) {
+        this.type = type;
+    }
 }

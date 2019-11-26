@@ -1,4 +1,4 @@
-package com.example.phase2.DataManagement;
+package com.example.phase2.datamanagement;
 
 import android.content.Context;
 import android.util.Log;

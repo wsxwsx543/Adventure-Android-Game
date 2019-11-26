@@ -1,6 +1,6 @@
 package com.example.phase2.stage3;
 
-import com.example.phase2.AppCoreClasses.Property;
+import com.example.phase2.appcore.Property;
 
 /**
  * A monster.

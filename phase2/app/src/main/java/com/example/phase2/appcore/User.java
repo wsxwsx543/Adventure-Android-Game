@@ -1,9 +1,7 @@
-package com.example.phase2.AppCoreClasses;
+package com.example.phase2.appcore;
 
-import com.example.phase2.AppCoreClasses.Player;
-import com.example.phase2.AppCoreClasses.Property;
-import com.example.phase2.Exceptions.EmptyPlayerNameException;
-import com.example.phase2.Exceptions.SamePlayerNameException;
+import com.example.phase2.exceptions.EmptyPlayerNameException;
+import com.example.phase2.exceptions.SamePlayerNameException;
 
 import java.io.Serializable;
 import java.util.HashMap;

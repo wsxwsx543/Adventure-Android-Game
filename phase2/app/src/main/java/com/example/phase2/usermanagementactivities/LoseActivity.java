@@ -1,4 +1,4 @@
-package com.example.phase2.UserManagementActivities;
+package com.example.phase2.usermanagementactivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,15 +8,15 @@ import android.os.Message;
 import com.example.phase2.Initializable;
 import com.example.phase2.R;
 
-/** Jump to this activity if the player win the game. */
-public class WinActivity extends SuperActivity implements Initializable {
+/** Jump to this activity if the player lose the game. */
+public class LoseActivity extends SuperActivity implements Initializable {
     Handler myhandler = new Handler(){
         @Override
         public void handleMessage(Message msg){
             super.handleMessage(msg);
             switch (msg.what){
                 case 1:
-                    startActivity(new Intent(WinActivity.this, PopUpActivity.class));
+                    startActivity(new Intent(LoseActivity.this, ChooseOrCreatePlayerActivity.class));
             }
         }
     };
@@ -31,6 +31,6 @@ public class WinActivity extends SuperActivity implements Initializable {
     @Override
     public void init() {
         super.init();
-        setContentView(R.layout.activity_win);
+        setContentView(R.layout.activity_lose);
     }
 }

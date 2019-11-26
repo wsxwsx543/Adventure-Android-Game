@@ -14,26 +14,24 @@ public class Treasure extends MazeObjects{
      * The x, y coordinate and the length and width of the treasure image
      */
     private int x, y, width = 90, height = 90;
-    private Bitmap treasurerview;
+    private Bitmap treasureView;
 
-    private String gift;
+    private String type;
 
     /**
      * @param res
      */
-    Treasure(int curr_x, int curr_y, Resources res){
+    Treasure(int curr_x, int curr_y, Resources res, String type){
         this.x = curr_x;
         this.y = curr_y;
 
-        treasurerview = BitmapFactory.decodeResource(res, R.drawable.treasure);
+        this.type = type;
 
-        treasurerview = Bitmap.createScaledBitmap(treasurerview, width, height, false);
+        treasureView = BitmapFactory.decodeResource(res, R.drawable.treasure);
+
+        treasureView = Bitmap.createScaledBitmap(treasureView, width, height, false);
     }
 
-    /**
-     * Return the treasure image
-     */
-//    Bitmap getTreasurerview(){ return treasurerview;}
 
     @Override
     public int getX(){ return x; }
@@ -63,10 +61,16 @@ public class Treasure extends MazeObjects{
     }
     @Override
     public Bitmap getView() {
-        return treasurerview;
+        return treasureView;
     }
 
-    public void setGift(String gift){ this.gift = gift; }
+    @Override
+    public String getType() {
+        return type;
+    }
 
-    public String getGift(){ return this.gift;}
+    @Override
+    public void setType(String type) {
+        this.type = type;
+    }
 }

@@ -11,24 +11,23 @@ public class Door extends MazeObjects {
      * The x, y coordinate and the length and width of the door image
      */
     private int x, y, width = 90, height = 90;
-    private Bitmap doorview;
+    private Bitmap doorView;
+    private String type;
 
     /**
      * @param res
      */
-    Door(int curr_x, int curr_y, Resources res){
+    Door(int curr_x, int curr_y, Resources res, String type){
         this.x = curr_x;
         this.y = curr_y;
 
-        doorview = BitmapFactory.decodeResource(res, R.drawable.door2);
+        this.type = type;
 
-        doorview = Bitmap.createScaledBitmap(doorview, width, height, false);
+        doorView = BitmapFactory.decodeResource(res, R.drawable.door2);
+
+        doorView = Bitmap.createScaledBitmap(doorView, width, height, false);
     }
 
-    /**
-     * Return the door image
-     */
-//    Bitmap getTreasurerview(){ return treasurerview;}
 
     @Override
     public int getX(){
@@ -64,6 +63,16 @@ public class Door extends MazeObjects {
     }
     @Override
     public Bitmap getView() {
-        return doorview;
+        return doorView;
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public void setType(String type) {
+        this.type = type;
     }
 }

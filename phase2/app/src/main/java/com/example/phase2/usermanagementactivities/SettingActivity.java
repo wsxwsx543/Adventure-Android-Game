@@ -1,4 +1,4 @@
-package com.example.phase2.UserManagementActivities;
+package com.example.phase2.usermanagementactivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,13 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.phase2.DataManagement.FileSystem;
 import com.example.phase2.Initializable;
-import com.example.phase2.AppCoreClasses.GameApp;
 import com.example.phase2.R;
-import com.example.phase2.AppCoreClasses.UserManager;
 
 /** An activity that represents the setting of the game */
 public class SettingActivity extends SuperActivity implements View.OnClickListener, Initializable {
@@ -36,6 +31,16 @@ public class SettingActivity extends SuperActivity implements View.OnClickListen
                 startActivity(new Intent(SettingActivity.this, SettingActivity.class));
                 break;
             }
+            case R.id.pink:{
+                app.setColorTheme("pink");
+                startActivity(new Intent(SettingActivity.this, SettingActivity.class));
+                break;
+            }
+            case R.id.green:{
+                app.setColorTheme("green");
+                startActivity(new Intent(SettingActivity.this, SettingActivity.class));
+                break;
+            }
             case R.id.back:{
                 startActivity(new Intent(SettingActivity.this, ChooseOrCreatePlayerActivity.class));
                 break;
@@ -50,10 +55,14 @@ public class SettingActivity extends SuperActivity implements View.OnClickListen
 
         final RadioButton blueButton = findViewById(R.id.blue);
         final RadioButton yellowButton = findViewById(R.id.yellow);
+        final RadioButton pinkButton = findViewById(R.id.pink);
+        final RadioButton greenButton = findViewById(R.id.green);
         final Button backButton = findViewById(R.id.back);
 
         blueButton.setOnClickListener(this);
         yellowButton.setOnClickListener(this);
+        pinkButton.setOnClickListener(this);
+        greenButton.setOnClickListener(this);
         backButton.setOnClickListener(this);
     }
 }

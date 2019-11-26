@@ -1,18 +1,15 @@
-package com.example.phase2.ScoreBoard;
+package com.example.phase2.scoreboard;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.phase2.Initializable;
 import com.example.phase2.R;
-import com.example.phase2.UserManagementActivities.ChooseOrCreatePlayerActivity;
-import com.example.phase2.UserManagementActivities.SuperActivity;
-
-import org.w3c.dom.Text;
+import com.example.phase2.usermanagementactivities.ChooseOrCreatePlayerActivity;
+import com.example.phase2.usermanagementactivities.SuperActivity;
 
 import java.util.List;
 import java.util.Map;

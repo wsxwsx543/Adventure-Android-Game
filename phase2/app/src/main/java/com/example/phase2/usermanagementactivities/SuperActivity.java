@@ -1,14 +1,14 @@
-package com.example.phase2.UserManagementActivities;
+package com.example.phase2.usermanagementactivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.phase2.AppCoreClasses.GameApp;
-import com.example.phase2.AppCoreClasses.UserManager;
-import com.example.phase2.DataManagement.FileSystem;
+import com.example.phase2.appcore.GameApp;
+import com.example.phase2.appcore.UserManager;
+import com.example.phase2.datamanagement.FileSystem;
 import com.example.phase2.Initializable;
 import com.example.phase2.R;
-import com.example.phase2.ScoreBoard.ScoreBoard;
+import com.example.phase2.scoreboard.ScoreBoard;
 
 public class SuperActivity extends AppCompatActivity implements Initializable {
     FileSystem fileSystem;
@@ -27,6 +27,12 @@ public class SuperActivity extends AppCompatActivity implements Initializable {
         }
         else if(app.getColorTheme().equals("yellow")){
             setTheme(R.style.yellow);
+        }
+        else if(app.getColorTheme().equals("pink")){
+            setTheme(R.style.pink);
+        }
+        else if(app.getColorTheme().equals("green")){
+            setTheme(R.style.green);
         }
         fileSystem = new FileSystem(this.getApplicationContext());
     }
