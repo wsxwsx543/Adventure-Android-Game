@@ -33,32 +33,8 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
         init();
     }
 
-//    /**
-//     * Return a boolean value states whether the password is correct or nor.
-//     *
-//     * @return a boolean value.
-//     */
-//    public boolean checkPasswordCorrect() {
-//        // EditText initiation
-//        final EditText usernameEditText = findViewById(R.id.username);
-//        final EditText passwordEditText = findViewById(R.id.password);
-//
-//        String username = usernameEditText.getText().toString();
-//        String password = passwordEditText.getText().toString();
-//        UserManager userManagerInstance = UserManager.getInstance();
-//
-//        if (userManagerInstance.getUsers().containsKey(username)) {
-//            if (password.equals(userManagerInstance.getUsers().get(username).getPassword())) {
-//                userManagerInstance.setCurUser(userManagerInstance.getUsers().get(username));
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
     @Override
     public void onClick(View v) {
-//        UserManager userManagerInstance = UserManager.getInstance();
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         String username = usernameEditText.getText().toString();
@@ -67,50 +43,21 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
             case R.id.login: {
                 if(loginPresenter.showResult(fileSystem, username, password))
                     startActivity(new Intent(LoginActivity.this, ChooseOrCreatePlayerActivity.class));
-//                if (!checkPasswordCorrect()) {
-//                    Toast.makeText(this, "Invalid username or password.",
-//                            Toast.LENGTH_LONG).show();
-//                } else {
-//                    userManagerInstance.setCurUser(userManagerInstance.getUsers().get(usernameTextView.getText().toString()));
-//                }
                 break;
             }
             case R.id.register: {
+                loginPresenter.register(fileSystem);
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
             }
         }
     }
 
-//    /**
-//     * Load users data from local file named Users.ser.
-//     */
-//    public void loadUsers() {
-//        if (fileSystem.load("Users.ser") instanceof HashMap) {
-//            UserManager.getInstance().setUsers((HashMap<String, User>)
-//                    fileSystem.load("Users.ser"));
-//        } else {
-//            UserManager.getInstance().setUsers(new HashMap<>());
-//            fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-//        }
-//    }
-//
-//    public void loadScoreBoard() {
-//        if (fileSystem.load("ScoreBoard.ser") instanceof HashMap) {
-//            ScoreBoard.getInstance().setUserPlayers(fileSystem.load("ScoreBoard.ser"));
-//        } else {
-//            ScoreBoard.getInstance().setUserPlayers(new HashMap<>());
-//            fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
-//        }
-//    }
-
     @Override
     public void init() {
         super.init();
         this.loginPresenter = new LoginPresenter(new LoginModel(), this);
         setContentView(R.layout.activity_login);
-//        loadUsers();
-//        loadScoreBoard();
 
         //Button initiation reference: https://www.youtube.com/watch?v=GtxVILjLcw8
         final Button loginButton = findViewById(R.id.login);

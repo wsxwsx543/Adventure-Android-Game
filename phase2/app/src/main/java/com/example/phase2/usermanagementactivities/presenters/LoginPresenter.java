@@ -24,4 +24,10 @@ public class LoginPresenter {
             return false;
         }
     }
+
+    public void register(FileSystem fileSystem){
+        loginModel.loadScoreBoard(fileSystem);
+        loginModel.loadUsers(fileSystem);
+        loginView.setLoginResult("Register now!");
+    }
 }
