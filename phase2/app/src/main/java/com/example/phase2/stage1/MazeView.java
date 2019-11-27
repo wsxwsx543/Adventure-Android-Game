@@ -30,7 +30,7 @@ public class MazeView extends SurfaceView implements Runnable{
      * the length and width of the screen
      */
     private int screenX, screenY;
-    private Paint paint;
+    private Paint paint = new Paint();
     /**
      * The player
      */
@@ -69,13 +69,7 @@ public class MazeView extends SurfaceView implements Runnable{
     /**
      * The paint of 4 properties and 1 life
      */
-    private Paint lifePaint = new Paint();
-    private Paint attackPaint = new Paint();
-    private Paint defencePaint = new Paint();
-    private Paint flexibilityPaint = new Paint();
-    private Paint luckinessPaint = new Paint();
-    private Paint keyPaint = new Paint();
-    private Paint giftPaint = new Paint();
+    private Paint textPaint = new Paint();
 
     /**
      * Four properties and life
@@ -106,18 +100,11 @@ public class MazeView extends SurfaceView implements Runnable{
         this.myTreasures = new ArrayList<>();
         this.myDoors = new ArrayList<>();
 
-        curUser = UserManager.getInstance().getCurUser();
+        createMonsterItems();
+        createTreasureItems();
+        createDoorItems();
 
-        attack = curUser.getCurPlayer().getProperty().getAttack();
-        defence = curUser.getCurPlayer().getProperty().getDefence();
-        flexibility = curUser.getCurPlayer().getProperty().getFlexibility();
-        luckiness = curUser.getCurPlayer().getProperty().getLuckiness();
-        life = curUser.getCurPlayer().getLivesRemain();
-        giftLife = 0;
-        giftAttack = 0;
-        giftDefence = 0;
-        giftFlexibility = 0;
-        giftLuckiness = 0;
+        curUser = UserManager.getInstance().getCurUser();
 
         this.fileSystem = new FileSystem(context);
 
@@ -125,6 +112,36 @@ public class MazeView extends SurfaceView implements Runnable{
         background1 = new Background(screenX, screenY, getResources());
         hero = new Hero(getResources());
 
+        setTextPaint();
+
+        attack = curUser.getCurPlayer().getProperty().getAttack();
+        defence = curUser.getCurPlayer().getProperty().getDefence();
+        flexibility = curUser.getCurPlayer().getProperty().getFlexibility();
+        luckiness = curUser.getCurPlayer().getProperty().getLuckiness();
+        life = curUser.getCurPlayer().getLivesRemain();
+//        giftLife = 0;
+//        giftAttack = 0;
+//        giftDefence = 0;
+//        giftFlexibility = 0;
+//        giftLuckiness = 0;
+
+        curUser.getCurPlayer().setCurStage(1);
+        saveUser();
+
+
+    }
+
+    public int getScreenX(){return screenX;}
+    public int getScreenY(){return screenY;}
+
+    public void setTextPaint(){
+        textPaint.setColor(Color.WHITE);
+        textPaint.setTextSize(70);
+        textPaint.setTypeface(Typeface.DEFAULT_BOLD);
+        textPaint.setAntiAlias(true);
+    }
+
+    public void createMonsterItems(){
         MazeObjects m1 = MazeObjectsFactory.getMazeObject("Monster", 900, 360, getResources(), "Strong");
         MazeObjects m2 = MazeObjectsFactory.getMazeObject("Monster", 540, 270, getResources(), "Weak");
         MazeObjects m3 = MazeObjectsFactory.getMazeObject("Monster", 360, 990, getResources(), "Weak");
@@ -135,8 +152,9 @@ public class MazeView extends SurfaceView implements Runnable{
         myMonsters.add(m3);
         myMonsters.add(m4);
         myMonsters.add(m5);
+    }
 
-
+    public void createTreasureItems(){
         MazeObjects t1 = MazeObjectsFactory.getMazeObject("Treasure", 720, 630, getResources(), "Key");
         MazeObjects t2 = MazeObjectsFactory.getMazeObject("Treasure", 90, 720, getResources(), "Life");
         MazeObjects t3 = MazeObjectsFactory.getMazeObject("Treasure", 540, 360, getResources(), "Attack");
@@ -150,59 +168,14 @@ public class MazeView extends SurfaceView implements Runnable{
         myTreasures.add(t4);
         myTreasures.add(t5);
         myTreasures.add(t6);
+    }
 
-
+    public void createDoorItems(){
         MazeObjects d1 = MazeObjectsFactory.getMazeObject("Door", 990, 1350, getResources(), "True");
         MazeObjects d2 = MazeObjectsFactory.getMazeObject("Door", 90, 1350, getResources(), "False");
         myDoors.add(d1);
         myDoors.add(d2);
-
-
-        paint = new Paint();
-
-        lifePaint.setColor(Color.WHITE);
-        lifePaint.setTextSize(70);
-        lifePaint.setTypeface(Typeface.DEFAULT_BOLD);
-        lifePaint.setAntiAlias(true);
-
-        attackPaint.setColor(Color.WHITE);
-        attackPaint.setTextSize(70);
-        attackPaint.setTypeface(Typeface.DEFAULT_BOLD);
-        attackPaint.setAntiAlias(true);
-
-        defencePaint.setColor(Color.WHITE);
-        defencePaint.setTextSize(70);
-        defencePaint.setTypeface(Typeface.DEFAULT_BOLD);
-        defencePaint.setAntiAlias(true);
-
-        flexibilityPaint.setColor(Color.WHITE);
-        flexibilityPaint.setTextSize(70);
-        flexibilityPaint.setTypeface(Typeface.DEFAULT_BOLD);
-        flexibilityPaint.setAntiAlias(true);
-
-        luckinessPaint.setColor(Color.WHITE);
-        luckinessPaint.setTextSize(70);
-        luckinessPaint.setTypeface(Typeface.DEFAULT_BOLD);
-        luckinessPaint.setAntiAlias(true);
-
-        keyPaint.setColor(Color.WHITE);
-        keyPaint.setTextSize(70);
-        keyPaint.setTypeface(Typeface.DEFAULT_BOLD);
-        keyPaint.setAntiAlias(true);
-
-        giftPaint.setColor(Color.WHITE);
-        giftPaint.setTextSize(70);
-        giftPaint.setTypeface(Typeface.DEFAULT_BOLD);
-        giftPaint.setAntiAlias(true);
-
-        curUser.getCurPlayer().setCurStage(1);
-        saveUser();
-
-
     }
-
-    public int getScreenX(){return screenX;}
-    public int getScreenY(){return screenY;}
 
     /**
      * in where we keep running the methods
@@ -425,18 +398,18 @@ public class MazeView extends SurfaceView implements Runnable{
                 canvas.drawBitmap(door.getView(), door.getX(), door.getY(), paint);
             }
 
-            canvas.drawText("Life: " + life, 20, 60, lifePaint);
-            canvas.drawText("Key: " + hasKey, 500, 60, keyPaint);
-            canvas.drawText("Attack: " + attack, 20, 180, attackPaint);
-            canvas.drawText("Defence: " + defence, 500, 180, defencePaint);
-            canvas.drawText("Flexibility: " + flexibility, 20, 320, flexibilityPaint);
-            canvas.drawText("Luckiness: " + luckiness, 500, 320, luckinessPaint);
+            canvas.drawText("Life: " + life, 20, 60, textPaint);
+            canvas.drawText("Key: " + hasKey, 500, 60, textPaint);
+            canvas.drawText("Attack: " + attack, 20, 180, textPaint);
+            canvas.drawText("Defence: " + defence, 500, 180, textPaint);
+            canvas.drawText("Flexibility: " + flexibility, 20, 320, textPaint);
+            canvas.drawText("Luckiness: " + luckiness, 500, 320, textPaint);
 
-            canvas.drawText("Life from the treasure: " + giftLife, 100, 1600, giftPaint);
-            canvas.drawText("Attack from the treasure: " + giftAttack, 100, 1680, giftPaint);
-            canvas.drawText("Defence from the treasure: " + giftDefence, 100, 1760, giftPaint);
-            canvas.drawText("Flexibility from the treasure: " + giftFlexibility, 100, 1840, giftPaint);
-            canvas.drawText("Luckiness from the treasure: " + giftLuckiness, 100, 1920, giftPaint);
+            canvas.drawText("Life from the treasure: " + giftLife, 100, 1600, textPaint);
+            canvas.drawText("Attack from the treasure: " + giftAttack, 100, 1680, textPaint);
+            canvas.drawText("Defence from the treasure: " + giftDefence, 100, 1760, textPaint);
+            canvas.drawText("Flexibility from the treasure: " + giftFlexibility, 100, 1840, textPaint);
+            canvas.drawText("Luckiness from the treasure: " + giftLuckiness, 100, 1920, textPaint);
 
             getHolder().unlockCanvasAndPost(canvas);
 
