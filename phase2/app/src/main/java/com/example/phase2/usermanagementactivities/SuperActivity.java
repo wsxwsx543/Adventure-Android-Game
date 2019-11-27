@@ -22,17 +22,19 @@ public class SuperActivity extends AppCompatActivity implements Initializable {
     @Override
     public void init() {
         app = (GameApp) getApplication();
-        if(app.getColorTheme().equals("blue")){
-            setTheme(R.style.blue);
-        }
-        else if(app.getColorTheme().equals("yellow")){
-            setTheme(R.style.yellow);
-        }
-        else if(app.getColorTheme().equals("pink")){
-            setTheme(R.style.pink);
-        }
-        else if(app.getColorTheme().equals("green")){
-            setTheme(R.style.green);
+        switch (app.getColorTheme()) {
+            case "blue":
+                setTheme(R.style.blue);
+                break;
+            case "yellow":
+                setTheme(R.style.yellow);
+                break;
+            case "pink":
+                setTheme(R.style.pink);
+                break;
+            case "green":
+                setTheme(R.style.green);
+                break;
         }
         fileSystem = new FileSystem(this.getApplicationContext());
     }

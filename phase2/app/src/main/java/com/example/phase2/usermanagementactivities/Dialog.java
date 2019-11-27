@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.example.phase2.appcore.UserManager;
+
 public class Dialog extends AppCompatDialogFragment {
 
     private DialogListener listener;
@@ -29,6 +31,7 @@ public class Dialog extends AppCompatDialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 listener.onYesClicked();
+                UserManager.getInstance().getCurUser().getCurPlayer().setSave(true);
             }
         });
         return builder.create();

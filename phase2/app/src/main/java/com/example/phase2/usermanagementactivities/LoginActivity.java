@@ -13,6 +13,9 @@ import com.example.phase2.R;
 import com.example.phase2.appcore.User;
 import com.example.phase2.appcore.UserManager;
 import com.example.phase2.scoreboard.ScoreBoard;
+import com.example.phase2.usermanagementactivities.models.LoginModel;
+import com.example.phase2.usermanagementactivities.presenters.LoginPresenter;
+import com.example.phase2.usermanagementactivities.views.LoginView;
 
 import java.util.HashMap;
 
@@ -20,7 +23,9 @@ import java.util.HashMap;
  * A login activity.
  */
 
-public class LoginActivity extends SuperActivity implements View.OnClickListener, Initializable {
+public class LoginActivity extends SuperActivity implements View.OnClickListener, Initializable, LoginView {
+
+    private LoginPresenter loginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,42 +33,46 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
         init();
     }
 
-    /**
-     * Return a boolean value states whether the password is correct or nor.
-     *
-     * @return a boolean value.
-     */
-    public boolean checkPasswordCorrect() {
-        // EditText initiation
-        final EditText usernameEditText = findViewById(R.id.username);
-        final EditText passwordEditText = findViewById(R.id.password);
-
-        String username = usernameEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
-        UserManager userManagerInstance = UserManager.getInstance();
-
-        if (userManagerInstance.getUsers().containsKey(username)) {
-            if (password.equals(userManagerInstance.getUsers().get(username).getPassword())) {
-                userManagerInstance.setCurUser(userManagerInstance.getUsers().get(username));
-                return true;
-            }
-        }
-        return false;
-    }
+//    /**
+//     * Return a boolean value states whether the password is correct or nor.
+//     *
+//     * @return a boolean value.
+//     */
+//    public boolean checkPasswordCorrect() {
+//        // EditText initiation
+//        final EditText usernameEditText = findViewById(R.id.username);
+//        final EditText passwordEditText = findViewById(R.id.password);
+//
+//        String username = usernameEditText.getText().toString();
+//        String password = passwordEditText.getText().toString();
+//        UserManager userManagerInstance = UserManager.getInstance();
+//
+//        if (userManagerInstance.getUsers().containsKey(username)) {
+//            if (password.equals(userManagerInstance.getUsers().get(username).getPassword())) {
+//                userManagerInstance.setCurUser(userManagerInstance.getUsers().get(username));
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     @Override
     public void onClick(View v) {
-        UserManager userManagerInstance = UserManager.getInstance();
-        TextView usernameTextView = findViewById(R.id.username);
+//        UserManager userManagerInstance = UserManager.getInstance();
+        final EditText usernameEditText = findViewById(R.id.username);
+        final EditText passwordEditText = findViewById(R.id.password);
+        String username = usernameEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
         switch (v.getId()) {
             case R.id.login: {
-                if (!checkPasswordCorrect()) {
-                    Toast.makeText(this, "Invalid username or password.",
-                            Toast.LENGTH_LONG).show();
-                } else {
-                    userManagerInstance.setCurUser(userManagerInstance.getUsers().get(usernameTextView.getText().toString()));
+                if(loginPresenter.showResult(fileSystem, username, password))
                     startActivity(new Intent(LoginActivity.this, ChooseOrCreatePlayerActivity.class));
-                }
+//                if (!checkPasswordCorrect()) {
+//                    Toast.makeText(this, "Invalid username or password.",
+//                            Toast.LENGTH_LONG).show();
+//                } else {
+//                    userManagerInstance.setCurUser(userManagerInstance.getUsers().get(usernameTextView.getText().toString()));
+//                }
                 break;
             }
             case R.id.register: {
@@ -73,35 +82,35 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
         }
     }
 
-    /**
-     * Load users data from local file named Users.ser.
-     */
-    public void loadUsers() {
-        if (fileSystem.load("Users.ser") instanceof HashMap) {
-            UserManager.getInstance().setUsers((HashMap<String, User>)
-                    fileSystem.load("Users.ser"));
-        } else {
-            UserManager.getInstance().setUsers(new HashMap<>());
-            fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
-        }
-    }
-
-    public void loadScoreBoard() {
-        if (fileSystem.load("ScoreBoard.ser") instanceof HashMap) {
-            ScoreBoard.getInstance().setUserPlayers(fileSystem.load("ScoreBoard.ser"));
-        } else {
-            ScoreBoard.getInstance().setUserPlayers(new HashMap<>());
-            fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
-        }
-    }
+//    /**
+//     * Load users data from local file named Users.ser.
+//     */
+//    public void loadUsers() {
+//        if (fileSystem.load("Users.ser") instanceof HashMap) {
+//            UserManager.getInstance().setUsers((HashMap<String, User>)
+//                    fileSystem.load("Users.ser"));
+//        } else {
+//            UserManager.getInstance().setUsers(new HashMap<>());
+//            fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
+//        }
+//    }
+//
+//    public void loadScoreBoard() {
+//        if (fileSystem.load("ScoreBoard.ser") instanceof HashMap) {
+//            ScoreBoard.getInstance().setUserPlayers(fileSystem.load("ScoreBoard.ser"));
+//        } else {
+//            ScoreBoard.getInstance().setUserPlayers(new HashMap<>());
+//            fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
+//        }
+//    }
 
     @Override
     public void init() {
         super.init();
-
+        this.loginPresenter = new LoginPresenter(new LoginModel(), this);
         setContentView(R.layout.activity_login);
-        loadUsers();
-        loadScoreBoard();
+//        loadUsers();
+//        loadScoreBoard();
 
         //Button initiation reference: https://www.youtube.com/watch?v=GtxVILjLcw8
         final Button loginButton = findViewById(R.id.login);
@@ -110,5 +119,10 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
         //OnClickListener setup
         loginButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void setLoginResult(String result) {
+        Toast.makeText(this, result, Toast.LENGTH_LONG).show();
     }
 }

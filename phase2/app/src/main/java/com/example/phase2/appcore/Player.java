@@ -31,9 +31,6 @@ public class Player extends Observable implements Serializable {
     /** The current stage of this player. */
     private int curStage;
 
-    /** This fields will be set to true iff the player win the game.**/
-    private boolean win;
-
     /** Constructs a new player with given name and property. */
     public Player(String name, Property initialProperty){
         weaponManager = new WeaponManager();
@@ -83,9 +80,8 @@ public class Player extends Observable implements Serializable {
         this.curStage = curStage;
     }
 
-    public void setWin(boolean win){
-        this.win = win;
-        if(win){
+    public void setSave(boolean save){
+        if(save){
             setChanged();
             notifyObservers();
         }
