@@ -10,8 +10,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.phase2.exceptions.EmptyPlayerNameException;
-import com.example.phase2.exceptions.SamePlayerNameException;
+import com.example.phase2.exceptions.EmptyNameException;
+import com.example.phase2.exceptions.SameNameException;
 import com.example.phase2.Initializable;
 import com.example.phase2.appcore.Player;
 import com.example.phase2.appcore.Property;
@@ -136,11 +136,11 @@ public class CreatePlayerActivity extends SuperActivity implements View.OnClickL
         try{
             curUser.addPlayer(player);
             return true;
-        } catch (SamePlayerNameException e) {
+        } catch (SameNameException e) {
             Toast.makeText(this, "Player name should not be same.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
             return false;
-        } catch (EmptyPlayerNameException e) {
+        } catch (EmptyNameException e) {
             Toast.makeText(this, "Player name cannot be empty.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
             return false;

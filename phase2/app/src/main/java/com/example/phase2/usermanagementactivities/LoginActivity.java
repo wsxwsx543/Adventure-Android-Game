@@ -5,25 +5,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.phase2.Initializable;
 import com.example.phase2.R;
-import com.example.phase2.appcore.User;
-import com.example.phase2.appcore.UserManager;
-import com.example.phase2.scoreboard.ScoreBoard;
 import com.example.phase2.usermanagementactivities.models.LoginModel;
 import com.example.phase2.usermanagementactivities.presenters.LoginPresenter;
-import com.example.phase2.usermanagementactivities.views.LoginView;
-
-import java.util.HashMap;
+import com.example.phase2.usermanagementactivities.views.SetStringView;
 
 /**
  * A login activity.
  */
 
-public class LoginActivity extends SuperActivity implements View.OnClickListener, Initializable, LoginView {
+public class LoginActivity extends SuperActivity implements View.OnClickListener, Initializable, SetStringView {
 
     private LoginPresenter loginPresenter;
 
@@ -39,6 +33,7 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
         final EditText passwordEditText = findViewById(R.id.password);
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
+
         switch (v.getId()) {
             case R.id.login: {
                 if(loginPresenter.showResult(fileSystem, username, password))
@@ -69,7 +64,7 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
     }
 
     @Override
-    public void setLoginResult(String result) {
+    public void setResult(String result) {
         Toast.makeText(this, result, Toast.LENGTH_LONG).show();
     }
 }

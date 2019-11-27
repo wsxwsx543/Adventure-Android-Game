@@ -1,5 +1,10 @@
 package com.example.phase2.appcore;
 
+import com.example.phase2.exceptions.EmptyNameException;
+import com.example.phase2.exceptions.EmptyPasswordException;
+import com.example.phase2.exceptions.PasswordDifferentException;
+import com.example.phase2.exceptions.SameNameException;
+
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -68,7 +73,19 @@ public class UserManager implements Serializable {
      * Add a specific user in users.
      * @param user the given user.
      */
-    public void addUser(User user){
-        users.put(user.getUsername(), user);
+    public void addUser(String username, String password1, String password2) throws EmptyNameException, EmptyPasswordException, SameNameException, PasswordDifferentException {
+        if (username.equals("")){
+            throw new EmptyNameException();
+        }
+        else if (password1.equals("")){
+            throw new EmptyPasswordException();
+        }
+        else if(users.containsKey(username)){
+            throw new SameNameException();
+        }
+        else if (!password1.equals(password2)){
+            throw new PasswordDifferentException();
+        }
+        else users.put(username, new User(username, password1));
     }
 }

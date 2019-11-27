@@ -1,7 +1,7 @@
 package com.example.phase2.appcore;
 
-import com.example.phase2.exceptions.EmptyPlayerNameException;
-import com.example.phase2.exceptions.SamePlayerNameException;
+import com.example.phase2.exceptions.EmptyNameException;
+import com.example.phase2.exceptions.SameNameException;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -95,15 +95,15 @@ public class User implements Serializable {
     /**
      * Add the given player.
      * @param player the given player.
-     * @throws SamePlayerNameException
-     * @throws EmptyPlayerNameException
+     * @throws SameNameException
+     * @throws EmptyNameException
      */
-    public void addPlayer(Player player) throws SamePlayerNameException, EmptyPlayerNameException {
+    public void addPlayer(Player player) throws SameNameException, EmptyNameException {
         if(players.containsKey(player.getName())){
-            throw new SamePlayerNameException();
+            throw new SameNameException();
         }
         else if(player.getName().equals("")){
-            throw new EmptyPlayerNameException();
+            throw new EmptyNameException();
         }
         else players.put(player.getName(), player);
     }

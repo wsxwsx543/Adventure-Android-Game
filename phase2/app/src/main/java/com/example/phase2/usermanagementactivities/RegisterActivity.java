@@ -11,9 +11,14 @@ import com.example.phase2.Initializable;
 import com.example.phase2.R;
 import com.example.phase2.appcore.User;
 import com.example.phase2.appcore.UserManager;
+import com.example.phase2.usermanagementactivities.models.RegisterModel;
+import com.example.phase2.usermanagementactivities.presenters.RegisterPresenter;
+import com.example.phase2.usermanagementactivities.views.SetStringView;
 
 /** A register activity. */
-public class RegisterActivity extends SuperActivity implements View.OnClickListener, Initializable {
+public class RegisterActivity extends SuperActivity implements View.OnClickListener, Initializable, SetStringView {
+
+    private RegisterPresenter registerPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,13 +26,8 @@ public class RegisterActivity extends SuperActivity implements View.OnClickListe
         init();
     }
 
-    /**
-     * Return whether a account is created successfully or not.
-     * @return a boolean value.
-     */
-    public boolean addNewUser() {
-        UserManager userManager = UserManager.getInstance();
-
+    @Override
+    public void onClick(View v) {
         TextView usernameTextView = findViewById(R.id.username);
         TextView password1TextView = findViewById(R.id.password1);
         TextView password2TextView = findViewById(R.id.password2);
@@ -36,32 +36,9 @@ public class RegisterActivity extends SuperActivity implements View.OnClickListe
         String password1 = password1TextView.getText().toString();;
         String password2 = password2TextView.getText().toString();
 
-        if (username.equals("") || password1.equals("") || password2.equals("")) {
-            Toast.makeText(this, "Username and password cannot be empty.", Toast.LENGTH_LONG).show();
-            return false;
-        } else if(userManager.getUsers().containsKey(username)){
-            Toast.makeText(this,
-                    "Please change a username, this username has been token.", Toast.LENGTH_LONG).show();
-            return false;
-        } else {
-            if (password1.equals(password2)) {
-                userManager.addUser(new User(username, password1));
-                fileSystem.save(userManager.getUsers(), "Users.ser");
-                Toast.makeText(this, "Create new account successfully.", Toast.LENGTH_LONG).show();
-                return true;
-            } else {
-                Toast.makeText(this, "Password entered are not same.",
-                        Toast.LENGTH_LONG).show();
-                return false;
-            }
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
         switch (v.getId()) {
             case R.id.register: {
-                if (addNewUser()) {
+                if (registerPresenter.showResult(fileSystem, username, password1, password2)) {
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 }
                 break;
@@ -77,6 +54,7 @@ public class RegisterActivity extends SuperActivity implements View.OnClickListe
     public void init() {
         super.init();
         setContentView(R.layout.activity_register);
+        this.registerPresenter = new RegisterPresenter(new RegisterModel(), this);
 
         //Button initiation reference: https://www.youtube.com/watch?v=GtxVILjLcw8
         final Button registerButton = findViewById(R.id.register);
@@ -85,5 +63,10 @@ public class RegisterActivity extends SuperActivity implements View.OnClickListe
         //OnclickListener setup
         registerButton.setOnClickListener(this);
         backButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void setResult(String result) {
+        Toast.makeText(this, result, Toast.LENGTH_LONG).show();
     }
 }
