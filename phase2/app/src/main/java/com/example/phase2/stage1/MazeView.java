@@ -104,26 +104,19 @@ public class MazeView extends SurfaceView implements Runnable{
         createTreasureItems();
         createDoorItems();
 
+        setTextPaint();
+
         curUser = UserManager.getInstance().getCurUser();
 
-        this.fileSystem = new FileSystem(context);
-
-
+        fileSystem = new FileSystem(context);
         background1 = new Background(screenX, screenY, getResources());
         hero = new Hero(getResources());
-
-        setTextPaint();
 
         attack = curUser.getCurPlayer().getProperty().getAttack();
         defence = curUser.getCurPlayer().getProperty().getDefence();
         flexibility = curUser.getCurPlayer().getProperty().getFlexibility();
         luckiness = curUser.getCurPlayer().getProperty().getLuckiness();
         life = curUser.getCurPlayer().getLivesRemain();
-//        giftLife = 0;
-//        giftAttack = 0;
-//        giftDefence = 0;
-//        giftFlexibility = 0;
-//        giftLuckiness = 0;
 
         curUser.getCurPlayer().setCurStage(1);
         saveUser();
@@ -186,15 +179,8 @@ public class MazeView extends SurfaceView implements Runnable{
             update();
             draw();
             sleep();
-
-
-            for (MazeObjects monster : this.myMonsters) {
-                action(monster);
-            }
-
-
+            for (MazeObjects monster : this.myMonsters) { action(monster);}
         }
-
     }
 
     /**
@@ -237,6 +223,13 @@ public class MazeView extends SurfaceView implements Runnable{
      * jump to the next activity
      */
     private void update(){
+        updateHero();
+        updateMonster();
+        updateTreasure();
+        updateDoor();
+    }
+
+    public void updateHero(){
         if (hero.getIsGoingUp()){
             hero.setY(hero.getY()-hero.getHeight());
             hero.setIsGoingUp(false);
@@ -268,8 +261,9 @@ public class MazeView extends SurfaceView implements Runnable{
 
         if (hero.getX() >= screenX - hero.getWidth())
             hero.setX(screenX - hero.getWidth());
+    }
 
-
+    public void updateMonster(){
         for (MazeObjects monster : this.myMonsters) {
             if (monster.getType().equals("Strong")){
                 if (hero.getX() == monster.getX() && hero.getY() == monster.getY()) {
@@ -290,7 +284,9 @@ public class MazeView extends SurfaceView implements Runnable{
                 }
             }
         }
+    }
 
+    public void updateTreasure(){
         for (MazeObjects treasure : this.myTreasures){
             if (hero.getX() == treasure.getX() && hero.getY() == treasure.getY()){
                 if (treasure.getType().equals("Life")){
@@ -333,7 +329,9 @@ public class MazeView extends SurfaceView implements Runnable{
                 }
             }
         }
+    }
 
+    public void updateDoor(){
         for (MazeObjects door : myDoors){
             if (door.getType().equals("True")){
                 if (hero.getX() == door.getX() && hero.getY() == door.getY() && hero.getKey()){
@@ -358,21 +356,8 @@ public class MazeView extends SurfaceView implements Runnable{
                 }
             }
         }
-
-        if (hero.getX() == myDoors.get(0).getX() && hero.getY() == myDoors.get(0).getY()
-                && hero.getKey()){
-            curUser.getCurPlayer().getProperty().setAttack(attack);
-            curUser.getCurPlayer().getProperty().setDefence(defence);
-            curUser.getCurPlayer().getProperty().setFlexibility(flexibility);
-            curUser.getCurPlayer().getProperty().setLuckiness(luckiness);
-            curUser.getCurPlayer().setLivesRemain(life);
-            curUser.getCurPlayer().setCurStage(2);
-            saveUser();
-
-            Intent tog2Intent = new Intent(getContext(), TreasureHuntActivity.class);
-            getContext().startActivity(tog2Intent);
-        }
     }
+
 
     /**
      * Where to draw the bitmap background, player, treasure and monsters
