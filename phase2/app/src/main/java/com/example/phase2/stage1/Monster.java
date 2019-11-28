@@ -17,7 +17,7 @@ public class Monster extends MazeObjects{
 
     Bitmap monsterView;
 
-    String type;
+    private String type;
 
     /**
      * @param curr_x the x coordinate of monster
@@ -29,9 +29,15 @@ public class Monster extends MazeObjects{
 
         this.type = type;
 
-        monsterView = BitmapFactory.decodeResource(res, R.drawable.monster);
+        if (this.type.equals("Strong")){
+            monsterView = BitmapFactory.decodeResource(res, R.drawable.mifa);
+            monsterView = Bitmap.createScaledBitmap(monsterView, width, height, false);
+        }
+        else if (this.type.equals("Weak")){
+            monsterView = BitmapFactory.decodeResource(res, R.drawable.monster);
+            monsterView = Bitmap.createScaledBitmap(monsterView, width, height, false);
+        }
 
-        monsterView = Bitmap.createScaledBitmap(monsterView, width, height, false);
     }
 
     @Override
