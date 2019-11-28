@@ -37,8 +37,8 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
     private boolean p_move = false;
     /** The current round number of the battle game. */
     private int roundNum = 1;
-    /** The move that player choose. */
-    String player_move;
+    /** The move that player choose. which 1 represents attack, 2 represents defence, and 3 represents evade */
+    int playerMove;
     /** Monster's property. */
     private Property monsterProperty;
     /** The text views. */
@@ -103,8 +103,8 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.attackBtn:
                 if (p_move) {
-                    player_move = "Attack";
-                    battle(player_move, round);
+                    playerMove = 1;   //Attack
+                    battle(playerMove, round);
                     update();
                     p_move = false;
                 }
@@ -112,8 +112,8 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
                 break;
             case R.id.defenceBtn:
                 if (p_move) {
-                    player_move = "Defence";
-                    battle(player_move, round);
+                    playerMove = 2;   //Defence
+                    battle(playerMove, round);
                     update();
                     p_move = false;
                 }
@@ -121,8 +121,8 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
                 break;
             case R.id.evadeBtn:
                 if (p_move) {
-                    player_move = "Evade";
-                    battle(player_move, round);
+                    playerMove = 3;   //Evade
+                    battle(playerMove, round);
                     update();
                     p_move = false;
                 }
@@ -133,7 +133,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
                     break;
                 } else {
                     p_move = true;
-                    monsterProperty = round.getMP();
+                    monsterProperty = round.getMonsterProperty();
                     String move = round.getMonsterString();
                     monsterMove.setText(move);
                     break;
@@ -160,7 +160,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
      * @param playerMove the player's choose of move.
      * @param round the current game round.
      */
-    private void battle(String playerMove, Round round){
+    private void battle(int playerMove, Round round){
         round.battle(playerMove, monsterProperty);
         int decreaseM = round.getDamage1();
         int decreaseP = round.getDamage2();

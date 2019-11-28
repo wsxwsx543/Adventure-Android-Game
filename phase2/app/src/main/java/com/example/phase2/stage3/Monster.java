@@ -9,9 +9,7 @@ class Monster{
     private int livesRemain;
     private Property property;
 
-    /**
-     * Constructs a new monster.
-     */
+    /** Constructs a new monster. */
     Monster(int livesRemain, Property monsterProperty){
         this.livesRemain = livesRemain;
         this.property = monsterProperty;

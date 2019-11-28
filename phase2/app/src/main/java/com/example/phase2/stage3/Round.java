@@ -21,10 +21,10 @@ public class Round {
     /**
      * The property of this monster.
      */
-    private Property MP;
-    /**
-     * The property of this player.
-     */
+    private Property monsterProperty;
+//    /**
+//     * The property of this player.
+//     */
 //    private Property PP;
 //    /**
 //     * The string that show the monster's move.
@@ -38,14 +38,16 @@ public class Round {
      * The damage from monster to player.
      */
     private int damage2;
-    /**
-     * The move of player.
-     */
-    private PlayerMove playerMove;
-    /**
-     * The move of player.
-     */
-    private MonsterMove monsterMove;
+
+    private MoveFactory moveFactory;
+//    /**
+//     * The move of player.
+//     */
+//    private PlayerMove playerMove;
+//    /**
+//     * The move of player.
+//     */
+//    private MonsterMove monsterMove;
 
 
     /**
@@ -54,9 +56,16 @@ public class Round {
     public Round(Player player, Monster monster) {
         this.player = player;
         this.monster = monster;
-        this.playerMove = new PlayerMove();
-        this.monsterMove = new MonsterMove();
+        moveFactory = new MoveFactory();
+//        this.playerMove = new PlayerMove();
+//        this.monsterMove = new MonsterMove();
     }
+//
+//    private Move doMove(String type, Player player, Monster monster){
+//        return moveFactory.getMove(type);
+//    }
+
+
 
     /**
      * A battle that monster its move. To return monster's move.
@@ -66,19 +75,20 @@ public class Round {
     private void monsterDoMove() {
         int id;
         Random R = new Random();
+        Move move = moveFactory.getMove("MonsterMove", this.player, this.monster);
         if (monster.getLivesRemain() >= 100) {
             id = R.nextInt(4);
-            MP = monsterMove.monsterDoMove(id, monster);
+            monsterProperty = move.doMove(id);
         } else {
             id = R.nextInt(4) + 3;
-            MP = monsterMove.monsterDoMove(id, monster);
+            monsterProperty = move.doMove(id);
         }
-        monsterString = monsterMove.getString(id);
+        monsterString = move.getString(id);
     }
 
-    public Property getMP(){
+    public Property getMonsterProperty(){
         monsterDoMove();
-        return MP;
+        return monsterProperty;
     }
 
     /**
@@ -93,16 +103,17 @@ public class Round {
     /**
      * Doing the damage calculation after player's choice.
      *
-     * @param move the move player choose.
+     * @param moveNum the move player choose.
      * @param MP   the monster's property we get from battle1.
      */
-    public void battle(String move, Property MP) {
-        Property PP = playerMove.playerDoMove(move, player); //decided by input
+    public void battle(int moveNum, Property MP) {
+        Move move = moveFactory.getMove("PlayerMove", this.player, this.monster);
+        Property playerProperty = move.doMove(moveNum); //decided by input
 
-        int damageToPlayer = MP.getAttack() - PP.getDefence();
-        int damageToMonster = PP.getAttack() - MP.getDefence();
-        int flex = PP.getFlexibility() - MP.getFlexibility();
-        int luck = PP.getLuckiness() - MP.getLuckiness();
+        int damageToPlayer = MP.getAttack() - playerProperty.getDefence();
+        int damageToMonster = playerProperty.getAttack() - MP.getDefence();
+        int flex = playerProperty.getFlexibility() - MP.getFlexibility();
+        int luck = playerProperty.getLuckiness() - MP.getLuckiness();
 
         if (damageToMonster > 0) {
             if (luck > 0) {

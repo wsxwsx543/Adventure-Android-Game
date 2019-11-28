@@ -5,31 +5,33 @@ import com.example.phase2.appcore.Property;
 
 public class PlayerMove implements Move {
 
+    private Property property;
+
 
     /** A player move. */
-    PlayerMove() {
+    PlayerMove(Player player) {
+        this.property = player.getProperty();
     }
 
     /**
      * use playerDoMove method to get property of player after each move.
      *
-     * @param moveName the name of player's move.
-     * @param player   the player.
+     * @param playerMove case1 represents attack, case2 represents defence, case3 represents evade.
      * @return the property of the player after move.
      */
-    Property playerDoMove(String moveName, Player player) {
+    public Property doMove(int playerMove) {
 
-        Property p = player.getProperty();
-        Property PP = new Property(p.getAttack(), p.getDefence(), p.getFlexibility(), p.getLuckiness());
-        switch (moveName) {
-            case "Attack":
-                Context context = new Context(new Attack());
+//        Property p = player.getProperty();
+        Property PP = new Property(this.property.getAttack(), this.property.getDefence(), this.property.getFlexibility(), this.property.getLuckiness());
+        switch (playerMove) {
+            case 1:
+                Context context = new Context(new AttackStrategy());
                 return context.executeStrategy(PP);
-            case "Defence":
-                context = new Context(new Defence());
+            case 2:
+                context = new Context(new DefenceStrategy());
                 return context.executeStrategy(PP);
-            case "Evade":
-                context = new Context(new Evade());
+            case 3:
+                context = new Context(new EvadeStrategy());
                 return context.executeStrategy(PP);
             default:
                 return null;
@@ -44,11 +46,11 @@ public class PlayerMove implements Move {
     @Override
     public String getString(int id) {
         if (id == 0) {
-            return "Attack.";
+            return "AttackStrategy.";
         } else if (id == 1) {
-            return "Defence.";
+            return "DefenceStrategy.";
         } else if (id == 2) {
-            return "Evade";
+            return "EvadeStrategy";
         } else {
             return null;
         }

@@ -2,10 +2,10 @@ package com.example.phase2.stage3;
 
 import com.example.phase2.appcore.Property;
 
-public class Attack implements Strategy {
+public class EvadeStrategy implements Strategy {
     @Override
     public Property doMove(Property property) {
-        property.addPropertyToSelf(10,0,0,0);
+        property.addPropertyToSelf(-15,0,5,10);
         return property;
     }
 }
