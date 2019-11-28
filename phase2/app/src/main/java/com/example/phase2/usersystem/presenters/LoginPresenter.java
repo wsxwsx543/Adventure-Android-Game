@@ -1,8 +1,8 @@
-package com.example.phase2.usermanagementactivities.presenters;
+package com.example.phase2.usersystem.presenters;
 
 import com.example.phase2.datamanagement.FileSystem;
-import com.example.phase2.usermanagementactivities.models.LoginModel;
-import com.example.phase2.usermanagementactivities.views.ToastStringView;
+import com.example.phase2.usersystem.models.LoginModel;
+import com.example.phase2.usersystem.views.ToastStringView;
 
 public class LoginPresenter {
     private LoginModel loginModel;

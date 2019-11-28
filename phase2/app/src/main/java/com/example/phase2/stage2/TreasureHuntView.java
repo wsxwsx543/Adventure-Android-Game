@@ -128,10 +128,7 @@ public class TreasureHuntView extends SurfaceView implements Runnable {
 
     // To see whether or not the x, y coordinates are legal
     private boolean register(int[] pair) {
-        if (pair[0] >= 0 && pair[0] <= boardWidth - 1 && pair[1] >= 0 && pair[1] <= boardLength - 1) {
-            return true;
-        }
-        return false;
+        return pair[0] >= 0 && pair[0] <= boardWidth - 1 && pair[1] >= 0 && pair[1] <= boardLength - 1;
     }
 
     // Check if the game is about to end

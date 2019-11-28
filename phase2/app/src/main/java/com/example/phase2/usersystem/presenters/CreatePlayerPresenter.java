@@ -1,12 +1,11 @@
-package com.example.phase2.usermanagementactivities.presenters;
+package com.example.phase2.usersystem.presenters;
 
 import android.widget.TextView;
 
-import com.example.phase2.appcore.Property;
 import com.example.phase2.datamanagement.FileSystem;
-import com.example.phase2.usermanagementactivities.models.CreatePlayerModel;
-import com.example.phase2.usermanagementactivities.views.TextStringView;
-import com.example.phase2.usermanagementactivities.views.ToastStringView;
+import com.example.phase2.usersystem.models.CreatePlayerModel;
+import com.example.phase2.usersystem.views.TextStringView;
+import com.example.phase2.usersystem.views.ToastStringView;
 
 public class CreatePlayerPresenter {
     private CreatePlayerModel createPlayerModel;

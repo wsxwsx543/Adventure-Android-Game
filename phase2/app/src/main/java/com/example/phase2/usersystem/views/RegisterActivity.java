@@ -1,4 +1,4 @@
-package com.example.phase2.usermanagementactivities.views;
+package com.example.phase2.usersystem.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,11 +7,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.phase2.Initializable;
+import com.example.phase2.usersystem.Initializable;
 import com.example.phase2.R;
-import com.example.phase2.usermanagementactivities.SuperActivity;
-import com.example.phase2.usermanagementactivities.models.RegisterModel;
-import com.example.phase2.usermanagementactivities.presenters.RegisterPresenter;
+import com.example.phase2.usersystem.SuperActivity;
+import com.example.phase2.usersystem.models.RegisterModel;
+import com.example.phase2.usersystem.presenters.RegisterPresenter;
 
 /** A register activity. */
 public class RegisterActivity extends SuperActivity implements View.OnClickListener, Initializable, ToastStringView {

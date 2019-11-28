@@ -6,10 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.phase2.Initializable;
+import com.example.phase2.usersystem.Initializable;
 import com.example.phase2.R;
-import com.example.phase2.usermanagementactivities.ChooseOrCreatePlayerActivity;
-import com.example.phase2.usermanagementactivities.SuperActivity;
+import com.example.phase2.usersystem.ChooseOrCreatePlayerActivity;
+import com.example.phase2.usersystem.SuperActivity;
 
 import java.util.List;
 import java.util.Map;

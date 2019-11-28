@@ -2,7 +2,7 @@ package com.example.phase2.stage2;
 
 import android.os.Bundle;
 
-import com.example.phase2.usermanagementactivities.SuperActivity;
+import com.example.phase2.usersystem.SuperActivity;
 
 
 public class TreasureHuntActivity extends SuperActivity {

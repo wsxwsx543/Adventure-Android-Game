@@ -11,18 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".scoreboard.ScoreBoardActivity"></activity>
-        <activity android:name=".usermanagementactivities.SuperActivity" />
-        <activity android:name=".usermanagementactivities.SettingActivity" />
-        <activity android:name=".usermanagementactivities.WinActivity" />
-        <activity android:name=".usermanagementactivities.LoseActivity" />
+        <activity android:name=".usersystem.SuperActivity" />
+        <activity android:name=".usersystem.SettingActivity" />
+        <activity android:name=".usersystem.WinActivity" />
+        <activity android:name=".usersystem.LoseActivity" />
         <activity android:name=".stage2.TreasureHuntActivity" />
-        <activity android:name=".usermanagementactivities.views.CreatePlayerActivity" />
-        <activity android:name=".usermanagementactivities.SelectPlayerActivity" />
-        <activity android:name=".usermanagementactivities.ChooseOrCreatePlayerActivity" />
-        <activity android:name=".usermanagementactivities.views.RegisterActivity" />
+        <activity android:name=".usersystem.views.CreatePlayerActivity" />
+        <activity android:name=".usersystem.views.SelectPlayerActivity" />
+        <activity android:name=".usersystem.ChooseOrCreatePlayerActivity" />
+        <activity android:name=".usersystem.views.RegisterActivity" />
         <activity android:name=".stage1.MazeActivity" />
         <activity android:name=".stage3.BattleActivity" />
-        <activity android:name=".usermanagementactivities.views.LoginActivity">
+        <activity android:name=".usersystem.views.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

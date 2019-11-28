@@ -3,7 +3,7 @@ package com.example.phase2.stage1;
 import android.graphics.Point;
 import android.os.Bundle;
 
-import com.example.phase2.usermanagementactivities.SuperActivity;
+import com.example.phase2.usersystem.SuperActivity;
 
 
 public class MazeActivity extends SuperActivity {

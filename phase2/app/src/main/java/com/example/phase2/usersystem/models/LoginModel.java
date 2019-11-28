@@ -1,8 +1,5 @@
-package com.example.phase2.usermanagementactivities.models;
+package com.example.phase2.usersystem.models;
 
-import android.widget.EditText;
-
-import com.example.phase2.R;
 import com.example.phase2.appcore.User;
 import com.example.phase2.appcore.UserManager;
 import com.example.phase2.datamanagement.FileSystem;

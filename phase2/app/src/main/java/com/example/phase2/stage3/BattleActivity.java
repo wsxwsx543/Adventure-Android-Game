@@ -8,14 +8,14 @@ import android.widget.TextView;
 
 import com.example.phase2.datamanagement.FileSystem;
 import com.example.phase2.scoreboard.ScoreBoard;
-import com.example.phase2.usermanagementactivities.LoseActivity;
+import com.example.phase2.usersystem.LoseActivity;
 import com.example.phase2.appcore.Player;
 import com.example.phase2.appcore.Property;
 import com.example.phase2.R;
 import com.example.phase2.appcore.User;
 import com.example.phase2.appcore.UserManager;
-import com.example.phase2.usermanagementactivities.SuperActivity;
-import com.example.phase2.usermanagementactivities.WinActivity;
+import com.example.phase2.usersystem.SuperActivity;
+import com.example.phase2.usersystem.WinActivity;
 
 
 /** An activity shows the battle of monster and player for stage 3. */
@@ -204,6 +204,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
             //player win
             startActivity(new Intent(BattleActivity.this, WinActivity.class));
             player.setCurStage(4);
+            // player.setSave(true);
             fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
         }
     }

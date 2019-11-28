@@ -1,4 +1,4 @@
-package com.example.phase2.usermanagementactivities.views;
+package com.example.phase2.usersystem.views;
 
 import android.widget.TextView;
 

@@ -1,14 +1,12 @@
-package com.example.phase2.usermanagementactivities;
+package com.example.phase2.usersystem;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.example.phase2.appcore.UserManager;
-import com.example.phase2.Initializable;
 import com.example.phase2.R;
-import com.example.phase2.usermanagementactivities.Dialog.DialogListener;
+import com.example.phase2.usersystem.Dialog.DialogListener;
 
 /** Jump to this activity if the player win the game. */
 public class WinActivity extends SuperActivity implements Initializable, DialogListener {

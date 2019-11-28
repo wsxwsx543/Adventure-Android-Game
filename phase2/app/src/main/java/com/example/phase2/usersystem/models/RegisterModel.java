@@ -1,19 +1,11 @@
-package com.example.phase2.usermanagementactivities.models;
+package com.example.phase2.usersystem.models;
 
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.phase2.R;
-import com.example.phase2.appcore.User;
 import com.example.phase2.appcore.UserManager;
 import com.example.phase2.datamanagement.FileSystem;
 import com.example.phase2.exceptions.EmptyNameException;
 import com.example.phase2.exceptions.EmptyPasswordException;
 import com.example.phase2.exceptions.PasswordDifferentException;
 import com.example.phase2.exceptions.SameNameException;
-import com.example.phase2.usermanagementactivities.presenters.RegisterPresenter;
-
-import java.util.Observable;
 
 public class RegisterModel {
 

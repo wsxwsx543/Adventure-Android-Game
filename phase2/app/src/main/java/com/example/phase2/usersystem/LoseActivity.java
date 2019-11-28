@@ -1,11 +1,10 @@
-package com.example.phase2.usermanagementactivities;
+package com.example.phase2.usersystem;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.example.phase2.Initializable;
 import com.example.phase2.R;
 
 /** Jump to this activity if the player lose the game. */

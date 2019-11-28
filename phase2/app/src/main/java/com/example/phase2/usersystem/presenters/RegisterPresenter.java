@@ -1,8 +1,8 @@
-package com.example.phase2.usermanagementactivities.presenters;
+package com.example.phase2.usersystem.presenters;
 
 import com.example.phase2.datamanagement.FileSystem;
-import com.example.phase2.usermanagementactivities.models.RegisterModel;
-import com.example.phase2.usermanagementactivities.views.ToastStringView;
+import com.example.phase2.usersystem.models.RegisterModel;
+import com.example.phase2.usersystem.views.ToastStringView;
 
 public class RegisterPresenter {
     private RegisterModel registerModel;

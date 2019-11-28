@@ -1,4 +1,4 @@
-package com.example.phase2.usermanagementactivities.models;
+package com.example.phase2.usersystem.models;
 
 import com.example.phase2.appcore.Player;
 import com.example.phase2.appcore.Property;
