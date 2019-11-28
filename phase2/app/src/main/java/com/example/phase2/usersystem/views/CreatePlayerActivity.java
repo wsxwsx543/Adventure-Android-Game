@@ -68,13 +68,13 @@ public class CreatePlayerActivity extends SuperActivity implements View.OnClickL
 
         String career = careerSpinner.getSelectedItem().toString();
         String weapon = weaponsSpinner.getSelectedItem().toString();
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.back:
                 startActivity(new Intent(CreatePlayerActivity.this, ChooseOrCreatePlayerActivity.class));
                 break;
 
             case R.id.create:
-                if(createPlayerPresenter.showResult(fileSystem, playerName, career, weapon)) {
+                if (createPlayerPresenter.showResult(fileSystem, playerName, career, weapon)) {
                     startActivity(new Intent(CreatePlayerActivity.this, ChooseOrCreatePlayerActivity.class));
                 }
                 break;

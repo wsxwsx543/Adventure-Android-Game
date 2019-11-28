@@ -13,7 +13,9 @@ import com.example.phase2.usersystem.SuperActivity;
 import com.example.phase2.usersystem.models.RegisterModel;
 import com.example.phase2.usersystem.presenters.RegisterPresenter;
 
-/** A register activity. */
+/**
+ * A register activity.
+ */
 public class RegisterActivity extends SuperActivity implements View.OnClickListener, Initializable, ToastStringView {
 
     private RegisterPresenter registerPresenter;
@@ -31,7 +33,8 @@ public class RegisterActivity extends SuperActivity implements View.OnClickListe
         TextView password2TextView = findViewById(R.id.password2);
 
         String username = usernameTextView.getText().toString();
-        String password1 = password1TextView.getText().toString();;
+        String password1 = password1TextView.getText().toString();
+        ;
         String password2 = password2TextView.getText().toString();
 
         switch (v.getId()) {

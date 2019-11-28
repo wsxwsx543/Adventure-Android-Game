@@ -37,7 +37,7 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
 
         switch (v.getId()) {
             case R.id.login: {
-                if(loginPresenter.showResult(fileSystem, username, password))
+                if (loginPresenter.showResult(fileSystem, username, password))
                     startActivity(new Intent(LoginActivity.this, ChooseOrCreatePlayerActivity.class));
                 break;
             }

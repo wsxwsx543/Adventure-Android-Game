@@ -22,7 +22,9 @@ import com.example.phase2.usersystem.SuperActivity;
 import com.example.phase2.usersystem.models.SelectPlayerModel;
 import com.example.phase2.usersystem.presenters.SelectPlayerPresenter;
 
-/** An activity to select which player you want to use. */
+/**
+ * An activity to select which player you want to use.
+ */
 public class SelectPlayerActivity extends SuperActivity implements View.OnClickListener, Initializable, TextStringView, SpinnerStringView, ToastStringView {
     private User curUser;
     private SelectPlayerPresenter selectPlayerPresenter;
@@ -36,7 +38,7 @@ public class SelectPlayerActivity extends SuperActivity implements View.OnClickL
     /**
      * Use Iterator pattern.
      */
-    public void initSpinner(){
+    public void initSpinner() {
         Spinner players = findViewById(R.id.players);
         selectPlayerPresenter.showPlayersSpinner(this, players, curUser);
         TextView stageTextView = findViewById(R.id.curStage);
@@ -62,21 +64,21 @@ public class SelectPlayerActivity extends SuperActivity implements View.OnClickL
     public void onClick(View v) {
         Spinner playerNames = findViewById(R.id.players);
         String curPlayerName = null;
-        if(playerNames.getSelectedItem() != null)
+        if (playerNames.getSelectedItem() != null)
             curPlayerName = playerNames.getSelectedItem().toString();
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.back:
                 startActivity(new Intent(SelectPlayerActivity.this, ChooseOrCreatePlayerActivity.class));
                 break;
             case R.id.start:
-                if(selectPlayerPresenter.showPlayerAvailableToast(curUser, curPlayerName)) {
+                if (selectPlayerPresenter.showPlayerAvailableToast(curUser, curPlayerName)) {
                     curUser.setCurPlayer(curUser.getPlayers().get(curPlayerName));
-                    if(curUser.getPlayers().get(curPlayerName).getCurStage() == 1)
+                    if (curUser.getPlayers().get(curPlayerName).getCurStage() == 1)
                         startActivity(new Intent(SelectPlayerActivity.this, MazeActivity.class));
-                    if(curUser.getPlayers().get(curPlayerName).getCurStage() == 2)
+                    if (curUser.getPlayers().get(curPlayerName).getCurStage() == 2)
                         startActivity(new Intent(SelectPlayerActivity.this, TreasureHuntActivity.class));
-                    if(curUser.getPlayers().get(curPlayerName).getCurStage() == 3)
+                    if (curUser.getPlayers().get(curPlayerName).getCurStage() == 3)
                         startActivity(new Intent(SelectPlayerActivity.this, BattleActivity.class));
                 }
         }
