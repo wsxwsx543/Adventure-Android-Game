@@ -1,4 +1,4 @@
-package com.example.phase2.usersystem.views;
+package com.example.phase2.usersystem.views.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,11 +7,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.phase2.usersystem.Initializable;
 import com.example.phase2.R;
-import com.example.phase2.usersystem.SuperActivity;
 import com.example.phase2.usersystem.models.RegisterModel;
 import com.example.phase2.usersystem.presenters.RegisterPresenter;
+import com.example.phase2.usersystem.views.app.Initializable;
+import com.example.phase2.usersystem.views.app.SuperActivity;
+import com.example.phase2.usersystem.views.iview.ToastStringView;
 
 /**
  * A register activity.

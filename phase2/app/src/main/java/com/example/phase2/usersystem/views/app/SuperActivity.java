@@ -1,11 +1,11 @@
-package com.example.phase2.usersystem;
+package com.example.phase2.usersystem.views.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.phase2.appcore.GameApp;
-import com.example.phase2.appcore.UserManager;
+import com.example.phase2.appcore.app.GameApp;
+import com.example.phase2.appcore.user.UserManager;
 import com.example.phase2.datamanagement.FileSystem;
 import com.example.phase2.R;
 import com.example.phase2.appcore.scoreboard.ScoreBoard;

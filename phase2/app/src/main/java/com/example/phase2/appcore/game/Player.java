@@ -1,4 +1,4 @@
-package com.example.phase2.appcore;
+package com.example.phase2.appcore.game;
 
 import com.example.phase2.appcore.scoreboard.ScoreBoard;
 

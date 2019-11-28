@@ -1,6 +1,6 @@
 package com.example.phase2.usersystem.models;
 
-import com.example.phase2.appcore.UserManager;
+import com.example.phase2.appcore.user.UserManager;
 import com.example.phase2.datamanagement.FileSystem;
 import com.example.phase2.exceptions.EmptyNameException;
 import com.example.phase2.exceptions.EmptyPasswordException;

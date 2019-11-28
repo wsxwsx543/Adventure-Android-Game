@@ -4,11 +4,11 @@ import android.content.Context;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.phase2.appcore.User;
+import com.example.phase2.appcore.user.User;
 import com.example.phase2.usersystem.models.SelectPlayerModel;
-import com.example.phase2.usersystem.views.SpinnerStringView;
-import com.example.phase2.usersystem.views.TextStringView;
-import com.example.phase2.usersystem.views.ToastStringView;
+import com.example.phase2.usersystem.views.iview.SpinnerStringView;
+import com.example.phase2.usersystem.views.iview.TextStringView;
+import com.example.phase2.usersystem.views.iview.ToastStringView;
 
 public class SelectPlayerPresenter {
     private SelectPlayerModel selectPlayerModel;

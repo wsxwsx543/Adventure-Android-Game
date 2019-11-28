@@ -2,7 +2,7 @@ package com.example.phase2.usersystem.presenters;
 
 import com.example.phase2.datamanagement.FileSystem;
 import com.example.phase2.usersystem.models.LoginModel;
-import com.example.phase2.usersystem.views.ToastStringView;
+import com.example.phase2.usersystem.views.iview.ToastStringView;
 
 public class LoginPresenter {
     private LoginModel loginModel;

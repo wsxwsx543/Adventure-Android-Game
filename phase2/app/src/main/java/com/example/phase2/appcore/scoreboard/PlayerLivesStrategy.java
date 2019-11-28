@@ -1,13 +1,12 @@
 package com.example.phase2.appcore.scoreboard;
 
-import com.example.phase2.appcore.Player;
-import com.example.phase2.appcore.User;
+import com.example.phase2.appcore.game.Player;
+import com.example.phase2.appcore.user.User;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Map;
 
 public class PlayerLivesStrategy implements SortStrategy {
     @Override

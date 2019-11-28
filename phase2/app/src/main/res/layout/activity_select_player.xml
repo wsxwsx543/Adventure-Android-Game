@@ -3,7 +3,7 @@
     android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".usersystem.views.SelectPlayerActivity"
+    tools:context=".usersystem.views.user.SelectPlayerActivity"
     android:background="?attr/backColor">
 
     <LinearLayout

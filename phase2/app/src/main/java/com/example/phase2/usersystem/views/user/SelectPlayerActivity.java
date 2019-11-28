@@ -1,4 +1,4 @@
-package com.example.phase2.usersystem.views;
+package com.example.phase2.usersystem.views.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,16 +11,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.phase2.R;
-import com.example.phase2.appcore.User;
-import com.example.phase2.appcore.UserManager;
+import com.example.phase2.appcore.user.User;
+import com.example.phase2.appcore.user.UserManager;
 import com.example.phase2.stage1.MazeActivity;
 import com.example.phase2.stage2.TreasureHuntActivity;
 import com.example.phase2.stage3.BattleActivity;
-import com.example.phase2.usersystem.ChooseOrCreatePlayerActivity;
-import com.example.phase2.usersystem.Initializable;
-import com.example.phase2.usersystem.SuperActivity;
 import com.example.phase2.usersystem.models.SelectPlayerModel;
 import com.example.phase2.usersystem.presenters.SelectPlayerPresenter;
+import com.example.phase2.usersystem.views.app.Initializable;
+import com.example.phase2.usersystem.views.iview.SpinnerStringView;
+import com.example.phase2.usersystem.views.app.SuperActivity;
+import com.example.phase2.usersystem.views.iview.TextStringView;
+import com.example.phase2.usersystem.views.iview.ToastStringView;
 
 /**
  * An activity to select which player you want to use.

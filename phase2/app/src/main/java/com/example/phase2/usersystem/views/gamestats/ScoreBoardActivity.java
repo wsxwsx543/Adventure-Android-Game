@@ -1,4 +1,4 @@
-package com.example.phase2.usersystem;
+package com.example.phase2.usersystem.views.gamestats;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,15 +8,14 @@ import android.widget.TextView;
 
 import com.example.phase2.appcore.scoreboard.PlayerLivesStrategy;
 import com.example.phase2.appcore.scoreboard.PlayerPropertyStrategy;
-import com.example.phase2.appcore.scoreboard.ScoreBoard;
 import com.example.phase2.R;
 import com.example.phase2.appcore.scoreboard.SortStrategy;
 import com.example.phase2.usersystem.models.ScoreBoardModel;
 import com.example.phase2.usersystem.presenters.ScoreBoardPresenter;
-import com.example.phase2.usersystem.views.TextStringView;
-
-import java.util.List;
-import java.util.Map;
+import com.example.phase2.usersystem.views.app.Initializable;
+import com.example.phase2.usersystem.views.app.SuperActivity;
+import com.example.phase2.usersystem.views.iview.TextStringView;
+import com.example.phase2.usersystem.views.user.ChooseOrCreatePlayerActivity;
 
 public class ScoreBoardActivity extends SuperActivity implements Initializable, View.OnClickListener, TextStringView {
     private TextView first;

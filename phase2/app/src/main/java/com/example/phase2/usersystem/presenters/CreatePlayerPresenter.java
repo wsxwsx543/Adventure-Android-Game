@@ -4,8 +4,8 @@ import android.widget.TextView;
 
 import com.example.phase2.datamanagement.FileSystem;
 import com.example.phase2.usersystem.models.CreatePlayerModel;
-import com.example.phase2.usersystem.views.TextStringView;
-import com.example.phase2.usersystem.views.ToastStringView;
+import com.example.phase2.usersystem.views.iview.TextStringView;
+import com.example.phase2.usersystem.views.iview.ToastStringView;
 
 public class CreatePlayerPresenter {
     private CreatePlayerModel createPlayerModel;

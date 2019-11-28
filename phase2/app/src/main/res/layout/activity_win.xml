@@ -4,7 +4,7 @@
     android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".usersystem.WinActivity"
+    tools:context=".usersystem.views.results.WinActivity"
     android:background="?attr/backColor">
 
 

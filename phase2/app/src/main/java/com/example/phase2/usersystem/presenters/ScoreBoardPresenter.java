@@ -1,15 +1,12 @@
 package com.example.phase2.usersystem.presenters;
 
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.phase2.appcore.scoreboard.SortStrategy;
-import com.example.phase2.stage3.Strategy;
 import com.example.phase2.usersystem.models.ScoreBoardModel;
-import com.example.phase2.usersystem.views.TextStringView;
+import com.example.phase2.usersystem.views.iview.TextStringView;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class ScoreBoardPresenter {

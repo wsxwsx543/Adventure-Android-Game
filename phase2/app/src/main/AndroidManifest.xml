@@ -3,26 +3,26 @@
     package="com.example.phase2">
 
     <application
-        android:name=".appcore.GameApp"
+        android:name=".appcore.app.GameApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".usersystem.ScoreBoardActivity"></activity>
-        <activity android:name=".usersystem.SuperActivity" />
-        <activity android:name=".usersystem.SettingActivity" />
-        <activity android:name=".usersystem.WinActivity" />
-        <activity android:name=".usersystem.LoseActivity" />
+        <activity android:name=".usersystem.views.gamestats.ScoreBoardActivity"></activity>
+        <activity android:name=".usersystem.views.app.SuperActivity" />
+        <activity android:name=".usersystem.views.app.SettingActivity" />
+        <activity android:name=".usersystem.views.results.WinActivity" />
+        <activity android:name=".usersystem.views.results.LoseActivity" />
         <activity android:name=".stage2.TreasureHuntActivity" />
-        <activity android:name=".usersystem.views.CreatePlayerActivity" />
-        <activity android:name=".usersystem.views.SelectPlayerActivity" />
-        <activity android:name=".usersystem.ChooseOrCreatePlayerActivity" />
-        <activity android:name=".usersystem.views.RegisterActivity" />
+        <activity android:name=".usersystem.views.user.CreatePlayerActivity" />
+        <activity android:name=".usersystem.views.user.SelectPlayerActivity" />
+        <activity android:name=".usersystem.views.user.ChooseOrCreatePlayerActivity" />
+        <activity android:name=".usersystem.views.user.RegisterActivity" />
         <activity android:name=".stage1.MazeActivity" />
         <activity android:name=".stage3.BattleActivity" />
-        <activity android:name=".usersystem.views.LoginActivity">
+        <activity android:name=".usersystem.views.user.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

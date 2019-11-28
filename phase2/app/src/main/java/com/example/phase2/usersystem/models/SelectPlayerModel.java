@@ -3,8 +3,8 @@ package com.example.phase2.usersystem.models;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 
-import com.example.phase2.appcore.Player;
-import com.example.phase2.appcore.User;
+import com.example.phase2.appcore.game.Player;
+import com.example.phase2.appcore.user.User;
 
 import java.util.Iterator;
 import java.util.Set;

@@ -10,8 +10,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 
 import com.example.phase2.datamanagement.FileSystem;
-import com.example.phase2.appcore.User;
-import com.example.phase2.appcore.UserManager;
+import com.example.phase2.appcore.user.User;
+import com.example.phase2.appcore.user.UserManager;
 import com.example.phase2.stage2.TreasureHuntActivity;
 
 import java.util.ArrayList;

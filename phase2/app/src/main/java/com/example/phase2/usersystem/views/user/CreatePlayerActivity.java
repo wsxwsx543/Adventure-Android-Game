@@ -1,4 +1,4 @@
-package com.example.phase2.usersystem.views;
+package com.example.phase2.usersystem.views.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +10,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.phase2.usersystem.Initializable;
 import com.example.phase2.R;
-import com.example.phase2.usersystem.ChooseOrCreatePlayerActivity;
-import com.example.phase2.usersystem.SuperActivity;
 import com.example.phase2.usersystem.models.CreatePlayerModel;
 import com.example.phase2.usersystem.presenters.CreatePlayerPresenter;
+import com.example.phase2.usersystem.views.app.Initializable;
+import com.example.phase2.usersystem.views.app.SuperActivity;
+import com.example.phase2.usersystem.views.iview.TextStringView;
+import com.example.phase2.usersystem.views.iview.ToastStringView;
 
 public class CreatePlayerActivity extends SuperActivity implements View.OnClickListener, Initializable, ToastStringView, TextStringView {
 

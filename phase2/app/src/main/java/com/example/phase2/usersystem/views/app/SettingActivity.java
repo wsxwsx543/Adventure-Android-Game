@@ -1,4 +1,4 @@
-package com.example.phase2.usersystem;
+package com.example.phase2.usersystem.views.app;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 
 import com.example.phase2.R;
+import com.example.phase2.usersystem.views.user.ChooseOrCreatePlayerActivity;
 
 /**
  * An activity that represents the setting of the game

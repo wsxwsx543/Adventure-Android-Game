@@ -2,7 +2,7 @@ package com.example.phase2.usersystem.presenters;
 
 import com.example.phase2.datamanagement.FileSystem;
 import com.example.phase2.usersystem.models.RegisterModel;
-import com.example.phase2.usersystem.views.ToastStringView;
+import com.example.phase2.usersystem.views.iview.ToastStringView;
 
 public class RegisterPresenter {
     private RegisterModel registerModel;
