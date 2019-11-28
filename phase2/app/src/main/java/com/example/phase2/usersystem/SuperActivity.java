@@ -1,13 +1,14 @@
 package com.example.phase2.usersystem;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 import com.example.phase2.appcore.GameApp;
 import com.example.phase2.appcore.UserManager;
 import com.example.phase2.datamanagement.FileSystem;
 import com.example.phase2.R;
-import com.example.phase2.scoreboard.ScoreBoard;
+import com.example.phase2.appcore.scoreboard.ScoreBoard;
 
 public class SuperActivity extends AppCompatActivity implements Initializable {
     protected FileSystem fileSystem;

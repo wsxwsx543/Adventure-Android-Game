@@ -8,7 +8,9 @@ import android.widget.RadioButton;
 
 import com.example.phase2.R;
 
-/** An activity that represents the setting of the game */
+/**
+ * An activity that represents the setting of the game
+ */
 public class SettingActivity extends SuperActivity implements View.OnClickListener, Initializable {
 
     @Override
@@ -19,28 +21,28 @@ public class SettingActivity extends SuperActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.blue:{
+        switch (v.getId()) {
+            case R.id.blue: {
                 app.setColorTheme("blue");
                 startActivity(new Intent(SettingActivity.this, SettingActivity.class));
                 break;
             }
-            case R.id.yellow:{
+            case R.id.yellow: {
                 app.setColorTheme("yellow");
                 startActivity(new Intent(SettingActivity.this, SettingActivity.class));
                 break;
             }
-            case R.id.pink:{
+            case R.id.pink: {
                 app.setColorTheme("pink");
                 startActivity(new Intent(SettingActivity.this, SettingActivity.class));
                 break;
             }
-            case R.id.green:{
+            case R.id.green: {
                 app.setColorTheme("green");
                 startActivity(new Intent(SettingActivity.this, SettingActivity.class));
                 break;
             }
-            case R.id.back:{
+            case R.id.back: {
                 startActivity(new Intent(SettingActivity.this, ChooseOrCreatePlayerActivity.class));
                 break;
             }

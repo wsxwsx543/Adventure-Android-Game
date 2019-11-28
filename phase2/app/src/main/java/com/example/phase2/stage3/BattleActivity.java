@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.phase2.datamanagement.FileSystem;
-import com.example.phase2.scoreboard.ScoreBoard;
+import com.example.phase2.appcore.scoreboard.ScoreBoard;
 import com.example.phase2.usersystem.LoseActivity;
 import com.example.phase2.appcore.Player;
 import com.example.phase2.appcore.Property;

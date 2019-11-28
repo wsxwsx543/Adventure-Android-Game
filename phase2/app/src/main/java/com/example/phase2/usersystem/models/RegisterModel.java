@@ -9,10 +9,12 @@ import com.example.phase2.exceptions.SameNameException;
 
 public class RegisterModel {
 
-    public RegisterModel(){}
+    public RegisterModel() {
+    }
 
     /**
      * Return whether a account is created successfully or not.
+     *
      * @return a boolean value.
      */
     public String addNewUser(FileSystem fileSystem, String username, String password1, String password2) {

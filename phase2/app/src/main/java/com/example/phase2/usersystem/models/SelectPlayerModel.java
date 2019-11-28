@@ -10,7 +10,8 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class SelectPlayerModel {
-    public SelectPlayerModel(){ }
+    public SelectPlayerModel() {
+    }
 
     public ArrayAdapter<String> playersAdapter(Context context, User user) {
         Set<String> playerNamesSet = user.getPlayers().keySet();
@@ -25,28 +26,27 @@ public class SelectPlayerModel {
         return adapter;
     }
 
-    public String playerStats(User user, String playerName, String stats){
-        switch (stats){
-            case "stage":{
+    public String playerStats(User user, String playerName, String stats) {
+        switch (stats) {
+            case "stage": {
                 return "Current at stage: " + user.getPlayers().get(playerName).getCurStage();
             }
-            case "property":{
+            case "property": {
                 return user.getPlayers().get(playerName).getProperty().toString();
             }
-            case "lives":{
+            case "lives": {
                 return "Lives Remaining: " + user.getPlayers().get(playerName).getLivesRemain();
             }
         }
         return "";
     }
 
-    public String checkPlayerAvailable(User user, String playerName){
-        if (user.getPlayers().containsKey(playerName)){
+    public String checkPlayerAvailable(User user, String playerName) {
+        if (user.getPlayers().containsKey(playerName)) {
             Player player = user.getPlayers().get(playerName);
-            if(player.getLivesRemain() <= 0) {
+            if (player.getLivesRemain() <= 0) {
                 return "This player is dead";
-            }
-            else if(player.getCurStage() == 4){
+            } else if (player.getCurStage() == 4) {
                 return "This player has finished game.";
             }
             return "Start game!";

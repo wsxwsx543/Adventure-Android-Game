@@ -7,13 +7,15 @@ import android.os.Message;
 
 import com.example.phase2.R;
 
-/** Jump to this activity if the player lose the game. */
+/**
+ * Jump to this activity if the player lose the game.
+ */
 public class LoseActivity extends SuperActivity implements Initializable {
-    Handler myhandler = new Handler(){
+    Handler myhandler = new Handler() {
         @Override
-        public void handleMessage(Message msg){
+        public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 1:
                     startActivity(new Intent(LoseActivity.this, ChooseOrCreatePlayerActivity.class));
             }

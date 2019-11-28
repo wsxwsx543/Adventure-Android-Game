@@ -37,8 +37,9 @@ public class Dialog extends AppCompatDialogFragment {
         return builder.create();
     }
 
-    public interface DialogListener{
+    public interface DialogListener {
         void onYesClicked();
+
         void onNoClicked();
     }
 
@@ -46,6 +47,6 @@ public class Dialog extends AppCompatDialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        listener = (DialogListener)context;
+        listener = (DialogListener) context;
     }
 }

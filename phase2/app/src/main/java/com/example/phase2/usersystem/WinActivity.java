@@ -8,13 +8,15 @@ import android.os.Message;
 import com.example.phase2.R;
 import com.example.phase2.usersystem.Dialog.DialogListener;
 
-/** Jump to this activity if the player win the game. */
+/**
+ * Jump to this activity if the player win the game.
+ */
 public class WinActivity extends SuperActivity implements Initializable, DialogListener {
-    Handler myhandler = new Handler(){
+    Handler myhandler = new Handler() {
         @Override
-        public void handleMessage(Message msg){
+        public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 1:
                     startActivity(new Intent(WinActivity.this, ChooseOrCreatePlayerActivity.class));
                     break;
@@ -50,7 +52,7 @@ public class WinActivity extends SuperActivity implements Initializable, DialogL
         myhandler.sendEmptyMessage(1);
     }
 
-    public void openDialog(){
+    public void openDialog() {
         Dialog dialog = new Dialog();
         dialog.show(getSupportFragmentManager(), "dialog");
     }
