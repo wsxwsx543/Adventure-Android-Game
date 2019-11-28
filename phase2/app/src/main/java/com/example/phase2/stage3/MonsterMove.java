@@ -19,8 +19,6 @@ public class MonsterMove implements Move {
      * @return the property of monster after the move.
      */
     public Property doMove(int id) {
-
-//        Property property = monster.getProperty();
         Property monsterProperty = new Property(this.property.getAttack(), this.property.getDefence(), this.property.getFlexibility(), this.property.getLuckiness());
 
         Random R = new Random();
