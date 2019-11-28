@@ -1,4 +1,4 @@
-package com.example.phase2.appcore;
+package com.example.phase2.appcore.game;
 
 import java.io.Serializable;
 import java.util.ArrayList;

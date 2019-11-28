@@ -7,15 +7,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.phase2.datamanagement.FileSystem;
-import com.example.phase2.scoreboard.ScoreBoard;
-import com.example.phase2.usersystem.LoseActivity;
-import com.example.phase2.appcore.Player;
-import com.example.phase2.appcore.Property;
+import com.example.phase2.appcore.scoreboard.ScoreBoard;
+import com.example.phase2.usersystem.views.results.LoseActivity;
+import com.example.phase2.appcore.game.Player;
+import com.example.phase2.appcore.game.Property;
 import com.example.phase2.R;
-import com.example.phase2.appcore.User;
-import com.example.phase2.appcore.UserManager;
-import com.example.phase2.usersystem.SuperActivity;
-import com.example.phase2.usersystem.WinActivity;
+import com.example.phase2.appcore.user.User;
+import com.example.phase2.appcore.user.UserManager;
+import com.example.phase2.usersystem.views.app.SuperActivity;
+import com.example.phase2.usersystem.views.results.WinActivity;
 
 
 /** An activity shows the battle of monster and player for stage 3. */

@@ -1,4 +1,4 @@
-package com.example.phase2.usersystem;
+package com.example.phase2.usersystem.views.gamestats;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import com.example.phase2.appcore.UserManager;
+import com.example.phase2.appcore.user.UserManager;
 
 public class Dialog extends AppCompatDialogFragment {
 
@@ -37,8 +37,9 @@ public class Dialog extends AppCompatDialogFragment {
         return builder.create();
     }
 
-    public interface DialogListener{
+    public interface DialogListener {
         void onYesClicked();
+
         void onNoClicked();
     }
 
@@ -46,6 +47,6 @@ public class Dialog extends AppCompatDialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        listener = (DialogListener)context;
+        listener = (DialogListener) context;
     }
 }

@@ -1,6 +1,6 @@
 package com.example.phase2.usersystem.models;
 
-import com.example.phase2.appcore.UserManager;
+import com.example.phase2.appcore.user.UserManager;
 import com.example.phase2.datamanagement.FileSystem;
 import com.example.phase2.exceptions.EmptyNameException;
 import com.example.phase2.exceptions.EmptyPasswordException;
@@ -9,10 +9,12 @@ import com.example.phase2.exceptions.SameNameException;
 
 public class RegisterModel {
 
-    public RegisterModel(){}
+    public RegisterModel() {
+    }
 
     /**
      * Return whether a account is created successfully or not.
+     *
      * @return a boolean value.
      */
     public String addNewUser(FileSystem fileSystem, String username, String password1, String password2) {

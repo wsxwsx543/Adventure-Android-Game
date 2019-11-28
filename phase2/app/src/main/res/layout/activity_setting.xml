@@ -3,7 +3,7 @@
     android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".usersystem.SettingActivity"
+    tools:context=".usersystem.views.app.SettingActivity"
     android:background="?attr/backColor">
 
     <LinearLayout

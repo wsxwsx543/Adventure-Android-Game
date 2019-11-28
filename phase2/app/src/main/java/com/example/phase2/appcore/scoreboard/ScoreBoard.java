@@ -1,8 +1,8 @@
-package com.example.phase2.scoreboard;
+package com.example.phase2.appcore.scoreboard;
 
-import com.example.phase2.appcore.Player;
-import com.example.phase2.appcore.User;
-import com.example.phase2.appcore.UserManager;
+import com.example.phase2.appcore.game.Player;
+import com.example.phase2.appcore.user.User;
+import com.example.phase2.appcore.user.UserManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,12 +19,12 @@ public class ScoreBoard implements Observer, Serializable {
     private static ScoreBoard scoreBoard = null;
     private HashMap<User, ArrayList<Player>> userPlayers;
 
-    private ScoreBoard(){
+    private ScoreBoard() {
 
     }
 
-    public static ScoreBoard getInstance(){
-        if(scoreBoard == null)
+    public static ScoreBoard getInstance() {
+        if (scoreBoard == null)
             scoreBoard = new ScoreBoard();
         return scoreBoard;
     }
@@ -33,7 +33,7 @@ public class ScoreBoard implements Observer, Serializable {
         ScoreBoard.scoreBoard = scoreBoard;
     }
 
-    public ArrayList sort(SortStrategy sortStrategy){
+    public ArrayList sort(SortStrategy sortStrategy) {
         return sortStrategy.sort(userPlayers);
     }
 
@@ -47,10 +47,9 @@ public class ScoreBoard implements Observer, Serializable {
 
     @Override
     public void update(Observable o, Object arg) {
-        if(userPlayers.containsKey(UserManager.getInstance().getCurUser())){
+        if (userPlayers.containsKey(UserManager.getInstance().getCurUser())) {
             userPlayers.get(UserManager.getInstance().getCurUser()).add(UserManager.getInstance().getCurUser().getCurPlayer());
-        }
-        else{
+        } else {
             ArrayList<Player> players = new ArrayList<>();
             players.add(UserManager.getInstance().getCurUser().getCurPlayer());
             userPlayers.put(UserManager.getInstance().getCurUser(), players);

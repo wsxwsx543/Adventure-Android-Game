@@ -1,4 +1,4 @@
-package com.example.phase2.usersystem;
+package com.example.phase2.usersystem.views.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,13 +6,15 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.phase2.R;
-import com.example.phase2.appcore.UserManager;
-import com.example.phase2.scoreboard.ScoreBoardActivity;
-import com.example.phase2.usersystem.views.CreatePlayerActivity;
-import com.example.phase2.usersystem.views.LoginActivity;
-import com.example.phase2.usersystem.views.SelectPlayerActivity;
+import com.example.phase2.appcore.user.UserManager;
+import com.example.phase2.usersystem.views.app.Initializable;
+import com.example.phase2.usersystem.views.gamestats.ScoreBoardActivity;
+import com.example.phase2.usersystem.views.app.SettingActivity;
+import com.example.phase2.usersystem.views.app.SuperActivity;
 
-/** An activity used to choose a player or create a new player. */
+/**
+ * An activity used to choose a player or create a new player.
+ */
 public class ChooseOrCreatePlayerActivity extends SuperActivity implements View.OnClickListener, Initializable {
 
     @Override
@@ -23,7 +25,7 @@ public class ChooseOrCreatePlayerActivity extends SuperActivity implements View.
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.select:
                 startActivity(new Intent(ChooseOrCreatePlayerActivity.this, SelectPlayerActivity.class));
                 break;

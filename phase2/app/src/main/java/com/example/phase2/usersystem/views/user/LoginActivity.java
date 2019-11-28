@@ -1,4 +1,4 @@
-package com.example.phase2.usersystem.views;
+package com.example.phase2.usersystem.views.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,12 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.phase2.usersystem.Initializable;
 import com.example.phase2.R;
-import com.example.phase2.usersystem.ChooseOrCreatePlayerActivity;
-import com.example.phase2.usersystem.SuperActivity;
 import com.example.phase2.usersystem.models.LoginModel;
 import com.example.phase2.usersystem.presenters.LoginPresenter;
+import com.example.phase2.usersystem.views.app.Initializable;
+import com.example.phase2.usersystem.views.app.SuperActivity;
+import com.example.phase2.usersystem.views.iview.ToastStringView;
 
 /**
  * A login activity.
@@ -37,7 +37,7 @@ public class LoginActivity extends SuperActivity implements View.OnClickListener
 
         switch (v.getId()) {
             case R.id.login: {
-                if(loginPresenter.showResult(fileSystem, username, password))
+                if (loginPresenter.showResult(fileSystem, username, password))
                     startActivity(new Intent(LoginActivity.this, ChooseOrCreatePlayerActivity.class));
                 break;
             }

@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.example.phase2.R;
-import com.example.phase2.appcore.UserManager;
+import com.example.phase2.appcore.user.UserManager;
 
 class Treasure extends Box {
 

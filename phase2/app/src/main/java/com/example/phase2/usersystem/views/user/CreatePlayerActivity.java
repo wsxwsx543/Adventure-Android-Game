@@ -1,4 +1,4 @@
-package com.example.phase2.usersystem.views;
+package com.example.phase2.usersystem.views.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +10,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.phase2.usersystem.Initializable;
 import com.example.phase2.R;
-import com.example.phase2.usersystem.ChooseOrCreatePlayerActivity;
-import com.example.phase2.usersystem.SuperActivity;
 import com.example.phase2.usersystem.models.CreatePlayerModel;
 import com.example.phase2.usersystem.presenters.CreatePlayerPresenter;
+import com.example.phase2.usersystem.views.app.Initializable;
+import com.example.phase2.usersystem.views.app.SuperActivity;
+import com.example.phase2.usersystem.views.iview.TextStringView;
+import com.example.phase2.usersystem.views.iview.ToastStringView;
 
 public class CreatePlayerActivity extends SuperActivity implements View.OnClickListener, Initializable, ToastStringView, TextStringView {
 
@@ -68,13 +69,13 @@ public class CreatePlayerActivity extends SuperActivity implements View.OnClickL
 
         String career = careerSpinner.getSelectedItem().toString();
         String weapon = weaponsSpinner.getSelectedItem().toString();
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.back:
                 startActivity(new Intent(CreatePlayerActivity.this, ChooseOrCreatePlayerActivity.class));
                 break;
 
             case R.id.create:
-                if(createPlayerPresenter.showResult(fileSystem, playerName, career, weapon)) {
+                if (createPlayerPresenter.showResult(fileSystem, playerName, career, weapon)) {
                     startActivity(new Intent(CreatePlayerActivity.this, ChooseOrCreatePlayerActivity.class));
                 }
                 break;

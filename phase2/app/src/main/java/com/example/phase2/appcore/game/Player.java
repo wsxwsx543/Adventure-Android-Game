@@ -1,8 +1,6 @@
-package com.example.phase2.appcore;
+package com.example.phase2.appcore.game;
 
-import androidx.annotation.NonNull;
-
-import com.example.phase2.scoreboard.ScoreBoard;
+import com.example.phase2.appcore.scoreboard.ScoreBoard;
 
 import java.io.Serializable;
 import java.util.List;

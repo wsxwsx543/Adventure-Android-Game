@@ -1,7 +1,7 @@
 package com.example.phase2.stage3;
 
-import com.example.phase2.appcore.Player;
-import com.example.phase2.appcore.Property;
+import com.example.phase2.appcore.game.Player;
+import com.example.phase2.appcore.game.Property;
 
 import java.util.Random;
 

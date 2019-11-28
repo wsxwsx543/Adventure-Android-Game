@@ -1,5 +1,7 @@
-package com.example.phase2.appcore;
+package com.example.phase2.appcore.user;
 
+import com.example.phase2.appcore.game.Player;
+import com.example.phase2.appcore.game.Property;
 import com.example.phase2.exceptions.EmptyNameException;
 import com.example.phase2.exceptions.SameNameException;
 
