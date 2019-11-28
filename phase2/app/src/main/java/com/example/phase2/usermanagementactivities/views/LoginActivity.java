@@ -1,4 +1,4 @@
-package com.example.phase2.usermanagementactivities;
+package com.example.phase2.usermanagementactivities.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,15 +9,16 @@ import android.widget.Toast;
 
 import com.example.phase2.Initializable;
 import com.example.phase2.R;
+import com.example.phase2.usermanagementactivities.ChooseOrCreatePlayerActivity;
+import com.example.phase2.usermanagementactivities.SuperActivity;
 import com.example.phase2.usermanagementactivities.models.LoginModel;
 import com.example.phase2.usermanagementactivities.presenters.LoginPresenter;
-import com.example.phase2.usermanagementactivities.views.SetStringView;
 
 /**
  * A login activity.
  */
 
-public class LoginActivity extends SuperActivity implements View.OnClickListener, Initializable, SetStringView {
+public class LoginActivity extends SuperActivity implements View.OnClickListener, Initializable, ToastStringView {
 
     private LoginPresenter loginPresenter;
 

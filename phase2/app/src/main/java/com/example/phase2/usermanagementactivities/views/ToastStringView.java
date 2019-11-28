@@ -1,5 +1,5 @@
 package com.example.phase2.usermanagementactivities.views;
 
-public interface SetStringView {
+public interface ToastStringView {
     public void setResult(String result);
 }

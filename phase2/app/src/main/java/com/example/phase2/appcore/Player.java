@@ -183,10 +183,4 @@ public class Player extends Observable implements Serializable {
     public List<String> getWeaponNames(){
         return weaponManager.getWeaponNames();
     }
-
-    @NonNull
-    @Override
-    public String toString() {
-        return UserManager.getInstance().getCurUser().getUsername() + ":" + getName();
-    }
 }

@@ -2,25 +2,25 @@ package com.example.phase2.usermanagementactivities.presenters;
 
 import com.example.phase2.datamanagement.FileSystem;
 import com.example.phase2.usermanagementactivities.models.LoginModel;
-import com.example.phase2.usermanagementactivities.views.SetStringView;
+import com.example.phase2.usermanagementactivities.views.ToastStringView;
 
 public class LoginPresenter {
     private LoginModel loginModel;
-    private SetStringView setStringView;
+    private ToastStringView toastStringView;
 
-    public LoginPresenter(LoginModel loginModel, SetStringView loginView){
+    public LoginPresenter(LoginModel loginModel, ToastStringView loginView){
         this.loginModel = loginModel;
-        this.setStringView = loginView;
+        this.toastStringView = loginView;
     }
 
     public boolean showResult(FileSystem fileSystem, String username, String password){
         loginModel.loadScoreBoard(fileSystem);
         loginModel.loadUsers(fileSystem);
         if(loginModel.checkPasswordCorrect(username, password)) {
-            setStringView.setResult("Login Successfully");
+            toastStringView.setResult("Login Successfully");
             return true;
         } else {
-            setStringView.setResult("Invalid username or password.");
+            toastStringView.setResult("Invalid username or password.");
             return false;
         }
     }
@@ -28,6 +28,6 @@ public class LoginPresenter {
     public void register(FileSystem fileSystem){
         loginModel.loadScoreBoard(fileSystem);
         loginModel.loadUsers(fileSystem);
-        setStringView.setResult("Register now!");
+        toastStringView.setResult("Register now!");
     }
 }

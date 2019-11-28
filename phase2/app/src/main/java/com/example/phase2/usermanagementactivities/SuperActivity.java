@@ -11,8 +11,8 @@ import com.example.phase2.R;
 import com.example.phase2.scoreboard.ScoreBoard;
 
 public class SuperActivity extends AppCompatActivity implements Initializable {
-    FileSystem fileSystem;
-    GameApp app;
+    protected FileSystem fileSystem;
+    protected GameApp app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

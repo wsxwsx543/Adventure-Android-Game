@@ -71,7 +71,6 @@ public class UserManager implements Serializable {
 
     /**
      * Add a specific user in users.
-     * @param user the given user.
      */
     public void addUser(String username, String password1, String password2) throws EmptyNameException, EmptyPasswordException, SameNameException, PasswordDifferentException {
         if (username.equals("")){

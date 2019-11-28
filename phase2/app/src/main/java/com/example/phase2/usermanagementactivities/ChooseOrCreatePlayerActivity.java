@@ -9,6 +9,8 @@ import com.example.phase2.Initializable;
 import com.example.phase2.R;
 import com.example.phase2.appcore.UserManager;
 import com.example.phase2.scoreboard.ScoreBoardActivity;
+import com.example.phase2.usermanagementactivities.views.CreatePlayerActivity;
+import com.example.phase2.usermanagementactivities.views.LoginActivity;
 
 /** An activity used to choose a player or create a new player. */
 public class ChooseOrCreatePlayerActivity extends SuperActivity implements View.OnClickListener, Initializable {

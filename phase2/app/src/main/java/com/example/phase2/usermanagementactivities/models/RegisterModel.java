@@ -29,12 +29,16 @@ public class RegisterModel {
         try {
             userManager.addUser(username, password1, password2);
         } catch (EmptyNameException e) {
+            e.printStackTrace();
             return "Username cannot be empty.";
         } catch (EmptyPasswordException e) {
+            e.printStackTrace();
             return "Password cannot be empty";
         } catch (SameNameException e) {
+            e.printStackTrace();
             return "Please change a username, this username has been token.";
         } catch (PasswordDifferentException e) {
+            e.printStackTrace();
             return "Password enterd are not same.";
         }
 

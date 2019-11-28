@@ -16,13 +16,13 @@
         <activity android:name=".usermanagementactivities.WinActivity" />
         <activity android:name=".usermanagementactivities.LoseActivity" />
         <activity android:name=".stage2.TreasureHuntActivity" />
-        <activity android:name=".usermanagementactivities.CreatePlayerActivity" />
+        <activity android:name=".usermanagementactivities.views.CreatePlayerActivity" />
         <activity android:name=".usermanagementactivities.SelectPlayerActivity" />
         <activity android:name=".usermanagementactivities.ChooseOrCreatePlayerActivity" />
-        <activity android:name=".usermanagementactivities.RegisterActivity" />
+        <activity android:name=".usermanagementactivities.views.RegisterActivity" />
         <activity android:name=".stage1.MazeActivity" />
         <activity android:name=".stage3.BattleActivity" />
-        <activity android:name=".usermanagementactivities.LoginActivity">
+        <activity android:name=".usermanagementactivities.views.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
