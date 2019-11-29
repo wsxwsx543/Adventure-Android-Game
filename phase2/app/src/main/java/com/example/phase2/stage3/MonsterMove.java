@@ -22,12 +22,12 @@ public class MonsterMove implements Move {
         Property monsterProperty = new Property(this.property.getAttack(), this.property.getDefence(), this.property.getFlexibility(), this.property.getLuckiness());
 
         Random R = new Random();
-        int x = R.nextInt(10);
-        int y = R.nextInt(10);
+        int x = R.nextInt(20);
+        int y = R.nextInt(20);
         if (id == 0) {
             return monsterProperty;
         } else if (id == 1) {
-            monsterProperty.addPropertyToSelf(10, 10, 20, 20);
+            monsterProperty.addPropertyToSelf(10, 10, 100, 100);
             return monsterProperty;
         } else if (id == 2) {
             monsterProperty.addPropertyToSelf(25, 0, x, y);
@@ -36,10 +36,10 @@ public class MonsterMove implements Move {
             monsterProperty.addPropertyToSelf(35, 0, x, y);
             return monsterProperty;
         } else if (id == 4) {
-            monsterProperty.addPropertyToSelf(40, 100, x - 3, y);
+            monsterProperty.addPropertyToSelf(40, 100, x - 5, y);
             return monsterProperty;
         } else if (id == 5) {
-            monsterProperty.addPropertyToSelf(40, 0, 20, y);
+            monsterProperty.addPropertyToSelf(40, 0, 100, y);
             return monsterProperty;
         } else if (id == 6) {
             monsterProperty.addPropertyToSelf(-10, 0, -10, -10);

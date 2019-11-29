@@ -16,16 +16,16 @@ public class CreatePlayerModel {
     public Property generateCareerProperty(String career) {
         switch (career) {
             case "Computer Science": {
-                return new Property(20, 10, 0, 3);
+                return new Property(20, 10, 3, 3);
             }
             case "Life Science": {
-                return new Property(15, 15, 0, 3);
+                return new Property(15, 15, 3, 3);
             }
             case "Rotman Commerce": {
-                return new Property(15, 10, 5, 3);
+                return new Property(15, 10, 10, 3);
             }
             case "Engineer": {
-                return new Property(15, 10, 0, 7);
+                return new Property(15, 10, 3, 10);
             }
         }
         return new Property(0, 0, 0, 0);
