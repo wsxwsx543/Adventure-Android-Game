@@ -104,6 +104,9 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
         updateDoor();
     }
 
+    /**
+     * update the hero
+     */
     public void updateHero(){
         Hero hero = mazeModel.getHero();
         if (hero.getIsGoingUp()){
@@ -229,11 +232,17 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
         }
     }
 
+    /**
+     * function called to restart stage 1 when life <= 0
+     */
     public void restartStage1(){
         Intent restartg1Intent = new Intent(getContext(), MazeActivity.class);
         getContext().startActivity(restartg1Intent);
     }
 
+    /**
+     * jump to stage2 when satisfies all conditions to stage2
+     */
     public void processToStage2(){
         mazeModel.getCurUser().getCurPlayer().getProperty().setAttack(mazeModel.getAttack());
         mazeModel.getCurUser().getCurPlayer().getProperty().setDefence(mazeModel.getDefence());
@@ -268,6 +277,11 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
 
     }
 
+    /**
+     * where we draw all the objects
+     * @param canvas where we draw on
+     * @param background image to display
+     */
     private void drawBackground(Canvas canvas, Background background){
         canvas.drawBitmap(background.getBackgroundView(), background.x, background.y, mazeModel.getPaint());
     }

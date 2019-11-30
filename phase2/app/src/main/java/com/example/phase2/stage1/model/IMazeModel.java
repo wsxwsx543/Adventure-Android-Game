@@ -7,6 +7,9 @@ import com.example.phase2.datamanagement.FileSystem;
 
 import java.util.List;
 
+/**
+ * model which contains all properties of monster, treasure, door
+ */
 public interface IMazeModel {
     public int getScreenX();
 

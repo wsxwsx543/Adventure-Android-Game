@@ -43,6 +43,9 @@ public class Hero {
         return heroView;
     }
 
+    /**
+     * functions to get and set attributes of hero
+     */
     public void setIsGoingUp(Boolean goUp){
         this.isGoingUp = goUp;
     }

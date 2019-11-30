@@ -134,6 +134,9 @@ public class ModelView extends SurfaceView implements IMazeModel {
         return curBackground;
     }
 
+    /**
+     * create a list of monsters
+     */
     public void createMonsterItems(){
         MazeObjects m1 = MazeObjectsFactory.getMazeObject("Monster", 900, 360, getResources(), "Strong");
         MazeObjects m2 = MazeObjectsFactory.getMazeObject("Monster", 540, 270, getResources(), "Weak");
@@ -182,6 +185,9 @@ public class ModelView extends SurfaceView implements IMazeModel {
         return myDoors;
     }
 
+    /**
+     * all getter and setters
+     */
     public Hero getHero() {
         return hero;
     }

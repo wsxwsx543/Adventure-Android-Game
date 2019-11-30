@@ -2,6 +2,10 @@ package com.example.phase2.stage1.model;
 
 import android.graphics.Bitmap;
 
+/**
+ * subclass of monster, treasure, door
+ * all monster, treasure, door expend this
+ */
 public abstract class MazeObjects {
     public abstract int getX();
     public abstract int getY();

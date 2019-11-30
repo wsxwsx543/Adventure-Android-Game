@@ -40,6 +40,9 @@ public class Monster extends MazeObjects {
 
     }
 
+    /**
+     * functions to get and set attributes of monster
+     */
     @Override
     public int getX(){
         return x;

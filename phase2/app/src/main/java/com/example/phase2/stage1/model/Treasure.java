@@ -32,7 +32,9 @@ public class Treasure extends MazeObjects {
         treasureView = Bitmap.createScaledBitmap(treasureView, width, height, false);
     }
 
-
+    /**
+     * functions to get and set attributes of treasure
+     */
     @Override
     public int getX(){ return x; }
     @Override

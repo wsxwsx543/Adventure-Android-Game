@@ -28,7 +28,9 @@ public class Door extends MazeObjects {
         doorView = Bitmap.createScaledBitmap(doorView, width, height, false);
     }
 
-
+    /**
+     * functions to get and set attributes of door
+     */
     @Override
     public int getX(){
         return x;

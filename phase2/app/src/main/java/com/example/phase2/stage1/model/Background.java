@@ -31,6 +31,9 @@ public class Background {
 
     }
 
+    /**
+     * functions to get attributes of background
+     */
     public int getX() {
         return x;
     }
