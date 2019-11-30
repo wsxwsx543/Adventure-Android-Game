@@ -24,7 +24,7 @@ class Treasure extends Box {
 
     //Method that randomly sets the type of the treasure
     private void setType(){
-        int decider = (int)(Math.random() * 4);
+        int decider = (int)(Math.random() * 1);
         switch (decider){
             case 0:
                 treasureType = "Attack";
