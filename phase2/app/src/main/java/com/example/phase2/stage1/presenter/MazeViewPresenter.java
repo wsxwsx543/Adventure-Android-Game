@@ -369,19 +369,19 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
 
         if (event.getAction() == MotionEvent.ACTION_DOWN){
             if (event.getX() > 0 && event.getX() < mazeModel.getScreenX() &&
-                    event.getY() > 0 && event.getY() < mazeModel.getScreenY() / 3){
+                    event.getY() > 0 && event.getY() < mazeModel.getScreenY() / 3.0){
                 mazeModel.getHero().setIsGoingUp(true);
             }
-            if (event.getX() > 0 && event.getX() < mazeModel.getScreenX() / 2 &&
-                    event.getY() > mazeModel.getScreenY() /3 && event.getY() < mazeModel.getScreenY() * 2 /3){
+            if (event.getX() > 0 && event.getX() < mazeModel.getScreenX() / 2.0 &&
+                    event.getY() > mazeModel.getScreenY() /3.0 && event.getY() < mazeModel.getScreenY() * 2 /3.0){
                 mazeModel.getHero().setIsGoingLeft(true);
             }
-            if (event.getX() > mazeModel.getScreenX() / 2 && event.getX() < mazeModel.getScreenX() &&
-                    event.getY() > mazeModel.getScreenY() /3 && event.getY() < mazeModel.getScreenY() * 2 /3){
+            if (event.getX() > mazeModel.getScreenX() / 2.0 && event.getX() < mazeModel.getScreenX() &&
+                    event.getY() > mazeModel.getScreenY() /3.0 && event.getY() < mazeModel.getScreenY() * 2 /3.0){
                 mazeModel.getHero().setIsGoingRight(true);
             }
             if (event.getX() > 0 && event.getX() < mazeModel.getScreenX() &&
-                    event.getY() > mazeModel.getScreenY() * 2 / 3 && event.getY() < mazeModel.getScreenY()){
+                    event.getY() > mazeModel.getScreenY() * 2 / 3.0 && event.getY() < mazeModel.getScreenY()){
                 mazeModel.getHero().setIsGoingDown(true);
             }
         }
