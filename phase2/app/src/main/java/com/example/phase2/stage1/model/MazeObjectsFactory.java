@@ -1,11 +1,6 @@
-package com.example.phase2.stage1.Model;
+package com.example.phase2.stage1.model;
 
 import android.content.res.Resources;
-
-import com.example.phase2.stage1.Model.Door;
-import com.example.phase2.stage1.Model.MazeObjects;
-import com.example.phase2.stage1.Model.Monster;
-import com.example.phase2.stage1.Model.Treasure;
 
 public class MazeObjectsFactory {
     public static MazeObjects getMazeObject(String what, int curr_x, int curr_y, Resources res, String type){

@@ -1,10 +1,10 @@
-package com.example.phase2.stage1.View;
+package com.example.phase2.stage1.view;
 
 import android.graphics.Point;
 import android.os.Bundle;
 
-import com.example.phase2.stage1.Model.ModelView;
-import com.example.phase2.stage1.Presenter.MazeViewPresenter;
+import com.example.phase2.stage1.model.ModelView;
+import com.example.phase2.stage1.presenter.MazeViewPresenter;
 import com.example.phase2.usersystem.views.app.SuperActivity;
 
 

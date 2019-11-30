@@ -1,4 +1,4 @@
-package com.example.phase2.stage1.Presenter;
+package com.example.phase2.stage1.presenter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,11 +9,11 @@ import android.view.SurfaceView;
 
 import com.example.phase2.appcore.user.User;
 import com.example.phase2.appcore.user.UserManager;
-import com.example.phase2.stage1.View.MazeActivity;
-import com.example.phase2.stage1.Model.Background;
-import com.example.phase2.stage1.Model.Hero;
-import com.example.phase2.stage1.Model.IMazeModel;
-import com.example.phase2.stage1.Model.MazeObjects;
+import com.example.phase2.stage1.view.MazeActivity;
+import com.example.phase2.stage1.model.Background;
+import com.example.phase2.stage1.model.Hero;
+import com.example.phase2.stage1.model.IMazeModel;
+import com.example.phase2.stage1.model.MazeObjects;
 import com.example.phase2.stage2.TreasureHuntActivity;
 
 import java.util.List;

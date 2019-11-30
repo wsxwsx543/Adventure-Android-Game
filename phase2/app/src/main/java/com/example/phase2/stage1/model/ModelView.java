@@ -1,4 +1,4 @@
-package com.example.phase2.stage1.Model;
+package com.example.phase2.stage1.model;
 
 import android.content.Context;
 import android.graphics.Color;
