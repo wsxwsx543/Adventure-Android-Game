@@ -19,25 +19,24 @@ import com.example.phase2.stage2.TreasureHuntActivity;
 import java.util.List;
 
 public class MazeViewPresenter extends SurfaceView implements Runnable{
+
     /**
      * The maze model for collecting data.
      */
-    IMazeModel mazeModel;
+    private IMazeModel mazeModel;
 
     /**
      * The main Thread
      */
     private Thread thread;
 
-
     /**
-     * @param context
+     * @param context the context for this presenter
+     * @param mazeModel the model to get data for this presenter
      */
     public MazeViewPresenter(Context context, IMazeModel mazeModel){
         super(context);
-
         this.mazeModel = mazeModel;
-
         setCurStage(mazeModel.getCurUser(), 1);
         saveUser();
     }
@@ -55,6 +54,9 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
         }
     }
 
+    /**
+     * indicate current stage
+     */
     public void setCurStage(User curUser, int stage){
         curUser.getCurPlayer().setCurStage(stage);
     }
@@ -142,6 +144,9 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
             hero.setX(mazeModel.getScreenX() - hero.getWidth());
     }
 
+    /**
+     * update the monster
+     */
     public void updateMonster(){
         List<MazeObjects> myMonsters = mazeModel.getMyMonsters();
         Hero hero = mazeModel.getHero();
@@ -165,6 +170,9 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
         }
     }
 
+    /**
+     * update the treasure
+     */
     public void updateTreasure(){
         List<MazeObjects> myTreasures = mazeModel.getMyTreasures();
         Hero hero = mazeModel.getHero();
@@ -212,6 +220,9 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
         }
     }
 
+    /**
+     * update the door
+     */
     public void updateDoor(){
         List<MazeObjects> myDoors = mazeModel.getMyDoors();
         Hero hero = mazeModel.getHero();
@@ -332,8 +343,6 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
     }
 
     /**
