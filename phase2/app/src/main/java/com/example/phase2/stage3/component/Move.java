@@ -1,9 +1,9 @@
-package com.example.phase2.stage3;
+package com.example.phase2.stage3.component;
 
 
 import com.example.phase2.appcore.game.Property;
 
-interface Move {
+public interface Move {
     /**
      * Get the move
      * @param id An number which represent a move.

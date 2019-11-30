@@ -21,7 +21,7 @@
         <activity android:name=".usersystem.views.user.ChooseOrCreatePlayerActivity" />
         <activity android:name=".usersystem.views.user.RegisterActivity" />
         <activity android:name=".stage1.MazeActivity" />
-        <activity android:name=".stage3.BattleActivity" />
+        <activity android:name=".stage3.view.BattleActivity" />
         <activity android:name=".usersystem.views.user.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

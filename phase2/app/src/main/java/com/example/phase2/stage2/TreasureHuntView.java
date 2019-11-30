@@ -16,7 +16,7 @@ import com.example.phase2.appcore.game.Property;
 import com.example.phase2.R;
 import com.example.phase2.appcore.user.User;
 import com.example.phase2.appcore.user.UserManager;
-import com.example.phase2.stage3.BattleActivity;
+import com.example.phase2.stage3.view.BattleActivity;
 
 public class TreasureHuntView extends SurfaceView implements Runnable {
 

@@ -1,16 +1,16 @@
-package com.example.phase2.stage3;
+package com.example.phase2.stage3.component;
 
 import com.example.phase2.appcore.game.Property;
 
 /**
  * A monster.
  */
-class Monster{
+public class Monster{
     private int livesRemain;
     private Property property;
 
     /** Constructs a new monster. */
-    Monster(int livesRemain, Property monsterProperty){
+    public Monster(int livesRemain, Property monsterProperty){
         this.livesRemain = livesRemain;
         this.property = monsterProperty;
     }
@@ -20,7 +20,7 @@ class Monster{
      *
      * @return live of monster.
      */
-    int getLivesRemain() {
+    public int getLivesRemain() {
         return this.livesRemain;
     }
 
@@ -29,7 +29,7 @@ class Monster{
      *
      * @return property of the monster.
      */
-    Property getProperty(){
+    public Property getProperty(){
         return property;
     }
 
@@ -38,7 +38,7 @@ class Monster{
      *
      * @param num the number live lose.
      */
-    void loseLives(int num){
+    public void loseLives(int num){
         this.livesRemain -= num;
     }
 }

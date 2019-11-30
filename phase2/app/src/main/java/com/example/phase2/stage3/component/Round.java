@@ -1,7 +1,10 @@
-package com.example.phase2.stage3;
+package com.example.phase2.stage3.component;
 
 import com.example.phase2.appcore.game.Player;
 import com.example.phase2.appcore.game.Property;
+import com.example.phase2.stage3.component.Monster;
+import com.example.phase2.stage3.component.Move;
+import com.example.phase2.stage3.component.MoveFactory;
 
 import java.util.Random;
 
@@ -57,20 +60,11 @@ public class Round {
         this.player = player;
         this.monster = monster;
         moveFactory = new MoveFactory();
-//        this.playerMove = new PlayerMove();
-//        this.monsterMove = new MonsterMove();
     }
-//
-//    private Move doMove(String type, Player player, Monster monster){
-//        return moveFactory.getMove(type);
-//    }
-
 
 
     /**
      * A battle that monster its move. To return monster's move.
-     *
-     * @return monster's property.
      */
     private void monsterDoMove() {
         int id;

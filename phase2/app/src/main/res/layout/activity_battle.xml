@@ -14,7 +14,7 @@
     android:background="@drawable/background_login"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".stage3.BattleActivity">
+    tools:context=".stage3.view.BattleActivity">
 
 
     <LinearLayout

@@ -1,4 +1,4 @@
-package com.example.phase2.stage3;
+package com.example.phase2.stage3.component;
 
 import com.example.phase2.appcore.game.Player;
 import com.example.phase2.appcore.game.Property;
@@ -9,7 +9,7 @@ public class PlayerMove implements Move {
 
 
     /** A player move. */
-    PlayerMove(Player player) {
+    public PlayerMove(Player player) {
         this.property = player.getProperty();
     }
 

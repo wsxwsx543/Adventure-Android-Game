@@ -1,8 +1,6 @@
-package com.example.phase2.stage3;
+package com.example.phase2.stage3.component;
 
-import com.example.phase2.appcore.game.Property;
 import com.example.phase2.appcore.game.Player;
-import java.util.Random;
 
 
 public class MoveFactory {
