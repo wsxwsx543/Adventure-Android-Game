@@ -1,8 +1,10 @@
-package com.example.phase2.stage1;
+package com.example.phase2.stage1.View;
 
 import android.graphics.Point;
 import android.os.Bundle;
 
+import com.example.phase2.stage1.Model.ModelView;
+import com.example.phase2.stage1.Presenter.MazeViewPresenter;
 import com.example.phase2.usersystem.views.app.SuperActivity;
 
 
@@ -10,7 +12,7 @@ public class MazeActivity extends SuperActivity {
     /**
      * The game view we are gonna present
      */
-    private MazeView myg1View;
+    private MazeViewPresenter myg1View;
 
     /**
      * Every time intent to this activity, we jump to the corresponding
@@ -23,12 +25,10 @@ public class MazeActivity extends SuperActivity {
         super.onCreate(savedInstanceState);
         super.init();
 
-
         Point point = new Point();
         getWindowManager().getDefaultDisplay().getSize(point);
 
-        myg1View = new MazeView(this, point.x, point.y);
-
+        myg1View = new MazeViewPresenter(this, new ModelView(this, point.x, point.y));
         setContentView(myg1View);
     }
 
