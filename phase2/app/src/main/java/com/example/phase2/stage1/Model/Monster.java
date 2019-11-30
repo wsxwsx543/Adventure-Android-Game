@@ -1,4 +1,4 @@
-package com.example.phase2.stage1;
+package com.example.phase2.stage1.Model;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -9,7 +9,7 @@ import com.example.phase2.R;
 /**
  * The monster class
  */
-public class Monster extends MazeObjects{
+public class Monster extends MazeObjects {
     /**
      * The x, y coordinate and the length and width of the Monster image
      */

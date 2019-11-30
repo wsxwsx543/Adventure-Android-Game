@@ -1,4 +1,4 @@
-package com.example.phase2.stage1;
+package com.example.phase2.stage1.Model;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -13,11 +13,11 @@ public class Background {
     /**
      * the x, y coordinates of background
      */
-    int x = 0, y = 0;
+    public int x = 0, y = 0;
     /**
      * background in the form of Bitmap
      */
-    Bitmap background;
+    public Bitmap backgroundView;
 
     /**
      * @param screenX the width of the background.
@@ -26,9 +26,20 @@ public class Background {
      */
     Background(int screenX, int screenY, Resources res){
 
-        background = BitmapFactory.decodeResource(res, R.drawable.background2);
-        background = Bitmap.createScaledBitmap(background, screenX, screenY, false);
+        backgroundView = BitmapFactory.decodeResource(res, R.drawable.background2);
+        backgroundView = Bitmap.createScaledBitmap(backgroundView, screenX, screenY, false);
 
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public Bitmap getBackgroundView() {
+        return backgroundView;
+    }
 }

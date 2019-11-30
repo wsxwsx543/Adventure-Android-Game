@@ -1,4 +1,4 @@
-package com.example.phase2.stage1;
+package com.example.phase2.stage1.Model;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -24,23 +24,23 @@ public class Hero {
 
     private boolean key = false;
 
-    Bitmap heroFront;
+    Bitmap heroView;
 
     /**
      * @param res
      */
     Hero(Resources res){
-        heroFront = BitmapFactory.decodeResource(res, R.drawable.hero2);
+        heroView = BitmapFactory.decodeResource(res, R.drawable.hero2);
 
-        heroFront = Bitmap.createScaledBitmap(heroFront, width, height, false);
+        heroView = Bitmap.createScaledBitmap(heroView, width, height, false);
 
     }
 
     /**
      * Return the player image
      */
-    Bitmap getHero(){
-        return heroFront;
+    public Bitmap getHeroView(){
+        return heroView;
     }
 
     public void setIsGoingUp(Boolean goUp){
