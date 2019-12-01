@@ -86,16 +86,16 @@ class Round {
      * Doing the damage calculation after player's choice.
      *
      * @param moveNum the move player choose.
-     * @param MP      the monster's property we get from battle1.
+     * @param property      the monster's property we get from battle1.
      */
-    void battle(int moveNum, Property MP) {
+    void battle(int moveNum, Property property) {
         Move move = moveFactory.getMove("PlayerMove", this.player, this.monster);
         Property playerProperty = move.doMove(moveNum); //decided by input
 
-        int damageToPlayer = MP.getAttack() - playerProperty.getDefence();
-        int damageToMonster = playerProperty.getAttack() - MP.getDefence();
-        int flex = playerProperty.getFlexibility() - MP.getFlexibility();
-        int luck = playerProperty.getLuckiness() - MP.getLuckiness();
+        int damageToPlayer = property.getAttack() - playerProperty.getDefence();
+        int damageToMonster = playerProperty.getAttack() - property.getDefence();
+        int flex = playerProperty.getFlexibility() - property.getFlexibility();
+        int luck = playerProperty.getLuckiness() - property.getLuckiness();
 
         if (damageToMonster > 0) {
             if (luck > 0) {
