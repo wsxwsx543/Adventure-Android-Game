@@ -26,6 +26,10 @@ public class BattleModel {
      */
     private int roundNum;
     /**
+     * Player's chosen movement.
+     */
+    private int playerMove;
+    /**
      * Monster's property.
      */
     private Property monsterProperty;
@@ -128,6 +132,14 @@ public class BattleModel {
 
     public int getPlayerLuckiness() {
         return player.getProperty().getLuckiness();
+    }
+
+    public void setPlayerMove(int move) {
+        playerMove = move;
+    }
+
+    public int getPlayerMove() {
+        return playerMove;
     }
 
     public void setMoveTrue() {
