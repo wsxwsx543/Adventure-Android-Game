@@ -7,13 +7,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.phase2.datamanagement.FileSystem;
-import com.example.phase2.stage3.model.Monster;
 import com.example.phase2.stage3.presenter.BattlePresenter;
 import com.example.phase2.usersystem.views.results.LoseActivity;
-import com.example.phase2.appcore.game.Player;
-import com.example.phase2.appcore.game.Property;
 import com.example.phase2.R;
-import com.example.phase2.appcore.user.UserManager;
 import com.example.phase2.usersystem.views.app.SuperActivity;
 import com.example.phase2.usersystem.views.results.WinActivity;
 
@@ -21,32 +17,22 @@ import com.example.phase2.usersystem.views.results.WinActivity;
 /** An activity shows the battle of monster and player for stage 3. */
 public class BattleActivity extends SuperActivity implements View.OnClickListener, BattleView {
 
-    /** The current player and current monster. */
-    private Player player;
-    private Monster monster;
-    /** The file system. */
-    private FileSystem fileSystem;
     /** The four buttons. Where check button check monster's move. */
     Button checkBtn, attackBtn, defenceBtn, evadeBtn;
+    /** The four text views. */
+    private TextView monsterMove, lifeView, monsterLifeView, roundView;
+    /** The presenter. */
+    private BattlePresenter battlePresenter;
     /** The move that player choose. which 1 represents attack, 2 represents defence, and 3 represents evade */
     int playerMove;
-
-    private TextView monsterMove, lifeView, monsterLifeView, roundView;
-
-    private BattlePresenter battlePresenter;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
-
-        Property monster_property = new Property(10, 10, 0, 0);
-        monster = new Monster(300, monster_property);
-        player = UserManager.getInstance().getCurUser().getCurPlayer();
         fileSystem = new FileSystem(this.getApplicationContext());
-        battlePresenter = new BattlePresenter(this, monster, player, fileSystem);
+        battlePresenter = new BattlePresenter(this.getApplicationContext(), this);
 
         init();
 

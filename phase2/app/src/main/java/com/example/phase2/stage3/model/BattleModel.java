@@ -4,13 +4,11 @@ import com.example.phase2.datamanagement.FileSystem;
 import com.example.phase2.appcore.scoreboard.ScoreBoard;
 import com.example.phase2.appcore.game.Player;
 import com.example.phase2.appcore.game.Property;
-import com.example.phase2.appcore.user.User;
 import com.example.phase2.appcore.user.UserManager;
+import android.content.Context;
 
 
 public class BattleModel {
-    /** The current user. */
-    User curUser;
     /** The current player and current monster. */
     private Player player;
     private Monster monster;
@@ -18,15 +16,16 @@ public class BattleModel {
     private boolean moveStatus = false;
     /** The current round number of the battle game. */
     private int roundNum;
-    /** The move that player choose. which 1 represents attack, 2 represents defence, and 3 represents evade */
-    private int playerMove;
     /** Monster's property. */
     private Property monsterProperty;
+    /** The filesystem. */
+    private FileSystem fileSystem;
 
-    public BattleModel(Player p, Monster m){
-        roundNum = 1;
-        player = p;
-        monster = m;
+    public BattleModel(Context context){
+        Property monster_property = new Property(10, 10, 0, 0);
+        monster = new Monster(300, monster_property);
+        player = UserManager.getInstance().getCurUser().getCurPlayer();
+        fileSystem = new FileSystem(context);
     }
 
     public void battle(int playerMove){
@@ -43,17 +42,13 @@ public class BattleModel {
         } else monster.loseLives(monster.getLivesRemain());
     }
 
-    public void setPlayerMove(int num){
-        playerMove = num;
-    }
-
     public String getMonsterMove(){
         Round round = new Round(player, monster);
         monsterProperty = round.getMonsterProperty();
         return round.getMonsterString();
     }
 
-    public void saveData(FileSystem fileSystem){
+    public void saveData(){
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
         fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
     }
@@ -97,6 +92,14 @@ public class BattleModel {
 
     public void setMoveFalse(){
         moveStatus = false;
+    }
+
+    public void setCurStage(int stageNum){
+        player.setCurStage(stageNum);
+    }
+
+    public FileSystem getFileSystem(){
+        return fileSystem;
     }
 
     public boolean getMoveStatus(){
