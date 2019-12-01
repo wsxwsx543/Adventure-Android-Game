@@ -41,8 +41,8 @@ Functionality:
 - The are 4 parameters for the property:
   1. Attack: The higher attack the player has, the more harm the player can create to the boss.
   2. Defence: Decrease the harm the boss create to the player.
-  3. Flexibility:
-  4. Luckiness:
+  3. Flexibility: Increase the possibility to evade from the attack from the boss.
+  4. Luckiness: Increase the possibility to make an critical attack(double damage) to boss.
 - An user account can contain lots of players.
 - After login, user can change the color theme in setting section.
 - If the player quit game at a stage, after the user came back, it will continue the stage from the
