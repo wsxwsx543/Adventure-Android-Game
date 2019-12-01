@@ -1,26 +1,19 @@
 package com.example.phase2.stage3.presenter;
 
-import com.example.phase2.datamanagement.FileSystem;
-import com.example.phase2.stage3.model.Monster;
+import android.content.Context;
+
 import com.example.phase2.stage3.model.BattleModel;
 import com.example.phase2.stage3.view.BattleView;
-import com.example.phase2.appcore.game.Player;
 
 
 public class BattlePresenter {
     private BattleView battleView;
     private BattleModel battleModel;
-    private Player player;
-    private Monster monster;
-    private FileSystem fileSystem;
 
 
-    public BattlePresenter(BattleView view, Monster monster, Player player, FileSystem fileSystem){
+    public BattlePresenter(Context context, BattleView view){
         battleView = view;
-        battleModel = new BattleModel(player, monster);
-        this.monster = monster;
-        this.player = player;
-        this.fileSystem = fileSystem;
+        battleModel = new BattleModel(context);
     }
 
     public void battle(){
@@ -52,16 +45,13 @@ public class BattlePresenter {
     public void updateMonsterMove(){
         String monsterMove = battleModel.getMonsterMove();
         battleView.updateMonsterMove(monsterMove);
-
     }
 
     public int getPLayerAttack(){
         return battleModel.getPlayerAttack();
     }
 
-    public int getPLayerDefence(){
-        return battleModel.getPlayerDefence();
-    }
+    public int getPLayerDefence(){ return battleModel.getPlayerDefence(); }
 
     public int getPLayerFlexibility(){
         return battleModel.getPlayerFlexibility();
@@ -79,19 +69,11 @@ public class BattlePresenter {
         return battleModel.gerMonsterLives();
     }
 
-
-    public void savePlayerMove(int playerMove){
-        battleModel.setPlayerMove(playerMove);
-    }
-
-
     public void saveData(){
-        battleModel.saveData(this.fileSystem);
+        battleModel.saveData();
     }
 
-    public void setStage(int stageNum){
-        player.setCurStage(stageNum);
-    }
+    public void setStage(int stageNum){ battleModel.setCurStage(stageNum); }
 
 
 }
