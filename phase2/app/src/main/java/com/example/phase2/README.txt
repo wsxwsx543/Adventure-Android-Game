@@ -1,5 +1,6 @@
 Instructions:
-Phase 2 of the CSC207 Term Project.
+Phase 2 of the CSC207 Term Project. No plugins and tools used, will work just open the project.
+Our uml package which contains the uml diagrams of the project is under com.example.phase2 package.
 
 
 Game information:
@@ -36,6 +37,9 @@ Attack: Make damage to the monster.
 Defence: Greatly reduce the damage received from the boss this round but cannot make damage.
 (No chance of evade)
 Evade: Increase the rate of evade this round but cannot make damage to the boss.
+
+
+
 
 Functionality:
 - The first page will be login page. Uses need to create their own account.
