@@ -31,7 +31,11 @@ Player need to click 'check' button to check monster's current message, and choo
 movement(attack, defence, and evade) to fight with the monster. Different movement will cause
 different effect.
 
-
+Attack: Make damage to the monster.
+(Has possibility to evade from the damage of boss, or make a critical attack(double damage).)
+Defence: Greatly reduce the damage received from the boss this round but cannot make damage.
+(No chance of evade)
+Evade: Increase the rate of evade this round but cannot make damage to the boss.
 
 Functionality:
 - The first page will be login page. Uses need to create their own account.
