@@ -11,77 +11,78 @@ import java.util.List;
  * model which contains all properties of monster, treasure, door
  */
 public interface IMazeModel {
-    public int getScreenX();
 
-    public int getScreenY();
+    int getScreenX();
 
-    public Background getCurBackground();
+    int getScreenY();
 
-    public List<MazeObjects> getMyMonsters();
+    Background getCurBackground();
 
-    public List<MazeObjects> getMyTreasures();
+    List<MazeObjects> getMyMonsters();
 
-    public List<MazeObjects> getMyDoors();
+    List<MazeObjects> getMyTreasures();
 
-    public Hero getHero();
+    List<MazeObjects> getMyDoors();
 
-    public User getCurUser();
+    Hero getHero();
 
-    public FileSystem getFileSystem();
+    User getCurUser();
 
-    public String getHasKey();
+    FileSystem getFileSystem();
 
-    public void setHasKey(String hasKey);
+    String getHasKey();
 
-    public int getAttack();
+    void setHasKey(String hasKey);
 
-    public void setAttack(int attack);
+    int getAttack();
 
-    public int getDefence();
+    void setAttack(int attack);
 
-    public void setDefence(int defence);
+    int getDefence();
 
-    public int getFlexibility();
+    void setDefence(int defence);
 
-    public void setFlexibility(int flexibility);
+    int getFlexibility();
 
-    public int getLuckiness();
+    void setFlexibility(int flexibility);
 
-    public void setLuckiness(int luckiness);
+    int getLuckiness();
 
-    public int getLife();
+    void setLuckiness(int luckiness);
 
-    public void setLife(int life);
+    int getLife();
 
-    public int getGiftLife();
+    void setLife(int life);
 
-    public void setGiftLife(int giftLife);
+    int getGiftLife();
 
-    public int getGiftAttack();
+    void setGiftLife(int giftLife);
 
-    public void setGiftAttack(int giftAttack);
+    int getGiftAttack();
 
-    public int getGiftDefence();
+    void setGiftAttack(int giftAttack);
 
-    public void setGiftDefence(int giftDefence);
+    int getGiftDefence();
 
-    public int getGiftFlexibility();
+    void setGiftDefence(int giftDefence);
 
-    public void setGiftFlexibility(int giftFlexibility);
+    int getGiftFlexibility();
 
-    public int getGiftLuckiness();
+    void setGiftFlexibility(int giftFlexibility);
 
-    public void setGiftLuckiness(int giftLuckiness);
+    int getGiftLuckiness();
 
-    public boolean getIsPlaying();
+    void setGiftLuckiness(int giftLuckiness);
 
-    public Paint getPaint();
+    boolean getIsPlaying();
 
-    public Paint getTextPaint();
+    Paint getPaint();
 
-    public void setTextPaint();
+    Paint getTextPaint();
 
-    public void setIsPlaying(boolean playingOrNot);
+    void setTextPaint();
+
+    void setIsPlaying(boolean playingOrNot);
 
 
 }
