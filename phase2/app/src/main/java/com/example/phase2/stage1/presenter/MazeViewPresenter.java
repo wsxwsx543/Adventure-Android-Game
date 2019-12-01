@@ -32,6 +32,13 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
 
     /**
      * @param context the context for this presenter
+     */
+    public MazeViewPresenter(Context context){
+        super(context);
+    }
+
+    /**
+     * @param context the context for this presenter
      * @param mazeModel the model to get data for this presenter
      */
     public MazeViewPresenter(Context context, IMazeModel mazeModel){
@@ -394,8 +401,6 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
                 mazeModel.getHero().setIsGoingDown(true);
             }
         }
-
         return true;
-
     }
 }
