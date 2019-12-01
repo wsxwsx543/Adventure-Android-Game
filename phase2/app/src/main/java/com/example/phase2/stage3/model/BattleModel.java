@@ -2,12 +2,10 @@ package com.example.phase2.stage3.model;
 
 import com.example.phase2.datamanagement.FileSystem;
 import com.example.phase2.appcore.scoreboard.ScoreBoard;
-import com.example.phase2.stage3.component.Monster;
 import com.example.phase2.appcore.game.Player;
 import com.example.phase2.appcore.game.Property;
 import com.example.phase2.appcore.user.User;
 import com.example.phase2.appcore.user.UserManager;
-import com.example.phase2.stage3.component.Round;
 
 
 public class BattleModel {

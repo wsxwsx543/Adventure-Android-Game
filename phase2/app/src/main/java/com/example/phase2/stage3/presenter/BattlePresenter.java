@@ -1,7 +1,7 @@
 package com.example.phase2.stage3.presenter;
 
 import com.example.phase2.datamanagement.FileSystem;
-import com.example.phase2.stage3.component.Monster;
+import com.example.phase2.stage3.model.Monster;
 import com.example.phase2.stage3.model.BattleModel;
 import com.example.phase2.stage3.view.BattleView;
 import com.example.phase2.appcore.game.Player;

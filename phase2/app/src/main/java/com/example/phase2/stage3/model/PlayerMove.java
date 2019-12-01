@@ -1,4 +1,4 @@
-package com.example.phase2.stage3.component;
+package com.example.phase2.stage3.model;
 
 import com.example.phase2.appcore.game.Player;
 import com.example.phase2.appcore.game.Property;
