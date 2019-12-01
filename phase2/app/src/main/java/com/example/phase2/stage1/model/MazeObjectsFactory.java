@@ -11,7 +11,6 @@ public class MazeObjectsFactory {
         if("Treasure".equalsIgnoreCase(what)) return new Treasure(curr_x, curr_y, res, type);
         else if("Monster".equalsIgnoreCase(what)) return new Monster(curr_x, curr_y, res, type);
         else if("Door".equalsIgnoreCase(what)) return new Door(curr_x, curr_y, res, type);
-
         return null;
     }
 }

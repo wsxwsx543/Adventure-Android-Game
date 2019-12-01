@@ -15,18 +15,25 @@ public class Monster extends MazeObjects {
      */
     private int x , y, width = 90, height = 90;
 
-    Bitmap monsterView;
+    /**
+     * The image of monster
+     */
+    private Bitmap monsterView;
 
+    /**
+     * The type of monster
+     */
     private String type;
 
     /**
      * @param curr_x the x coordinate of monster
      * @param curr_y the y coordinate of monster
+     * @param res contain application resource
+     * @param type indicate the type of the monster
      */
     Monster(int curr_x, int curr_y, Resources res, String type){
         this.x = curr_x;
         this.y = curr_y;
-
         this.type = type;
 
         if (this.type.equals("Strong")){
@@ -37,7 +44,6 @@ public class Monster extends MazeObjects {
             monsterView = BitmapFactory.decodeResource(res, R.drawable.monster);
             monsterView = Bitmap.createScaledBitmap(monsterView, width, height, false);
         }
-
     }
 
     /**
@@ -47,34 +53,32 @@ public class Monster extends MazeObjects {
     public int getX(){
         return x;
     }
+
     @Override
     public int getY(){
         return y;
     }
+
     @Override
     public int getWidth(){
         return width;
     }
+
     @Override
     public int getHeight(){
         return height;
     }
+
     @Override
     public void setX(int x){
         this.x = x;
     }
+
     @Override
     public void setY(int y){
         this.y = y;
     }
-    @Override
-    public void setWidth(int width){
-        this.width = width;
-    }
-    @Override
-    public void setHeight(int height){
-        this.height = height;
-    }
+
     @Override
     public Bitmap getView() {
         return monsterView;

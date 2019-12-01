@@ -22,18 +22,22 @@ public class Hero {
     private boolean isGoingLeft = false;
     private boolean isGoingRight = false;
 
+    /**
+     * the hero has the key to process to next stage or not
+     */
     private boolean key = false;
 
-    Bitmap heroView;
+    /**
+     * the image of hero
+     */
+    private Bitmap heroView;
 
     /**
-     * @param res
+     * @param res contain application of resources
      */
     Hero(Resources res){
         heroView = BitmapFactory.decodeResource(res, R.drawable.hero2);
-
         heroView = Bitmap.createScaledBitmap(heroView, width, height, false);
-
     }
 
     /**
@@ -100,14 +104,6 @@ public class Hero {
 
     public void setY(int y){
         this.y = y;
-    }
-
-    public void setWidth(int width){
-        this.width = width;
-    }
-
-    public void setHeight(int height){
-        this.height = height;
     }
 
     public void setKey(){ this.key = true;}
