@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.phase2.datamanagement.FileSystem;
-import com.example.phase2.stage3.component.Monster;
+import com.example.phase2.stage3.model.Monster;
 import com.example.phase2.stage3.presenter.BattlePresenter;
 import com.example.phase2.usersystem.views.results.LoseActivity;
 import com.example.phase2.appcore.game.Player;
