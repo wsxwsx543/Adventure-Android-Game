@@ -25,14 +25,14 @@ class PlayerMove implements Move {
         Property playerProperty = new Property(this.property.getAttack(), this.property.getDefence(), this.property.getFlexibility(), this.property.getLuckiness());
         switch (playerMove) {
             case 1:
-                Context context = new Context(new AttackStrategy());
-                return context.executeStrategy(playerProperty);
+                Movement movement = new Movement(new AttackStrategy());
+                return movement.executeStrategy(playerProperty);
             case 2:
-                context = new Context(new DefenceStrategy());
-                return context.executeStrategy(playerProperty);
+                movement = new Movement(new DefenceStrategy());
+                return movement.executeStrategy(playerProperty);
             case 3:
-                context = new Context(new EvadeStrategy());
-                return context.executeStrategy(playerProperty);
+                movement = new Movement(new EvadeStrategy());
+                return movement.executeStrategy(playerProperty);
             default:
                 return null;
         }

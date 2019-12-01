@@ -5,10 +5,10 @@ import com.example.phase2.appcore.game.Property;
 /**
  * Execute the strategy.
  */
-class Context {
+class Movement {
     private Strategy strategy;
 
-    public Context(Strategy strategy) {
+    Movement(Strategy strategy) {
         this.strategy = strategy;
     }
 
