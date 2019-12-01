@@ -40,7 +40,6 @@ public class ModelView extends SurfaceView implements IMazeModel {
      */
     private Background curBackground;
 
-
     /**
      * The current user we've selected
      */
@@ -91,8 +90,18 @@ public class ModelView extends SurfaceView implements IMazeModel {
      */
     private int screenX, screenY;
 
+    /**
+     * @param context the context for this ModelView
+     */
+    public ModelView(Context context){
+        super(context);
+    }
 
-
+    /**
+     * @param context the context for this ModelView
+     * @param screenX the length of x coordinate of screen
+     * @param screenY the length of y coordinate of screen
+     */
     public ModelView(Context context, int screenX, int screenY){
         super(context);
         this.screenX = screenX;
@@ -104,11 +113,6 @@ public class ModelView extends SurfaceView implements IMazeModel {
         this.myDoors = new ArrayList<>();
         this.hero = new Hero(getResources());
 
-        createMonsterItems();
-        createTreasureItems();
-        createDoorItems();
-        setTextPaint();
-
         curUser = UserManager.getInstance().getCurUser();
         fileSystem = new FileSystem(context);
 
@@ -117,21 +121,13 @@ public class ModelView extends SurfaceView implements IMazeModel {
         flexibility = curUser.getCurPlayer().getProperty().getFlexibility();
         luckiness = curUser.getCurPlayer().getProperty().getLuckiness();
         life = curUser.getCurPlayer().getLivesRemain();
-
         hasKey = "No";
 
-    }
+        createMonsterItems();
+        createTreasureItems();
+        createDoorItems();
+        setTextPaint();
 
-    public int getScreenX() {
-        return screenX;
-    }
-
-    public int getScreenY() {
-        return screenY;
-    }
-
-    public Background getCurBackground() {
-        return curBackground;
     }
 
     /**
@@ -150,6 +146,9 @@ public class ModelView extends SurfaceView implements IMazeModel {
         myMonsters.add(m5);
     }
 
+    /**
+     * create a list of treasure
+     */
     public void createTreasureItems(){
         MazeObjects t1 = MazeObjectsFactory.getMazeObject("Treasure", 720, 630, getResources(), "Key");
         MazeObjects t2 = MazeObjectsFactory.getMazeObject("Treasure", 90, 720, getResources(), "Life");
@@ -157,7 +156,6 @@ public class ModelView extends SurfaceView implements IMazeModel {
         MazeObjects t4 = MazeObjectsFactory.getMazeObject("Treasure", 180, 990, getResources(), "Defence");
         MazeObjects t5 = MazeObjectsFactory.getMazeObject("Treasure", 630, 630, getResources(), "Flexibility");
         MazeObjects t6 = MazeObjectsFactory.getMazeObject("Treasure", 270, 450, getResources(), "Luckiness");
-
         myTreasures.add(t1);
         myTreasures.add(t2);
         myTreasures.add(t3);
@@ -166,6 +164,9 @@ public class ModelView extends SurfaceView implements IMazeModel {
         myTreasures.add(t6);
     }
 
+    /**
+     * create a list of door
+     */
     public void createDoorItems(){
         MazeObjects d1 = MazeObjectsFactory.getMazeObject("Door", 990, 1350, getResources(), "True");
         MazeObjects d2 = MazeObjectsFactory.getMazeObject("Door", 90, 1350, getResources(), "False");
@@ -173,6 +174,9 @@ public class ModelView extends SurfaceView implements IMazeModel {
         myDoors.add(d2);
     }
 
+    /**
+     * all getter and setters
+     */
     public List<MazeObjects> getMyMonsters() {
         return myMonsters;
     }
@@ -185,9 +189,6 @@ public class ModelView extends SurfaceView implements IMazeModel {
         return myDoors;
     }
 
-    /**
-     * all getter and setters
-     */
     public Hero getHero() {
         return hero;
     }
@@ -309,5 +310,17 @@ public class ModelView extends SurfaceView implements IMazeModel {
         textPaint.setTextSize(70);
         textPaint.setTypeface(Typeface.DEFAULT_BOLD);
         textPaint.setAntiAlias(true);
+    }
+
+    public int getScreenX() {
+        return screenX;
+    }
+
+    public int getScreenY() {
+        return screenY;
+    }
+
+    public Background getCurBackground() {
+        return curBackground;
     }
 }
