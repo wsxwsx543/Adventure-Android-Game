@@ -391,7 +391,7 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
+        super.onTouchEvent(event);
         if (event.getAction() == MotionEvent.ACTION_DOWN){
             if (event.getX() > 0 && event.getX() < mazeModel.getScreenX() &&
                     event.getY() > 0 && event.getY() < mazeModel.getScreenY() / 3.0){
@@ -409,7 +409,15 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
                     event.getY() > mazeModel.getScreenY() * 2 / 3.0 && event.getY() < mazeModel.getScreenY()){
                 mazeModel.getHero().setIsGoingDown(true);
             }
+            performClick();
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public boolean performClick(){
+        super.performClick();
         return true;
     }
 }
