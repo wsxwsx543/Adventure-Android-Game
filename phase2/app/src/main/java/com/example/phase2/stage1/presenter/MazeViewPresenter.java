@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
+import com.example.phase2.appcore.game.Weapon;
 import com.example.phase2.appcore.user.User;
 import com.example.phase2.appcore.user.UserManager;
 import com.example.phase2.stage1.view.MazeActivity;
@@ -223,6 +224,12 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
                         treasure.setType("Empty");
                         myTreasures.remove(treasure);
                         break label;
+                    case "Weapon":
+                        mazeModel.getCurUser().getCurPlayer().addWeapon(new Weapon("Magic Wand", 5, 5, 5, 5));
+                        mazeModel.setGiftWeapon("Magic Wand");
+                        treasure.setType("Empty");
+                        myTreasures.remove(treasure);
+                        break label;
                 }
             }
         }
@@ -336,10 +343,11 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
         canvas.drawText("Luckiness: " + mazeModel.getLuckiness(), 500, 320, textPaint);
 
         canvas.drawText("Life from the treasure: " + mazeModel.getGiftLife(), 100, 1600, textPaint);
-        canvas.drawText("Attack from the treasure: " + mazeModel.getGiftAttack(), 100, 1680, textPaint);
-        canvas.drawText("Defence from the treasure: " + mazeModel.getGiftDefence(), 100, 1760, textPaint);
-        canvas.drawText("Flexibility from the treasure: " + mazeModel.getGiftFlexibility(), 100, 1840, textPaint);
-        canvas.drawText("Luckiness from the treasure: " + mazeModel.getGiftLuckiness(), 100, 1920, textPaint);
+        canvas.drawText("Attack from the treasure: " + mazeModel.getGiftAttack(), 100, 1660, textPaint);
+        canvas.drawText("Defence from the treasure: " + mazeModel.getGiftDefence(), 100, 1720, textPaint);
+        canvas.drawText("Flexibility from the treasure: " + mazeModel.getGiftFlexibility(), 100, 1780, textPaint);
+        canvas.drawText("Luckiness from the treasure: " + mazeModel.getGiftLuckiness(), 100, 1840, textPaint);
+        canvas.drawText("Weapon from the treasure: " + mazeModel.getGiftWeapon(), 100, 1900, textPaint);
     }
 
     /**

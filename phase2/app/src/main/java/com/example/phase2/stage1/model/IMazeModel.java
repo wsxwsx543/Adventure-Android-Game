@@ -84,5 +84,9 @@ public interface IMazeModel {
 
     void setIsPlaying(boolean playingOrNot);
 
+    String getGiftWeapon();
+
+    void setGiftWeapon(String giftWeapon);
+
 
 }

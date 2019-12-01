@@ -73,6 +73,7 @@ public class ModelView extends SurfaceView implements IMazeModel {
     private int giftDefence;
     private int giftFlexibility;
     private int giftLuckiness;
+    private String giftWeapon;
 
 
     /**
@@ -122,6 +123,7 @@ public class ModelView extends SurfaceView implements IMazeModel {
         luckiness = curUser.getCurPlayer().getProperty().getLuckiness();
         life = curUser.getCurPlayer().getLivesRemain();
         hasKey = "No";
+        giftWeapon = "Empty";
 
         createMonsterItems();
         createTreasureItems();
@@ -156,12 +158,14 @@ public class ModelView extends SurfaceView implements IMazeModel {
         MazeObjects t4 = MazeObjectsFactory.getMazeObject("Treasure", 180, 990, getResources(), "Defence");
         MazeObjects t5 = MazeObjectsFactory.getMazeObject("Treasure", 630, 630, getResources(), "Flexibility");
         MazeObjects t6 = MazeObjectsFactory.getMazeObject("Treasure", 270, 450, getResources(), "Luckiness");
+        MazeObjects t7 = MazeObjectsFactory.getMazeObject("Treasure", 360, 450, getResources(), "Weapon");
         myTreasures.add(t1);
         myTreasures.add(t2);
         myTreasures.add(t3);
         myTreasures.add(t4);
         myTreasures.add(t5);
         myTreasures.add(t6);
+        myTreasures.add(t7);
     }
 
     /**
@@ -307,7 +311,7 @@ public class ModelView extends SurfaceView implements IMazeModel {
 
     public void setTextPaint(){
         textPaint.setColor(Color.WHITE);
-        textPaint.setTextSize(70);
+        textPaint.setTextSize(50);
         textPaint.setTypeface(Typeface.DEFAULT_BOLD);
         textPaint.setAntiAlias(true);
     }
@@ -322,5 +326,13 @@ public class ModelView extends SurfaceView implements IMazeModel {
 
     public Background getCurBackground() {
         return curBackground;
+    }
+
+    public String getGiftWeapon() {
+        return giftWeapon;
+    }
+
+    public void setGiftWeapon(String giftWeapon) {
+        this.giftWeapon = giftWeapon;
     }
 }
