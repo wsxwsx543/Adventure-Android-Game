@@ -5,12 +5,14 @@ import com.example.phase2.appcore.game.Property;
 /**
  * A monster.
  */
-public class Monster{
+public class Monster {
     private int livesRemain;
     private Property property;
 
-    /** Constructs a new monster. */
-    public Monster(int livesRemain, Property monsterProperty){
+    /**
+     * Constructs a new monster.
+     */
+    public Monster(int livesRemain, Property monsterProperty) {
         this.livesRemain = livesRemain;
         this.property = monsterProperty;
     }
@@ -20,7 +22,7 @@ public class Monster{
      *
      * @return live of monster.
      */
-    public int getLivesRemain() {
+    int getLivesRemain() {
         return this.livesRemain;
     }
 
@@ -29,7 +31,7 @@ public class Monster{
      *
      * @return property of the monster.
      */
-    public Property getProperty(){
+    Property getProperty() {
         return property;
     }
 
@@ -38,7 +40,7 @@ public class Monster{
      *
      * @param num the number live lose.
      */
-    public void loseLives(int num){
+    void loseLives(int num) {
         this.livesRemain -= num;
     }
 }

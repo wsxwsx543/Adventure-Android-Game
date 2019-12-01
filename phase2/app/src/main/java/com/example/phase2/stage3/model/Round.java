@@ -2,16 +2,13 @@ package com.example.phase2.stage3.model;
 
 import com.example.phase2.appcore.game.Player;
 import com.example.phase2.appcore.game.Property;
-import com.example.phase2.stage3.model.Monster;
-import com.example.phase2.stage3.model.Move;
-import com.example.phase2.stage3.model.MoveFactory;
 
 import java.util.Random;
 
 /**
  * A round of a game.
  */
-public class Round {
+class Round {
 
     /**
      * The player of this round.
@@ -25,13 +22,9 @@ public class Round {
      * The property of this monster.
      */
     private Property monsterProperty;
-//    /**
-//     * The property of this player.
-//     */
-//    private Property PP;
-//    /**
-//     * The string that show the monster's move.
-//     */
+    /**
+     * The string that show the monster's move.
+     */
     private String monsterString;
     /**
      * The damage from player to monster.
@@ -43,20 +36,11 @@ public class Round {
     private int damage2;
 
     private MoveFactory moveFactory;
-//    /**
-//     * The move of player.
-//     */
-//    private PlayerMove playerMove;
-//    /**
-//     * The move of player.
-//     */
-//    private MonsterMove monsterMove;
-
 
     /**
      * Constructs a new round of given player and monster.
      */
-    public Round(Player player, Monster monster) {
+    Round(Player player, Monster monster) {
         this.player = player;
         this.monster = monster;
         moveFactory = new MoveFactory();
@@ -80,7 +64,7 @@ public class Round {
         monsterString = move.getString(id);
     }
 
-    public Property getMonsterProperty(){
+    Property getMonsterProperty() {
         monsterDoMove();
         return monsterProperty;
     }
@@ -90,7 +74,7 @@ public class Round {
      *
      * @return Return the monster's string.
      */
-    public String getMonsterString() {
+    String getMonsterString() {
         return monsterString;
     }
 
@@ -98,9 +82,9 @@ public class Round {
      * Doing the damage calculation after player's choice.
      *
      * @param moveNum the move player choose.
-     * @param MP   the monster's property we get from battle1.
+     * @param MP      the monster's property we get from battle1.
      */
-    public void battle(int moveNum, Property MP) {
+    void battle(int moveNum, Property MP) {
         Move move = moveFactory.getMove("PlayerMove", this.player, this.monster);
         Property playerProperty = move.doMove(moveNum); //decided by input
 
@@ -133,14 +117,14 @@ public class Round {
     /**
      * @return the damage player did to the monster.
      */
-    public int getDamage1() {
+    int getDamage1() {
         return damage1;
     }
 
     /**
      * @return get the damage monster did to the player.
      */
-    public int getDamage2() {
+    int getDamage2() {
         return damage2;
     }
 

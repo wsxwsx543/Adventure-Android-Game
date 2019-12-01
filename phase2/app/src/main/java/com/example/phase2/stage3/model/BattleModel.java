@@ -5,30 +5,41 @@ import com.example.phase2.appcore.scoreboard.ScoreBoard;
 import com.example.phase2.appcore.game.Player;
 import com.example.phase2.appcore.game.Property;
 import com.example.phase2.appcore.user.UserManager;
+
 import android.content.Context;
 
 
 public class BattleModel {
-    /** The current player and current monster. */
+    /**
+     * The current player and current monster.
+     */
     private Player player;
     private Monster monster;
-    /** The boolean value decide whether is the round that player could move. */
+    /**
+     * The boolean value decide whether is the round that player could move.
+     */
     private boolean moveStatus = false;
-    /** The current round number of the battle game. */
+    /**
+     * The current round number of the battle game.
+     */
     private int roundNum;
-    /** Monster's property. */
+    /**
+     * Monster's property.
+     */
     private Property monsterProperty;
-    /** The filesystem. */
+    /**
+     * The filesystem.
+     */
     private FileSystem fileSystem;
 
-    public BattleModel(Context context){
+    public BattleModel(Context context) {
         Property monster_property = new Property(10, 10, 0, 0);
         monster = new Monster(300, monster_property);
         player = UserManager.getInstance().getCurUser().getCurPlayer();
         fileSystem = new FileSystem(context);
     }
 
-    public void battle(int playerMove){
+    public void battle(int playerMove) {
         Round round = new Round(player, monster);
         nextRound();
         round.battle(playerMove, monsterProperty);
@@ -42,72 +53,72 @@ public class BattleModel {
         } else monster.loseLives(monster.getLivesRemain());
     }
 
-    public String getMonsterMove(){
+    public String getMonsterMove() {
         Round round = new Round(player, monster);
         monsterProperty = round.getMonsterProperty();
         return round.getMonsterString();
     }
 
-    public void saveData(){
+    public void saveData() {
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
         fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
     }
 
 
-    private void nextRound(){
-        roundNum ++;
+    private void nextRound() {
+        roundNum++;
     }
 
-    public int getRoundNum(){
+    public int getRoundNum() {
         return roundNum;
     }
 
-    public int getPlayerLives(){
+    public int getPlayerLives() {
         return player.getLivesRemain();
     }
 
-    public int gerMonsterLives(){
+    public int gerMonsterLives() {
         return monster.getLivesRemain();
     }
 
-    public int getPlayerAttack(){
+    public int getPlayerAttack() {
         return player.getProperty().getAttack();
     }
 
-    public int getPlayerDefence(){
+    public int getPlayerDefence() {
         return player.getProperty().getDefence();
     }
 
-    public int getPlayerFlexibility(){
+    public int getPlayerFlexibility() {
         return player.getProperty().getFlexibility();
     }
 
-    public int getPlayerLuckiness(){
+    public int getPlayerLuckiness() {
         return player.getProperty().getLuckiness();
     }
 
-    public void setMoveTrue(){
+    public void setMoveTrue() {
         moveStatus = true;
     }
 
-    public void setMoveFalse(){
+    public void setMoveFalse() {
         moveStatus = false;
     }
 
-    public void setCurStage(int stageNum){
+    public void setCurStage(int stageNum) {
         player.setCurStage(stageNum);
     }
 
-    public FileSystem getFileSystem(){
+    public FileSystem getFileSystem() {
         return fileSystem;
     }
 
-    public boolean getMoveStatus(){
+    public boolean getMoveStatus() {
         return moveStatus;
     }
 
 
-    public int checkLife(){
+    public int checkLife() {
         if (monster.getLivesRemain() > 0 && player.getLivesRemain() > 0) {
             return 0;
         } else if (player.getLivesRemain() <= 0) {
