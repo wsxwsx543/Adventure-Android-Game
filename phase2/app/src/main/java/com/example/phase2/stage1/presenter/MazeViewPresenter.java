@@ -183,45 +183,46 @@ public class MazeViewPresenter extends SurfaceView implements Runnable{
     public void updateTreasure(){
         List<MazeObjects> myTreasures = mazeModel.getMyTreasures();
         Hero hero = mazeModel.getHero();
+        label:
         for (MazeObjects treasure : myTreasures){
             if (hero.getX() == treasure.getX() && hero.getY() == treasure.getY()){
-                if (treasure.getType().equals("Life")){
-                    mazeModel.setLife(mazeModel.getLife() + 5);
-                    mazeModel.setGiftLife(mazeModel.getGiftLife() + 5);
-                    treasure.setType("Empty");
-                    myTreasures.remove(treasure);
-                    break;
-                } else if(treasure.getType().equals("Attack")){
-                    mazeModel.setAttack(mazeModel.getAttack() + 5);
-                    mazeModel.setGiftAttack(mazeModel.getGiftAttack() + 5);
-                    treasure.setType("Empty");
-                    myTreasures.remove(treasure);
-                    break;
-                } else if(treasure.getType().equals("Defence")){
-                    mazeModel.setDefence(mazeModel.getDefence() + 5);
-                    mazeModel.setGiftDefence(mazeModel.getGiftDefence() + 5);
-                    treasure.setType("Empty");
-                    myTreasures.remove(treasure);
-                    break;
-                } else if(treasure.getType().equals("Flexibility")){
-                    mazeModel.setFlexibility(mazeModel.getFlexibility() + 5);
-                    mazeModel.setGiftFlexibility(mazeModel.getGiftFlexibility() + 5);
-                    treasure.setType("Empty");
-                    myTreasures.remove(treasure);
-                    break;
-                } else if(treasure.getType().equals("Luckiness")){
-                    mazeModel.setLuckiness(mazeModel.getLuckiness() + 5);
-                    mazeModel.setGiftLuckiness(mazeModel.getGiftLuckiness() + 5);
-                    treasure.setType("Empty");
-                    myTreasures.remove(treasure);
-                    break;
-                }
-                else if (treasure.getType().equals("Key")){
-                    hero.setKey();
-                    mazeModel.setHasKey("Yes");
-                    treasure.setType("Empty");
-                    myTreasures.remove(treasure);
-                    break;
+                switch (treasure.getType()) {
+                    case "Life":
+                        mazeModel.setLife(mazeModel.getLife() + 5);
+                        mazeModel.setGiftLife(mazeModel.getGiftLife() + 5);
+                        treasure.setType("Empty");
+                        myTreasures.remove(treasure);
+                        break label;
+                    case "Attack":
+                        mazeModel.setAttack(mazeModel.getAttack() + 5);
+                        mazeModel.setGiftAttack(mazeModel.getGiftAttack() + 5);
+                        treasure.setType("Empty");
+                        myTreasures.remove(treasure);
+                        break label;
+                    case "Defence":
+                        mazeModel.setDefence(mazeModel.getDefence() + 5);
+                        mazeModel.setGiftDefence(mazeModel.getGiftDefence() + 5);
+                        treasure.setType("Empty");
+                        myTreasures.remove(treasure);
+                        break label;
+                    case "Flexibility":
+                        mazeModel.setFlexibility(mazeModel.getFlexibility() + 5);
+                        mazeModel.setGiftFlexibility(mazeModel.getGiftFlexibility() + 5);
+                        treasure.setType("Empty");
+                        myTreasures.remove(treasure);
+                        break label;
+                    case "Luckiness":
+                        mazeModel.setLuckiness(mazeModel.getLuckiness() + 5);
+                        mazeModel.setGiftLuckiness(mazeModel.getGiftLuckiness() + 5);
+                        treasure.setType("Empty");
+                        myTreasures.remove(treasure);
+                        break label;
+                    case "Key":
+                        hero.setKey();
+                        mazeModel.setHasKey("Yes");
+                        treasure.setType("Empty");
+                        myTreasures.remove(treasure);
+                        break label;
                 }
             }
         }
