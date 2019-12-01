@@ -151,5 +151,13 @@ public class BattlePresenter {
         battleModel.setCurStage(stageNum);
     }
 
+    public void setPlayerMove(int move) {
+        battleModel.setPlayerMove(move);
+    }
+
+    public int getPlayerMove() {
+        return battleModel.getPlayerMove();
+    }
+
 
 }

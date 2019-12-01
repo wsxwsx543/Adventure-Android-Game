@@ -31,10 +31,6 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
      * The presenter.
      */
     private BattlePresenter battlePresenter;
-    /**
-     * The move that player choose. which 1 represents attack, 2 represents defence, and 3 represents evade.
-     */
-    int playerMove;
 
 
     @Override
@@ -56,7 +52,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.attackBtn:
                 if (battlePresenter.moveOrNot()) {
-                    playerMove = 1;
+                    battlePresenter.setPlayerMove(1);
                     battlePresenter.battle();
                     battlePresenter.update();
                 }
@@ -64,7 +60,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
                 break;
             case R.id.defenceBtn:
                 if (battlePresenter.moveOrNot()) {
-                    playerMove = 2;
+                    battlePresenter.setPlayerMove(2);
                     battlePresenter.battle();
                     battlePresenter.update();
                 }
@@ -72,7 +68,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
                 break;
             case R.id.evadeBtn:
                 if (battlePresenter.moveOrNot()) {
-                    playerMove = 3;
+                    battlePresenter.setPlayerMove(3);
                     battlePresenter.battle();
                     battlePresenter.update();
                 }
@@ -108,7 +104,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
      */
     @Override
     public int getPlayerMove() {
-        return playerMove;
+        return battlePresenter.getPlayerMove();
     }
 
     /**
