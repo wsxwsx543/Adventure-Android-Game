@@ -5,7 +5,7 @@ import com.example.phase2.appcore.game.Property;
 import java.util.Random;
 
 
-public class MonsterMove implements Move {
+class MonsterMove implements Move {
     private Property property;
 
     /**

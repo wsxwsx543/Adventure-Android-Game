@@ -5,7 +5,7 @@ import com.example.phase2.appcore.game.Property;
 /**
  * A defence movement.
  */
-public class DefenceStrategy implements Strategy {
+class DefenceStrategy implements Strategy {
     @Override
     public Property doMove(Property property) {
         property.addPropertyToSelf(-100, 30, -10, -10);

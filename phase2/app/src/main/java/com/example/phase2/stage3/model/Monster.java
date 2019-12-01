@@ -5,7 +5,7 @@ import com.example.phase2.appcore.game.Property;
 /**
  * A monster.
  */
-public class Monster {
+class Monster {
     private int livesRemain;
     private Property property;
 

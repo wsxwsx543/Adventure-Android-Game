@@ -6,7 +6,7 @@ import com.example.phase2.appcore.game.Property;
 /**
  * A movement.
  */
-public interface Move {
+interface Move {
     String getString(int id);
 
     Property doMove(int id);

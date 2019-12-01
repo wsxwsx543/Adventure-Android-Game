@@ -5,7 +5,7 @@ import com.example.phase2.appcore.game.Property;
 /**
  * Execute the strategy.
  */
-public class Context {
+class Context {
     private Strategy strategy;
 
     public Context(Strategy strategy) {

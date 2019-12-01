@@ -3,7 +3,7 @@ package com.example.phase2.stage3.model;
 import com.example.phase2.appcore.game.Player;
 import com.example.phase2.appcore.game.Property;
 
-public class PlayerMove implements Move {
+class PlayerMove implements Move {
 
     private Property property;
 
