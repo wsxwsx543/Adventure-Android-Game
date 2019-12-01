@@ -8,7 +8,9 @@ import com.example.phase2.appcore.user.UserManager;
 
 import android.content.Context;
 
-
+/**
+ * A model which contains all properties of a battle needs.
+ */
 public class BattleModel {
     /**
      * The current player and current monster.
@@ -39,6 +41,11 @@ public class BattleModel {
         fileSystem = new FileSystem(context);
     }
 
+    /**
+     * Begin a battle round with the player's chosen of movement.
+     *
+     * @param playerMove the move that player chosen.
+     */
     public void battle(int playerMove) {
         Round round = new Round(player, monster);
         nextRound();
@@ -53,22 +60,48 @@ public class BattleModel {
         } else monster.loseLives(monster.getLivesRemain());
     }
 
+    /**
+     * Get the monster's move in current battle round.
+     *
+     * @return the string that represents monster's chosen movement.
+     */
     public String getMonsterMove() {
         Round round = new Round(player, monster);
         monsterProperty = round.getMonsterProperty();
         return round.getMonsterString();
     }
 
+    /**
+     * Save the data of the current player.
+     */
     public void saveData() {
         fileSystem.save(UserManager.getInstance().getUsers(), "Users.ser");
         fileSystem.save(ScoreBoard.getInstance().getUserPlayers(), "ScoreBoard.ser");
     }
 
-
+    /**
+     * A new round.
+     */
     private void nextRound() {
         roundNum++;
     }
 
+    /**
+     * @return the integer that represents the player's result. 0 represents battle continue, 1 represents player lose and 2 represents player win.
+     */
+    public int checkLife() {
+        if (monster.getLivesRemain() > 0 && player.getLivesRemain() > 0) {
+            return 0;
+        } else if (player.getLivesRemain() <= 0) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
+
+    /**
+     * A getters and setters.
+     */
     public int getRoundNum() {
         return roundNum;
     }
@@ -115,17 +148,6 @@ public class BattleModel {
 
     public boolean getMoveStatus() {
         return moveStatus;
-    }
-
-
-    public int checkLife() {
-        if (monster.getLivesRemain() > 0 && player.getLivesRemain() > 0) {
-            return 0;
-        } else if (player.getLivesRemain() <= 0) {
-            return 1;
-        } else {
-            return 2;
-        }
     }
 
 }

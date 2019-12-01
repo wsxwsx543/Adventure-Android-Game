@@ -32,7 +32,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
      */
     private BattlePresenter battlePresenter;
     /**
-     * The move that player choose. which 1 represents attack, 2 represents defence, and 3 represents evade
+     * The move that player choose. which 1 represents attack, 2 represents defence, and 3 represents evade.
      */
     int playerMove;
 
@@ -103,6 +103,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
 
     /**
      * Return player's choose of move.
+     *
      * @return player's move.
      */
     @Override
@@ -112,6 +113,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
 
     /**
      * Update the monster's move.
+     *
      * @param move monster's move.
      */
     public void updateMonsterMove(String move) {

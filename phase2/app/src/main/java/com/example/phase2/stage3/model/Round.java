@@ -64,6 +64,10 @@ class Round {
         monsterString = move.getString(id);
     }
 
+    /**
+     * Let monster randomly choose a move and return its property after choose the move.
+     * @return the monster's property after it choose its own move.
+     */
     Property getMonsterProperty() {
         monsterDoMove();
         return monsterProperty;

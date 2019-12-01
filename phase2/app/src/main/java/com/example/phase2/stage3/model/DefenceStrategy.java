@@ -2,6 +2,9 @@ package com.example.phase2.stage3.model;
 
 import com.example.phase2.appcore.game.Property;
 
+/**
+ * A defence movement.
+ */
 public class DefenceStrategy implements Strategy {
     @Override
     public Property doMove(Property property) {

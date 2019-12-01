@@ -2,6 +2,9 @@ package com.example.phase2.stage3.model;
 
 import com.example.phase2.appcore.game.Property;
 
+/**
+ * Execute the strategy.
+ */
 public class Context {
     private Strategy strategy;
 
