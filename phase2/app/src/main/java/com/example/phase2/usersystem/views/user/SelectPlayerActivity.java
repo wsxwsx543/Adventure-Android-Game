@@ -19,15 +19,15 @@ import com.example.phase2.stage3.view.BattleActivity;
 import com.example.phase2.usersystem.models.SelectPlayerModel;
 import com.example.phase2.usersystem.presenters.SelectPlayerPresenter;
 import com.example.phase2.usersystem.views.app.Initializable;
-import com.example.phase2.usersystem.views.iview.SpinnerStringView;
+import com.example.phase2.usersystem.views.iview.ISpinnerStringView;
 import com.example.phase2.usersystem.views.app.SuperActivity;
-import com.example.phase2.usersystem.views.iview.TextStringView;
-import com.example.phase2.usersystem.views.iview.ToastStringView;
+import com.example.phase2.usersystem.views.iview.ITextStringView;
+import com.example.phase2.usersystem.views.iview.IToastStringView;
 
 /**
  * An activity to select which player you want to use.
  */
-public class SelectPlayerActivity extends SuperActivity implements View.OnClickListener, Initializable, TextStringView, SpinnerStringView, ToastStringView {
+public class SelectPlayerActivity extends SuperActivity implements View.OnClickListener, Initializable, ITextStringView, ISpinnerStringView, IToastStringView {
     private User curUser;
     private SelectPlayerPresenter selectPlayerPresenter;
 

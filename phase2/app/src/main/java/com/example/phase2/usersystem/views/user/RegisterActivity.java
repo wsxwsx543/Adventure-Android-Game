@@ -12,12 +12,12 @@ import com.example.phase2.usersystem.models.RegisterModel;
 import com.example.phase2.usersystem.presenters.RegisterPresenter;
 import com.example.phase2.usersystem.views.app.Initializable;
 import com.example.phase2.usersystem.views.app.SuperActivity;
-import com.example.phase2.usersystem.views.iview.ToastStringView;
+import com.example.phase2.usersystem.views.iview.IToastStringView;
 
 /**
  * A register activity.
  */
-public class RegisterActivity extends SuperActivity implements View.OnClickListener, Initializable, ToastStringView {
+public class RegisterActivity extends SuperActivity implements View.OnClickListener, Initializable, IToastStringView {
 
     private RegisterPresenter registerPresenter;
 

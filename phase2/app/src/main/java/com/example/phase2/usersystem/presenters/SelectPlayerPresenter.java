@@ -6,34 +6,34 @@ import android.widget.TextView;
 
 import com.example.phase2.appcore.user.User;
 import com.example.phase2.usersystem.models.SelectPlayerModel;
-import com.example.phase2.usersystem.views.iview.SpinnerStringView;
-import com.example.phase2.usersystem.views.iview.TextStringView;
-import com.example.phase2.usersystem.views.iview.ToastStringView;
+import com.example.phase2.usersystem.views.iview.ISpinnerStringView;
+import com.example.phase2.usersystem.views.iview.ITextStringView;
+import com.example.phase2.usersystem.views.iview.IToastStringView;
 
 public class SelectPlayerPresenter {
     private SelectPlayerModel selectPlayerModel;
-    private TextStringView textStringView;
-    private SpinnerStringView spinnerStringView;
-    private ToastStringView toastStringView;
+    private ITextStringView ITextStringView;
+    private ISpinnerStringView ISpinnerStringView;
+    private IToastStringView IToastStringView;
 
-    public SelectPlayerPresenter(SelectPlayerModel selectPlayerModel, TextStringView textStringView, SpinnerStringView spinnerStringView, ToastStringView toastStringView) {
+    public SelectPlayerPresenter(SelectPlayerModel selectPlayerModel, ITextStringView ITextStringView, ISpinnerStringView ISpinnerStringView, IToastStringView IToastStringView) {
         this.selectPlayerModel = selectPlayerModel;
-        this.textStringView = textStringView;
-        this.spinnerStringView = spinnerStringView;
-        this.toastStringView = toastStringView;
+        this.ITextStringView = ITextStringView;
+        this.ISpinnerStringView = ISpinnerStringView;
+        this.IToastStringView = IToastStringView;
     }
 
     public void showText(User user, String playerName, String stats, TextView textView) {
-        textStringView.setText(textView, selectPlayerModel.playerStats(user, playerName, stats));
+        ITextStringView.setText(textView, selectPlayerModel.playerStats(user, playerName, stats));
     }
 
     public void showPlayersSpinner(Context context, Spinner spinner, User user) {
-        spinnerStringView.setSpinner(spinner, selectPlayerModel.playersAdapter(context, user));
+        ISpinnerStringView.setSpinner(spinner, selectPlayerModel.playersAdapter(context, user));
     }
 
     public boolean showPlayerAvailableToast(User user, String playerName) {
         String result = selectPlayerModel.checkPlayerAvailable(user, playerName);
-        toastStringView.setResult(result);
+        IToastStringView.setResult(result);
         return result.equals("Start game!");
     }
 }

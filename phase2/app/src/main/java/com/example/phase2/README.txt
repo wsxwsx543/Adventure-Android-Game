@@ -3,7 +3,7 @@ Phase 2 of the CSC207 Term Project.
 
 
 Game information:
-Information about the games and how they are played are listed below. This is a rpg game and have
+Information about the games and how they are played are listed below. This is a RPG game and have
 three stages. The player should get through all three stages to win the game. The first two stages
 is to find weapons and treasure box to help player add properties, in order to help to fight with
 the monster in stage 3.
@@ -33,4 +33,26 @@ different effect.
 
 
 
-Functionality:(543)
+Functionality:
+- The first page will be login page. Uses need to create their own account.
+- For each account, the user can create different players with different careers and different
+  initial weapons.
+- Different careers and different weapons have different properties.
+- The are 4 parameters for the property:
+  1. Attack: The higher attack the player has, the more harm the player can create to the boss.
+  2. Defence: Decrease the harm the boss create to the player.
+  3. Flexibility:
+  4. Luckiness:
+- An user account can contain lots of players.
+- After login, user can change the color theme in setting section.
+- If the player quit game at a stage, after the user came back, it will continue the stage from the
+  start. For example, if a player quit in stage 2, the player can resume the game from the beginning
+  of stage 2.
+- When the user choose to use which player to resume or start the game, the current stage and property
+  of the player will show to user.
+- After the player beat the boss, system will ask users if they want to keep the record on the
+  scoreboard. The maximum number the scoreboard can show is 5.
+- Scoreboard will contain the first five players among all uses.
+- There are 2 ways to sort player in the scoreboard which the user can choose.
+  1. Sorted by the life remaining.(Win the game with life left.)
+  2. Sorted by the summation of properties.

@@ -14,10 +14,10 @@ import com.example.phase2.usersystem.models.ScoreBoardModel;
 import com.example.phase2.usersystem.presenters.ScoreBoardPresenter;
 import com.example.phase2.usersystem.views.app.Initializable;
 import com.example.phase2.usersystem.views.app.SuperActivity;
-import com.example.phase2.usersystem.views.iview.TextStringView;
+import com.example.phase2.usersystem.views.iview.ITextStringView;
 import com.example.phase2.usersystem.views.user.ChooseOrCreatePlayerActivity;
 
-public class ScoreBoardActivity extends SuperActivity implements Initializable, View.OnClickListener, TextStringView {
+public class ScoreBoardActivity extends SuperActivity implements Initializable, View.OnClickListener, ITextStringView {
     private TextView first;
     private TextView second;
     private TextView third;

@@ -12,13 +12,13 @@ import com.example.phase2.usersystem.models.LoginModel;
 import com.example.phase2.usersystem.presenters.LoginPresenter;
 import com.example.phase2.usersystem.views.app.Initializable;
 import com.example.phase2.usersystem.views.app.SuperActivity;
-import com.example.phase2.usersystem.views.iview.ToastStringView;
+import com.example.phase2.usersystem.views.iview.IToastStringView;
 
 /**
  * A login activity.
  */
 
-public class LoginActivity extends SuperActivity implements View.OnClickListener, Initializable, ToastStringView {
+public class LoginActivity extends SuperActivity implements View.OnClickListener, Initializable, IToastStringView {
 
     private LoginPresenter loginPresenter;
 

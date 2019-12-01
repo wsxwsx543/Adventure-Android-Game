@@ -15,10 +15,10 @@ import com.example.phase2.usersystem.models.CreatePlayerModel;
 import com.example.phase2.usersystem.presenters.CreatePlayerPresenter;
 import com.example.phase2.usersystem.views.app.Initializable;
 import com.example.phase2.usersystem.views.app.SuperActivity;
-import com.example.phase2.usersystem.views.iview.TextStringView;
-import com.example.phase2.usersystem.views.iview.ToastStringView;
+import com.example.phase2.usersystem.views.iview.ITextStringView;
+import com.example.phase2.usersystem.views.iview.IToastStringView;
 
-public class CreatePlayerActivity extends SuperActivity implements View.OnClickListener, Initializable, ToastStringView, TextStringView {
+public class CreatePlayerActivity extends SuperActivity implements View.OnClickListener, Initializable, IToastStringView, ITextStringView {
 
     private CreatePlayerPresenter createPlayerPresenter;
 
