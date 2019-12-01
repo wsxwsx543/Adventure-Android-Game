@@ -14,21 +14,20 @@ public class Background {
      * the x, y coordinates of background
      */
     public int x = 0, y = 0;
+
     /**
      * background in the form of Bitmap
      */
-    public Bitmap backgroundView;
+    private Bitmap backgroundView;
 
     /**
      * @param screenX the width of the background.
      * @param screenY the length of the background
-     * @param res
+     * @param res contain application resources
      */
     Background(int screenX, int screenY, Resources res){
-
         backgroundView = BitmapFactory.decodeResource(res, R.drawable.background2);
         backgroundView = Bitmap.createScaledBitmap(backgroundView, screenX, screenY, false);
-
     }
 
     /**
