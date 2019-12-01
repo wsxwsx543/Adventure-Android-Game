@@ -12,7 +12,7 @@ public class MazeActivity extends SuperActivity {
     /**
      * The game view we are gonna present
      */
-    private MazeViewPresenter myg1View;
+    private MazeViewPresenter mazeViewPresenter;
 
     /**
      * Every time intent to this activity, we jump to the corresponding
@@ -28,8 +28,8 @@ public class MazeActivity extends SuperActivity {
         Point point = new Point();
         getWindowManager().getDefaultDisplay().getSize(point);
 
-        myg1View = new MazeViewPresenter(this, new ModelView(this, point.x, point.y));
-        setContentView(myg1View);
+        mazeViewPresenter = new MazeViewPresenter(this, new ModelView(this, point.x, point.y));
+        setContentView(mazeViewPresenter);
     }
 
     /**
@@ -38,7 +38,7 @@ public class MazeActivity extends SuperActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        myg1View.pause();
+        mazeViewPresenter.pause();
     }
 
     /**
@@ -47,7 +47,7 @@ public class MazeActivity extends SuperActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        myg1View.resume();
+        mazeViewPresenter.resume();
     }
 
 
