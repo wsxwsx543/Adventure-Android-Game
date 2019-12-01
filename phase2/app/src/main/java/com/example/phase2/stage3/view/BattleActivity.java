@@ -14,16 +14,26 @@ import com.example.phase2.usersystem.views.app.SuperActivity;
 import com.example.phase2.usersystem.views.results.WinActivity;
 
 
-/** An activity shows the battle of monster and player for stage 3. */
+/**
+ * An activity shows the battle of monster and player for stage 3.
+ */
 public class BattleActivity extends SuperActivity implements View.OnClickListener, BattleView {
 
-    /** The four buttons. Where check button check monster's move. */
+    /**
+     * The four buttons. Where check button check monster's move.
+     */
     Button checkBtn, attackBtn, defenceBtn, evadeBtn;
-    /** The four text views. */
+    /**
+     * The four text views.
+     */
     private TextView monsterMove, lifeView, monsterLifeView, roundView;
-    /** The presenter. */
+    /**
+     * The presenter.
+     */
     private BattlePresenter battlePresenter;
-    /** The move that player choose. which 1 represents attack, 2 represents defence, and 3 represents evade */
+    /**
+     * The move that player choose. which 1 represents attack, 2 represents defence, and 3 represents evade
+     */
     int playerMove;
 
 
@@ -45,7 +55,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.attackBtn:
-                if (battlePresenter.moveOrNot()){
+                if (battlePresenter.moveOrNot()) {
                     playerMove = 1;
                     battlePresenter.battle();
                     battlePresenter.update();
@@ -53,7 +63,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
                 battlePresenter.check();
                 break;
             case R.id.defenceBtn:
-                if (battlePresenter.moveOrNot()){
+                if (battlePresenter.moveOrNot()) {
                     playerMove = 2;
                     battlePresenter.battle();
                     battlePresenter.update();
@@ -61,7 +71,7 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
                 battlePresenter.check();
                 break;
             case R.id.evadeBtn:
-                if (battlePresenter.moveOrNot()){
+                if (battlePresenter.moveOrNot()) {
                     playerMove = 3;
                     battlePresenter.battle();
                     battlePresenter.update();
@@ -69,15 +79,15 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
                 battlePresenter.check();
                 break;
             case R.id.checkBtn:
-                if (battlePresenter.moveOrNot()){
+                if (battlePresenter.moveOrNot()) {
                     break;
-                }else{
+                } else {
                     battlePresenter.updateMoveStatus();
                     battlePresenter.updateMonsterMove();
                     break;
                 }
-                }
         }
+    }
 
     @Override
     protected void onResume() {
@@ -91,33 +101,43 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
         battlePresenter.saveData();
     }
 
-
+    /**
+     * Return player's choose of move.
+     * @return player's move.
+     */
     @Override
-    public int getPlayerMove(){
+    public int getPlayerMove() {
         return playerMove;
     }
 
-    public void updateMonsterMove(String move){
+    /**
+     * Update the monster's move.
+     * @param move monster's move.
+     */
+    public void updateMonsterMove(String move) {
         monsterMove.setText(move);
     }
 
-
+    /**
+     * Check whether this player win or lose or continue game.
+     */
     @Override
-    public void check(){
-        if (battlePresenter.checkResult() == 1){
+    public void check() {
+        if (battlePresenter.checkResult() == 1) {
             startActivity(new Intent(BattleActivity.this, LoseActivity.class));
             battlePresenter.setStage(4);
             battlePresenter.saveData();
         }
-        if(battlePresenter.checkResult() == 2){
+        if (battlePresenter.checkResult() == 2) {
             startActivity(new Intent(BattleActivity.this, WinActivity.class));
             battlePresenter.setStage(4);
             battlePresenter.saveData();
         }
     }
 
-    //want to keep this
-    /** Update all round number, player's remainLive, and monster's remainLive after each battle. */
+    /**
+     * Update all round number, player's remainLive, and monster's remainLive after each battle.
+     */
     @Override
     public void update(int roundNum, int playerLives, int monsterLives) {
         String round_n = ("Round Number:" + roundNum);
@@ -127,11 +147,10 @@ public class BattleActivity extends SuperActivity implements View.OnClickListene
         lifeView.setText(life);
         monsterLifeView.setText(monster_life);
     }
-    //keep this
 
 
     @Override
-    public void init(){
+    public void init() {
         super.init();
         monsterMove = findViewById(R.id.monster_status);
         lifeView = findViewById(R.id.life);

@@ -4,11 +4,10 @@ import com.example.phase2.appcore.game.Player;
 
 
 class MoveFactory {
-    Move getMove(String type, Player player, Monster monster){
-        if(type.equalsIgnoreCase("MonsterMove")) {
+    Move getMove(String type, Player player, Monster monster) {
+        if (type.equalsIgnoreCase("MonsterMove")) {
             return new MonsterMove(monster);
-        }
-        else if(type.equalsIgnoreCase("PlayerMove")){
+        } else if (type.equalsIgnoreCase("PlayerMove")) {
             return new PlayerMove(player);
         }
 

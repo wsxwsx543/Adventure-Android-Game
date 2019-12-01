@@ -7,9 +7,10 @@ public class PlayerMove implements Move {
 
     private Property property;
 
-
-    /** A player move. */
-    public PlayerMove(Player player) {
+    /**
+     * A player move.
+     */
+    PlayerMove(Player player) {
         this.property = player.getProperty();
     }
 
@@ -21,18 +22,17 @@ public class PlayerMove implements Move {
      */
     public Property doMove(int playerMove) {
 
-//        Property p = player.getProperty();
-        Property PP = new Property(this.property.getAttack(), this.property.getDefence(), this.property.getFlexibility(), this.property.getLuckiness());
+        Property playerProperty = new Property(this.property.getAttack(), this.property.getDefence(), this.property.getFlexibility(), this.property.getLuckiness());
         switch (playerMove) {
             case 1:
                 Context context = new Context(new AttackStrategy());
-                return context.executeStrategy(PP);
+                return context.executeStrategy(playerProperty);
             case 2:
                 context = new Context(new DefenceStrategy());
-                return context.executeStrategy(PP);
+                return context.executeStrategy(playerProperty);
             case 3:
                 context = new Context(new EvadeStrategy());
-                return context.executeStrategy(PP);
+                return context.executeStrategy(playerProperty);
             default:
                 return null;
         }
@@ -40,6 +40,7 @@ public class PlayerMove implements Move {
 
     /**
      * Get the name of move of the player.
+     *
      * @param id An number.
      * @return The name of the move in a string type.
      */

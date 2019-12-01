@@ -6,6 +6,7 @@ import com.example.phase2.appcore.game.Property;
 public interface Move {
     /**
      * Get the move
+     *
      * @param id An number which represent a move.
      * @return What the move is.
      */

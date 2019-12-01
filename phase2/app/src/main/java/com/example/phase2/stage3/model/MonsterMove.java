@@ -8,14 +8,17 @@ import java.util.Random;
 public class MonsterMove implements Move {
     private Property property;
 
-    /** A monster move. */
+    /**
+     * A monster move.
+     */
     MonsterMove(Monster monster) {
         this.property = monster.getProperty();
     }
 
     /**
      * use monsterDoMove method to get property of monster after each move.
-     * @param id      an random number to decide what the monster would do.
+     *
+     * @param id an random number to decide what the monster would do.
      * @return the property of monster after the move.
      */
     public Property doMove(int id) {
@@ -51,6 +54,7 @@ public class MonsterMove implements Move {
 
     /**
      * Get the string of monster's move
+     *
      * @param id An number which represent a move.
      * @return string of monster's move
      */
