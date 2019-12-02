@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.phase2.appcore.user.UserManager;
 
+import java.util.Objects;
+
 public class Dialog extends AppCompatDialogFragment {
 
     private DialogListener listener;
@@ -18,7 +20,7 @@ public class Dialog extends AppCompatDialogFragment {
     @NonNull
     @Override
     public android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         builder.setTitle("Attention");
         builder.setMessage("Do you want to store this game record to the scoreboard?");
         builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
