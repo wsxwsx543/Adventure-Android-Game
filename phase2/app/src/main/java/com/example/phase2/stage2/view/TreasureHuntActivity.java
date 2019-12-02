@@ -7,6 +7,7 @@ import com.example.phase2.usersystem.views.app.SuperActivity;
 
 public class TreasureHuntActivity extends SuperActivity {
     private TreasureHuntView treasureHuntView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,11 +16,12 @@ public class TreasureHuntActivity extends SuperActivity {
         setContentView(treasureHuntView);
     }
 
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
         treasureHuntView.getTreasureHuntPresenter().pause();
     }
-    protected void onResume(){
+
+    protected void onResume() {
         super.onResume();
         treasureHuntView.getTreasureHuntPresenter().resume();
     }

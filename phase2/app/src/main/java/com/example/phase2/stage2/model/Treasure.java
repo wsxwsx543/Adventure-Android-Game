@@ -12,20 +12,21 @@ class Treasure extends Box {
     private String treasureType;
     private boolean looted;
 
-    Treasure(int x, int y, int unitSize, Resources res){
+    Treasure(int x, int y, int unitSize, Resources res) {
         super(x, y, unitSize, res);
         this.looted = false;
         setType();
     }
-    void updateBitmap(){
+
+    void updateBitmap() {
         bitmapToDraw = BitmapFactory.decodeResource(res, R.drawable.baoxiang2);
         bitmapToDraw = Bitmap.createScaledBitmap(this.bitmapToDraw, unitSize, unitSize, true);
     }
 
     //Method that randomly sets the type of the treasure
-    private void setType(){
-        int decider = (int)(Math.random() * 1);
-        switch (decider){
+    private void setType() {
+        int decider = (int) (Math.random() * 1);
+        switch (decider) {
             case 0:
                 treasureType = "Attack";
                 break;
@@ -42,7 +43,7 @@ class Treasure extends Box {
     }
 
     // Add to the stats according to the type of this treasure
-    void loot(){
+    void loot() {
         if (this.expanded && (!this.looted)) {
             int originalStat;
             switch (treasureType) {

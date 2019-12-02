@@ -15,7 +15,7 @@ import com.example.phase2.stage2.model.TreasureHuntConstants;
 import com.example.phase2.stage2.view.DisplayView;
 import com.example.phase2.stage3.view.BattleActivity;
 
-public class TreasureHuntPresenter implements Runnable{
+public class TreasureHuntPresenter implements Runnable {
     private BoxesManager boxesManager;
 
     private DisplayView displayView;
@@ -74,8 +74,9 @@ public class TreasureHuntPresenter implements Runnable{
         winMsg = Bitmap.createScaledBitmap(this.winMsg, 980, 200, true);
 
     }
-    private void actIfAboutToEnd(){
-        if (aboutToEnd){
+
+    private void actIfAboutToEnd() {
+        if (aboutToEnd) {
             // Set stage to 3 since we are about to finish
             user.getCurPlayer().setCurStage(3);
             // Set running to false;
@@ -87,8 +88,9 @@ public class TreasureHuntPresenter implements Runnable{
             }, 5000);
         }
     }
+
     private void draw() {
-        if (displayView != null){
+        if (displayView != null) {
             displayView.draw();
         }
     }
@@ -96,9 +98,11 @@ public class TreasureHuntPresenter implements Runnable{
     public Bitmap getMsg(String type) {
         if (type.equalsIgnoreCase("TreasureHunt")) {
             return treasureHuntMsg;
-        } else if (type.equalsIgnoreCase("Trap")) {
+        }
+        else if (type.equalsIgnoreCase("Trap")) {
             return trapMsg;
-        } else if (type.equalsIgnoreCase("Win")) {
+        }
+        else if (type.equalsIgnoreCase("Win")) {
             return winMsg;
         }
         return null;
@@ -136,7 +140,8 @@ public class TreasureHuntPresenter implements Runnable{
     private void checkEnded() {
         aboutToEnd = allExpanded || trapTriggered;
     }
-    private void updateEndSignal(){
+
+    private void updateEndSignal() {
         allExpanded = boxesManager.checkAllExpanded();
         trapTriggered = boxesManager.checkTrapTriggered();
     }
@@ -162,7 +167,8 @@ public class TreasureHuntPresenter implements Runnable{
         try {
             running = false;
             thread.join();
-        } catch (InterruptedException e) {
+        }
+        catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -173,7 +179,7 @@ public class TreasureHuntPresenter implements Runnable{
         thread.start();
     }
 
-    public void drawBoxes(Canvas canvas){
+    public void drawBoxes(Canvas canvas) {
         boxesManager.draw(canvas);
     }
 
@@ -210,7 +216,7 @@ public class TreasureHuntPresenter implements Runnable{
         return aboutToEnd;
     }
 
-    public boolean isAllExpanded(){
+    public boolean isAllExpanded() {
         return allExpanded;
     }
 }

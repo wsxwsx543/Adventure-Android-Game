@@ -6,11 +6,18 @@ import android.os.Handler;
 
 public interface DisplayView {
     void draw();
+
     double getCurX();
+
     double getCurY();
+
     void setCurX(double curX);
+
     void setCurY(double curY);
+
     Handler getHandler();
+
     Resources getResources();
+
     Context getContext();
 }

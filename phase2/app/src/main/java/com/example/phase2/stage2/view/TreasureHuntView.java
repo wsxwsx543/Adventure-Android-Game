@@ -55,12 +55,11 @@ public class TreasureHuntView extends SurfaceView implements DisplayView {
             canvas.drawARGB(255, 255, 255, 255);
 
             Property property = treasureHuntPresenter.getProperty();
-            int startY, startX, boardWidth, boardLength, unitSize;
-            startX = treasureHuntPresenter.getStartX();
+            int startY, boardLength, unitSize;
             startY = treasureHuntPresenter.getStartY();
-            boardWidth = treasureHuntPresenter.getBoardWidth();
             boardLength = treasureHuntPresenter.getBoardLength();
             unitSize = treasureHuntPresenter.getUnitSize();
+
             // Draw the stats of the player
             canvas.drawText("Attack: " + property.getAttack(), 20, (float) (startY + boardLength * unitSize + 100), getTextPaint());
             canvas.drawText("Defence: " + property.getDefence(), 500, (float) (startY + boardLength * unitSize + 100), getTextPaint());
@@ -69,11 +68,13 @@ public class TreasureHuntView extends SurfaceView implements DisplayView {
 
             if (!treasureHuntPresenter.isAboutToEnd()) {
                 canvas.drawBitmap(treasureHuntPresenter.getMsg("TreasureHunt"), 50, 50, null);
-            } else {
+            }
+            else {
                 if (treasureHuntPresenter.isTrapTriggered()) {
                     // Draw the fell in a trap message
                     canvas.drawBitmap(treasureHuntPresenter.getMsg("Trap"), 50, 50, null);
-                } else {
+                }
+                else {
                     // Draw the win message
                     canvas.drawBitmap(treasureHuntPresenter.getMsg("Win"), 50, 50, null);
                 }

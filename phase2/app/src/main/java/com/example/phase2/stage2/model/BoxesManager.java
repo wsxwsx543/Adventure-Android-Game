@@ -24,7 +24,7 @@ public class BoxesManager {
     private BoxFactory boxFactory;
     private int luckiness = UserManager.getInstance().getCurUser().getCurPlayer().getProperty().getLuckiness();
 
-    public BoxesManager(int boardWidth, int boardLength, int unitSize, int startX, int startY, Resources res){
+    public BoxesManager(int boardWidth, int boardLength, int unitSize, int startX, int startY, Resources res) {
         this.startX = startX;
         this.startY = startY;
         this.boardLength = boardLength;
@@ -35,56 +35,59 @@ public class BoxesManager {
         boxFactory = new BoxFactory();
         setUpTheOdd();
     }
-    private void assign(){
+
+    private void assign() {
         assignNeighbour();
         assignNumOfTraps();
     }
-    private void assignNumOfTraps(){
-        for (int y = 0; y < this.boardLength; y++){
-            for (int x = 0; x < this.boardWidth; x++){
+
+    private void assignNumOfTraps() {
+        for (int y = 0; y < this.boardLength; y++) {
+            for (int x = 0; x < this.boardWidth; x++) {
                 boxes[y][x].numOfNeighbourTraps = boxes[y][x].returnNumOfTrap();
             }
         }
     }
-    private void assignNeighbour(){
-        for (int y = 0; y < this.boardLength; y++){
-            for (int x = 0; x < this.boardWidth; x++){
-                if (x + 1 <= this.boardWidth -  1){
+
+    private void assignNeighbour() {
+        for (int y = 0; y < this.boardLength; y++) {
+            for (int x = 0; x < this.boardWidth; x++) {
+                if (x + 1 <= this.boardWidth - 1) {
                     if (!boxes[y][x].checkNeighbourExisted(boxes[y][x + 1])) {
                         boxes[y][x].addNeighbourBox(boxes[y][x + 1]);
                     }
                 }
-                if (x + 1 <= this.boardWidth -  1 && y - 1 >= 0){
-                    if (!boxes[y][x].checkNeighbourExisted(boxes[y - 1][x + 1])){
+                if (x + 1 <= this.boardWidth - 1 && y - 1 >= 0) {
+                    if (!boxes[y][x].checkNeighbourExisted(boxes[y - 1][x + 1])) {
                         boxes[y][x].addNeighbourBox(boxes[y - 1][x + 1]);
                     }
                 }
-                if (y - 1 >= 0){
+                if (y - 1 >= 0) {
                     if (!boxes[y][x].checkNeighbourExisted(boxes[y - 1][x])) {
                         boxes[y][x].addNeighbourBox(boxes[y - 1][x]);
                     }
                 }
-                if (x - 1 >= 0 && y - 1 >= 0){
+                if (x - 1 >= 0 && y - 1 >= 0) {
                     if (!boxes[y][x].checkNeighbourExisted(boxes[y - 1][x - 1])) {
                         boxes[y][x].addNeighbourBox(boxes[y - 1][x - 1]);
                     }
                 }
-                if (x - 1 >= 0){
+                if (x - 1 >= 0) {
                     if (!boxes[y][x].checkNeighbourExisted(boxes[y][x - 1])) {
                         boxes[y][x].addNeighbourBox(boxes[y][x - 1]);
                     }
                 }
-                if (x - 1 >= 0 && y + 1 <= this.boardLength - 1){
+                if (x - 1 >= 0 && y + 1 <= this.boardLength - 1) {
                     if (!boxes[y][x].checkNeighbourExisted(boxes[y + 1][x - 1])) {
                         boxes[y][x].addNeighbourBox(boxes[y + 1][x - 1]);
                     }
                 }
-                if (y + 1 <= this.boardLength - 1){
+                if (y + 1 <= this.boardLength - 1) {
                     if (!boxes[y][x].checkNeighbourExisted(boxes[y + 1][x])) {
                         boxes[y][x].addNeighbourBox(boxes[y + 1][x]);
                     }
                 }
-                if (x + 1 <= this.boardWidth - 1 && y + 1 <= this.boardLength - 1){
+                if (x + 1 <= this.boardWidth - 1 && y + 1 <= this.boardLength - 1) {
                     if (!boxes[y][x].checkNeighbourExisted(boxes[y + 1][x + 1])) {
                         boxes[y][x].addNeighbourBox(boxes[y + 1][x + 1]);
                     }
@@ -92,8 +95,9 @@ public class BoxesManager {
             }
         }
     }
-    public void fillWithRandomBoxes(){
-        for (int y = 0; y < this.boardLength; y++){
+
+    public void fillWithRandomBoxes() {
+        for (int y = 0; y < this.boardLength; y++) {
             for (int x = 0; x < this.boardWidth; x++) {
 
                 double decider = Math.random();
@@ -102,9 +106,11 @@ public class BoxesManager {
                 Box thisBox;
                 if (decider < emptyBoxRate) {
                     thisBox = boxFactory.createBox("EmptyUnit", curX, curY, this.unitSize, res);
-                } else if (decider < emptyBoxRate + treasureRate) {
+                }
+                else if (decider < emptyBoxRate + treasureRate) {
                     thisBox = boxFactory.createBox("Treasure", curX, curY, this.unitSize, res);
-                } else {
+                }
+                else {
                     thisBox = boxFactory.createBox("Trap", curX, curY, this.unitSize, res);
                 }
                 boxes[y][x] = thisBox;
@@ -113,31 +119,32 @@ public class BoxesManager {
         assign();
     }
 
-    public void addBox(Box box, int x, int y){
+    public void addBox(Box box, int x, int y) {
         boxes[y][x] = box;
         assign();
 
     }
+
     // Set up the odds of the type of each boxes according to the player's luckiness
-    private void setUpTheOdd(){
-        if (luckiness >= 8){
+    private void setUpTheOdd() {
+        if (luckiness >= 8) {
             trapRate = 0.1;
             treasureRate = 0.1;
             emptyBoxRate = 0.8;
         }
-        else if (luckiness >= 4){
+        else if (luckiness >= 4) {
             trapRate = 0.12;
             treasureRate = 0.07;
             emptyBoxRate = 0.81;
         }
-        else{
+        else {
             trapRate = 0.15;
             treasureRate = 0.05;
             emptyBoxRate = 0.8;
         }
     }
 
-    Box[][] getBoxes(){
+    Box[][] getBoxes() {
         return boxes;
     }
 
@@ -146,7 +153,7 @@ public class BoxesManager {
         for (int y = 0; y < this.boardLength; y++) {
             for (int x = 0; x < this.boardWidth; x++) {
                 if (this.boxes[y][x] instanceof Treasure) {
-                    Treasure thisTreasure = (Treasure)boxes[y][x];
+                    Treasure thisTreasure = (Treasure) boxes[y][x];
                     thisTreasure.loot();
                 }
             }
@@ -165,12 +172,12 @@ public class BoxesManager {
     }
 
     // if all empty units and treasure are expanded return true
-    public boolean checkAllExpanded(){
+    public boolean checkAllExpanded() {
         for (int y = 0; y < this.boardLength; y++) {
             for (int x = 0; x < this.boardWidth; x++) {
                 Box thisBox = boxes[y][x];
-                if (!thisBox.expanded){
-                    if (thisBox instanceof EmptyUnit || thisBox instanceof Treasure){
+                if (!thisBox.expanded) {
+                    if (thisBox instanceof EmptyUnit || thisBox instanceof Treasure) {
                         return false;
                     }
                 }
@@ -181,7 +188,7 @@ public class BoxesManager {
     }
 
     // if any of the trap is triggered return true
-    public boolean checkTrapTriggered(){
+    public boolean checkTrapTriggered() {
         for (int y = 0; y < this.boardLength; y++) {
             for (int x = 0; x < this.boardWidth; x++) {
                 if (boxes[y][x] instanceof Trap && boxes[y][x].expanded) {
@@ -193,7 +200,7 @@ public class BoxesManager {
     }
 
     // Expand the selected box
-    public void expand(int x, int y){
+    public void expand(int x, int y) {
         boxes[y][x].expand(new ArrayList<>());
     }
 }
