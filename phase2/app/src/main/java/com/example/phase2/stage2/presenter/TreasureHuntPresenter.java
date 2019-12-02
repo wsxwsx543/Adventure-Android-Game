@@ -26,7 +26,7 @@ public class TreasureHuntPresenter implements Runnable{
     private Resources res;
 
     private boolean running;
-    public Thread thread;
+    private Thread thread;
 
     private Bitmap treasureHuntMsg;
     private Bitmap trapMsg;
@@ -38,18 +38,11 @@ public class TreasureHuntPresenter implements Runnable{
     //The Property of the current user
     private Property property = user.getCurPlayer().getProperty();
 
-    public boolean isAboutToEnd() {
-        return aboutToEnd;
-    }
-
     private boolean aboutToEnd;
-
-    public boolean isTrapTriggered() {
-        return trapTriggered;
-    }
 
     private boolean trapTriggered;
 
+    private boolean allExpanded;
 
     public TreasureHuntPresenter(DisplayView displayView) {
 
@@ -60,6 +53,7 @@ public class TreasureHuntPresenter implements Runnable{
         this.startY = TreasureHuntConstants.startY;
         this.unitSize = TreasureHuntConstants.unitSize;
         this.aboutToEnd = false;
+        this.allExpanded = false;
         this.trapTriggered = false;
         this.displayView = displayView;
 
@@ -67,9 +61,9 @@ public class TreasureHuntPresenter implements Runnable{
 
         // Implementation of dependency injection design principle
         this.boxesManager = new BoxesManager(this.boardWidth, this.boardLength, this.unitSize, this.startX, this.startY, res);
-        boxesManager.fillWithRandomBoxes();
+        this.boxesManager.fillWithRandomBoxes();
 
-        user.getCurPlayer().setCurStage(2);
+        this.user.getCurPlayer().setCurStage(2);
 
         // Store the bitmap for the messages shown on the top of the screen
         treasureHuntMsg = BitmapFactory.decodeResource(res, R.drawable.treasurehuntmessage);
@@ -99,29 +93,6 @@ public class TreasureHuntPresenter implements Runnable{
         }
     }
 
-    public int getBoardWidth() {
-        return boardWidth;
-    }
-
-    public int getBoardLength() {
-        return boardLength;
-    }
-
-    public int getStartX() {
-        return startX;
-    }
-
-    public int getStartY() {
-        return startY;
-    }
-
-    public int getUnitSize() {
-        return unitSize;
-    }
-
-    public Property getProperty() {
-        return property;
-    }
     public Bitmap getMsg(String type) {
         if (type.equalsIgnoreCase("TreasureHunt")) {
             return treasureHuntMsg;
@@ -163,9 +134,10 @@ public class TreasureHuntPresenter implements Runnable{
 
     // Check if the game is about to end
     private void checkEnded() {
-        aboutToEnd = boxesManager.checkAllExpanded() || boxesManager.checkTrapTriggered();
+        aboutToEnd = allExpanded || trapTriggered;
     }
-    private void updateTrapTriggered(){
+    private void updateEndSignal(){
+        allExpanded = boxesManager.checkAllExpanded();
         trapTriggered = boxesManager.checkTrapTriggered();
     }
 
@@ -180,7 +152,7 @@ public class TreasureHuntPresenter implements Runnable{
             draw();
             expand();
             loot();
-            updateTrapTriggered();
+            updateEndSignal();
             actIfAboutToEnd();
             checkEnded();
         }
@@ -203,5 +175,42 @@ public class TreasureHuntPresenter implements Runnable{
 
     public void drawBoxes(Canvas canvas){
         boxesManager.draw(canvas);
+    }
+
+    public int getBoardWidth() {
+        return boardWidth;
+    }
+
+    public int getBoardLength() {
+        return boardLength;
+    }
+
+    public int getStartX() {
+        return startX;
+    }
+
+    public int getStartY() {
+        return startY;
+    }
+
+    public int getUnitSize() {
+        return unitSize;
+    }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public boolean isTrapTriggered() {
+        return trapTriggered;
+    }
+
+
+    public boolean isAboutToEnd() {
+        return aboutToEnd;
+    }
+
+    public boolean isAllExpanded(){
+        return allExpanded;
     }
 }
