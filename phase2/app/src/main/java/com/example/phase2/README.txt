@@ -20,8 +20,10 @@ Press the up/ down/ left/ right of the screen to move the hero
 up/ down/ left/ right. Monsters will move randomly.
 
 
-Stage2:(baozi)
-
+Stage2: Treasure Hunt
+A game that is inspired by the classic minesweeper. Clicking any boxes would allow you to expand it.
+Empty squares would tell you the number of its neighbouring traps. A treasure would reward you with
+some juicy stats. A trap however, would immobilize you and send you to the next stage.
 
 
 Stage3: Battle
