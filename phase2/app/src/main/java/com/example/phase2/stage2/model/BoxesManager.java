@@ -144,10 +144,6 @@ public class BoxesManager {
         }
     }
 
-    Box[][] getBoxes() {
-        return boxes;
-    }
-
     // loot the boxes
     public void loot() {
         for (int y = 0; y < this.boardLength; y++) {

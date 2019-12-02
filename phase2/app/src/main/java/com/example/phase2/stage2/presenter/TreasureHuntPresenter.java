@@ -46,7 +46,6 @@ public class TreasureHuntPresenter implements Runnable {
 
     public TreasureHuntPresenter(DisplayView displayView) {
 
-
         this.boardWidth = TreasureHuntConstants.boardWidth;
         this.boardLength = TreasureHuntConstants.boardLength;
         this.startX = TreasureHuntConstants.startX;

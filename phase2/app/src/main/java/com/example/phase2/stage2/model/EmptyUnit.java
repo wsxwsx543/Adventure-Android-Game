@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.example.phase2.R;
-import com.example.phase2.stage2.model.Box;
 
 class EmptyUnit extends Box {
     EmptyUnit(int x, int y, int unitSize, Resources resources) {
