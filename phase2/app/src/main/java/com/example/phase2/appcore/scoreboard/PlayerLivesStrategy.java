@@ -9,6 +9,11 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 public class PlayerLivesStrategy implements SortStrategy {
+
+    /**
+     * Return an ArrayList sorted by lives remaining.
+     **/
+
     @Override
     public ArrayList<HashMap.Entry<String, Integer>> sort(HashMap<User, ArrayList<Player>> map) {
         ArrayList<HashMap.Entry<String, Integer>> list = new ArrayList<>();

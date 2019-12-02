@@ -18,6 +18,9 @@ public class ScoreBoardPresenter {
         this.iTextStringView = iTextStringView;
     }
 
+    /**
+     * Below methods show the first to the fifth on the scoreboard.
+     */
     public void showFirst(TextView textView, SortStrategy sortStrategy) {
         ArrayList<Map.Entry<String, Integer>> result = scoreBoardModel.sortResult(sortStrategy);
         System.out.println(result.size());

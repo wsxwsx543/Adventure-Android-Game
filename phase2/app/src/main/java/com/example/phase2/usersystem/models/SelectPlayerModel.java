@@ -26,6 +26,9 @@ public class SelectPlayerModel {
         return adapter;
     }
 
+    /**
+     * Show the stats of the selected player on the text.
+     */
     public String playerStats(User user, String playerName, String stats) {
         switch (stats) {
             case "stage": {
@@ -41,6 +44,9 @@ public class SelectPlayerModel {
         return "";
     }
 
+    /**
+     * Show if the player has dead or has finished the game.
+     */
     public String checkPlayerAvailable(User user, String playerName) {
         if (user.getPlayers().containsKey(playerName)) {
             Player player = user.getPlayers().get(playerName);

@@ -18,6 +18,9 @@ public class CreatePlayerPresenter {
         this.iTextStringView = iTextStringView;
     }
 
+    /**
+     * Show the result of create a new player.
+     */
     public boolean showResult(FileSystem fileSystem, String playerName, String career, String weapon) {
         String result = createPlayerModel.createPlayer(fileSystem, playerName, career, weapon);
         iToastStringView.setResult(result);

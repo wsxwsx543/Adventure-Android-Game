@@ -9,6 +9,11 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 public class PlayerPropertyStrategy implements SortStrategy {
+
+    /**
+     * Return an ArrayList sorted by summation of player's property.
+     **/
+
     @Override
     public ArrayList<HashMap.Entry<String, Integer>> sort(HashMap<User, ArrayList<Player>> map) {
         ArrayList<HashMap.Entry<String, Integer>> list = new ArrayList<>();

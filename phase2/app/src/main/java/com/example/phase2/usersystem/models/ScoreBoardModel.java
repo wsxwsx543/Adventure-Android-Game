@@ -10,6 +10,9 @@ public class ScoreBoardModel {
     public ScoreBoardModel() {
     }
 
+    /**
+     * Sort by a specific sort strategy.
+     */
     public ArrayList<Map.Entry<String, Integer>> sortResult(SortStrategy sortStrategy) {
         return sortStrategy.sort(ScoreBoard.getInstance().getUserPlayers());
     }

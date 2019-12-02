@@ -31,6 +31,10 @@ public class ScoreBoardActivity extends SuperActivity implements Initializable, 
         init();
     }
 
+    /**
+     * Draw the first five players with a specific sort strategy.
+     */
+
     private void drawScoreBoard(SortStrategy sortStrategy) {
         scoreBoardPresenter.showFirst(first, sortStrategy);
         scoreBoardPresenter.showSecond(second, sortStrategy);

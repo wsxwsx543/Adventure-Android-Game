@@ -13,6 +13,9 @@ public class LoginPresenter {
         this.iToastStringView = loginView;
     }
 
+    /**
+     * Return the result of login when the user click on login button.
+     */
     public boolean showResult(FileSystem fileSystem, String username, String password) {
         loginModel.loadScoreBoard(fileSystem);
         loginModel.loadUsers(fileSystem);
