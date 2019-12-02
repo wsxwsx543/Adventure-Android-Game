@@ -35,7 +35,6 @@ public class RegisterActivity extends SuperActivity implements View.OnClickListe
 
         String username = usernameTextView.getText().toString();
         String password1 = password1TextView.getText().toString();
-        ;
         String password2 = password2TextView.getText().toString();
 
         switch (v.getId()) {

@@ -86,16 +86,6 @@ public class Player extends Observable implements Serializable {
     }
 
     /**
-     * Set the player's location to given (x,y) coordinate.
-     * @param x the x-axis.
-     * @param y the y-axis.
-     */
-    public void setLocation(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
-
-    /**
      * Get the current x coordinate.
      * @return x-axis.
      */
@@ -106,23 +96,6 @@ public class Player extends Observable implements Serializable {
      * @return y-axis.
      */
     public int getY(){return this.y;}
-
-    // All the method that are not used right now, we will use them in phase 2.
-    /**
-     * move x coordinate specific steps.
-     * @param move steps that moved.
-     */
-    public void moveInX(int move){
-        this.x += move;
-    }
-
-    /**
-     * move y coordinate specific steps.
-     * @param move steps that moved.
-     */
-    public void moveInY(int move){
-        this.y += move;
-    }
 
     /**
      * Add the given weapon to this player.
@@ -143,12 +116,6 @@ public class Player extends Observable implements Serializable {
     }
 
     /**
-     * Make player add specific number of lives.
-     * @param num num of lives the player win.
-     */
-    public void addLives(int num) {this.livesRemain += num;}
-
-    /**
      * Return the number of lives of the player.
      * @return num of lives the player remains.
      */
@@ -161,24 +128,8 @@ public class Player extends Observable implements Serializable {
     public void setLivesRemain(int num){this.livesRemain = num;}
 
     /**
-     * Add the given attack value to total attack value.
-     * @param attack one attack.
-     */
-    public void createAttack(int attack){
-        this.attackCreate += attack;
-    }
-
-    /**
      * Return the total attack value.
      * @return the total attack valur.
      */
     public int getAttackCreate(){return this.attackCreate;}
-
-    /**
-     * Return all the weapon's name that the player have.
-     * @return return list of weapons.
-     */
-    public List<String> getWeaponNames(){
-        return weaponManager.getWeaponNames();
-    }
 }

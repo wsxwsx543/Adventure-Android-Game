@@ -46,13 +46,11 @@ public class WinActivity extends SuperActivity implements Initializable, DialogL
 
     @Override
     public void onYesClicked() {
-        // UserManager.getInstance().getCurUser().getCurPlayer().setSave(true);
         myhandler.sendEmptyMessage(1);
     }
 
     @Override
     public void onNoClicked() {
-        // UserManager.getInstance().getCurUser().getCurPlayer().setSave(false);
         myhandler.sendEmptyMessage(1);
     }
 

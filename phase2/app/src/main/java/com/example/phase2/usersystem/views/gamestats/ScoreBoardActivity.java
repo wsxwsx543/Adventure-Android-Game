@@ -25,8 +25,6 @@ public class ScoreBoardActivity extends SuperActivity implements Initializable, 
     private TextView fifth;
     private ScoreBoardPresenter scoreBoardPresenter;
 
-    // List<Map.Entry<String, Integer>> rankList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

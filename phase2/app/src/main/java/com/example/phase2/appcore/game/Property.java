@@ -6,10 +6,10 @@ import java.io.Serializable;
  * The property.
  */
 public class Property implements Serializable {
-    private int attack; // Obvious
-    private int defence; // Obvious
-    private int flexibility; // Obvious
-    private int luckiness; // Obvious
+    private int attack;
+    private int defence;
+    private int flexibility;
+    private int luckiness;
 
     /** Constructs a new property. */
     public Property(int attack, int defence, int flexibility, int luckiness) {
@@ -101,24 +101,11 @@ public class Property implements Serializable {
      * tter for this class, add new properties to itself.
      * @param property the property want to add to the current property.
      */
-    public void addPropertyToSelf(Property property) {
+    void addPropertyToSelf(Property property) {
         this.attack += property.attack;
         this.defence += property.defence;
         this.luckiness += property.luckiness;
         this.flexibility += property.flexibility;
-    }
-
-    /**
-     * Return a new Property object which equals to addition of itself and new Property object.
-     * @param attack the attack value want to add to the property.
-     * @param defence the defence value want to add to the property.
-     * @param flexibility the flexibility value want to add to the property.
-     * @param luckiness the luckiness value want to add to the property.
-     * @return return the addition of the property itself and four new Property values.
-     */
-    Property addProperty(int attack, int defence, int flexibility, int luckiness) {
-        return new Property(attack + this.attack, defence + this.defence,
-                flexibility + this.flexibility, luckiness + this.luckiness);
     }
 
     /**
