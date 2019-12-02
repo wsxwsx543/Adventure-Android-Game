@@ -8,18 +8,19 @@ import com.example.phase2.R;
 import com.example.phase2.stage2.model.Box;
 
 class EmptyUnit extends Box {
-    EmptyUnit(int x, int y, int unitSize, Resources resources){
+    EmptyUnit(int x, int y, int unitSize, Resources resources) {
         super(x, y, unitSize, resources);
     }
-    void updateBitmap(){
+
+    void updateBitmap() {
         bitmapToDraw = getTrapsIndicatorImg(numOfNeighbourTraps);
         bitmapToDraw = Bitmap.createScaledBitmap(this.bitmapToDraw, unitSize, unitSize, true);
     }
 
     // Return the bitmap of an expanded empty box
-    private Bitmap getTrapsIndicatorImg(int num){
+    private Bitmap getTrapsIndicatorImg(int num) {
         int newImageId = 0;
-        switch (num){
+        switch (num) {
             case 0:
                 newImageId = R.drawable.open0;
                 break;

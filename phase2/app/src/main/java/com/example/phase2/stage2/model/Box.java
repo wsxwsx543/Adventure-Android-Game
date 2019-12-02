@@ -26,7 +26,7 @@ abstract class Box {
 
     Bitmap bitmapToDraw;
 
-    Box(int x, int y, int unitSize, Resources res){
+    Box(int x, int y, int unitSize, Resources res) {
         this.res = res;
         this.x = x;
         this.y = y;
@@ -41,24 +41,24 @@ abstract class Box {
         neighbours = new ArrayList<>();
     }
 
-    void addNeighbourBox(Box box){
+    void addNeighbourBox(Box box) {
         this.neighbours.add(box);
     }
 
-    boolean checkNeighbourExisted(Box box){
-        for (int i = 0; i < this.neighbours.size(); i++){
-            if (this.neighbours.get(i) == box){
+    boolean checkNeighbourExisted(Box box) {
+        for (int i = 0; i < this.neighbours.size(); i++) {
+            if (this.neighbours.get(i) == box) {
                 return true;
             }
         }
         return false;
     }
 
-    int returnNumOfTrap(){
+    int returnNumOfTrap() {
         int sum = 0;
-        for (int i = 0; i < neighbours.size(); i++){
+        for (int i = 0; i < neighbours.size(); i++) {
             Box thisBox = neighbours.get(i);
-            if (thisBox instanceof Trap){
+            if (thisBox instanceof Trap) {
                 sum += 1;
             }
         }
@@ -66,7 +66,7 @@ abstract class Box {
     }
 
     // Expand this box
-    void expand(ArrayList<Box> checked){
+    void expand(ArrayList<Box> checked) {
         if (!expanded) {
             this.expanded = true;
             updateBitmap();
@@ -85,6 +85,7 @@ abstract class Box {
     public int getX() {
         return x;
     }
+
     public int getY() {
         return y;
     }
