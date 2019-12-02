@@ -11,46 +11,46 @@ import java.util.Map;
 
 public class ScoreBoardPresenter {
     private ScoreBoardModel scoreBoardModel;
-    private ITextStringView ITextStringView;
+    private ITextStringView iTextStringView;
 
-    public ScoreBoardPresenter(ScoreBoardModel scoreBoardModel, ITextStringView ITextStringView) {
+    public ScoreBoardPresenter(ScoreBoardModel scoreBoardModel, ITextStringView iTextStringView) {
         this.scoreBoardModel = scoreBoardModel;
-        this.ITextStringView = ITextStringView;
+        this.iTextStringView = iTextStringView;
     }
 
     public void showFirst(TextView textView, SortStrategy sortStrategy) {
         ArrayList<Map.Entry<String, Integer>> result = scoreBoardModel.sortResult(sortStrategy);
         System.out.println(result.size());
         if (result.size() >= 1) {
-            ITextStringView.setText(textView, result.get(0).getKey() + ": " + result.get(0).getValue());
+            iTextStringView.setText(textView, result.get(0).getKey() + ": " + result.get(0).getValue());
         }
     }
 
     public void showSecond(TextView textView, SortStrategy sortStrategy) {
         ArrayList<Map.Entry<String, Integer>> result = scoreBoardModel.sortResult(sortStrategy);
         if (result.size() >= 2) {
-            ITextStringView.setText(textView, result.get(1).getKey() + ": " + result.get(1).getValue());
+            iTextStringView.setText(textView, result.get(1).getKey() + ": " + result.get(1).getValue());
         }
     }
 
     public void showThird(TextView textView, SortStrategy sortStrategy) {
         ArrayList<Map.Entry<String, Integer>> result = scoreBoardModel.sortResult(sortStrategy);
         if (result.size() >= 3) {
-            ITextStringView.setText(textView, result.get(2).getKey() + ": " + result.get(2).getValue());
+            iTextStringView.setText(textView, result.get(2).getKey() + ": " + result.get(2).getValue());
         }
     }
 
     public void showFourth(TextView textView, SortStrategy sortStrategy) {
         ArrayList<Map.Entry<String, Integer>> result = scoreBoardModel.sortResult(sortStrategy);
         if (result.size() >= 4) {
-            ITextStringView.setText(textView, result.get(3).getKey() + ": " + result.get(3).getValue());
+            iTextStringView.setText(textView, result.get(3).getKey() + ": " + result.get(3).getValue());
         }
     }
 
     public void showFifth(TextView textView, SortStrategy sortStrategy) {
         ArrayList<Map.Entry<String, Integer>> result = scoreBoardModel.sortResult(sortStrategy);
         if (result.size() >= 5) {
-            ITextStringView.setText(textView, result.get(4).getKey() + ": " + result.get(4).getValue());
+            iTextStringView.setText(textView, result.get(4).getKey() + ": " + result.get(4).getValue());
         }
     }
 }

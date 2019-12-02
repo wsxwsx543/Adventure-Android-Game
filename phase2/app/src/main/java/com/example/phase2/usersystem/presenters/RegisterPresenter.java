@@ -6,16 +6,16 @@ import com.example.phase2.usersystem.views.iview.IToastStringView;
 
 public class RegisterPresenter {
     private RegisterModel registerModel;
-    private IToastStringView IToastStringView;
+    private IToastStringView iToastStringView;
 
-    public RegisterPresenter(RegisterModel registerModel, IToastStringView IToastStringView) {
+    public RegisterPresenter(RegisterModel registerModel, IToastStringView iToastStringView) {
         this.registerModel = registerModel;
-        this.IToastStringView = IToastStringView;
+        this.iToastStringView = iToastStringView;
     }
 
     public boolean showResult(FileSystem fileSystem, String username, String password1, String password2) {
         String result = registerModel.addNewUser(fileSystem, username, password1, password2);
-        IToastStringView.setResult(result);
+        iToastStringView.setResult(result);
         return result.equals("Register Successful.");
     }
 }

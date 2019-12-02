@@ -12,28 +12,28 @@ import com.example.phase2.usersystem.views.iview.IToastStringView;
 
 public class SelectPlayerPresenter {
     private SelectPlayerModel selectPlayerModel;
-    private ITextStringView ITextStringView;
-    private ISpinnerStringView ISpinnerStringView;
-    private IToastStringView IToastStringView;
+    private ITextStringView iTextStringView;
+    private ISpinnerStringView iSpinnerStringView;
+    private IToastStringView iToastStringView;
 
-    public SelectPlayerPresenter(SelectPlayerModel selectPlayerModel, ITextStringView ITextStringView, ISpinnerStringView ISpinnerStringView, IToastStringView IToastStringView) {
+    public SelectPlayerPresenter(SelectPlayerModel selectPlayerModel, ITextStringView iTextStringView, ISpinnerStringView iSpinnerStringView, IToastStringView iToastStringView) {
         this.selectPlayerModel = selectPlayerModel;
-        this.ITextStringView = ITextStringView;
-        this.ISpinnerStringView = ISpinnerStringView;
-        this.IToastStringView = IToastStringView;
+        this.iTextStringView = iTextStringView;
+        this.iSpinnerStringView = iSpinnerStringView;
+        this.iToastStringView = iToastStringView;
     }
 
     public void showText(User user, String playerName, String stats, TextView textView) {
-        ITextStringView.setText(textView, selectPlayerModel.playerStats(user, playerName, stats));
+        iTextStringView.setText(textView, selectPlayerModel.playerStats(user, playerName, stats));
     }
 
     public void showPlayersSpinner(Context context, Spinner spinner, User user) {
-        ISpinnerStringView.setSpinner(spinner, selectPlayerModel.playersAdapter(context, user));
+        iSpinnerStringView.setSpinner(spinner, selectPlayerModel.playersAdapter(context, user));
     }
 
     public boolean showPlayerAvailableToast(User user, String playerName) {
         String result = selectPlayerModel.checkPlayerAvailable(user, playerName);
-        IToastStringView.setResult(result);
+        iToastStringView.setResult(result);
         return result.equals("Start game!");
     }
 }

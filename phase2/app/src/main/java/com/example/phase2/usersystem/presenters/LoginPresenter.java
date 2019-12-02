@@ -6,21 +6,21 @@ import com.example.phase2.usersystem.views.iview.IToastStringView;
 
 public class LoginPresenter {
     private LoginModel loginModel;
-    private IToastStringView IToastStringView;
+    private IToastStringView iToastStringView;
 
     public LoginPresenter(LoginModel loginModel, IToastStringView loginView) {
         this.loginModel = loginModel;
-        this.IToastStringView = loginView;
+        this.iToastStringView = loginView;
     }
 
     public boolean showResult(FileSystem fileSystem, String username, String password) {
         loginModel.loadScoreBoard(fileSystem);
         loginModel.loadUsers(fileSystem);
         if (loginModel.checkPasswordCorrect(username, password)) {
-            IToastStringView.setResult("Login Successfully");
+            iToastStringView.setResult("Login Successfully");
             return true;
         } else {
-            IToastStringView.setResult("Invalid username or password.");
+            iToastStringView.setResult("Invalid username or password.");
             return false;
         }
     }
@@ -28,6 +28,6 @@ public class LoginPresenter {
     public void register(FileSystem fileSystem) {
         loginModel.loadScoreBoard(fileSystem);
         loginModel.loadUsers(fileSystem);
-        IToastStringView.setResult("Register now!");
+        iToastStringView.setResult("Register now!");
     }
 }
