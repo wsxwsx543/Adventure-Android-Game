@@ -4,6 +4,16 @@ Our uml package which contains the uml diagrams of the project is under com.exam
 
 UML: All UML diagrams are stored in the uml package.
 
+Setup:
+- Install Android Studio.
+- Run, then check out project with version control using
+https://markus.teach.cs.toronto.edu/git/csc207-2019-09/group_0537
+- Set up the project through Gradle, using the default Gradle wrapper。
+- Let the project build.
+- Create an Android Virtual Device that uses Pixel3, with the device OS as API 28
+- Run the file "LoginActivity.java", which will initiate the application and game menus.
+
+
 Game information:
 Information about the games and how they are played are listed below. This is a RPG game and have
 three stages. The player should get through all three stages to win the game. The first two stages
