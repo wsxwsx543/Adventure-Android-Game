@@ -2,6 +2,7 @@ Instructions:
 Phase 2 of the CSC207 Term Project. No plugins and tools used, will work just open the project.
 Our uml package which contains the uml diagrams of the project is under com.example.phase2 package.
 
+UML: All UML diagrams are stored in the uml package.
 
 Game information:
 Information about the games and how they are played are listed below. This is a RPG game and have
