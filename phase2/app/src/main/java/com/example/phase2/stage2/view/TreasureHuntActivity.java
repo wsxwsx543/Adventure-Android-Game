@@ -1,4 +1,4 @@
-package com.example.phase2.stage2;
+package com.example.phase2.stage2.view;
 
 import android.os.Bundle;
 
@@ -11,18 +11,17 @@ public class TreasureHuntActivity extends SuperActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.init();
-        // Initiate the view that this activity is using
         treasureHuntView = new TreasureHuntView(this);
         setContentView(treasureHuntView);
     }
 
     protected void onPause(){
         super.onPause();
-        treasureHuntView.pause();
+        treasureHuntView.getTreasureHuntPresenter().pause();
     }
     protected void onResume(){
         super.onResume();
-        treasureHuntView.resume();
+        treasureHuntView.getTreasureHuntPresenter().resume();
     }
 
 }

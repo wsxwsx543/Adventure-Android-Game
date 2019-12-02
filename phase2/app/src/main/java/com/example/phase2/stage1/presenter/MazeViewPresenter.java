@@ -15,7 +15,7 @@ import com.example.phase2.stage1.model.Background;
 import com.example.phase2.stage1.model.Hero;
 import com.example.phase2.stage1.model.IMazeModel;
 import com.example.phase2.stage1.model.MazeObjects;
-import com.example.phase2.stage2.TreasureHuntActivity;
+import com.example.phase2.stage2.view.TreasureHuntActivity;
 
 import java.util.List;
 

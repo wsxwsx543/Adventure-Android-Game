@@ -14,7 +14,7 @@ import com.example.phase2.R;
 import com.example.phase2.appcore.user.User;
 import com.example.phase2.appcore.user.UserManager;
 import com.example.phase2.stage1.view.MazeActivity;
-import com.example.phase2.stage2.TreasureHuntActivity;
+import com.example.phase2.stage2.view.TreasureHuntActivity;
 import com.example.phase2.stage3.view.BattleActivity;
 import com.example.phase2.usersystem.models.SelectPlayerModel;
 import com.example.phase2.usersystem.presenters.SelectPlayerPresenter;
