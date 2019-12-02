@@ -29,14 +29,6 @@ public class ScoreBoard implements Observer, Serializable {
         return scoreBoard;
     }
 
-    public static void setScoreBoard(ScoreBoard scoreBoard) {
-        ScoreBoard.scoreBoard = scoreBoard;
-    }
-
-    public ArrayList sort(SortStrategy sortStrategy) {
-        return sortStrategy.sort(userPlayers);
-    }
-
     public HashMap<User, ArrayList<Player>> getUserPlayers() {
         return userPlayers;
     }

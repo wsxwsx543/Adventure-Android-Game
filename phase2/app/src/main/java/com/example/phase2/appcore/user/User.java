@@ -58,7 +58,7 @@ public class User implements Serializable {
      * Set the user's password to a specific password.
      * @param password the given username.
      */
-    public void setPassword(String password) {
+    private void setPassword(String password) {
         this.password = password;
     }
 
@@ -87,14 +87,6 @@ public class User implements Serializable {
     }
 
     /**
-     * Set the player.
-     * @param players the player.
-     */
-    public void setPlayers(HashMap<String, Player> players) {
-        this.players = players;
-    }
-
-    /**
      * Add the given player.
      * @param player the given player.
      * @throws SameNameException
@@ -108,22 +100,5 @@ public class User implements Serializable {
             throw new EmptyNameException();
         }
         else players.put(player.getName(), player);
-    }
-
-    /**
-     * Return the player creates highest attack.
-     * @return a player with highest total attack.
-     */
-    public Player findHighestAttackCreate(){
-        int highest = 0;
-        Player ret_player = new Player("NoPlayer", new Property(0, 0, 0,
-                0));
-        for(Player player: players.values()){
-            if(player.getAttackCreate() > highest){
-                highest = player.getAttackCreate();
-                ret_player = player;
-            }
-        }
-        return ret_player;
     }
 }
