@@ -1,4 +1,4 @@
-package com.example.phase2.stage2;
+package com.example.phase2.stage2.model;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -7,7 +7,7 @@ import com.example.phase2.appcore.user.UserManager;
 
 import java.util.ArrayList;
 
-class BoxesManager {
+public class BoxesManager {
     private Box[][] boxes;
 
     private int startX;
@@ -24,7 +24,7 @@ class BoxesManager {
     private BoxFactory boxFactory;
     private int luckiness = UserManager.getInstance().getCurUser().getCurPlayer().getProperty().getLuckiness();
 
-    BoxesManager(int boardWidth, int boardLength, int unitSize, int startX, int startY, Resources res){
+    public BoxesManager(int boardWidth, int boardLength, int unitSize, int startX, int startY, Resources res){
         this.startX = startX;
         this.startY = startY;
         this.boardLength = boardLength;
@@ -92,7 +92,7 @@ class BoxesManager {
             }
         }
     }
-    void fillWithRandomBoxes(){
+    public void fillWithRandomBoxes(){
         for (int y = 0; y < this.boardLength; y++){
             for (int x = 0; x < this.boardWidth; x++) {
 
@@ -113,7 +113,7 @@ class BoxesManager {
         assign();
     }
 
-    void addBox(Box box, int x, int y){
+    public void addBox(Box box, int x, int y){
         boxes[y][x] = box;
         assign();
 
@@ -142,7 +142,7 @@ class BoxesManager {
     }
 
     // loot the boxes
-    void loot() {
+    public void loot() {
         for (int y = 0; y < this.boardLength; y++) {
             for (int x = 0; x < this.boardWidth; x++) {
                 if (this.boxes[y][x] instanceof Treasure) {
@@ -155,7 +155,7 @@ class BoxesManager {
     }
 
     // Draw each boxes
-    void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         for (int y = 0; y < this.boardLength; y++) {
             for (int x = 0; x < this.boardWidth; x++) {
                 Box thisBox = boxes[y][x];
@@ -165,7 +165,7 @@ class BoxesManager {
     }
 
     // if all empty units and treasure are expanded return true
-    boolean checkAllExpanded(){
+    public boolean checkAllExpanded(){
         for (int y = 0; y < this.boardLength; y++) {
             for (int x = 0; x < this.boardWidth; x++) {
                 Box thisBox = boxes[y][x];
@@ -174,7 +174,6 @@ class BoxesManager {
                         return false;
                     }
                 }
-
             }
 
         }
@@ -182,7 +181,7 @@ class BoxesManager {
     }
 
     // if any of the trap is triggered return true
-    boolean checkTrapTriggered(){
+    public boolean checkTrapTriggered(){
         for (int y = 0; y < this.boardLength; y++) {
             for (int x = 0; x < this.boardWidth; x++) {
                 if (boxes[y][x] instanceof Trap && boxes[y][x].expanded) {
@@ -194,7 +193,7 @@ class BoxesManager {
     }
 
     // Expand the selected box
-    void expand(int x, int y){
+    public void expand(int x, int y){
         boxes[y][x].expand(new ArrayList<>());
     }
 }

@@ -1,4 +1,4 @@
-package com.example.phase2.stage2;
+package com.example.phase2.stage2.model;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;

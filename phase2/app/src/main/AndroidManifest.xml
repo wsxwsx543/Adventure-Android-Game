@@ -15,7 +15,7 @@
         <activity android:name=".usersystem.views.app.SettingActivity" />
         <activity android:name=".usersystem.views.results.WinActivity" />
         <activity android:name=".usersystem.views.results.LoseActivity" />
-        <activity android:name=".stage2.TreasureHuntActivity" />
+        <activity android:name=".stage2.view.TreasureHuntActivity" />
         <activity android:name=".usersystem.views.user.CreatePlayerActivity" />
         <activity android:name=".usersystem.views.user.SelectPlayerActivity" />
         <activity android:name=".usersystem.views.user.ChooseOrCreatePlayerActivity" />
